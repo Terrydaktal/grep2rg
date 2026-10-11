@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "source": "vllm-coherence",
+  "scope": "Synthetic test fixtures and independent GNU option inventory only; original source files were read without modification.",
+  "sha256": {
+    "tests/test_grep_files.mjs": "dfd5a204c9841cc73ed6fd8510d812f460da7769c7965558245f42ed920630f6",
+    "tests/test_grep_full_cli.mjs": "a470225995967762aa0998c7d605a9cd15d58620764e5ed23018cc078cd192c7",
+    "tests/test_grep_matcher_campaign.mjs": "8d0300e6f42693147775eb7f3e58835e4947581f6049da9d19d12487868bf269",
+    "tests/test_grep_matrix_campaign.mjs": "3196c8f3c62ef95f1281a378c7f7651817d9847356e344be5265064ac17a2645",
+    "tests/test_grep_option_interactions.mjs": "892b0de4703f377b527fa47d5c281b2d5d601efd800d37c1301172e1f4720cc8",
+    "tests/test_grep_options.mjs": "32c7306d56e4b9ae3d33bcff5b2029ea696aeb5eeafe9c54af79ace4cdd69a4e",
+    "tests/test_grep_output.mjs": "4de2508958ff999a2549f3724ba82cb098a9c365505d204f4ed7aafedc68ca34",
+    "tests/test_grep_runtime_faults.mjs": "4a952e0510307fe00d6518879e0dba76a8d8e347240d1c56ff46b7fbc42d9216",
+    "tests/test_grep_scope.mjs": "b33f1bc96398f35e1c8e4e78d486e3f120f379957f23cc72a35aa21e72078522",
+    "tests/test_grep_traversal_campaign.mjs": "875369dfdb9b68b6ec553a9f0c65a23cf788b52ff3ea6eed1949fbf61a1b44c5",
+    "tests/test_grep_wrapper.mjs": "79c838443a6b0837afe7c8887c32b6fb72d9ae81233316de9215d0ba646b8cf7",
+    "tests/grep_option_inventory.json": "d1b96f3b2a349638ebc706b5e9ed2c0514c5d7f319772622504bcc61077d8085",
+    "tests/grep_wrapper_requirements.json": "d80783b8a3ad324d6448d04e00c5fffd1cadfe2a0e0a2dc426a052c0760f444e",
+    "tools/verify_grep.mjs": "a82a56008cbd42fd6fdaa918523a64cc75ff9e84eef05cb8d3e728442406fac3"
+  }
+}

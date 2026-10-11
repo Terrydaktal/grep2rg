@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# Node argv cannot preserve invalid UTF-8 bytes. Keep non-ASCII arguments in
+# Bash and pass them unchanged to GNU grep, just like the injected function.
+if ! (
+	LC_ALL=C
+	_grep2rg_nonascii=$'[^\001-\177]'
+	for _grep2rg_arg; do
+		if [[ $_grep2rg_arg =~ $_grep2rg_nonascii ]]; then exit 1; fi
+	done
+); then
+	exec grep "$@"
+fi
+
+# npm and user launchers may create multiple symlinks in directories with spaces.
+_grep2rg_script=$(readlink -f -- "${BASH_SOURCE[0]}") || exit 2
+exec node "${_grep2rg_script%/*}/grep2rg.mjs" "$@"

@@ -1,0 +1,1917 @@
+{
+  "schemaVersion": 1,
+  "scope": "Finite documented GNU option-language inventory; not an exhaustive set of arbitrary argv, regex text, values or environments.",
+  "sources": {
+    "help": "/usr/bin/grep --help",
+    "manual": "/usr/share/info/grep.info.gz",
+    "man": "/usr/share/man/man1/grep.1.gz",
+    "GNU": "grep (GNU grep) 3.12-modified"
+  },
+  "counts": {
+    "documentedLongSpellings": 48,
+    "helpShortSpellings": 35,
+    "manualShortSpellings": 36,
+    "semanticOptions": 47,
+    "representativeVariants": 85,
+    "orderedRepresentativePairs": 7225
+  },
+  "fixtureMarkers": {
+    "$PATTERN_FILE": "Regular UTF-8 file with foo pattern and final newline",
+    "$EMPTY_PATTERN_FILE": "Zero-byte regular pattern file",
+    "$EXCLUDE_FILE": "Regular UTF-8 glob file with skip rule",
+    "$EMPTY_EXCLUDE_FILE": "Zero-byte regular exclusion file",
+    "$MISSING_FILE": "Nonexistent safe fixture path"
+  },
+  "options": [
+    {
+      "id": "extended-regexp",
+      "short": [
+        "E"
+      ],
+      "long": [
+        "extended-regexp"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "-E",
+        "--extended-regexp"
+      ]
+    },
+    {
+      "id": "fixed-strings",
+      "short": [
+        "F"
+      ],
+      "long": [
+        "fixed-strings"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "-F",
+        "--fixed-strings"
+      ]
+    },
+    {
+      "id": "basic-regexp",
+      "short": [
+        "G"
+      ],
+      "long": [
+        "basic-regexp"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "-G",
+        "--basic-regexp"
+      ]
+    },
+    {
+      "id": "perl-regexp",
+      "short": [
+        "P"
+      ],
+      "long": [
+        "perl-regexp"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "-P",
+        "--perl-regexp"
+      ]
+    },
+    {
+      "id": "regexp",
+      "short": [
+        "e"
+      ],
+      "long": [
+        "regexp"
+      ],
+      "argument": "required",
+      "helpDocumented": true,
+      "representativeValue": "foo",
+      "values": [
+        "",
+        "foo",
+        "-n",
+        "foo\nbar",
+        "foo\n",
+        "\\",
+        "[",
+        "(?bad)"
+      ],
+      "notes": "Each -e adds newline-separated patterns; an option-looking required value remains a pattern.",
+      "forms": [
+        "-e VALUE",
+        "-eVALUE",
+        "--regexp=VALUE",
+        "--regexp VALUE"
+      ]
+    },
+    {
+      "id": "file",
+      "short": [
+        "f"
+      ],
+      "long": [
+        "file"
+      ],
+      "argument": "required",
+      "helpDocumented": true,
+      "representativeValue": "$PATTERN_FILE",
+      "values": [
+        "$PATTERN_FILE",
+        "$EMPTY_PATTERN_FILE",
+        "$MISSING_FILE",
+        "-",
+        ""
+      ],
+      "notes": "Each -f adds line-separated patterns; empty file has zero patterns, final newline is not an extra empty pattern, - owns stdin.",
+      "forms": [
+        "-f VALUE",
+        "-fVALUE",
+        "--file=VALUE",
+        "--file VALUE"
+      ]
+    },
+    {
+      "id": "ignore-case",
+      "short": [
+        "i",
+        "y"
+      ],
+      "long": [
+        "ignore-case"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "notes": "-y is documented in the full manual as an obsolete synonym; it is omitted from --help.",
+      "forms": [
+        "-i",
+        "-y",
+        "--ignore-case"
+      ]
+    },
+    {
+      "id": "no-ignore-case",
+      "short": [],
+      "long": [
+        "no-ignore-case"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "--no-ignore-case"
+      ]
+    },
+    {
+      "id": "word-regexp",
+      "short": [
+        "w"
+      ],
+      "long": [
+        "word-regexp"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "-w",
+        "--word-regexp"
+      ]
+    },
+    {
+      "id": "line-regexp",
+      "short": [
+        "x"
+      ],
+      "long": [
+        "line-regexp"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "-x",
+        "--line-regexp"
+      ]
+    },
+    {
+      "id": "null-data",
+      "short": [
+        "z"
+      ],
+      "long": [
+        "null-data"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "-z",
+        "--null-data"
+      ]
+    },
+    {
+      "id": "no-messages",
+      "short": [
+        "s"
+      ],
+      "long": [
+        "no-messages"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "-s",
+        "--no-messages"
+      ]
+    },
+    {
+      "id": "invert-match",
+      "short": [
+        "v"
+      ],
+      "long": [
+        "invert-match"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "-v",
+        "--invert-match"
+      ]
+    },
+    {
+      "id": "version",
+      "short": [
+        "V"
+      ],
+      "long": [
+        "version"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "-V",
+        "--version"
+      ]
+    },
+    {
+      "id": "help",
+      "short": [],
+      "long": [
+        "help"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "--help"
+      ]
+    },
+    {
+      "id": "max-count",
+      "short": [
+        "m"
+      ],
+      "long": [
+        "max-count"
+      ],
+      "argument": "required",
+      "helpDocumented": true,
+      "representativeValue": "2",
+      "values": [
+        "0",
+        "1",
+        "2",
+        "+0",
+        "+1",
+        "01",
+        "-0",
+        "2147483647",
+        "2147483648",
+        "9007199254740991",
+        "9007199254740992",
+        "18446744073709551615",
+        "18446744073709551616",
+        "-1",
+        " 1",
+        "\t1",
+        "\n1",
+        "+000",
+        "-2",
+        "-3"
+      ],
+      "invalidValues": [
+        "",
+        "+",
+        "-",
+        "1x",
+        "1.0",
+        "1e3",
+        "1 ",
+        "--",
+        "++1"
+      ],
+      "notes": "GNU documents -1 as infinity; values beyond machine range saturate in GNU 3.12. Preserve native version behavior for oversized values. GNU 3.12 also accepts other negative max-count values and leading whitespace; these observations must be compared against each installed GNU version, not assumed portable.",
+      "forms": [
+        "-m VALUE",
+        "-mVALUE",
+        "--max-count=VALUE",
+        "--max-count VALUE"
+      ]
+    },
+    {
+      "id": "byte-offset",
+      "short": [
+        "b"
+      ],
+      "long": [
+        "byte-offset"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "-b",
+        "--byte-offset"
+      ]
+    },
+    {
+      "id": "line-number",
+      "short": [
+        "n"
+      ],
+      "long": [
+        "line-number"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "-n",
+        "--line-number"
+      ]
+    },
+    {
+      "id": "line-buffered",
+      "short": [],
+      "long": [
+        "line-buffered"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "--line-buffered"
+      ]
+    },
+    {
+      "id": "with-filename",
+      "short": [
+        "H"
+      ],
+      "long": [
+        "with-filename"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "-H",
+        "--with-filename"
+      ]
+    },
+    {
+      "id": "no-filename",
+      "short": [
+        "h"
+      ],
+      "long": [
+        "no-filename"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "-h",
+        "--no-filename"
+      ]
+    },
+    {
+      "id": "label",
+      "short": [],
+      "long": [
+        "label"
+      ],
+      "argument": "required",
+      "helpDocumented": true,
+      "representativeValue": "stdin-fixture",
+      "values": [
+        "",
+        "stdin-fixture",
+        "-n",
+        "a:b",
+        "x\ny",
+        "α"
+      ],
+      "forms": [
+        "--label=VALUE",
+        "--label VALUE"
+      ]
+    },
+    {
+      "id": "only-matching",
+      "short": [
+        "o"
+      ],
+      "long": [
+        "only-matching"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "-o",
+        "--only-matching"
+      ]
+    },
+    {
+      "id": "quiet",
+      "short": [
+        "q"
+      ],
+      "long": [
+        "quiet",
+        "silent"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "-q",
+        "--quiet",
+        "--silent"
+      ]
+    },
+    {
+      "id": "binary-files",
+      "short": [],
+      "long": [
+        "binary-files"
+      ],
+      "argument": "required",
+      "helpDocumented": true,
+      "representativeValue": "text",
+      "values": [
+        "binary",
+        "text",
+        "without-match"
+      ],
+      "invalidValues": [
+        "",
+        "read",
+        "TEXT"
+      ],
+      "forms": [
+        "--binary-files=VALUE",
+        "--binary-files VALUE"
+      ]
+    },
+    {
+      "id": "text",
+      "short": [
+        "a"
+      ],
+      "long": [
+        "text"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "-a",
+        "--text"
+      ]
+    },
+    {
+      "id": "binary-without-match",
+      "short": [
+        "I"
+      ],
+      "long": [],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "-I"
+      ]
+    },
+    {
+      "id": "directories",
+      "short": [
+        "d"
+      ],
+      "long": [
+        "directories"
+      ],
+      "argument": "required",
+      "helpDocumented": true,
+      "representativeValue": "skip",
+      "values": [
+        "read",
+        "recurse",
+        "skip",
+        "rea",
+        "rec",
+        "s",
+        "ski"
+      ],
+      "invalidValues": [
+        "",
+        "READ",
+        "unknown",
+        "r",
+        "re"
+      ],
+      "forms": [
+        "-d VALUE",
+        "-dVALUE",
+        "--directories=VALUE",
+        "--directories VALUE"
+      ],
+      "notes": "GNU accepts unique ACTION abbreviations, but r/re are ambiguous between read and recurse."
+    },
+    {
+      "id": "devices",
+      "short": [
+        "D"
+      ],
+      "long": [
+        "devices"
+      ],
+      "argument": "required",
+      "helpDocumented": true,
+      "representativeValue": "skip",
+      "values": [
+        "read",
+        "skip"
+      ],
+      "invalidValues": [
+        "",
+        "recurse",
+        "READ"
+      ],
+      "forms": [
+        "-D VALUE",
+        "-DVALUE",
+        "--devices=VALUE",
+        "--devices VALUE"
+      ]
+    },
+    {
+      "id": "recursive",
+      "short": [
+        "r"
+      ],
+      "long": [
+        "recursive"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "-r",
+        "--recursive"
+      ]
+    },
+    {
+      "id": "dereference-recursive",
+      "short": [
+        "R"
+      ],
+      "long": [
+        "dereference-recursive"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "-R",
+        "--dereference-recursive"
+      ]
+    },
+    {
+      "id": "include",
+      "short": [],
+      "long": [
+        "include"
+      ],
+      "argument": "required",
+      "helpDocumented": true,
+      "representativeValue": "*.txt",
+      "values": [
+        "",
+        "*",
+        "*.txt",
+        "?a",
+        "[ab]*",
+        "a\\*b",
+        "nested/*.txt",
+        "*/nested/*",
+        "**/*.txt",
+        "skip/",
+        "skip///"
+      ],
+      "forms": [
+        "--include=VALUE",
+        "--include VALUE"
+      ]
+    },
+    {
+      "id": "exclude",
+      "short": [],
+      "long": [
+        "exclude"
+      ],
+      "argument": "required",
+      "helpDocumented": true,
+      "representativeValue": "*skip*",
+      "values": [
+        "",
+        "*",
+        "*.txt",
+        "?a",
+        "[ab]*",
+        "a\\*b",
+        "nested/*.txt",
+        "*/nested/*",
+        "**/*.txt",
+        "skip/",
+        "skip///"
+      ],
+      "forms": [
+        "--exclude=VALUE",
+        "--exclude VALUE"
+      ]
+    },
+    {
+      "id": "exclude-dir",
+      "short": [],
+      "long": [
+        "exclude-dir"
+      ],
+      "argument": "required",
+      "helpDocumented": true,
+      "representativeValue": "skip",
+      "values": [
+        "",
+        "*",
+        "*.txt",
+        "?a",
+        "[ab]*",
+        "a\\*b",
+        "nested/*.txt",
+        "*/nested/*",
+        "**/*.txt",
+        "skip/",
+        "skip///"
+      ],
+      "forms": [
+        "--exclude-dir=VALUE",
+        "--exclude-dir VALUE"
+      ]
+    },
+    {
+      "id": "exclude-from",
+      "short": [],
+      "long": [
+        "exclude-from"
+      ],
+      "argument": "required",
+      "helpDocumented": true,
+      "representativeValue": "$EXCLUDE_FILE",
+      "values": [
+        "$EXCLUDE_FILE",
+        "$EMPTY_EXCLUDE_FILE",
+        "$MISSING_FILE",
+        "-",
+        ""
+      ],
+      "notes": "Pattern-file rules retain their position among include/exclude filters; stdin and file errors must retain native ownership/diagnostics.",
+      "forms": [
+        "--exclude-from=VALUE",
+        "--exclude-from VALUE"
+      ]
+    },
+    {
+      "id": "files-without-match",
+      "short": [
+        "L"
+      ],
+      "long": [
+        "files-without-match"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "-L",
+        "--files-without-match"
+      ]
+    },
+    {
+      "id": "files-with-matches",
+      "short": [
+        "l"
+      ],
+      "long": [
+        "files-with-matches"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "-l",
+        "--files-with-matches"
+      ]
+    },
+    {
+      "id": "count",
+      "short": [
+        "c"
+      ],
+      "long": [
+        "count"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "-c",
+        "--count"
+      ]
+    },
+    {
+      "id": "initial-tab",
+      "short": [
+        "T"
+      ],
+      "long": [
+        "initial-tab"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "-T",
+        "--initial-tab"
+      ]
+    },
+    {
+      "id": "null",
+      "short": [
+        "Z"
+      ],
+      "long": [
+        "null"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "-Z",
+        "--null"
+      ]
+    },
+    {
+      "id": "before-context",
+      "short": [
+        "B"
+      ],
+      "long": [
+        "before-context"
+      ],
+      "argument": "required",
+      "helpDocumented": true,
+      "representativeValue": "2",
+      "values": [
+        "0",
+        "1",
+        "2",
+        "+0",
+        "+1",
+        "01",
+        "-0",
+        "2147483647",
+        "2147483648",
+        "9007199254740991",
+        "9007199254740992",
+        "18446744073709551615",
+        "18446744073709551616",
+        " 1",
+        "\t1",
+        "\n1",
+        "+000"
+      ],
+      "invalidValues": [
+        "",
+        "+",
+        "-",
+        "1x",
+        "1.0",
+        "1e3",
+        "1 ",
+        "--",
+        "-1",
+        "-2",
+        "++1"
+      ],
+      "notes": "Explicit zero context still enables group separators; contexts combine/order independently. -0 is accepted by GNU 3.12.",
+      "forms": [
+        "-B VALUE",
+        "-BVALUE",
+        "--before-context=VALUE",
+        "--before-context VALUE"
+      ]
+    },
+    {
+      "id": "after-context",
+      "short": [
+        "A"
+      ],
+      "long": [
+        "after-context"
+      ],
+      "argument": "required",
+      "helpDocumented": true,
+      "representativeValue": "2",
+      "values": [
+        "0",
+        "1",
+        "2",
+        "+0",
+        "+1",
+        "01",
+        "-0",
+        "2147483647",
+        "2147483648",
+        "9007199254740991",
+        "9007199254740992",
+        "18446744073709551615",
+        "18446744073709551616",
+        " 1",
+        "\t1",
+        "\n1",
+        "+000"
+      ],
+      "invalidValues": [
+        "",
+        "+",
+        "-",
+        "1x",
+        "1.0",
+        "1e3",
+        "1 ",
+        "--",
+        "-1",
+        "-2",
+        "++1"
+      ],
+      "notes": "Explicit zero context still enables group separators; contexts combine/order independently. -0 is accepted by GNU 3.12.",
+      "forms": [
+        "-A VALUE",
+        "-AVALUE",
+        "--after-context=VALUE",
+        "--after-context VALUE"
+      ]
+    },
+    {
+      "id": "context",
+      "short": [
+        "C"
+      ],
+      "long": [
+        "context"
+      ],
+      "argument": "required",
+      "helpDocumented": true,
+      "representativeValue": "2",
+      "values": [
+        "0",
+        "1",
+        "2",
+        "+0",
+        "+1",
+        "01",
+        "-0",
+        "2147483647",
+        "2147483648",
+        "9007199254740991",
+        "9007199254740992",
+        "18446744073709551615",
+        "18446744073709551616",
+        " 1",
+        "\t1",
+        "\n1",
+        "+000"
+      ],
+      "invalidValues": [
+        "",
+        "+",
+        "-",
+        "1x",
+        "1.0",
+        "1e3",
+        "1 ",
+        "--",
+        "-1",
+        "-2",
+        "++1"
+      ],
+      "notes": "Explicit zero context still enables group separators; contexts combine/order independently. -0 is accepted by GNU 3.12.",
+      "forms": [
+        "-C VALUE",
+        "-CVALUE",
+        "--context=VALUE",
+        "--context VALUE"
+      ]
+    },
+    {
+      "id": "group-separator",
+      "short": [],
+      "long": [
+        "group-separator"
+      ],
+      "argument": "required",
+      "helpDocumented": true,
+      "representativeValue": "GROUP",
+      "values": [
+        "",
+        "--",
+        "GROUP",
+        "\t",
+        "x\ny",
+        "α"
+      ],
+      "forms": [
+        "--group-separator=VALUE",
+        "--group-separator VALUE"
+      ]
+    },
+    {
+      "id": "no-group-separator",
+      "short": [],
+      "long": [
+        "no-group-separator"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "forms": [
+        "--no-group-separator"
+      ]
+    },
+    {
+      "id": "color",
+      "short": [],
+      "long": [
+        "color",
+        "colour"
+      ],
+      "argument": "optional",
+      "helpDocumented": true,
+      "representativeValue": "never",
+      "values": [
+        "always",
+        "never",
+        "auto"
+      ],
+      "invalidValues": [
+        "",
+        "unknown",
+        "ALWAYS"
+      ],
+      "notes": "Optional WHEN requires =; a following separate token is an operand. No color option means never, bare --color/--colour means auto. Unknown WHEN prints help and succeeds in GNU 3.12.",
+      "forms": [
+        "--color",
+        "--color=VALUE",
+        "--colour",
+        "--colour=VALUE"
+      ]
+    },
+    {
+      "id": "binary",
+      "short": [
+        "U"
+      ],
+      "long": [
+        "binary"
+      ],
+      "argument": "none",
+      "helpDocumented": true,
+      "notes": "On POSIX this is an accepted no-op, not --binary-files=text; it affects text I/O on Windows.",
+      "forms": [
+        "-U",
+        "--binary"
+      ]
+    }
+  ],
+  "representativeVariants": [
+    {
+      "id": "short-E",
+      "optionId": "extended-regexp",
+      "argv": [
+        "-E"
+      ]
+    },
+    {
+      "id": "long-extended-regexp",
+      "optionId": "extended-regexp",
+      "argv": [
+        "--extended-regexp"
+      ]
+    },
+    {
+      "id": "short-F",
+      "optionId": "fixed-strings",
+      "argv": [
+        "-F"
+      ]
+    },
+    {
+      "id": "long-fixed-strings",
+      "optionId": "fixed-strings",
+      "argv": [
+        "--fixed-strings"
+      ]
+    },
+    {
+      "id": "short-G",
+      "optionId": "basic-regexp",
+      "argv": [
+        "-G"
+      ]
+    },
+    {
+      "id": "long-basic-regexp",
+      "optionId": "basic-regexp",
+      "argv": [
+        "--basic-regexp"
+      ]
+    },
+    {
+      "id": "short-P",
+      "optionId": "perl-regexp",
+      "argv": [
+        "-P"
+      ]
+    },
+    {
+      "id": "long-perl-regexp",
+      "optionId": "perl-regexp",
+      "argv": [
+        "--perl-regexp"
+      ]
+    },
+    {
+      "id": "short-e",
+      "optionId": "regexp",
+      "argv": [
+        "-e",
+        "foo"
+      ],
+      "providesPattern": true
+    },
+    {
+      "id": "long-regexp",
+      "optionId": "regexp",
+      "argv": [
+        "--regexp=foo"
+      ],
+      "providesPattern": true
+    },
+    {
+      "id": "short-f",
+      "optionId": "file",
+      "argv": [
+        "-f",
+        "$PATTERN_FILE"
+      ],
+      "providesPattern": true
+    },
+    {
+      "id": "long-file",
+      "optionId": "file",
+      "argv": [
+        "--file=$PATTERN_FILE"
+      ],
+      "providesPattern": true
+    },
+    {
+      "id": "short-i",
+      "optionId": "ignore-case",
+      "argv": [
+        "-i"
+      ]
+    },
+    {
+      "id": "short-y",
+      "optionId": "ignore-case",
+      "argv": [
+        "-y"
+      ]
+    },
+    {
+      "id": "long-ignore-case",
+      "optionId": "ignore-case",
+      "argv": [
+        "--ignore-case"
+      ]
+    },
+    {
+      "id": "long-no-ignore-case",
+      "optionId": "no-ignore-case",
+      "argv": [
+        "--no-ignore-case"
+      ]
+    },
+    {
+      "id": "short-w",
+      "optionId": "word-regexp",
+      "argv": [
+        "-w"
+      ]
+    },
+    {
+      "id": "long-word-regexp",
+      "optionId": "word-regexp",
+      "argv": [
+        "--word-regexp"
+      ]
+    },
+    {
+      "id": "short-x",
+      "optionId": "line-regexp",
+      "argv": [
+        "-x"
+      ]
+    },
+    {
+      "id": "long-line-regexp",
+      "optionId": "line-regexp",
+      "argv": [
+        "--line-regexp"
+      ]
+    },
+    {
+      "id": "short-z",
+      "optionId": "null-data",
+      "argv": [
+        "-z"
+      ]
+    },
+    {
+      "id": "long-null-data",
+      "optionId": "null-data",
+      "argv": [
+        "--null-data"
+      ]
+    },
+    {
+      "id": "short-s",
+      "optionId": "no-messages",
+      "argv": [
+        "-s"
+      ]
+    },
+    {
+      "id": "long-no-messages",
+      "optionId": "no-messages",
+      "argv": [
+        "--no-messages"
+      ]
+    },
+    {
+      "id": "short-v",
+      "optionId": "invert-match",
+      "argv": [
+        "-v"
+      ]
+    },
+    {
+      "id": "long-invert-match",
+      "optionId": "invert-match",
+      "argv": [
+        "--invert-match"
+      ]
+    },
+    {
+      "id": "short-V",
+      "optionId": "version",
+      "argv": [
+        "-V"
+      ]
+    },
+    {
+      "id": "long-version",
+      "optionId": "version",
+      "argv": [
+        "--version"
+      ]
+    },
+    {
+      "id": "long-help",
+      "optionId": "help",
+      "argv": [
+        "--help"
+      ]
+    },
+    {
+      "id": "short-m",
+      "optionId": "max-count",
+      "argv": [
+        "-m",
+        "2"
+      ]
+    },
+    {
+      "id": "long-max-count",
+      "optionId": "max-count",
+      "argv": [
+        "--max-count=2"
+      ]
+    },
+    {
+      "id": "short-b",
+      "optionId": "byte-offset",
+      "argv": [
+        "-b"
+      ]
+    },
+    {
+      "id": "long-byte-offset",
+      "optionId": "byte-offset",
+      "argv": [
+        "--byte-offset"
+      ]
+    },
+    {
+      "id": "short-n",
+      "optionId": "line-number",
+      "argv": [
+        "-n"
+      ]
+    },
+    {
+      "id": "long-line-number",
+      "optionId": "line-number",
+      "argv": [
+        "--line-number"
+      ]
+    },
+    {
+      "id": "long-line-buffered",
+      "optionId": "line-buffered",
+      "argv": [
+        "--line-buffered"
+      ]
+    },
+    {
+      "id": "short-H",
+      "optionId": "with-filename",
+      "argv": [
+        "-H"
+      ]
+    },
+    {
+      "id": "long-with-filename",
+      "optionId": "with-filename",
+      "argv": [
+        "--with-filename"
+      ]
+    },
+    {
+      "id": "short-h",
+      "optionId": "no-filename",
+      "argv": [
+        "-h"
+      ]
+    },
+    {
+      "id": "long-no-filename",
+      "optionId": "no-filename",
+      "argv": [
+        "--no-filename"
+      ]
+    },
+    {
+      "id": "long-label",
+      "optionId": "label",
+      "argv": [
+        "--label=stdin-fixture"
+      ]
+    },
+    {
+      "id": "short-o",
+      "optionId": "only-matching",
+      "argv": [
+        "-o"
+      ]
+    },
+    {
+      "id": "long-only-matching",
+      "optionId": "only-matching",
+      "argv": [
+        "--only-matching"
+      ]
+    },
+    {
+      "id": "short-q",
+      "optionId": "quiet",
+      "argv": [
+        "-q"
+      ]
+    },
+    {
+      "id": "long-quiet",
+      "optionId": "quiet",
+      "argv": [
+        "--quiet"
+      ]
+    },
+    {
+      "id": "long-silent",
+      "optionId": "quiet",
+      "argv": [
+        "--silent"
+      ]
+    },
+    {
+      "id": "long-binary-files",
+      "optionId": "binary-files",
+      "argv": [
+        "--binary-files=text"
+      ]
+    },
+    {
+      "id": "short-a",
+      "optionId": "text",
+      "argv": [
+        "-a"
+      ]
+    },
+    {
+      "id": "long-text",
+      "optionId": "text",
+      "argv": [
+        "--text"
+      ]
+    },
+    {
+      "id": "short-I",
+      "optionId": "binary-without-match",
+      "argv": [
+        "-I"
+      ]
+    },
+    {
+      "id": "short-d",
+      "optionId": "directories",
+      "argv": [
+        "-d",
+        "skip"
+      ]
+    },
+    {
+      "id": "long-directories",
+      "optionId": "directories",
+      "argv": [
+        "--directories=skip"
+      ]
+    },
+    {
+      "id": "short-D",
+      "optionId": "devices",
+      "argv": [
+        "-D",
+        "skip"
+      ]
+    },
+    {
+      "id": "long-devices",
+      "optionId": "devices",
+      "argv": [
+        "--devices=skip"
+      ]
+    },
+    {
+      "id": "short-r",
+      "optionId": "recursive",
+      "argv": [
+        "-r"
+      ]
+    },
+    {
+      "id": "long-recursive",
+      "optionId": "recursive",
+      "argv": [
+        "--recursive"
+      ]
+    },
+    {
+      "id": "short-R",
+      "optionId": "dereference-recursive",
+      "argv": [
+        "-R"
+      ]
+    },
+    {
+      "id": "long-dereference-recursive",
+      "optionId": "dereference-recursive",
+      "argv": [
+        "--dereference-recursive"
+      ]
+    },
+    {
+      "id": "long-include",
+      "optionId": "include",
+      "argv": [
+        "--include=*.txt"
+      ]
+    },
+    {
+      "id": "long-exclude",
+      "optionId": "exclude",
+      "argv": [
+        "--exclude=*skip*"
+      ]
+    },
+    {
+      "id": "long-exclude-dir",
+      "optionId": "exclude-dir",
+      "argv": [
+        "--exclude-dir=skip"
+      ]
+    },
+    {
+      "id": "long-exclude-from",
+      "optionId": "exclude-from",
+      "argv": [
+        "--exclude-from=$EXCLUDE_FILE"
+      ]
+    },
+    {
+      "id": "short-L",
+      "optionId": "files-without-match",
+      "argv": [
+        "-L"
+      ]
+    },
+    {
+      "id": "long-files-without-match",
+      "optionId": "files-without-match",
+      "argv": [
+        "--files-without-match"
+      ]
+    },
+    {
+      "id": "short-l",
+      "optionId": "files-with-matches",
+      "argv": [
+        "-l"
+      ]
+    },
+    {
+      "id": "long-files-with-matches",
+      "optionId": "files-with-matches",
+      "argv": [
+        "--files-with-matches"
+      ]
+    },
+    {
+      "id": "short-c",
+      "optionId": "count",
+      "argv": [
+        "-c"
+      ]
+    },
+    {
+      "id": "long-count",
+      "optionId": "count",
+      "argv": [
+        "--count"
+      ]
+    },
+    {
+      "id": "short-T",
+      "optionId": "initial-tab",
+      "argv": [
+        "-T"
+      ]
+    },
+    {
+      "id": "long-initial-tab",
+      "optionId": "initial-tab",
+      "argv": [
+        "--initial-tab"
+      ]
+    },
+    {
+      "id": "short-Z",
+      "optionId": "null",
+      "argv": [
+        "-Z"
+      ]
+    },
+    {
+      "id": "long-null",
+      "optionId": "null",
+      "argv": [
+        "--null"
+      ]
+    },
+    {
+      "id": "short-B",
+      "optionId": "before-context",
+      "argv": [
+        "-B",
+        "2"
+      ]
+    },
+    {
+      "id": "long-before-context",
+      "optionId": "before-context",
+      "argv": [
+        "--before-context=2"
+      ]
+    },
+    {
+      "id": "short-A",
+      "optionId": "after-context",
+      "argv": [
+        "-A",
+        "2"
+      ]
+    },
+    {
+      "id": "long-after-context",
+      "optionId": "after-context",
+      "argv": [
+        "--after-context=2"
+      ]
+    },
+    {
+      "id": "short-C",
+      "optionId": "context",
+      "argv": [
+        "-C",
+        "2"
+      ]
+    },
+    {
+      "id": "long-context",
+      "optionId": "context",
+      "argv": [
+        "--context=2"
+      ]
+    },
+    {
+      "id": "long-group-separator",
+      "optionId": "group-separator",
+      "argv": [
+        "--group-separator=GROUP"
+      ]
+    },
+    {
+      "id": "long-no-group-separator",
+      "optionId": "no-group-separator",
+      "argv": [
+        "--no-group-separator"
+      ]
+    },
+    {
+      "id": "long-color",
+      "optionId": "color",
+      "argv": [
+        "--color=never"
+      ]
+    },
+    {
+      "id": "long-colour",
+      "optionId": "color",
+      "argv": [
+        "--colour=never"
+      ]
+    },
+    {
+      "id": "short-U",
+      "optionId": "binary",
+      "argv": [
+        "-U"
+      ]
+    },
+    {
+      "id": "long-binary",
+      "optionId": "binary",
+      "argv": [
+        "--binary"
+      ]
+    },
+    {
+      "id": "numeric-context",
+      "optionId": "numeric-context",
+      "argv": [
+        "-2"
+      ]
+    }
+  ],
+  "lexicalCases": [
+    {
+      "id": "end-options",
+      "argv": [
+        "-a",
+        "--",
+        "-foo",
+        "$DASH_FILE"
+      ]
+    },
+    {
+      "id": "dash-stdin",
+      "argv": [
+        "-a",
+        "-e",
+        "foo",
+        "-"
+      ]
+    },
+    {
+      "id": "missing-value",
+      "examples": [
+        "-e",
+        "-f",
+        "-m",
+        "-A",
+        "-B",
+        "-C",
+        "-d",
+        "-D",
+        "--label",
+        "--include",
+        "--exclude",
+        "--exclude-from",
+        "--exclude-dir",
+        "--group-separator"
+      ]
+    },
+    {
+      "id": "required-attached-short",
+      "examples": [
+        "-efoo",
+        "-f$PATTERN_FILE",
+        "-m0",
+        "-A0",
+        "-B0",
+        "-C0",
+        "-dskip",
+        "-Dskip"
+      ]
+    },
+    {
+      "id": "required-separated-long",
+      "examples": [
+        [
+          "--regexp",
+          "foo"
+        ],
+        [
+          "--file",
+          "$PATTERN_FILE"
+        ],
+        [
+          "--max-count",
+          "2"
+        ],
+        [
+          "--context",
+          "0"
+        ]
+      ]
+    },
+    {
+      "id": "optional-color-absent",
+      "argv": [
+        "--color"
+      ]
+    },
+    {
+      "id": "optional-color-separate-is-operand",
+      "argv": [
+        "--color",
+        "never",
+        "-e",
+        "foo"
+      ]
+    },
+    {
+      "id": "numeric-context-cluster",
+      "examples": [
+        "-0",
+        "-2",
+        "-12",
+        "-1n2",
+        "-n2b3"
+      ]
+    },
+    {
+      "id": "joined-flags",
+      "examples": [
+        "-ainH",
+        "-Fov",
+        "-rR",
+        "-Rqcl",
+        "-nC0"
+      ]
+    },
+    {
+      "id": "long-abbreviation",
+      "examples": [
+        "--colo=never",
+        "--colou=never",
+        "--max-c=0",
+        "--recur",
+        "--no-ignore-c",
+        "--no"
+      ]
+    },
+    {
+      "id": "nonoptional-equals-error",
+      "examples": [
+        "--count=1",
+        "--quiet=yes",
+        "--recursive=0"
+      ]
+    },
+    {
+      "id": "option-permutation",
+      "argv": [
+        "foo",
+        "-n",
+        "$TEXT_FILE"
+      ],
+      "environmentVariants": [
+        {},
+        {
+          "POSIXLY_CORRECT": ""
+        },
+        {
+          "POSIXLY_CORRECT": "1"
+        }
+      ]
+    }
+  ],
+  "interactionClasses": [
+    "matcher conflicts E/F/G/P, identical repeat, and three-option A/B/A conflict history",
+    "ignore-case/no-ignore-case last-wins including obsolete y",
+    "H/h last-wins, L/l last-wins, q supersedes normal output and selected-match error precedence",
+    "c/l/L/o/m/v/contexts output selection, counts, empty matches and trailing context",
+    "A/B/C/numeric context order, explicit C0 grouping, separator/no-separator order",
+    "r/R/d/device ordering and command-line versus interior symlink/special-file behavior",
+    "include/exclude/exclude-from ordered last-matching filter and first-filter default",
+    "a/I/binary-files ordering, NUL/invalid encoding classification, z versus Z",
+    "e/f and empty/newline/duplicate patterns, stdin pattern file ownership",
+    "help/version/color-invalid plus valid or invalid options and missing operands",
+    "TTY and TERM auto/never/always color, GREP_COLORS, no explicit color option",
+    "stdin regular-file seek position versus pipe ownership under m/q/l/L"
+  ],
+  "knownCoverageFindings": [
+    {
+      "id": "default-color-pty",
+      "status": "repaired with independent PTY regression",
+      "argv": [
+        "-a",
+        "-F",
+        "-e",
+        "foo",
+        "$TEXT_FILE"
+      ],
+      "environment": {
+        "LC_ALL": "C",
+        "TERM": "xterm"
+      },
+      "stdout": "PTY",
+      "GNU": "No ANSI color without an explicit color option",
+      "adapter": "Parser now defaults to never, preserving bare --color as auto.",
+      "beforeAdapter": "Parser initialized auto; qualified fixed matching emitted ANSI color on an xterm PTY without --color.",
+      "tests": [
+        {
+          "path": "tests/test_grep_runtime_faults.mjs",
+          "name": "PTY auto-color and no-explicit-color GNU comparisons",
+          "comparisons": 80
+        }
+      ]
+    },
+    {
+      "id": "context-override-order",
+      "status": "repaired with named GNU-oracle regressions",
+      "examples": [
+        [
+          "-B0",
+          "-C2"
+        ],
+        [
+          "-A0",
+          "-C2"
+        ]
+      ],
+      "GNU": "Explicit A/B side remains independent of context default even if C occurs later",
+      "adapter": "Explicit A/B side overrides remain authoritative over later generic context.",
+      "beforeAdapter": "A later C/-NUM overwrote both sides, including sides explicitly set by A/B.",
+      "tests": [
+        {
+          "path": "tests/test_grep_options.mjs",
+          "name": "regression: explicit before/after context overrides later generic context",
+          "comparisons": 11
+        }
+      ]
+    },
+    {
+      "id": "signed-and-whitespace-numeric",
+      "status": "behavior preserved by native fallback",
+      "examples": [
+        [
+          "-m",
+          "-1"
+        ],
+        [
+          "-m",
+          "-2"
+        ],
+        [
+          "-A",
+          "-0"
+        ],
+        [
+          "-C",
+          " 1"
+        ]
+      ],
+      "adapter": "Current parser chooses native diagnostics for unsupported integer syntax; unchanged original GNU argv accepts these values"
+    },
+    {
+      "id": "directory-action-abbreviation",
+      "status": "behavior preserved by native fallback",
+      "examples": [
+        [
+          "--directories=rec"
+        ],
+        [
+          "--directories=rea"
+        ],
+        [
+          "--directories=s"
+        ]
+      ],
+      "adapter": "Exact-value parser rejects abbreviations and delegates original argv to GNU"
+    },
+    {
+      "id": "fixed-word-whole-line-extraction",
+      "status": "preserved with native fallback and named GNU-oracle regression",
+      "argv": [
+        "-a",
+        "-F",
+        "-w",
+        "-x",
+        "-o",
+        "-e",
+        "foo"
+      ],
+      "GNU": "Desktop GNU 3.12 emits extra record terminators for this combination; GNU release behavior is preserved independently.",
+      "adapter": "Only this fixed-string extraction combination selects native; pairwise neighbors and C-locale Perl remain qualified.",
+      "beforeAdapter": "Qualified fixed extraction emitted one terminator while desktop GNU emitted two for w+x+o.",
+      "tests": [
+        {
+          "path": "tests/test_grep_options.mjs",
+          "name": "regression: fixed -w -x -o preserves installed GNU extraction behavior"
+        },
+        {
+          "path": "tests/test_grep_option_interactions.mjs",
+          "name": "full finite Boolean-core subsets"
+        }
+      ]
+    },
+    {
+      "id": "separated-numeric-short-runs",
+      "status": "repaired with named GNU-oracle regression and neighboring required-value cases",
+      "examples": [
+        [
+          "-1n2"
+        ],
+        [
+          "-n2b3"
+        ],
+        [
+          "-1n2b3"
+        ]
+      ],
+      "GNU": "Each contiguous numeric run is a separate generic context option; the last run sets the context default. Letters terminate the run.",
+      "beforeAdapter": "The parser concatenated numeric runs across intervening flags, interpreting -1n2 as context 12 and -n2b3 as context 23.",
+      "adapter": "Digit runs now remain separate, contiguous -123 remains 123, explicit A/B precedence remains intact, and required-value flags own their complete suffix.",
+      "tests": [
+        {
+          "path": "tests/test_grep_options.mjs",
+          "name": "regression: numeric short clusters keep only the last contiguous digit run",
+          "comparisons": 13
+        },
+        {
+          "path": "tests/test_grep_option_interactions.mjs",
+          "name": "GNU lexical option forms and boundary comparisons"
+        }
+      ]
+    }
+  ]
+}

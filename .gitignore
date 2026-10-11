@@ -1,0 +1,10 @@
+node_modules/
+/artifacts/
+/captures/
+/cache/
+/caches/
+/.cache/
+/.npm/
+*.log
+*.tsbuildinfo
+.DS_Store

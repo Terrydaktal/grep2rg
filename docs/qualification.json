@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "package": "grep2rg",
+  "version": "0.1.0",
+  "scope": "Bounded synthetic GNU differential tests; no private transcripts or model requests.",
+  "qualification_note": "The deep tarball precedes the documentation of its results. Source hashes identify the tested implementation and suites; the final documentation-only package receives a separate core/package recheck.",
+  "runs": [
+    {
+      "environment": "Linux desktop",
+      "started_at": "2026-10-11T18:13:01.415Z",
+      "finished_at": "2026-10-11T18:15:48.626Z",
+      "tier": "deep",
+      "passed": true,
+      "source_changed": false,
+      "node_test_count": 170,
+      "versions": {
+        "node": "v26.4.0",
+        "GNU": "grep (GNU grep) 3.12-modified",
+        "rg": "ripgrep 15.1.0 (rev 6e6b29e490)",
+        "pcre2": "PCRE2 10.45 is available (JIT is available)",
+        "python": "Python 3.14.6",
+        "bash": "GNU bash, version 5.3.15(1)-release (x86_64-pc-linux-gnu)",
+        "readlink": "readlink (GNU coreutils) 9.11",
+        "npm": "12.0.2",
+        "tar": "tar (GNU tar) 1.35"
+      },
+      "package_artifact": {
+        "filename": "grep2rg-0.1.0.tgz",
+        "sha256": "61bbedc0311b3efb6f2183e0739b4fa924c9c5c011fbb72730f4d3f7652700dd",
+        "integrity": "sha512-D4n+Rcedc0KEXRsfylDM8ZEKlya8dsAhg14t/PmVQ1ZMNf39tdgj6PAVQn7Jd2mQ56Xf7Z1sGt6l7jUCIPr1kA==",
+        "fileCount": 34,
+        "verification": "actual npm pack tarball, extracted tools/verify.mjs"
+      },
+      "source_hashes": {
+        "bin/grep2rg": "c52e68d18b371317c6c6f5e0d8627aa682882a118bdab267f5b78394d14fe415",
+        "bin/grep2rg-shell-prefix.mjs": "a7a77f98eb27cf461116553032018175a190c0c108f6624b59c77cf6ced95c23",
+        "bin/grep2rg.mjs": "7c5162b5635acafc1bdf6d5f0bb51e111d3a248778d29a7e03fcdbd058c26797",
+        "package.json": "f70f588bee4432fb36227c3c42bb4e2f9cb19c42d3a05580c809e860c2a102fa",
+        "pi/grep2rg.ts": "668577b8d530de43a2477647b99e905cf799bea3a5782479fd8c47c6212c6fb9",
+        "src/grep-files.mjs": "f1fe1c250f31b0714f72d66ca825cb6ebe9ab85840da266b435003f5e500d7e8",
+        "src/grep-options.mjs": "7beb8a4937f53bc41a0e5bad5dfad09f2ac4d6a9e716f8ed83dc22f41ec9c35b",
+        "src/grep-output.mjs": "f393641a7cfd051eade2d21273bf10743660a047ba6065195b41dc8341468392",
+        "src/grep-runtime.mjs": "9a9e275d2a4370ee8d889a7af4b51ebfbb9eba6e2ec22decda0675e91a84e435",
+        "src/grep-wrapper.mjs": "7674468174c712ebfe8e952cfc8ee5847af5e0ddc9c0ab746e184a049337d88f",
+        "tests/grep_option_inventory.json": "d1b96f3b2a349638ebc706b5e9ed2c0514c5d7f319772622504bcc61077d8085",
+        "tests/grep_wrapper_requirements.json": "2c6a0a873b13e271881c4ef9bb3ea399bf3b79d43beeb72ab8fb5194a5b849bc",
+        "tests/port_source_manifest.json": "377ee383d9649735f4c48ecbea6a8daf8add92aabd39bc022fe3584d11419692",
+        "tests/test_grep_files.mjs": "7500c0496bbfe275cd3dca78d96c78d07bd1690961293fd6d4d857a73970bcd7",
+        "tests/test_grep_full_cli.mjs": "cd6a89766a0b8a47ebdb82d05ea1c243825116e95b18eb36ab5a7deab6f9b8da",
+        "tests/test_grep_matcher_campaign.mjs": "4010143f0a1ba5fa8065944fafee647248af91f538a6b4f8a790d92144085149",
+        "tests/test_grep_matrix_campaign.mjs": "1cb898408d30b3e9c0d403809a70f0e8232dbd22036fff2937cab62d28785232",
+        "tests/test_grep_option_interactions.mjs": "2caa1332724ff14e5b4c260d8f5d485638c0892c6329dbe053d0a969cf20b56b",
+        "tests/test_grep_options.mjs": "0c8ffeeba76a4c55d158527876358a1cf66992ae683b8e32939fe845731de494",
+        "tests/test_grep_output.mjs": "7a9713a0678f6ac2c5d76b6e6276070f3f5aeee6eda5921f802bb591c1df5623",
+        "tests/test_grep_runtime_faults.mjs": "1aa1c968506b8e6eb851d1b00652a7d04a3420278361335c2923c3e14fab46c9",
+        "tests/test_grep_scope.mjs": "2b9c8520cddac0ac233b6e320dbfa7abc6ce1856444939034e363ff838ed5681",
+        "tests/test_grep_traversal_campaign.mjs": "39abd048cd89df44344d43f2807ce48f5983dad8f3183355f061572ffe30c482",
+        "tests/test_grep_wrapper.mjs": "ba6ddbfd0b6c48b1df9743715d1124bb7e10c7f476979f17860eaf0b9d533505",
+        "tests/test_package_artifact.mjs": "f5438c1f1261a8cbc6527aa96ef43439303a8e9143d6955b31b2cc93529bd3e8",
+        "tests/test_package_entry.mjs": "d135f176b40ffcd520964aa2786ffb1ca16d76ac8d99338eed16b373b02cf895",
+        "tools/verify-artifact.mjs": "9a11d503d80d1961a38563e43b636546ed4f05f11e11940b38e4ff8146962936",
+        "tools/verify.mjs": "73688a7c12b1f2f1efb1ce8c8de093d69b70e88a6d0e4841081d7e1b8221111f"
+      },
+      "stages": [
+        {
+          "name": "core",
+          "passed": true,
+          "counts": {
+            "tests": 142,
+            "suites": 0,
+            "pass": 142,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "durationMs": 17750
+        },
+        {
+          "name": "campaigns",
+          "passed": true,
+          "counts": {
+            "tests": 22,
+            "suites": 0,
+            "pass": 22,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "durationMs": 148771
+        },
+        {
+          "name": "installed Pi native Bash scope",
+          "passed": true,
+          "counts": {
+            "tests": 6,
+            "suites": 0,
+            "pass": 6,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "durationMs": 639
+        }
+      ],
+      "generated_campaigns": [
+        {
+          "name": "matcher",
+          "generated_cases": 12000,
+          "qualified_rg_comparisons": 4782,
+          "json_formatter_comparisons_subset": 359,
+          "native_routing_and_gnu_oracle_cases": 7218
+        },
+        {
+          "name": "output matrix",
+          "full_cli_gnu_comparisons": 4147
+        },
+        {
+          "name": "traversal",
+          "full_cli_gnu_comparisons": 1788
+        },
+        {
+          "name": "option interactions",
+          "full_cli_gnu_comparisons": 12861
+        }
+      ],
+      "matcher_metamorphic_cases_additional": 96,
+      "installed_pi_sdk": "0.84.2",
+      "installed_pi_actual_rg_invocations": 7,
+      "network_requests": 0,
+      "inference_requests": 0,
+      "generated_campaign_cases": 30796,
+      "full_cli_gnu_comparisons": 18796,
+      "qualified_matcher_comparisons": 4782,
+      "native_routing_and_gnu_oracle_cases": 7218,
+      "observed_campaign_mismatches": 0
+    },
+    {
+      "environment": "Linux Pi-opsec VM",
+      "started_at": "2026-10-11T18:18:07.934Z",
+      "finished_at": "2026-10-11T18:18:36.896Z",
+      "tier": "core",
+      "passed": true,
+      "source_changed": false,
+      "node_test_count": 148,
+      "versions": {
+        "node": "v24.21.0",
+        "GNU": "grep (GNU grep) 3.11",
+        "rg": "ripgrep 14.1.1",
+        "pcre2": "PCRE2 10.43 is available (JIT is available)",
+        "python": "Python 3.13.5",
+        "bash": "GNU bash, version 5.2.37(1)-release (x86_64-pc-linux-gnu)",
+        "readlink": "readlink (GNU coreutils) 9.7",
+        "npm": "11.19.0",
+        "tar": "tar (GNU tar) 1.35"
+      },
+      "package_artifact": {
+        "filename": "grep2rg-0.1.0.tgz",
+        "sha256": "61bbedc0311b3efb6f2183e0739b4fa924c9c5c011fbb72730f4d3f7652700dd",
+        "integrity": "sha512-D4n+Rcedc0KEXRsfylDM8ZEKlya8dsAhg14t/PmVQ1ZMNf39tdgj6PAVQn7Jd2mQ56Xf7Z1sGt6l7jUCIPr1kA==",
+        "fileCount": 34,
+        "verification": "actual host npm pack tarball, transferred unchanged and extracted on the VM; packaged tools/verify.mjs --core --sdk"
+      },
+      "source_hashes": {
+        "bin/grep2rg": "c52e68d18b371317c6c6f5e0d8627aa682882a118bdab267f5b78394d14fe415",
+        "bin/grep2rg-shell-prefix.mjs": "a7a77f98eb27cf461116553032018175a190c0c108f6624b59c77cf6ced95c23",
+        "bin/grep2rg.mjs": "7c5162b5635acafc1bdf6d5f0bb51e111d3a248778d29a7e03fcdbd058c26797",
+        "package.json": "f70f588bee4432fb36227c3c42bb4e2f9cb19c42d3a05580c809e860c2a102fa",
+        "pi/grep2rg.ts": "668577b8d530de43a2477647b99e905cf799bea3a5782479fd8c47c6212c6fb9",
+        "src/grep-files.mjs": "f1fe1c250f31b0714f72d66ca825cb6ebe9ab85840da266b435003f5e500d7e8",
+        "src/grep-options.mjs": "7beb8a4937f53bc41a0e5bad5dfad09f2ac4d6a9e716f8ed83dc22f41ec9c35b",
+        "src/grep-output.mjs": "f393641a7cfd051eade2d21273bf10743660a047ba6065195b41dc8341468392",
+        "src/grep-runtime.mjs": "9a9e275d2a4370ee8d889a7af4b51ebfbb9eba6e2ec22decda0675e91a84e435",
+        "src/grep-wrapper.mjs": "7674468174c712ebfe8e952cfc8ee5847af5e0ddc9c0ab746e184a049337d88f",
+        "tests/grep_option_inventory.json": "d1b96f3b2a349638ebc706b5e9ed2c0514c5d7f319772622504bcc61077d8085",
+        "tests/grep_wrapper_requirements.json": "2c6a0a873b13e271881c4ef9bb3ea399bf3b79d43beeb72ab8fb5194a5b849bc",
+        "tests/port_source_manifest.json": "377ee383d9649735f4c48ecbea6a8daf8add92aabd39bc022fe3584d11419692",
+        "tests/test_grep_files.mjs": "7500c0496bbfe275cd3dca78d96c78d07bd1690961293fd6d4d857a73970bcd7",
+        "tests/test_grep_full_cli.mjs": "cd6a89766a0b8a47ebdb82d05ea1c243825116e95b18eb36ab5a7deab6f9b8da",
+        "tests/test_grep_options.mjs": "0c8ffeeba76a4c55d158527876358a1cf66992ae683b8e32939fe845731de494",
+        "tests/test_grep_output.mjs": "7a9713a0678f6ac2c5d76b6e6276070f3f5aeee6eda5921f802bb591c1df5623",
+        "tests/test_grep_runtime_faults.mjs": "1aa1c968506b8e6eb851d1b00652a7d04a3420278361335c2923c3e14fab46c9",
+        "tests/test_grep_scope.mjs": "2b9c8520cddac0ac233b6e320dbfa7abc6ce1856444939034e363ff838ed5681",
+        "tests/test_grep_wrapper.mjs": "ba6ddbfd0b6c48b1df9743715d1124bb7e10c7f476979f17860eaf0b9d533505",
+        "tests/test_package_artifact.mjs": "f5438c1f1261a8cbc6527aa96ef43439303a8e9143d6955b31b2cc93529bd3e8",
+        "tests/test_package_entry.mjs": "d135f176b40ffcd520964aa2786ffb1ca16d76ac8d99338eed16b373b02cf895",
+        "tools/verify-artifact.mjs": "9a11d503d80d1961a38563e43b636546ed4f05f11e11940b38e4ff8146962936",
+        "tools/verify.mjs": "73688a7c12b1f2f1efb1ce8c8de093d69b70e88a6d0e4841081d7e1b8221111f"
+      },
+      "stages": [
+        {
+          "name": "core",
+          "passed": true,
+          "counts": {
+            "tests": 142,
+            "suites": 0,
+            "pass": 142,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "durationMs": 27364
+        },
+        {
+          "name": "installed Pi native Bash scope",
+          "passed": true,
+          "counts": {
+            "tests": 6,
+            "suites": 0,
+            "pass": 6,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "durationMs": 1497
+        }
+      ],
+      "installed_pi_sdk": "0.84.2",
+      "installed_pi_actual_rg_invocations": 7,
+      "network_requests": 0,
+      "inference_requests": 0,
+      "campaign_note": "Core and installed-SDK tiers only; the deep generated campaigns were not repeated in this environment."
+    }
+  ],
+  "limitations": [
+    "Generated counts refer to executions within declared campaigns, not globally unique inputs or all possible combinations. Matcher native-routing cases check GNU oracle behavior and the planned argument boundary, rather than executing a wrapper subprocess.",
+    "GNU fallback remains a runtime dependency and deliberately handles unqualified semantics.",
+    "No comparative speed claim or qualification for non-Linux platforms."
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "scope": "Standalone GNU grep compatibility adapter, private Bash scope and optional Pi native Bash integration",
+  "runner": "tools/verify.mjs",
+  "requirements": [
+    {
+      "id": "GREP-ROUTING",
+      "owner": "grep2rg runtime",
+      "contract": "Qualified text and GNU -l/-L searches use rg while retaining GNU file coverage, byte identity and observable results, including hidden/ignored files and qualified binary filename matches.",
+      "tests": [
+        "tests/test_grep_wrapper.mjs"
+      ]
+    },
+    {
+      "id": "GREP-OPTIONS",
+      "owner": "GNU option parser",
+      "contract": "GNU short/long options, combinations, abbreviations, argument ordering, pattern sources and help/version remain accepted; invalid invocations retain GNU diagnostics.",
+      "tests": [
+        "tests/test_grep_options.mjs",
+        "tests/test_grep_wrapper.mjs"
+      ]
+    },
+    {
+      "id": "GREP-MATCHERS",
+      "owner": "GNU matcher translator",
+      "contract": "Qualified fixed, basic and extended matchers preserve GNU record selection. Qualified Perl matchers may use rg in C/POSIX byte locales; UTF-8-locale -P and other unqualified regex/locale semantics use the original GNU invocation.",
+      "tests": [
+        "tests/test_grep_options.mjs",
+        "tests/test_grep_wrapper.mjs"
+      ]
+    },
+    {
+      "id": "GREP-FILE-SELECTION",
+      "owner": "GNU filesystem selection",
+      "contract": "Operand order, r/R symlink behavior, cycle warnings, ordered include/exclude/exclude-from rules, directory/device modes, stdin labels and filename-prefix defaults preserve GNU selection. Invalid UTF-8 filenames request native execution before output.",
+      "tests": [
+        "tests/test_grep_files.mjs",
+        "tests/test_grep_wrapper.mjs"
+      ]
+    },
+    {
+      "id": "GREP-PRESENTATION",
+      "owner": "GNU output formatter",
+      "contract": "Counts, filenames with/without matches, only-matching spans, line/byte prefixes, context groups and NUL separators retain GNU output semantics for translated inputs.",
+      "tests": [
+        "tests/test_grep_output.mjs",
+        "tests/test_grep_wrapper.mjs"
+      ]
+    },
+    {
+      "id": "GREP-COMPATIBILITY",
+      "owner": "grep2rg compatibility boundary",
+      "contract": "Every valid GNU call executes without adapter guidance, blocking or a caller retry; unqualified binary, regex, locale, colour, special-file, pattern-file and traversal semantics automatically use unchanged GNU argv before consuming stdin or publishing output. Compatibility acceptance does not imply universal rg acceleration.",
+      "tests": [
+        "tests/test_grep_wrapper.mjs",
+        "tests/test_grep_files.mjs"
+      ]
+    },
+    {
+      "id": "GREP-ARGUMENT-BOUNDS",
+      "owner": "grep2rg runtime",
+      "contract": "Pattern-file expansion and traversal metadata remain bounded; expansions too large for the rg argument budget retain the original GNU invocation instead of failing with argv overflow or truncating search coverage.",
+      "tests": [
+        "tests/test_grep_wrapper.mjs"
+      ]
+    },
+    {
+      "id": "GREP-STDIN-POSITION",
+      "owner": "grep2rg compatibility boundary",
+      "contract": "Stdin pattern files and early-exit stdin m/l/L/q searches retain GNU stream ownership and unread-byte position; qualified ordinary stdin filters may use rg.",
+      "tests": [
+        "tests/test_grep_wrapper.mjs"
+      ]
+    },
+    {
+      "id": "GREP-SCOPE",
+      "owner": "Pi Bash tool integration",
+      "contract": "The shell-prefix helper installs a private non-exported grep function in the chosen Bash command. The optional Pi extension gates its native bash tool by exact provider name (default qwen-r9700). Other providers, Pi user ! commands, ordinary shells, explicit command/absolute-path bypasses and child scripts remain native. Quoting, globs and pipelines retain their usual semantics; non-ASCII argv retain native raw bytes.",
+      "tests": [
+        "tests/test_grep_wrapper.mjs",
+        "tests/test_grep_scope.mjs"
+      ]
+    },
+    {
+      "id": "GREP-STATUS",
+      "owner": "grep2rg runtime and formatter",
+      "contract": "No-match and filesystem failures preserve exit statuses 1 and 2, missing files remain visible, quiet-mode selection retains GNU status precedence, and failed inputs produce no fabricated matches/counts.",
+      "tests": [
+        "tests/test_grep_wrapper.mjs",
+        "tests/test_grep_output.mjs"
+      ]
+    },
+    {
+      "id": "GREP-SEEDED-MATCHERS",
+      "owner": "GNU matcher translator",
+      "contract": "Seeded distinct matcher/flag/locale/byte cases compare qualified rg output/status to GNU, require documented native fallback for irreducible semantics, preserve case seeds and separate actual rg comparisons from fallback oracle classifications.",
+      "tests": [
+        "tests/test_grep_matcher_campaign.mjs"
+      ]
+    },
+    {
+      "id": "GREP-SEEDED-CLI",
+      "owner": "grep2rg runtime and formatter",
+      "contract": "Generated distinct full-CLI combinations compare actual wrapper stdout/stderr/status with GNU and independently verify that selected qualified cases execute rg rather than receiving fallback-only credit.",
+      "tests": [
+        "tests/test_grep_matrix_campaign.mjs"
+      ]
+    },
+    {
+      "id": "GREP-SEEDED-TRAVERSAL",
+      "owner": "GNU filesystem selection",
+      "contract": "Varied synthetic trees and operand/filter sequences preserve exact GNU CLI output/status; narrowing cannot introduce paths, repeated operands preserve multiplicity and dereference recursion retains ordinary recursive matches.",
+      "tests": [
+        "tests/test_grep_traversal_campaign.mjs"
+      ]
+    },
+    {
+      "id": "GREP-PTY",
+      "owner": "GNU output formatter",
+      "contract": "Actual pseudoterminal execution preserves GNU auto-color behavior for ordinary and dumb terminals without changing streamed byte output.",
+      "tests": [
+        "tests/test_grep_runtime_faults.mjs"
+      ]
+    },
+    {
+      "id": "GREP-PROTOCOL-FAULTS",
+      "owner": "grep2rg runtime",
+      "contract": "Malformed, fragmented and truncated rg records, reader/spawn/dependency errors, slow consumers and broken output streams produce appropriate completion/error status without fabricated counts or orphaned owned children.",
+      "tests": [
+        "tests/test_grep_runtime_faults.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ]
+    },
+    {
+      "id": "GREP-MUTATION",
+      "owner": "GNU verification oracles",
+      "contract": "Test-only count, byte-prefix and no-match-status mutations must be rejected by semantic output/status oracles; syntax and infrastructure failures do not receive mutation credit.",
+      "tests": [
+        "tests/test_grep_runtime_faults.mjs"
+      ]
+    },
+    {
+      "id": "GREP-OPTION-INTERACTIONS",
+      "owner": "GNU option parser and compatibility boundary",
+      "contract": "An independently enumerated GNU option inventory is checked against installed GNU help; all ordered representative spelling pairs, repeated/conflicting options, the complete selected boolean-flag power set and numeric/enum/form boundaries compare actual wrapper stdout/stderr/status to GNU. Coverage counts and finite scope are explicit; arbitrary argv strings are unbounded.",
+      "tests": [
+        "tests/test_grep_option_interactions.mjs"
+      ]
+    },
+    {
+      "id": "GREP-PACKAGE-ENTRY",
+      "owner": "Standalone CLI and shell-prefix helper",
+      "contract": "The installed executable forwards GNU argv without reserving wrapper options, preserves exact stdout/stderr/status and stdin, and the emitted prefix adapts only private Bash grep calls with safe paths containing shell metacharacters.",
+      "tests": [
+        "tests/test_package_entry.mjs"
+      ]
+    },
+    {
+      "id": "GREP-PACKED-ARTIFACT",
+      "owner": "npm distribution",
+      "contract": "An actual npm pack tarball extracts without source-tree dependency, contains the verification runner and synthetic regression suites, and its executable and shell-prefix helper retain GNU output/status and scope semantics.",
+      "tests": [
+        "tests/test_package_artifact.mjs",
+        "tests/test_package_entry.mjs"
+      ]
+    }
+  ]
+}

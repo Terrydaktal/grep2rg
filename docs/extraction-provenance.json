@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "origin_repository": "https://github.com/Terrydaktal/vllm-coherence",
+  "origin_context_commit": "206db15fdea3c0f85aad74bddd4f2a4b8c6a4562",
+  "origin_context_note": "The source modules were original, uncommitted Coherence additions. The context commit identifies the surrounding checkout; it is not claimed to contain these modules. Exact file identities are recorded below.",
+  "author": "Terrydaktal",
+  "license": "Apache-2.0",
+  "extraction_transformations": [
+    {
+      "from": "./qwen-grep-",
+      "to": "./grep-"
+    },
+    {
+      "from": "_qwen_grep_",
+      "to": "_grep2rg_"
+    }
+  ],
+  "runtime_algorithm_changes": false,
+  "modules": [
+    {
+      "source_path": "integrations/pi/qwen-grep-wrapper.mjs",
+      "destination_path": "src/grep-wrapper.mjs",
+      "source_sha256": "44c2e9133fe8860b4b7a80ad733da7741d94ffee3d8d70038b5683f69cf441c9",
+      "destination_sha256": "7674468174c712ebfe8e952cfc8ee5847af5e0ddc9c0ab746e184a049337d88f",
+      "source_was_uncommitted": true
+    },
+    {
+      "source_path": "integrations/pi/qwen-grep-runtime.mjs",
+      "destination_path": "src/grep-runtime.mjs",
+      "source_sha256": "530b72d80ed1d5399f06ce936c12bfbb6184a798d446252c94172eea827ad43d",
+      "destination_sha256": "9a9e275d2a4370ee8d889a7af4b51ebfbb9eba6e2ec22decda0675e91a84e435",
+      "source_was_uncommitted": true
+    },
+    {
+      "source_path": "integrations/pi/qwen-grep-options.mjs",
+      "destination_path": "src/grep-options.mjs",
+      "source_sha256": "7beb8a4937f53bc41a0e5bad5dfad09f2ac4d6a9e716f8ed83dc22f41ec9c35b",
+      "destination_sha256": "7beb8a4937f53bc41a0e5bad5dfad09f2ac4d6a9e716f8ed83dc22f41ec9c35b",
+      "source_was_uncommitted": true
+    },
+    {
+      "source_path": "integrations/pi/qwen-grep-files.mjs",
+      "destination_path": "src/grep-files.mjs",
+      "source_sha256": "f1fe1c250f31b0714f72d66ca825cb6ebe9ab85840da266b435003f5e500d7e8",
+      "destination_sha256": "f1fe1c250f31b0714f72d66ca825cb6ebe9ab85840da266b435003f5e500d7e8",
+      "source_was_uncommitted": true
+    },
+    {
+      "source_path": "integrations/pi/qwen-grep-output.mjs",
+      "destination_path": "src/grep-output.mjs",
+      "source_sha256": "f393641a7cfd051eade2d21273bf10743660a047ba6065195b41dc8341468392",
+      "destination_sha256": "f393641a7cfd051eade2d21273bf10743660a047ba6065195b41dc8341468392",
+      "source_was_uncommitted": true
+    }
+  ]
+}

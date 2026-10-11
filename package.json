@@ -1,0 +1,66 @@
+{
+  "name": "grep2rg",
+  "version": "0.1.0",
+  "description": "Run qualified GNU grep commands through ripgrep while retaining GNU grep compatibility and fallback.",
+  "type": "module",
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Terrydaktal",
+    "email": "9lewis9@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Terrydaktal/grep2rg.git"
+  },
+  "homepage": "https://github.com/Terrydaktal/grep2rg#readme",
+  "bugs": {
+    "url": "https://github.com/Terrydaktal/grep2rg/issues"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "main": "./src/grep-wrapper.mjs",
+  "exports": {
+    ".": "./src/grep-wrapper.mjs"
+  },
+  "bin": {
+    "grep2rg": "bin/grep2rg",
+    "grep2rg-shell-prefix": "bin/grep2rg-shell-prefix.mjs"
+  },
+  "files": [
+    "src/",
+    "bin/",
+    "pi/",
+    "docs/",
+    "tests/",
+    "tools/",
+    "README.md",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "scripts": {
+    "test": "node tools/verify.mjs",
+    "test:core": "node tools/verify.mjs --core",
+    "test:deep": "node tools/verify.mjs --deep"
+  },
+  "keywords": [
+    "grep",
+    "ripgrep",
+    "compatibility",
+    "bash",
+    "pi-package"
+  ],
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": ">=0.84.2"
+  },
+  "peerDependenciesMeta": {
+    "@earendil-works/pi-coding-agent": {
+      "optional": true
+    }
+  },
+  "pi": {
+    "extensions": [
+      "./pi/grep2rg.ts"
+    ]
+  }
+}
