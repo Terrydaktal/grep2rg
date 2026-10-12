@@ -79,47 +79,28 @@ work uses up to eight workers; large regex work can use sixteen. A proven match
 in a complete first record can finish a filename search during preparation.
 Incomplete first records never provide that shortcut, and GNU output order is retained.
 
-The previous and current release were both measured with the same process timer,
-3 warmups and 21 trials. This isolates the code change from the timer change:
-
-| Workload | Previous Rust ms | Current Rust ms | Improvement |
-| --- | ---: | ---: | ---: |
-| Recursive literal counts | 12.21 | 6.77 | 1.80× |
-| Recursive inverse counts | 12.40 | 6.87 | 1.80× |
-| Explicit-file literal counts | 11.94 | 7.56 | 1.58× |
-| Dense early matching filenames | 8.59 | 2.44 | 3.52× |
-| Recursive literal matching lines | 11.57 | 6.50 | 1.78× |
-| Recursive ERE matching lines | 11.97 | 6.87 | 1.74× |
-
-The [archived-release capture](rust-engine-prior-native-performance.json) identifies
-the previous qualified executable and its original compiled source hashes.
-The [previous Node-timed capture](rust-engine-previous-performance.json) retains
-the earlier published results. Its parent-side launch/capture cost is included;
-the current timer excludes Node orchestration and interpreter startup and uses
-Linux process-exit notifications without polling sleeps. Values from these two
-timing methods must not be subtracted to claim a code speedup.
-
 The [raw capture](rust-engine-performance.json) contains every sample, original
 arguments, input coverage, output hashes, engine routes and source/executable
-identities. The [initial capture](rust-engine-initial-performance.json) retains
-the slower first regex implementation for comparison; it does not qualify the
-current executable.
+identities. Earlier release measurements remain in the [archived-release
+capture](rust-engine-prior-native-performance.json); the table above reports
+only the current release and the GNU/rg baselines.
 
 ## Build, verify and reproduce
 
 Requires Linux, Rust 1.90 or newer and GNU grep for compatibility fallbacks.
 
 ```bash
-node tools/build-rust.mjs
+cargo build --release --locked --manifest-path rust/Cargo.toml
 rust/target/release/grep2rg-rust -arnF 'needle' src
-node --test tests/test_rust_engine.mjs
+npm run test:rust
+npm run test:integration
 GREP2RG_BENCH_RG=/usr/bin/rg node tools/benchmark-rust-engine.mjs
 GREP2RG_BENCH_RG=/usr/bin/rg GREP2RG_BENCH_REPETITIONS=21 GREP2RG_BENCH_WARMUPS=3 \
   node tools/benchmark-rust-engine.mjs --low-overhead-timing
 node tools/render-rust-results.mjs
 ```
 
-The GNU-oracle suite checks actual release output and routes, including all
+The Rust GNU-oracle harness checks actual release output and routes, including all
 28 measured classes, seeded byte/regex cases, parallel ordering, raw filename
 bytes, stdin, record boundaries, diagnostics and SIGPIPE. Delegating to GNU
 earns compatibility coverage but never native Rust search coverage.
@@ -130,9 +111,11 @@ that source with locked dependencies, and tests its release CLI from outside
 the checkout. CI runs this packaged-source qualification too.
 
 The [packaged qualification](rust-engine-qualification.json) records 1,455 exact
-GNU comparisons: 1,411 suite cases, including 904 native Rust searches and 507
-GNU fallbacks, plus 12 packaged CLI checks and 32 default CLI/private-function integration comparisons. The rebuilt package executable has
-the same SHA-256 as the release used for this timing capture.
+GNU comparisons: 1,411 Rust-engine cases, including 904 native Rust searches and 507
+GNU fallbacks, plus 12 packaged CLI checks and 32 Node CLI/private-function integration comparisons. The timing capture retains its original full-file SHA. The current rebuild has byte-identical code, data and layout; only its build ID and non-loaded symbol metadata differ. The [controlled build comparison](rust-engine-build-equivalence.json) records both artifact identities. Rust units passed
+12 debug and 12 release checks. Node tests retain the Pi, launcher,
+packaging, process-timer and evidence-validation boundaries; they do not duplicate
+the engine campaign.
 The eight packaged process-timer checks also pass, including complete binary
 capture, literal arguments, timeout/descendant cleanup, output limits and exit
 notification without timeout polling. The new Rust checks exercise ordered

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { join, resolve } from 'node:path';
@@ -8,24 +9,42 @@ const capturePath = resolve(process.argv[2] || join(root, 'docs/rust-engine-perf
 const output = resolve(process.argv[3] || join(root, 'docs/rust-engine.md'));
 const report = JSON.parse(readFileSync(capturePath, 'utf8'));
 const qualification = JSON.parse(readFileSync(join(root, 'docs/rust-engine-qualification.json'), 'utf8'));
-const prior = JSON.parse(readFileSync(join(root, 'docs/rust-engine-prior-native-performance.json'), 'utf8'));
 if (report.reportKind !== 'performance' || report.historicalClassCount !== 28 ||
     !report.methodology.sourcesStable || report.methodology.measuredTrials < 7 ||
     report.cases.some(row => row.comparisons.Rust.category !== 'exact' ||
       !['rust', 'gnu'].includes(row.routeEvidence.report?.engine))) {
   throw Error('A complete, stable, GNU-exact 28-class performance capture is required');
 }
-if (qualification.status !== 'passed' || !qualification.sourceAndExecutableHashesStable ||
-    qualification.executable.SHA256 !== report.executables.Rust.SHA256) {
-  throw Error('Packaged qualification must pass for the same executable as the timing capture');
+if (qualification.status !== 'passed' || !qualification.sourceAndExecutableHashesStable) {
+  throw Error('Packaged qualification must pass with stable tested source and executable');
 }
-if (prior.reportKind !== 'performance' || !prior.methodology.sourcesStable ||
-    prior.methodology.timingDriver !== report.methodology.timingDriver ||
-    prior.archivedEngine.SHA256 !== prior.executables.Rust.SHA256 ||
-    prior.cases.some(row => row.comparisons.Rust.category !== 'exact')) {
-  throw Error('A stable GNU-exact archived-engine capture with the same timing driver is required');
+let releaseIdentity = 'The rebuilt package executable has the same SHA-256 as the measured release.';
+if (qualification.executable.SHA256 !== report.executables.Rust.SHA256) {
+  // Test-only source declarations may change local LLVM symbols/build ID while
+  // preserving every executable section. Require the controlled build receipt;
+  // never transfer timings to an arbitrary different binary.
+  const receipt = JSON.parse(readFileSync(join(root, 'docs/rust-engine-build-equivalence.json'), 'utf8'));
+  assert.equal(receipt.status, 'passed');
+  assert.equal(receipt.beforeSHA256, report.executables.Rust.SHA256);
+  assert.equal(receipt.afterSHA256, qualification.executable.SHA256);
+  assert.equal(receipt.entryPoint.before, receipt.entryPoint.after);
+  assert.deepEqual(receipt.programHeaders.before, receipt.programHeaders.after);
+  assert.ok(receipt.allocatedSections.some(row => row.name === '.text'));
+  assert.ok(receipt.allocatedSections.some(row => row.name === '.rodata'));
+  for (const row of receipt.allocatedSections) {
+    if (row.name === '.note.gnu.build-id') {
+      const withoutPayload = ({ payloadSHA256, ...layout }) => layout;
+      assert.deepEqual(withoutPayload(row.before), withoutPayload(row.after));
+      assert.equal(row.excludedPayload, true);
+    } else {
+      assert.deepEqual(row.before, row.after, `Runtime section differs: ${row.name}`);
+      assert.equal(row.excludedPayload, false);
+    }
+  }
+  for (const [name, hash] of Object.entries(receipt.variants.current.sourceHashes))
+    assert.equal(hash, qualification.sourceHashes[`rust/${name}`], `Build receipt source differs: ${name}`);
+  releaseIdentity = 'The timing capture retains its original full-file SHA. The current rebuild has byte-identical code, data and layout; only its build ID and non-loaded symbol metadata differ. The [controlled build comparison](rust-engine-build-equivalence.json) records both artifact identities.';
 }
-
 const labels = {
   'recursive-count': 'Recursive literal counts',
   'recursive-invert-count': 'Recursive inverse counts',
@@ -68,13 +87,6 @@ const rows = report.cases.map(row => {
   return `| ${labels[row.id]} | ${fmt(row.medianMs.GNU)} | ${rg} | ${fmt(row.medianMs.Rust)} | ${path} |`;
 });
 const version = label => report.executables[label].versionStdout.split('\n')[0];
-const improvementIds = ['recursive-count', 'recursive-invert-count', 'explicit-count',
-  'recursive-dense-filenames-native', 'recursive-content', 'recursive-regex-content'];
-const improvementRows = improvementIds.map(id => {
-  const before = prior.cases.find(row => row.id === id);
-  const after = report.cases.find(row => row.id === id);
-  return `| ${labels[id]} | ${fmt(before.medianMs.Rust)} | ${fmt(after.medianMs.Rust)} | ${(before.medianMs.Rust / after.medianMs.Rust).toFixed(2)}× |`;
-});
 const text = `# Integrated Rust search engine
 
 The executable at \`rust/target/release/grep2rg-rust\` performs qualified searches
@@ -129,26 +141,11 @@ work uses up to eight workers; large regex work can use sixteen. A proven match
 in a complete first record can finish a filename search during preparation.
 Incomplete first records never provide that shortcut, and GNU output order is retained.
 
-The previous and current release were both measured with the same process timer,
-${report.methodology.warmups} warmups and ${report.methodology.measuredTrials} trials. This isolates the code change from the timer change:
-
-| Workload | Previous Rust ms | Current Rust ms | Improvement |
-| --- | ---: | ---: | ---: |
-${improvementRows.join('\n')}
-
-The [archived-release capture](rust-engine-prior-native-performance.json) identifies
-the previous qualified executable and its original compiled source hashes.
-The [previous Node-timed capture](rust-engine-previous-performance.json) retains
-the earlier published results. Its parent-side launch/capture cost is included;
-the current timer excludes Node orchestration and interpreter startup and uses
-Linux process-exit notifications without polling sleeps. Values from these two
-timing methods must not be subtracted to claim a code speedup.
-
 The [raw capture](rust-engine-performance.json) contains every sample, original
 arguments, input coverage, output hashes, engine routes and source/executable
-identities. The [initial capture](rust-engine-initial-performance.json) retains
-the slower first regex implementation for comparison; it does not qualify the
-current executable.
+identities. Earlier release measurements remain in the [archived-release
+capture](rust-engine-prior-native-performance.json); the table above reports
+only the current release and the GNU/rg baselines.
 
 ## Build, verify and reproduce
 
@@ -157,14 +154,15 @@ Requires Linux, Rust 1.90 or newer and GNU grep for compatibility fallbacks.
 \`\`\`bash
 cargo build --release --locked --manifest-path rust/Cargo.toml
 rust/target/release/grep2rg-rust -arnF 'needle' src
-node --test tests/test_rust_engine.mjs
+npm run test:rust
+npm run test:integration
 GREP2RG_BENCH_RG=/usr/bin/rg node tools/benchmark-rust-engine.mjs
 GREP2RG_BENCH_RG=/usr/bin/rg GREP2RG_BENCH_REPETITIONS=21 GREP2RG_BENCH_WARMUPS=3 \\
   node tools/benchmark-rust-engine.mjs --low-overhead-timing
 node tools/render-rust-results.mjs
 \`\`\`
 
-The GNU-oracle suite checks actual release output and routes, including all
+The Rust GNU-oracle harness checks actual release output and routes, including all
 28 measured classes, seeded byte/regex cases, parallel ordering, raw filename
 bytes, stdin, record boundaries, diagnostics and SIGPIPE. Delegating to GNU
 earns compatibility coverage but never native Rust search coverage.
@@ -175,9 +173,11 @@ that source with locked dependencies, and tests its release CLI from outside
 the checkout. CI runs this packaged-source qualification too.
 
 The [packaged qualification](rust-engine-qualification.json) records ${qualification.fullGNUComparisons.toLocaleString('en-US')} exact
-GNU comparisons: ${qualification.tests.fullGNUComparisons.toLocaleString('en-US')} suite cases, including ${qualification.tests.rustSearches.toLocaleString('en-US')} native Rust searches and ${qualification.tests.gnuFallbacks.toLocaleString('en-US')}
-GNU fallbacks, plus ${qualification.cli.fullGNUComparisons} packaged CLI checks and ${qualification.integrationTests?.fullGNUComparisons ?? 0} default CLI/private-function integration comparisons. The rebuilt package executable has
-the same SHA-256 as the release used for this timing capture.
+GNU comparisons: ${qualification.tests.fullGNUComparisons.toLocaleString('en-US')} Rust-engine cases, including ${qualification.tests.rustSearches.toLocaleString('en-US')} native Rust searches and ${qualification.tests.gnuFallbacks.toLocaleString('en-US')}
+GNU fallbacks, plus ${qualification.cli.fullGNUComparisons} packaged CLI checks and ${qualification.integrationTests?.fullGNUComparisons ?? 0} Node CLI/private-function integration comparisons. ${releaseIdentity} Rust units passed
+${qualification.unitTests.debug.passed} debug and ${qualification.unitTests.release.passed} release checks. Node tests retain the Pi, launcher,
+packaging, process-timer and evidence-validation boundaries; they do not duplicate
+the engine campaign.
 The eight packaged process-timer checks also pass, including complete binary
 capture, literal arguments, timeout/descendant cleanup, output limits and exit
 notification without timeout polling. The new Rust checks exercise ordered

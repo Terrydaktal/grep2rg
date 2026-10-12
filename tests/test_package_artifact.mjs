@@ -40,6 +40,8 @@ test('actual npm tar extraction and offline local installation execute shipped G
   command('tar', ['-xzf', archive, '-C', extraction], cwd);
   const packageRoot = join(extraction, 'package');
   const expected = ['package.json', 'README.md', 'LICENSE', 'NOTICE', 'pi/grep2rg.ts', 'bin/grep2rg', 'bin/grep2rg.mjs', 'bin/grep2rg-shell-prefix.mjs',
+    'rust/Cargo.toml', 'rust/Cargo.lock', 'rust/src/main.rs', 'rust/src/tests.rs', 'rust/tests/gnu_oracle.rs',
+    'tools/rust-verification.mjs', 'tools/verify-rust-artifact.mjs', 'tests/test_verification_evidence.mjs',
     'tools/verify.mjs', 'tools/verify-artifact.mjs', 'tools/build-native.mjs', 'native/grep2rg.c', 'tests/test_grep_auto_native.mjs', 'docs/automatic-routing-audit.json', 'tests/test_package_entry.mjs', 'tests/test_package_artifact.mjs', 'tests/grep_option_inventory.json', 'tests/grep_wrapper_requirements.json', 'tests/port_source_manifest.json', 'tests/grep_extended_helpers.mjs',
     ...['options', 'files', 'output', 'runtime', 'wrapper', 'posix-spans', 'unicode', 'descriptors', 'stdin'].map((name) => `src/grep-${name}.mjs`),
     ...['files', 'full_cli', 'matcher_campaign', 'matrix_campaign', 'option_interactions', 'options', 'output', 'runtime_faults', 'scope', 'traversal_campaign', 'wrapper', 'text_preflight', 'extended_coverage', 'extended_backpressure', 'unicode', 'descriptors', 'seekable_stdin', 'routing_policy'].map((name) => `tests/test_grep_${name}.mjs`)];
@@ -47,7 +49,12 @@ test('actual npm tar extraction and offline local installation execute shipped G
     assert.ok(existsSync(join(packageRoot, file)), `missing extracted verification or product file ${file}`);
     assert.equal(hash(join(packageRoot, file)), hash(join(root, file)), `packed file identity: ${file}`);
   }
-  assert.ok(record.files.every(({ path }) => !/(^|\/)(node_modules|artifacts|\.git|captures|fixtures|private)(\/|$)/.test(path)), 'the package contains no local installs, verification results or private lab data');
+  assert.ok(record.files.every(({ path }) => {
+    // Public native fault drivers are versioned test source, not private captures.
+    const publicRustFixture = /^rust\/tests\/fixtures\/[^/]+\.(?:c|py|json)$/.test(path);
+    return !/(^|\/)(node_modules|artifacts|\.git|captures|private|target)(\/|$)/.test(path) &&
+      (publicRustFixture || !/(^|\/)fixtures(\/|$)/.test(path));
+  }), 'the package contains only public source/tests, without builds or private lab data');
   assert.ok(!existsSync(join(packageRoot,'bin/grep2rg-native')), 'host-specific native executable is not shipped in the source tarball');
   command(process.execPath,[join(packageRoot,'tools/build-native.mjs')],cwd);
   const nativeExtracted=command(process.execPath,['--test','--test-reporter=tap',join(packageRoot,'tests/test_grep_auto_native.mjs')],cwd);

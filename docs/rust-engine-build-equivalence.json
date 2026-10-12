@@ -1,0 +1,1179 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "beforeSHA256": "73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed",
+  "afterSHA256": "ba29fa3da5ef84be2e6a7e5bfb418745dd3151ccab73369bf40085f96c303bc9",
+  "originalHEADCommit": "7ea8fb914922aa4a0e4e937ff3d70a32c5a8d61b",
+  "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+  "buildCommand": [
+    "cargo",
+    "build",
+    "--release",
+    "--locked",
+    "--offline",
+    "--bin",
+    "grep2rg-rust"
+  ],
+  "variants": {
+    "original": {
+      "binarySHA256": "73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed",
+      "allocatedImageExcludingBuildID_SHA256": "a44e85e9dddf46e95de0c0f8804ef49410532cc871c3480aa7ca2cecc211d9ae",
+      "programHeaderSHA256": "dbe21812e429868db9435799539ae46854425940e1194b7dd8204a7833c2c390",
+      "sourceHashes": {
+        "Cargo.toml": "267f8b69f64b134ab455cadda7894eb9faa1f57dd88caa3466cb5be20aeb97c8",
+        "Cargo.lock": "7d9c110224107e4a3361e04fed206aedce96056da7b4ceab274bae111ef0edf2",
+        "src/main.rs": "cbeeb3ed147cdc4ac9a0710ebec7cb22a5faf891bebb3ae817aa36b33a882e2c"
+      }
+    },
+    "manifest-only": {
+      "binarySHA256": "73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed",
+      "allocatedImageExcludingBuildID_SHA256": "a44e85e9dddf46e95de0c0f8804ef49410532cc871c3480aa7ca2cecc211d9ae",
+      "programHeaderSHA256": "dbe21812e429868db9435799539ae46854425940e1194b7dd8204a7833c2c390",
+      "sourceHashes": {
+        "Cargo.toml": "65928462651ef0fc196ce4e25574a2a03d7ec8233e7ffe84bf15dcb9653b1420",
+        "Cargo.lock": "7d9c110224107e4a3361e04fed206aedce96056da7b4ceab274bae111ef0edf2",
+        "src/main.rs": "cbeeb3ed147cdc4ac9a0710ebec7cb22a5faf891bebb3ae817aa36b33a882e2c"
+      }
+    },
+    "module-only": {
+      "binarySHA256": "ba29fa3da5ef84be2e6a7e5bfb418745dd3151ccab73369bf40085f96c303bc9",
+      "allocatedImageExcludingBuildID_SHA256": "a44e85e9dddf46e95de0c0f8804ef49410532cc871c3480aa7ca2cecc211d9ae",
+      "programHeaderSHA256": "dbe21812e429868db9435799539ae46854425940e1194b7dd8204a7833c2c390",
+      "sourceHashes": {
+        "Cargo.toml": "267f8b69f64b134ab455cadda7894eb9faa1f57dd88caa3466cb5be20aeb97c8",
+        "Cargo.lock": "7d9c110224107e4a3361e04fed206aedce96056da7b4ceab274bae111ef0edf2",
+        "src/main.rs": "7af962c8c74d92c4f680f8753bbdde1ed09e332debdb95d1a871cfd640974e2e"
+      }
+    },
+    "current": {
+      "binarySHA256": "ba29fa3da5ef84be2e6a7e5bfb418745dd3151ccab73369bf40085f96c303bc9",
+      "allocatedImageExcludingBuildID_SHA256": "a44e85e9dddf46e95de0c0f8804ef49410532cc871c3480aa7ca2cecc211d9ae",
+      "programHeaderSHA256": "dbe21812e429868db9435799539ae46854425940e1194b7dd8204a7833c2c390",
+      "sourceHashes": {
+        "Cargo.toml": "65928462651ef0fc196ce4e25574a2a03d7ec8233e7ffe84bf15dcb9653b1420",
+        "Cargo.lock": "7d9c110224107e4a3361e04fed206aedce96056da7b4ceab274bae111ef0edf2",
+        "src/main.rs": "7af962c8c74d92c4f680f8753bbdde1ed09e332debdb95d1a871cfd640974e2e"
+      }
+    }
+  },
+  "sourceChange": "Only appended #[cfg(test)] mod tests; no production statements or source locations changed. Cargo features/test target alone reproduce the original full SHA.",
+  "allocatedSections": [
+    {
+      "name": ".interp",
+      "before": {
+        "type": 1,
+        "flags": 2,
+        "address": 792,
+        "fileOffset": 792,
+        "size": 28,
+        "payloadSHA256": "9097c98ea70f6f3b01d50145eb72bf55ad1f4e9713bccf27bd6405d6254eed00"
+      },
+      "after": {
+        "type": 1,
+        "flags": 2,
+        "address": 792,
+        "fileOffset": 792,
+        "size": 28,
+        "payloadSHA256": "9097c98ea70f6f3b01d50145eb72bf55ad1f4e9713bccf27bd6405d6254eed00"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".note.gnu.property",
+      "before": {
+        "type": 7,
+        "flags": 2,
+        "address": 824,
+        "fileOffset": 824,
+        "size": 32,
+        "payloadSHA256": "f6b0554663aef5bfac54101a6be7b512b06ff3c471e100f17e437a8da2dbb689"
+      },
+      "after": {
+        "type": 7,
+        "flags": 2,
+        "address": 824,
+        "fileOffset": 824,
+        "size": 32,
+        "payloadSHA256": "f6b0554663aef5bfac54101a6be7b512b06ff3c471e100f17e437a8da2dbb689"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".note.ABI-tag",
+      "before": {
+        "type": 7,
+        "flags": 2,
+        "address": 856,
+        "fileOffset": 856,
+        "size": 32,
+        "payloadSHA256": "f8544bc50c9370bd688abe952318bba9016ef8d7498deada21daa03a25f66b61"
+      },
+      "after": {
+        "type": 7,
+        "flags": 2,
+        "address": 856,
+        "fileOffset": 856,
+        "size": 32,
+        "payloadSHA256": "f8544bc50c9370bd688abe952318bba9016ef8d7498deada21daa03a25f66b61"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".note.gnu.build-id",
+      "before": {
+        "type": 7,
+        "flags": 2,
+        "address": 888,
+        "fileOffset": 888,
+        "size": 36,
+        "payloadSHA256": "54646aed17f0fc0758b5a4adf9a6a5952c134d1856194ec14912e307d019b532"
+      },
+      "after": {
+        "type": 7,
+        "flags": 2,
+        "address": 888,
+        "fileOffset": 888,
+        "size": 36,
+        "payloadSHA256": "51d9f0ae4c2d27662097767ddbe5e43e8aa3fda239093f2384efea3414353a10"
+      },
+      "equal": false,
+      "excludedPayload": true
+    },
+    {
+      "name": ".gnu.hash",
+      "before": {
+        "type": 1879048182,
+        "flags": 2,
+        "address": 928,
+        "fileOffset": 928,
+        "size": 28,
+        "payloadSHA256": "854cbf47b65a0d7a55d3e4a9713f8d53b7912810dcbee00b9ace5ef1aa799534"
+      },
+      "after": {
+        "type": 1879048182,
+        "flags": 2,
+        "address": 928,
+        "fileOffset": 928,
+        "size": 28,
+        "payloadSHA256": "854cbf47b65a0d7a55d3e4a9713f8d53b7912810dcbee00b9ace5ef1aa799534"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".dynsym",
+      "before": {
+        "type": 11,
+        "flags": 2,
+        "address": 960,
+        "fileOffset": 960,
+        "size": 2376,
+        "payloadSHA256": "00006f1002dcbf0fde52c4aa8127267e511a20ebf81a7b630ca0f3257a724248"
+      },
+      "after": {
+        "type": 11,
+        "flags": 2,
+        "address": 960,
+        "fileOffset": 960,
+        "size": 2376,
+        "payloadSHA256": "00006f1002dcbf0fde52c4aa8127267e511a20ebf81a7b630ca0f3257a724248"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".dynstr",
+      "before": {
+        "type": 3,
+        "flags": 2,
+        "address": 3336,
+        "fileOffset": 3336,
+        "size": 1312,
+        "payloadSHA256": "969e96d65c6938c02a60bf26c256451a620881bef5aad5bba3bed12fe347f2f4"
+      },
+      "after": {
+        "type": 3,
+        "flags": 2,
+        "address": 3336,
+        "fileOffset": 3336,
+        "size": 1312,
+        "payloadSHA256": "969e96d65c6938c02a60bf26c256451a620881bef5aad5bba3bed12fe347f2f4"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".gnu.version",
+      "before": {
+        "type": 1879048191,
+        "flags": 2,
+        "address": 4648,
+        "fileOffset": 4648,
+        "size": 198,
+        "payloadSHA256": "4c6190e2a4f92d2e436c63652c4e5c37549c8aa6bb3e2b073d0e7170a06b6741"
+      },
+      "after": {
+        "type": 1879048191,
+        "flags": 2,
+        "address": 4648,
+        "fileOffset": 4648,
+        "size": 198,
+        "payloadSHA256": "4c6190e2a4f92d2e436c63652c4e5c37549c8aa6bb3e2b073d0e7170a06b6741"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".gnu.version_r",
+      "before": {
+        "type": 1879048190,
+        "flags": 2,
+        "address": 4848,
+        "fileOffset": 4848,
+        "size": 320,
+        "payloadSHA256": "0f948fd15fb6afbb4a35bbb65cdd43533d67dd69f65a2a073cdccf7f1c793ca4"
+      },
+      "after": {
+        "type": 1879048190,
+        "flags": 2,
+        "address": 4848,
+        "fileOffset": 4848,
+        "size": 320,
+        "payloadSHA256": "0f948fd15fb6afbb4a35bbb65cdd43533d67dd69f65a2a073cdccf7f1c793ca4"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".rela.dyn",
+      "before": {
+        "type": 4,
+        "flags": 2,
+        "address": 5168,
+        "fileOffset": 5168,
+        "size": 98040,
+        "payloadSHA256": "069aeafa77bad18c6dde1356077f3dd463fe88e1c8abddeb8624cd7d36e6bf47"
+      },
+      "after": {
+        "type": 4,
+        "flags": 2,
+        "address": 5168,
+        "fileOffset": 5168,
+        "size": 98040,
+        "payloadSHA256": "069aeafa77bad18c6dde1356077f3dd463fe88e1c8abddeb8624cd7d36e6bf47"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".rela.plt",
+      "before": {
+        "type": 4,
+        "flags": 2,
+        "address": 103208,
+        "fileOffset": 103208,
+        "size": 24,
+        "payloadSHA256": "711555c37383894978d28fec5e41fb6d898e1276a4fd51ccb22b95f5277ad5ff"
+      },
+      "after": {
+        "type": 4,
+        "flags": 2,
+        "address": 103208,
+        "fileOffset": 103208,
+        "size": 24,
+        "payloadSHA256": "711555c37383894978d28fec5e41fb6d898e1276a4fd51ccb22b95f5277ad5ff"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".eh_frame",
+      "before": {
+        "type": 1,
+        "flags": 2,
+        "address": 103232,
+        "fileOffset": 103232,
+        "size": 126308,
+        "payloadSHA256": "312e3623ce0da31bcbd718ab819ec022b717b8dd60d1ac99a771b27020a4eb48"
+      },
+      "after": {
+        "type": 1,
+        "flags": 2,
+        "address": 103232,
+        "fileOffset": 103232,
+        "size": 126308,
+        "payloadSHA256": "312e3623ce0da31bcbd718ab819ec022b717b8dd60d1ac99a771b27020a4eb48"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".eh_frame_hdr",
+      "before": {
+        "type": 1,
+        "flags": 2,
+        "address": 229540,
+        "fileOffset": 229540,
+        "size": 19340,
+        "payloadSHA256": "8314b896a4ac846cb59f25214e6d85cb797b781450773e6f462df6de6ac20b43"
+      },
+      "after": {
+        "type": 1,
+        "flags": 2,
+        "address": 229540,
+        "fileOffset": 229540,
+        "size": 19340,
+        "payloadSHA256": "8314b896a4ac846cb59f25214e6d85cb797b781450773e6f462df6de6ac20b43"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".gcc_except_table",
+      "before": {
+        "type": 1,
+        "flags": 2,
+        "address": 248880,
+        "fileOffset": 248880,
+        "size": 6548,
+        "payloadSHA256": "2c9b0ff060ac983ac775378ba156a91dd53de3434457678d61c8bd1d36c1b230"
+      },
+      "after": {
+        "type": 1,
+        "flags": 2,
+        "address": 248880,
+        "fileOffset": 248880,
+        "size": 6548,
+        "payloadSHA256": "2c9b0ff060ac983ac775378ba156a91dd53de3434457678d61c8bd1d36c1b230"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".rodata",
+      "before": {
+        "type": 1,
+        "flags": 2,
+        "address": 255488,
+        "fileOffset": 255488,
+        "size": 79808,
+        "payloadSHA256": "773b14b47ca324ca90e9e7c043ecb3b2dec4533ee241d65dcc1ea43e24927b08"
+      },
+      "after": {
+        "type": 1,
+        "flags": 2,
+        "address": 255488,
+        "fileOffset": 255488,
+        "size": 79808,
+        "payloadSHA256": "773b14b47ca324ca90e9e7c043ecb3b2dec4533ee241d65dcc1ea43e24927b08"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".rodata.cst16",
+      "before": {
+        "type": 1,
+        "flags": 18,
+        "address": 335296,
+        "fileOffset": 335296,
+        "size": 1600,
+        "payloadSHA256": "de138f209f80352972421c0327157a5a9ff0073c5bc11786daeeb405fc8fae13"
+      },
+      "after": {
+        "type": 1,
+        "flags": 18,
+        "address": 335296,
+        "fileOffset": 335296,
+        "size": 1600,
+        "payloadSHA256": "de138f209f80352972421c0327157a5a9ff0073c5bc11786daeeb405fc8fae13"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".rodata.cst32",
+      "before": {
+        "type": 1,
+        "flags": 18,
+        "address": 336896,
+        "fileOffset": 336896,
+        "size": 288,
+        "payloadSHA256": "e3c4710f95e05036cf35ad91937d0e88bc3f96673c7dc52f10ea5262da597303"
+      },
+      "after": {
+        "type": 1,
+        "flags": 18,
+        "address": 336896,
+        "fileOffset": 336896,
+        "size": 288,
+        "payloadSHA256": "e3c4710f95e05036cf35ad91937d0e88bc3f96673c7dc52f10ea5262da597303"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".rodata.cst4",
+      "before": {
+        "type": 1,
+        "flags": 18,
+        "address": 337184,
+        "fileOffset": 337184,
+        "size": 276,
+        "payloadSHA256": "448dcada4f41afc9d129c8df8dfe5a25ff159c77d728b75fa05dfb59ae9c0aaa"
+      },
+      "after": {
+        "type": 1,
+        "flags": 18,
+        "address": 337184,
+        "fileOffset": 337184,
+        "size": 276,
+        "payloadSHA256": "448dcada4f41afc9d129c8df8dfe5a25ff159c77d728b75fa05dfb59ae9c0aaa"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".rodata.cst8",
+      "before": {
+        "type": 1,
+        "flags": 18,
+        "address": 337464,
+        "fileOffset": 337464,
+        "size": 288,
+        "payloadSHA256": "6fc827a8550a14eaf626df4f8d265af7bdab65003d9d2124050adea31aa5c714"
+      },
+      "after": {
+        "type": 1,
+        "flags": 18,
+        "address": 337464,
+        "fileOffset": 337464,
+        "size": 288,
+        "payloadSHA256": "6fc827a8550a14eaf626df4f8d265af7bdab65003d9d2124050adea31aa5c714"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".rodata.str1.1",
+      "before": {
+        "type": 1,
+        "flags": 50,
+        "address": 337752,
+        "fileOffset": 337752,
+        "size": 14579,
+        "payloadSHA256": "f78ac1cdf198ad66aa4de67118c5f839e8da0e26aaa74657782de89f42ba959f"
+      },
+      "after": {
+        "type": 1,
+        "flags": 50,
+        "address": 337752,
+        "fileOffset": 337752,
+        "size": 14579,
+        "payloadSHA256": "f78ac1cdf198ad66aa4de67118c5f839e8da0e26aaa74657782de89f42ba959f"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".rodata.str1.2",
+      "before": {
+        "type": 1,
+        "flags": 50,
+        "address": 352332,
+        "fileOffset": 352332,
+        "size": 2,
+        "payloadSHA256": "47dc540c94ceb704a23875c11273e16bb0b8a87aed84de911f2133568115f254"
+      },
+      "after": {
+        "type": 1,
+        "flags": 50,
+        "address": 352332,
+        "fileOffset": 352332,
+        "size": 2,
+        "payloadSHA256": "47dc540c94ceb704a23875c11273e16bb0b8a87aed84de911f2133568115f254"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".fini",
+      "before": {
+        "type": 1,
+        "flags": 6,
+        "address": 356432,
+        "fileOffset": 352336,
+        "size": 13,
+        "payloadSHA256": "6a4f3e5efc7c1f7ee7d6f21afd9ed040ba1d7f0b97bb12b016f5b176cc558bd8"
+      },
+      "after": {
+        "type": 1,
+        "flags": 6,
+        "address": 356432,
+        "fileOffset": 352336,
+        "size": 13,
+        "payloadSHA256": "6a4f3e5efc7c1f7ee7d6f21afd9ed040ba1d7f0b97bb12b016f5b176cc558bd8"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".init",
+      "before": {
+        "type": 1,
+        "flags": 6,
+        "address": 356448,
+        "fileOffset": 352352,
+        "size": 27,
+        "payloadSHA256": "092b74b41cf59ddd10957e0b70547e741f8c67bceafbb5e9daf2d70bf07646b2"
+      },
+      "after": {
+        "type": 1,
+        "flags": 6,
+        "address": 356448,
+        "fileOffset": 352352,
+        "size": 27,
+        "payloadSHA256": "092b74b41cf59ddd10957e0b70547e741f8c67bceafbb5e9daf2d70bf07646b2"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".plt",
+      "before": {
+        "type": 1,
+        "flags": 6,
+        "address": 356480,
+        "fileOffset": 352384,
+        "size": 48,
+        "payloadSHA256": "29c5c20c242b4ec38c299ca8d24b12af80896c1d62e4769db452573681a7b43b"
+      },
+      "after": {
+        "type": 1,
+        "flags": 6,
+        "address": 356480,
+        "fileOffset": 352384,
+        "size": 48,
+        "payloadSHA256": "29c5c20c242b4ec38c299ca8d24b12af80896c1d62e4769db452573681a7b43b"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".text",
+      "before": {
+        "type": 1,
+        "flags": 6,
+        "address": 356528,
+        "fileOffset": 352432,
+        "size": 1500220,
+        "payloadSHA256": "545330bc18fe71d6586a4cfb4294ac909bff07ec3c2408226fe99e3a68695965"
+      },
+      "after": {
+        "type": 1,
+        "flags": 6,
+        "address": 356528,
+        "fileOffset": 352432,
+        "size": 1500220,
+        "payloadSHA256": "545330bc18fe71d6586a4cfb4294ac909bff07ec3c2408226fe99e3a68695965"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".tdata",
+      "before": {
+        "type": 1,
+        "flags": 1027,
+        "address": 1860848,
+        "fileOffset": 1852656,
+        "size": 32,
+        "payloadSHA256": "59e7addb5e068640de3f8fb015017e7aa7495430d2533f87d4ece9f7ee548fa3"
+      },
+      "after": {
+        "type": 1,
+        "flags": 1027,
+        "address": 1860848,
+        "fileOffset": 1852656,
+        "size": 32,
+        "payloadSHA256": "59e7addb5e068640de3f8fb015017e7aa7495430d2533f87d4ece9f7ee548fa3"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".tbss",
+      "before": {
+        "type": 8,
+        "flags": 1027,
+        "address": 1860880,
+        "fileOffset": 1852688,
+        "size": 160,
+        "payloadSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "after": {
+        "type": 8,
+        "flags": 1027,
+        "address": 1860880,
+        "fileOffset": 1852688,
+        "size": 160,
+        "payloadSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".data.rel.ro",
+      "before": {
+        "type": 1,
+        "flags": 3,
+        "address": 1860880,
+        "fileOffset": 1852688,
+        "size": 71264,
+        "payloadSHA256": "cd97ba204835029a927fb8961b8623e4e27409837cc1df8dad473c2d1c7082bf"
+      },
+      "after": {
+        "type": 1,
+        "flags": 3,
+        "address": 1860880,
+        "fileOffset": 1852688,
+        "size": 71264,
+        "payloadSHA256": "cd97ba204835029a927fb8961b8623e4e27409837cc1df8dad473c2d1c7082bf"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".dynamic",
+      "before": {
+        "type": 6,
+        "flags": 3,
+        "address": 1932144,
+        "fileOffset": 1923952,
+        "size": 512,
+        "payloadSHA256": "72e6e32e6fdd1c95e14f20610722ed7e6965bd7a2df29227b0389aaab37f6d81"
+      },
+      "after": {
+        "type": 6,
+        "flags": 3,
+        "address": 1932144,
+        "fileOffset": 1923952,
+        "size": 512,
+        "payloadSHA256": "72e6e32e6fdd1c95e14f20610722ed7e6965bd7a2df29227b0389aaab37f6d81"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".fini_array",
+      "before": {
+        "type": 15,
+        "flags": 3,
+        "address": 1932656,
+        "fileOffset": 1924464,
+        "size": 8,
+        "payloadSHA256": "d3196eb3c8efac8da04583b36c312158de66cc4c0be117011a4aefa1c05747b7"
+      },
+      "after": {
+        "type": 15,
+        "flags": 3,
+        "address": 1932656,
+        "fileOffset": 1924464,
+        "size": 8,
+        "payloadSHA256": "d3196eb3c8efac8da04583b36c312158de66cc4c0be117011a4aefa1c05747b7"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".got.plt",
+      "before": {
+        "type": 1,
+        "flags": 3,
+        "address": 1932664,
+        "fileOffset": 1924472,
+        "size": 32,
+        "payloadSHA256": "7dde3d1a119bc7b1f49d26ad4cfaff364054fb9d9b2a492e596b4b8f3a5420c5"
+      },
+      "after": {
+        "type": 1,
+        "flags": 3,
+        "address": 1932664,
+        "fileOffset": 1924472,
+        "size": 32,
+        "payloadSHA256": "7dde3d1a119bc7b1f49d26ad4cfaff364054fb9d9b2a492e596b4b8f3a5420c5"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".init_array",
+      "before": {
+        "type": 14,
+        "flags": 3,
+        "address": 1932696,
+        "fileOffset": 1924504,
+        "size": 16,
+        "payloadSHA256": "6e91c3d1497a7fbf6a68e588e021f17a072f9cf1cf819d410100ee98aac7df86"
+      },
+      "after": {
+        "type": 14,
+        "flags": 3,
+        "address": 1932696,
+        "fileOffset": 1924504,
+        "size": 16,
+        "payloadSHA256": "6e91c3d1497a7fbf6a68e588e021f17a072f9cf1cf819d410100ee98aac7df86"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".got",
+      "before": {
+        "type": 1,
+        "flags": 3,
+        "address": 1932712,
+        "fileOffset": 1924520,
+        "size": 5264,
+        "payloadSHA256": "5541af4f2ee9307444d8cfb9bfea17d93ce89207bedb5f059c557f32a7c17525"
+      },
+      "after": {
+        "type": 1,
+        "flags": 3,
+        "address": 1932712,
+        "fileOffset": 1924520,
+        "size": 5264,
+        "payloadSHA256": "5541af4f2ee9307444d8cfb9bfea17d93ce89207bedb5f059c557f32a7c17525"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".relro_padding",
+      "before": {
+        "type": 8,
+        "flags": 3,
+        "address": 1937976,
+        "fileOffset": 1929784,
+        "size": 3528,
+        "payloadSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "after": {
+        "type": 8,
+        "flags": 3,
+        "address": 1937976,
+        "fileOffset": 1929784,
+        "size": 3528,
+        "payloadSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".data",
+      "before": {
+        "type": 1,
+        "flags": 3,
+        "address": 1942072,
+        "fileOffset": 1929784,
+        "size": 2712,
+        "payloadSHA256": "370905243bbf4e75f292ec004ad5a4d12786acc5241ee9b246ffd872e5d46218"
+      },
+      "after": {
+        "type": 1,
+        "flags": 3,
+        "address": 1942072,
+        "fileOffset": 1929784,
+        "size": 2712,
+        "payloadSHA256": "370905243bbf4e75f292ec004ad5a4d12786acc5241ee9b246ffd872e5d46218"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".tm_clone_table",
+      "before": {
+        "type": 1,
+        "flags": 3,
+        "address": 1944784,
+        "fileOffset": 1932496,
+        "size": 0,
+        "payloadSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "after": {
+        "type": 1,
+        "flags": 3,
+        "address": 1944784,
+        "fileOffset": 1932496,
+        "size": 0,
+        "payloadSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "equal": true,
+      "excludedPayload": false
+    },
+    {
+      "name": ".bss",
+      "before": {
+        "type": 8,
+        "flags": 3,
+        "address": 1944784,
+        "fileOffset": 1932496,
+        "size": 304,
+        "payloadSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "after": {
+        "type": 8,
+        "flags": 3,
+        "address": 1944784,
+        "fileOffset": 1932496,
+        "size": 304,
+        "payloadSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "equal": true,
+      "excludedPayload": false
+    }
+  ],
+  "entryPoint": {
+    "before": 356528,
+    "after": 356528
+  },
+  "programHeaders": {
+    "before": [
+      {
+        "type": 6,
+        "flags": 4,
+        "fileOffset": 64,
+        "virtualAddress": 64,
+        "physicalAddress": 64,
+        "fileSize": 728,
+        "memorySize": 728,
+        "alignment": 8
+      },
+      {
+        "type": 3,
+        "flags": 4,
+        "fileOffset": 792,
+        "virtualAddress": 792,
+        "physicalAddress": 792,
+        "fileSize": 28,
+        "memorySize": 28,
+        "alignment": 1
+      },
+      {
+        "type": 4,
+        "flags": 4,
+        "fileOffset": 824,
+        "virtualAddress": 824,
+        "physicalAddress": 824,
+        "fileSize": 100,
+        "memorySize": 100,
+        "alignment": 8
+      },
+      {
+        "type": 1,
+        "flags": 4,
+        "fileOffset": 0,
+        "virtualAddress": 0,
+        "physicalAddress": 0,
+        "fileSize": 352334,
+        "memorySize": 352334,
+        "alignment": 4096
+      },
+      {
+        "type": 1,
+        "flags": 5,
+        "fileOffset": 352336,
+        "virtualAddress": 356432,
+        "physicalAddress": 356432,
+        "fileSize": 1500316,
+        "memorySize": 1500316,
+        "alignment": 4096
+      },
+      {
+        "type": 1,
+        "flags": 6,
+        "fileOffset": 1852656,
+        "virtualAddress": 1860848,
+        "physicalAddress": 1860848,
+        "fileSize": 77128,
+        "memorySize": 80656,
+        "alignment": 4096
+      },
+      {
+        "type": 1,
+        "flags": 6,
+        "fileOffset": 1929784,
+        "virtualAddress": 1942072,
+        "physicalAddress": 1942072,
+        "fileSize": 2712,
+        "memorySize": 3016,
+        "alignment": 4096
+      },
+      {
+        "type": 7,
+        "flags": 4,
+        "fileOffset": 1852656,
+        "virtualAddress": 1860848,
+        "physicalAddress": 1860848,
+        "fileSize": 32,
+        "memorySize": 192,
+        "alignment": 8
+      },
+      {
+        "type": 2,
+        "flags": 6,
+        "fileOffset": 1923952,
+        "virtualAddress": 1932144,
+        "physicalAddress": 1932144,
+        "fileSize": 512,
+        "memorySize": 512,
+        "alignment": 8
+      },
+      {
+        "type": 1685382480,
+        "flags": 4,
+        "fileOffset": 229540,
+        "virtualAddress": 229540,
+        "physicalAddress": 229540,
+        "fileSize": 19340,
+        "memorySize": 19340,
+        "alignment": 4
+      },
+      {
+        "type": 1685382483,
+        "flags": 4,
+        "fileOffset": 824,
+        "virtualAddress": 824,
+        "physicalAddress": 824,
+        "fileSize": 32,
+        "memorySize": 32,
+        "alignment": 8
+      },
+      {
+        "type": 1685382481,
+        "flags": 6,
+        "fileOffset": 0,
+        "virtualAddress": 0,
+        "physicalAddress": 0,
+        "fileSize": 0,
+        "memorySize": 0,
+        "alignment": 1
+      },
+      {
+        "type": 1685382482,
+        "flags": 4,
+        "fileOffset": 1852656,
+        "virtualAddress": 1860848,
+        "physicalAddress": 1860848,
+        "fileSize": 77128,
+        "memorySize": 80656,
+        "alignment": 1
+      }
+    ],
+    "after": [
+      {
+        "type": 6,
+        "flags": 4,
+        "fileOffset": 64,
+        "virtualAddress": 64,
+        "physicalAddress": 64,
+        "fileSize": 728,
+        "memorySize": 728,
+        "alignment": 8
+      },
+      {
+        "type": 3,
+        "flags": 4,
+        "fileOffset": 792,
+        "virtualAddress": 792,
+        "physicalAddress": 792,
+        "fileSize": 28,
+        "memorySize": 28,
+        "alignment": 1
+      },
+      {
+        "type": 4,
+        "flags": 4,
+        "fileOffset": 824,
+        "virtualAddress": 824,
+        "physicalAddress": 824,
+        "fileSize": 100,
+        "memorySize": 100,
+        "alignment": 8
+      },
+      {
+        "type": 1,
+        "flags": 4,
+        "fileOffset": 0,
+        "virtualAddress": 0,
+        "physicalAddress": 0,
+        "fileSize": 352334,
+        "memorySize": 352334,
+        "alignment": 4096
+      },
+      {
+        "type": 1,
+        "flags": 5,
+        "fileOffset": 352336,
+        "virtualAddress": 356432,
+        "physicalAddress": 356432,
+        "fileSize": 1500316,
+        "memorySize": 1500316,
+        "alignment": 4096
+      },
+      {
+        "type": 1,
+        "flags": 6,
+        "fileOffset": 1852656,
+        "virtualAddress": 1860848,
+        "physicalAddress": 1860848,
+        "fileSize": 77128,
+        "memorySize": 80656,
+        "alignment": 4096
+      },
+      {
+        "type": 1,
+        "flags": 6,
+        "fileOffset": 1929784,
+        "virtualAddress": 1942072,
+        "physicalAddress": 1942072,
+        "fileSize": 2712,
+        "memorySize": 3016,
+        "alignment": 4096
+      },
+      {
+        "type": 7,
+        "flags": 4,
+        "fileOffset": 1852656,
+        "virtualAddress": 1860848,
+        "physicalAddress": 1860848,
+        "fileSize": 32,
+        "memorySize": 192,
+        "alignment": 8
+      },
+      {
+        "type": 2,
+        "flags": 6,
+        "fileOffset": 1923952,
+        "virtualAddress": 1932144,
+        "physicalAddress": 1932144,
+        "fileSize": 512,
+        "memorySize": 512,
+        "alignment": 8
+      },
+      {
+        "type": 1685382480,
+        "flags": 4,
+        "fileOffset": 229540,
+        "virtualAddress": 229540,
+        "physicalAddress": 229540,
+        "fileSize": 19340,
+        "memorySize": 19340,
+        "alignment": 4
+      },
+      {
+        "type": 1685382483,
+        "flags": 4,
+        "fileOffset": 824,
+        "virtualAddress": 824,
+        "physicalAddress": 824,
+        "fileSize": 32,
+        "memorySize": 32,
+        "alignment": 8
+      },
+      {
+        "type": 1685382481,
+        "flags": 6,
+        "fileOffset": 0,
+        "virtualAddress": 0,
+        "physicalAddress": 0,
+        "fileSize": 0,
+        "memorySize": 0,
+        "alignment": 1
+      },
+      {
+        "type": 1685382482,
+        "flags": 4,
+        "fileOffset": 1852656,
+        "virtualAddress": 1860848,
+        "physicalAddress": 1860848,
+        "fileSize": 77128,
+        "memorySize": 80656,
+        "alignment": 1
+      }
+    ],
+    "beforeSHA256": "dbe21812e429868db9435799539ae46854425940e1194b7dd8204a7833c2c390",
+    "afterSHA256": "dbe21812e429868db9435799539ae46854425940e1194b7dd8204a7833c2c390",
+    "equal": true
+  },
+  "nonAllocatedDifferences": [
+    {
+      "name": ".strtab",
+      "before": {
+        "type": 3,
+        "flags": 0,
+        "address": 0,
+        "fileOffset": 1933089,
+        "size": 381550,
+        "payloadSHA256": "6cc3f20611e7f33136efa221f06ee94e061f427eaceacea3efe524ddc01ef796"
+      },
+      "after": {
+        "type": 3,
+        "flags": 0,
+        "address": 0,
+        "fileOffset": 1933089,
+        "size": 381554,
+        "payloadSHA256": "dab16a108120a25b89d52f3f0ee0cf3b1c29317a58b1b1dfd6c36fa41eb249ce"
+      }
+    },
+    {
+      "name": ".symtab",
+      "before": {
+        "type": 2,
+        "flags": 0,
+        "address": 0,
+        "fileOffset": 2314640,
+        "size": 128592,
+        "payloadSHA256": "c1e5cd3d29dba4d43f5e01002754ac76a8a9157d8a15de75dd951d84f12ed039"
+      },
+      "after": {
+        "type": 2,
+        "flags": 0,
+        "address": 0,
+        "fileOffset": 2314648,
+        "size": 128592,
+        "payloadSHA256": "6b1837f8db80e2b931dfbae168dfe998c221c5b95353dcf7796f6829c8a2b0b1"
+      }
+    }
+  ],
+  "localLLVMRenames": [
+    {
+      "address": "00000000000b2a90",
+      "type": "t",
+      "before": "_ZN4core3ops8function6FnOnce9call_once17h97a7e543fab9f143E.llvm.403105602107519109",
+      "after": "_ZN4core3ops8function6FnOnce9call_once17h97a7e543fab9f143E.llvm.1353462730638245843"
+    },
+    {
+      "address": "00000000000425b3",
+      "type": "r",
+      "before": "anon.10fbf835d5512b25fc96714ec47cacc4.5.llvm.403105602107519109",
+      "after": "anon.10fbf835d5512b25fc96714ec47cacc4.5.llvm.1353462730638245843"
+    },
+    {
+      "address": "0000000000051f20",
+      "type": "r",
+      "before": "anon.10fbf835d5512b25fc96714ec47cacc4.6.llvm.403105602107519109",
+      "after": "anon.10fbf835d5512b25fc96714ec47cacc4.6.llvm.1353462730638245843"
+    },
+    {
+      "address": "00000000001cb818",
+      "type": "d",
+      "before": "anon.10fbf835d5512b25fc96714ec47cacc4.7.llvm.403105602107519109",
+      "after": "anon.10fbf835d5512b25fc96714ec47cacc4.7.llvm.1353462730638245843"
+    }
+  ],
+  "qualification": "All machine code, constants, relocation records, unwind records, data, addresses and load-segment headers are byte-identical. Only the build-ID note payload and non-loaded symbol/string metadata differ. Full-file hashes remain distinct; the original benchmark belongs to its original artifact. This receipt substantiates runtime-image equality for the current qualified rebuild."
+}

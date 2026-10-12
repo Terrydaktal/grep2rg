@@ -12,7 +12,7 @@ const runtime = new URL('../src/grep-runtime.mjs', import.meta.url).href;
 const quote = (s) => `'${s.replaceAll("'", "'\\''")}'`;
 const nativeValues = [undefined, '', '0', 'true', 'yes', '2'];
 
-function fixture(t) {
+function fixture(t, { historicalC = false } = {}) {
   const cwd = mkdtempSync(join(tmpdir(), 'grep2rg-policy-'));
   t.after(() => rmSync(cwd, { recursive: true, force: true }));
   const bin = join(cwd, 'bin'), trace = join(cwd, 'calls'); mkdirSync(bin);
@@ -24,6 +24,7 @@ function fixture(t) {
     const env = { ...process.env, LC_ALL: 'C', LANG: 'C', PATH: `${bin}:/usr/bin:/bin`, POLICY_TRACE: trace };
     delete env.GREP2RG_EXPERIMENTAL_RG;
     delete env.POSIXLY_CORRECT;
+    if (historicalC) env.GREP2RG_ENGINE = 'c';
     if (value !== undefined) env.GREP2RG_EXPERIMENTAL_RG = value;
     return env;
   };
@@ -68,14 +69,14 @@ test('the JS planner and API do not select rg without exact experimental opt-in'
   t.diagnostic(JSON.stringify({ campaign: 'default-GNU-policy-JS', actualGNUComparisons: 6, actualRgInvocations: 0 }));
 });
 
-test('a generated private Bash function keeps small searches native without Node', (t) => {
-  const f = fixture(t), args = ['-aFn', 'needle', 'text'];
+test('the historical C private Bash route keeps small searches GNU without Node', (t) => {
+  const f = fixture(t, { historicalC: true }), args = ['-aFn', 'needle', 'text'];
   const { command } = withGrepWrapper({ command: 'grep "$@"' }, '/usr/bin/bash');
   for (const value of nativeValues)
     exact(run('/usr/bin/bash', ['--noprofile', '--norc', '-c', command, 'owned-policy', ...args], f, value),
       run('/usr/bin/grep', args, f, value));
   assert.deepEqual(f.calls(), Array(nativeValues.length).fill('GNU'));
-  t.diagnostic(JSON.stringify({ campaign: 'default-GNU-policy-private', actualGNUComparisons: 6, actualRgInvocations: 0 }));
+  t.diagnostic(JSON.stringify({ campaign: 'historical-C-GNU-policy-private', actualGNUComparisons: 6, actualRgInvocations: 0 }));
 });
 
 test('the exact experiment flag reaches the broader JavaScript rg path on a small search', (t) => {

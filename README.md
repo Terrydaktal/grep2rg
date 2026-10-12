@@ -149,7 +149,8 @@ Build with Rust 1.90 or newer, using the committed dependency lockfile:
 ```bash
 node tools/build-rust.mjs
 rust/target/release/grep2rg-rust -arnF 'needle' src
-node --test tests/test_rust_engine.mjs
+npm run test:rust
+npm run test:integration
 node tools/verify-rust-artifact.mjs
 GREP2RG_BENCH_RG=/usr/bin/rg node tools/benchmark-rust-engine.mjs
 GREP2RG_BENCH_RG=/usr/bin/rg GREP2RG_BENCH_REPETITIONS=21 GREP2RG_BENCH_WARMUPS=3 \
@@ -173,14 +174,12 @@ metadata records the timing boundary so different modes are not conflated.
 The current capture uses three warmups and 21 low-overhead trials. Rust has the
 lower median in all 26 classes with comparable rg output; the two formatting-
 incompatible rows also take less time but do not qualify equivalent-output gains.
-Parallel file preparation, reusable buffers and fewer execution barriers remove
-the previous large-search losses. The results page compares both Rust releases
-using the same timer; reduced benchmark-parent cost is not credited as a code gain.
+The engine uses parallel file preparation, reusable buffers and fewer execution
+barriers. The table reports the current Rust release against the GNU/rg baselines.
 
 The extracted npm source archive was rebuilt offline and passed 1,455 exact GNU
 comparisons: 1,411 suite cases (904 native Rust searches and 507 GNU fallbacks)
-plus 12 packaged CLI checks and 32 default CLI/private-function integration comparisons. The rebuilt executable matched the benchmarked
-executable's SHA-256. Eight packaged process-timer checks also passed. See the [packaged qualification](docs/rust-engine-qualification.json),
+plus 12 packaged CLI checks and 32 Node CLI/private-function integration comparisons. Rust units passed 12 checks in both debug and release. The rebuilt engine has identical code, data and layout to the benchmarked release; its build ID and local symbol metadata differ. See the [controlled build comparison](docs/rust-engine-build-equivalence.json). Eight process-timer and six evidence-validation checks also passed. See the [packaged qualification](docs/rust-engine-qualification.json),
 [Rust engine results and scope](docs/rust-engine.md) and
 [complete capture](docs/rust-engine-performance.json). The CLI and Pi now select this same built Rust executable. Default-route integration checks additionally qualify real CLI/private-function execution, GNU optout, symlink installs, closed input/output, unavailable builds and unchanged user/child shells. The source archive is rebuilt through the same helper used at installation. The [installed Pi SDK qualification](docs/rust-pi-qualification.json) passed 11 checks, including small and large default Rust calls, exact provider scoping and unchanged user commands, with no network or inference requests.
 
@@ -188,7 +187,7 @@ executable's SHA-256. Eight packaged process-timer checks also passed. See the [
 
 The complete latest qualified capture covers all 28 workload classes. These are direct-executable warm-cache medians in milliseconds on a Ryzen 9 9950X, with three warmups and 21 rotated trials per class. Timings include process startup, matching and complete output capture, and exclude fixture creation, hashing, comparison, route reporting and the benchmark controller. They measure the Rust executable selected by Pi; Bash command startup is outside these direct timings.
 
-All Rust-tool results match GNU stdout, stderr, status and ordering exactly. Twenty-six classes use native Rust and two explicitly fall back to GNU. Seventeen native medians are lower than GNU in this capture. Small differences are not a universal performance guarantee. [The complete capture](docs/rust-engine-performance.json) records all samples and executable/source hashes; [the results page](docs/rust-engine.md) explains the same-timer comparison with the earlier Rust release.
+All Rust-tool results match GNU stdout, stderr, status and ordering exactly. Twenty-six classes use native Rust and two explicitly fall back to GNU. Seventeen native medians are lower than GNU in this capture. Small differences are not a universal performance guarantee. [The complete capture](docs/rust-engine-performance.json) records all samples and executable/source hashes; [the results page](docs/rust-engine.md) explains the measurement method and current implementation.
 
 | Workload | Direct GNU ms | Direct rg ms | Rust tool ms | Execution |
 | --- | ---: | ---: | ---: | --- |
@@ -235,6 +234,30 @@ fixtures and C locale, rather than every input, platform or argument combination
 The earlier C dispatcher’s CLI/private-function measurements remain in [automatic-performance.json](docs/automatic-performance.json). They include different wrapper and benchmark-controller costs and do not describe the default Rust route. Reproduce that historical policy with `GREP2RG_ENGINE=c`; the [historical routing audit](docs/automatic-routing-audit.json) records its qualified classes.
 
 ## Verification
+
+Tests follow the implementation boundary:
+
+| Layer | Language and location | Run |
+| --- | --- | --- |
+| Native parser, matcher, traversal and resource invariants | Rust unit/property tests under `rust/src/` | `npm run test:rust:unit` |
+| Actual optimized engine versus GNU, including seeded and fault cases | Rust release harness under `rust/tests/` | `npm run test:rust:oracle` |
+| Pi Bash scope and public CLI integration | JavaScript under `tests/` | `npm run test:integration` |
+| Retained experimental JavaScript/C adapters | JavaScript under `tests/` | `node tools/verify.mjs --core` |
+
+`npm test` runs the Rust, integration and adapter layers. `npm run test:rust`
+runs the native layers without Node test assertions. Plain `cargo test --locked
+--manifest-path rust/Cargo.toml` runs the fast Rust unit/property checks; the
+`release-oracle` feature explicitly enables the longer GNU comparison campaign.
+The external campaign tests the uninstrumented optimized executable, even when
+unit tests use a debug build. GNU fallback checks retain separate counts and do
+not claim native implementation coverage.
+
+`npm run verify:rust` packs and extracts the actual npm source archive, builds
+an independent production release, runs Rust units in debug and release, and
+executes the Rust oracle and Node integration tests outside the checkout. Its
+report rejects empty/skipped suites, missing classes and mismatched artifact
+identities. The GNU campaign runs once per qualification; debug and release
+unit results are reported separately rather than adding duplicate GNU cases.
 
 Run the focused CPU and package checks first:
 
@@ -289,7 +312,9 @@ grep2rg/
 │   └── grep2rg.c                   Bounded native dispatcher and ordered ripgrep result adapter
 ├── rust/
 │   ├── Cargo.toml / Cargo.lock     Integrated engine dependencies and release build profile
-│   └── src/main.rs                In-process adaptive Rust search and guarded GNU fallback
+│   ├── src/main.rs                In-process adaptive Rust search and guarded GNU fallback
+│   ├── src/tests.rs                Native unit/property tests
+│   └── tests/gnu_oracle.rs          Release GNU comparisons and owned fault fixtures
 ├── src/
 │   ├── grep-options.mjs           GNU option parsing and matcher qualification
 │   ├── grep-files.mjs             GNU file discovery, filtering and input metadata
@@ -306,7 +331,7 @@ grep2rg/
 │   ├── grep_option_inventory.json Independent GNU spellings, values and lexical cases
 │   ├── grep_wrapper_requirements.json Behavior and regression inventory
 │   ├── port_source_manifest.json  Source identity for the extracted tests
-│   └── test_*.mjs                 Synthetic GNU comparisons and integration checks
+│   └── test_*.mjs                 Pi/package and retained JS/C adapter checks
 ├── tools/
 │   ├── build-rust.mjs             Builds locked Rust source into the CLI/Pi target path
 │   ├── build-native.mjs           Compiles the historical C helper; optional GNU fallback

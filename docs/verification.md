@@ -1,4 +1,16 @@
-The default Rust route is qualified separately with `node tools/verify-rust-artifact.mjs`. It packs the real npm source, rebuilds locked Rust dependencies offline outside the checkout through `tools/build-rust.mjs`, and compares every stdout byte, stderr byte and status against GNU. It also executes the packaged CLI and private Bash function using the built Rust target, checks receipts from the actual engine, tests unavailable toolchain/build fallback, and verifies that user shells, bypasses and descendants remain GNU. Host-specific targets and Python bytecode are excluded from the package.
+The native Rust implementation is tested in Rust: `rust/src/tests.rs` contains
+unit/property checks, and `rust/tests/gnu_oracle.rs` owns optimized-release
+GNU comparisons, seeded cases and fault injection. Run `npm run test:rust` for
+both native layers and `npm run test:integration` for Node CLI/Pi scope checks.
+Node also retains the experimental JavaScript/C adapter suites because those tests
+target JavaScript and C implementations, rather than the native Rust engine.
+
+The current [native package qualification](rust-engine-qualification.json)
+rebuilds the actual npm source archive offline outside the checkout. It runs Rust
+units in debug and release, then the Rust GNU campaign once against a separate
+uninstrumented production binary, followed by Node integration, process-timer
+and evidence-validation checks. Counts, native/delegated routes and artifact
+hashes are recorded separately. Run `npm run verify:rust` for this release gate.
 
 The broader semantic verifier explicitly enables `GREP2RG_EXPERIMENTAL_RG=1`. The historical C suite explicitly selects `GREP2RG_ENGINE=c`; its counts are C compatibility evidence, not Rust route coverage. None of these finite checks proves a universal speedup.
 
@@ -96,7 +108,7 @@ universal speedup.
 
 ## Broader execution coverage
 
-The [current packaged qualification](broader-qualification.json) passed on
+The [historical adapter qualification](broader-qualification.json) passed on
 11 October 2026 with **226 Node test groups per environment**: 195 core,
 24 campaign and 7 installed-Pi scope groups. The desktop and Debian VM tested
 the same immutable archive; all current implementation and test hashes match

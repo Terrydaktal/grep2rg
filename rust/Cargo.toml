@@ -5,6 +5,15 @@ edition = "2021"
 rust-version = "1.90"
 publish = false
 
+[features]
+release-oracle = []
+
+[[test]]
+name = "gnu_oracle"
+path = "tests/gnu_oracle.rs"
+harness = false
+required-features = ["release-oracle"]
+
 [dependencies]
 aho-corasick = "1.1"
 libc = "0.2"

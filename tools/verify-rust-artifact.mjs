@@ -10,6 +10,7 @@ import { tmpdir } from 'node:os';
 import { basename, dirname, isAbsolute, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { performance } from 'node:perf_hooks';
+import { parseTap, runRustQualification } from './rust-verification.mjs';
 
 const source = realpathSync(fileURLToPath(new URL('../', import.meta.url)));
 const args = process.argv.slice(2);
@@ -41,7 +42,7 @@ for (const key of Object.keys(baseEnvironment)) {
 
 const report = {
   schemaVersion: 1, createdAt: new Date().toISOString(), status: 'running',
-  scope: 'Actual npm source archive, independently rebuilt Rust release, packaged full-byte GNU-oracle tests and CLI comparisons from outside the source checkout.',
+  scope: 'Actual npm source archive, independently rebuilt Rust release, Rust unit/property tests, Rust full-byte GNU-oracle campaigns and Node integration tests and CLI comparisons from outside the source checkout.',
   source, output, archiveDirectory: owned, workingDirectory: outside,
   isolation: { extractedSource: extraction, cargoTarget: target, npmCache,
     lifecycleScripts: 'disabled during npm pack', cargoBuild: 'release, locked, offline',
@@ -118,46 +119,6 @@ function sourceHashes(files, directory) {
   return Object.fromEntries(files.map(name => [name, fileHash(join(directory, name))]));
 }
 
-function parseTestEvidence(stdout, binaryHash, contract) {
-  const text = stdout.toString('utf8');
-  const diagnostics = [];
-  for (const match of text.matchAll(/^\s*#\s*(\{.*\})\s*$/gm)) {
-    try {
-      const diagnostic = JSON.parse(match[1]);
-      if (Number.isSafeInteger(diagnostic.comparisons)) diagnostics.push(diagnostic);
-    } catch {}
-  }
-  const count = name => {
-    const match = text.match(new RegExp(`^# ${name} (\\d+)\\s*$`, 'm'));
-    return match ? Number(match[1]) : null;
-  };
-  const counts = Object.fromEntries(['tests', 'suites', 'pass', 'fail', 'cancelled', 'skipped', 'todo'].map(name => [name, count(name)]));
-  const fullGNUComparisons = diagnostics.reduce((sum, entry) => sum + entry.comparisons, 0);
-  const rustSearches = diagnostics.reduce((sum, entry) => sum + entry.rustSearches, 0);
-  const gnuFallbacks = diagnostics.reduce((sum, entry) => sum + entry.gnuFallbacks, 0);
-  const classes = {};
-  for (const diagnostic of diagnostics) {
-    for (const [name, value] of Object.entries(diagnostic.classes || {})) classes[name] = (classes[name] || 0) + value;
-  }
-  const requiredClasses = [...contract.nativeRequiredClasses, ...contract.fallbackAllowedClasses];
-  report.tests = { reporter: 'TAP', counts, diagnostics, fullGNUComparisons,
-    rustSearches, gnuFallbacks, classes, requiredClasses,
-    fullComparisonContract: ['all stdout bytes', 'all stderr bytes', 'exit status'],
-    nativeRouteAssertionsSeparateFromFallback: true };
-  assert.ok(counts.tests > 0, 'Packaged qualification executed no tests');
-  assert.equal(counts.pass, counts.tests, 'Every packaged test must pass');
-  for (const name of ['fail', 'cancelled', 'skipped', 'todo']) assert.equal(counts[name], 0, `Unexpected packaged ${name} tests`);
-  assert.ok(diagnostics.length > 0 && fullGNUComparisons > 0, 'No full GNU comparison diagnostics were captured');
-  assert.ok(rustSearches > 0, 'Packaged tests performed no native Rust searches');
-  assert.equal(rustSearches + gnuFallbacks, fullGNUComparisons, 'Route counts must cover all full GNU comparisons');
-  for (const diagnostic of diagnostics) {
-    assert.equal(diagnostic.artifactSHA256, binaryHash, 'Tests qualified a different release binary');
-    assert.equal(diagnostic.failures, 0, 'Packaged GNU comparison failures');
-    assert.equal(Object.values(diagnostic.classes).reduce((sum, value) => sum + value, 0), diagnostic.comparisons, 'Class counters must cover each GNU comparison');
-  }
-  for (const name of requiredClasses) assert.ok(classes[name] > 0, `Packaged tests missed historical class ${name}`);
-}
-
 function resultEvidence(result) {
   return { status: result.status, signal: result.signal,
     stdoutBytes: result.stdout.length, stderrBytes: result.stderr.length,
@@ -166,13 +127,13 @@ function resultEvidence(result) {
 
 try {
   const originalRustFiles = rustFiles(join(source, 'rust'));
-  for (const required of ['rust/Cargo.lock', 'rust/Cargo.toml', 'rust/src/main.rs']) assert.ok(originalRustFiles.includes(required), `Missing required source ${required}`);
+  for (const required of ['rust/Cargo.lock', 'rust/Cargo.toml', 'rust/src/main.rs', 'rust/src/tests.rs', 'rust/tests/gnu_oracle.rs']) assert.ok(originalRustFiles.includes(required), `Missing required source ${required}`);
   const rustPublicationControls = ['rust/.npmignore', 'rust/.gitignore'].filter(name => existsSync(join(source, name)));
   const trackedFiles = [...originalRustFiles, ...rustPublicationControls, 'package.json', '.npmignore',
-    'tests/test_rust_engine.mjs', 'tests/rust-engine-contract.json',
+    'tests/rust-engine-contract.json',
     'tests/test_benchmark_processes.mjs', 'tools/benchmark-processes.py',
     'tools/benchmark-rust-engine.mjs', 'tools/rust-benchmark-fixture.mjs',
-    'tools/verify-rust-artifact.mjs', 'tools/build-rust.mjs', 'tests/test_rust_integration.mjs',
+    'tools/verify-rust-artifact.mjs', 'tools/rust-verification.mjs', 'tests/test_verification_evidence.mjs', 'tools/build-rust.mjs', 'tests/test_rust_integration.mjs',
     'src/grep-wrapper.mjs', 'bin/grep2rg'];
   const originalHashes = sourceHashes(trackedFiles, source);
   const originalRelease = join(source, 'rust', 'target', 'release', 'grep2rg-rust');
@@ -195,10 +156,10 @@ try {
   assert.ok(!packagedPaths.some(path => /(?:^|\/)__pycache__(?:\/|$)|\.pyc$/.test(path)), 'Python bytecode caches must not ship');
   const packagedRustFiles = packagedPaths.filter(path => path.startsWith('rust/'));
   assert.deepEqual(packagedRustFiles, originalRustFiles, 'The archive must contain all exact Rust source files and no build artifacts');
-  for (const required of ['tests/test_rust_engine.mjs', 'tests/rust-engine-contract.json',
+  for (const required of ['tests/rust-engine-contract.json',
     'tests/test_benchmark_processes.mjs', 'tools/benchmark-processes.py',
     'tools/benchmark-rust-engine.mjs', 'tools/rust-benchmark-fixture.mjs',
-    'tools/verify-rust-artifact.mjs', 'tools/build-rust.mjs', 'tests/test_rust_integration.mjs',
+    'tools/verify-rust-artifact.mjs', 'tools/rust-verification.mjs', 'tests/test_verification_evidence.mjs', 'tools/build-rust.mjs', 'tests/test_rust_integration.mjs',
     'src/grep-wrapper.mjs', 'bin/grep2rg']) assert.ok(packagedPaths.includes(required), `Artifact omits ${required}`);
   report.packageArtifact = { filename: record.filename, SHA256: fileHash(archive),
     integrity: record.integrity, npmSHA1: record.shasum, fileCount: packagedPaths.length,
@@ -239,11 +200,9 @@ try {
     rebuiltFromExtractedSource: true, packagedPrebuiltBinaryUsed: false,
     GNUOraclePath: '/usr/bin/grep', GNUOracleSHA256: oracleHash };
   const contract = JSON.parse(readFileSync(join(packageRoot, 'tests', 'rust-engine-contract.json'), 'utf8'));
-  const tests = await command('Run the packaged Rust GNU-oracle suite from an outside cwd', process.execPath,
-    ['--test', '--test-reporter=tap', join(packageRoot, 'tests', 'test_rust_engine.mjs')],
-    { environment: { GREP2RG_RUST_BINARY: binary, TMPDIR: testTemporary }, timeoutMs: 300000, requireSuccess: false });
-  parseTestEvidence(tests.stdout, binaryHash, contract);
-  assert.equal(tests.status, 0, 'Packaged Rust suite returned a nonzero exit status');
+  Object.assign(report, await runRustQualification({ command, packageRoot,
+    targetDirectory: join(owned, 'cargo-tests'), binary, binaryHash, contract,
+    prefix: 'GREP2RG', temporary: testTemporary }));
 
   const driverTests = await command('Run the packaged process-timer contract tests from an outside cwd', process.execPath,
     ['--test', '--test-reporter=tap', join(packageRoot, 'tests', 'test_benchmark_processes.mjs')],
@@ -257,18 +216,25 @@ try {
   for (const key of ['fail', 'cancelled', 'skipped', 'todo']) assert.equal(driverCounts[key], 0, `Unexpected process-timer ${key}`);
   report.benchmarkDriverTests = { counts: driverCounts, executedFromExtractedSource: true };
 
-  const integration = await command('Run packaged default CLI and model Bash Rust integration checks', process.execPath,
+  const evidenceTests = await command('Check extracted verification accounting and negative controls', process.execPath,
+    ['--test', '--test-reporter=tap', join(packageRoot, 'tests', 'test_verification_evidence.mjs')],
+    { environment: { TMPDIR: testTemporary }, timeoutMs: 30000 });
+  report.evidenceTests = { ...parseTap(evidenceTests.stdout), executedFromExtractedSource: true };
+
+  const integration = await command('Run packaged Node CLI and Pi Bash integration tests', process.execPath,
     ['--test', '--test-reporter=tap', join(packageRoot, 'tests', 'test_rust_integration.mjs')],
-    { environment: { TMPDIR: testTemporary }, timeoutMs: 30000, requireSuccess: false });
-  const integrationCounts = Object.fromEntries([...integration.stdout.toString('utf8')
-    .matchAll(/^# (tests|pass|fail|cancelled|skipped|todo) (\d+)$/gm)].map(match => [match[1], Number(match[2])]));
-  assert.equal(integration.status, 0, 'Packaged default Rust integration tests failed');
-  assert.equal(integrationCounts.tests, 5);
-  assert.equal(integrationCounts.pass, 5);
-  for (const key of ['fail','cancelled','skipped','todo']) assert.equal(integrationCounts[key], 0);
-  report.integrationTests = { counts: integrationCounts, executedFromExtractedSource: true,
-    fullGNUComparisons: 32, defaultCLIRustReceiptVerified: true, privateBashRustReceiptVerified: true,
-    userBashAndChildShellsUnchanged: true, optionalMissingToolchainFallbackVerified: true };
+    { environment: { GREP2RG_RUST_BINARY: binary, TMPDIR: testTemporary }, timeoutMs: 30000, requireSuccess: false });
+  const integrationEvidence = parseTap(integration.stdout);
+  assert.equal(integration.status, 0, 'Packaged Node integration tests failed');
+  for (const diagnostic of integrationEvidence.diagnostics) {
+    if (diagnostic.artifactSHA256) assert.equal(diagnostic.artifactSHA256, binaryHash, 'Integration qualified another release');
+    if (diagnostic.failures !== undefined) assert.equal(diagnostic.failures, 0);
+  }
+  const integrationComparisons = integrationEvidence.diagnostics.reduce((sum, row) => sum + row.comparisons, 0);
+  assert.ok(integrationComparisons > 0, 'No actual GNU integration comparisons recorded');
+  report.integrationTests = { ...integrationEvidence, reporter: 'Node TAP',
+    fullGNUComparisons: integrationComparisons, executedFromExtractedSource: true,
+    scope: 'Public CLI, private Pi Bash routing, scope and descriptors; engine campaign counted separately.' };
 
   writeFileSync(join(outside, 'hit.txt'), 'head\nneedle needle\ntail\n');
   writeFileSync(join(outside, 'miss.txt'), 'head\nother\ntail\n');
