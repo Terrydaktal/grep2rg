@@ -1,0 +1,1712 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-12T00:27:18.263Z",
+  "scope": "Rotated seven-run warm-cache synthetic public CLI and private Bash function timing. All wrapper and child process startup, metadata, parallel search and ordered aggregate/full-line rendering included. GNU output/status/stderr checked independently on every sample. No universal hardware/input speed claim.",
+  "fixture": {
+    "files": 2049,
+    "bytes": 193032192
+  },
+  "versions": {
+    "GNU": "grep (GNU grep) 3.12-modified",
+    "rg": "ripgrep 15.1.0 (rev 6e6b29e490)",
+    "node": "v26.4.0"
+  },
+  "sourceHashes": {
+    "native/grep2rg.c": "150e0526453a508974bfbefcd9c93f96832de18392643c9dfb02328d325ea31e",
+    "bin/grep2rg": "cc1f793796fe59d835523c64c28fc841e0db4d4b631a8256bca0b8f7a90bb737",
+    "src/grep-wrapper.mjs": "59d38422a4ce8e0efb2b0aff2ac2ce3a1d8fff474bff63ea90d689b84b5c21bd",
+    "tools/build-native.mjs": "859c38df2499a6d3e408e0dbb223daf174c800f7299547e3a0f56116935cb754",
+    "tools/benchmark-routing.mjs": "212a93366924776651d5ace77ee813924a8d3337b1eb49f6d447f70078c89aa5",
+    "bin/grep2rg-native": "85bd4d7d075e10a4aad14d3caa08b424282562da9de8e175af2bc072c073933d"
+  },
+  "repetitions": 7,
+  "cases": [
+    {
+      "id": "recursive-count",
+      "argvSummary": [
+        "-arcF",
+        "needle",
+        "/tmp/grep2rg-measured-LiUgRy/corpus"
+      ],
+      "operandCount": 3,
+      "samplesMs": {
+        "GNU": [
+          72.221,
+          78.889,
+          69.097,
+          67.833,
+          66.977,
+          69.619,
+          67.421
+        ],
+        "CLI": [
+          25.679,
+          25.707,
+          24.072,
+          26.592,
+          25.876,
+          24.483,
+          25.135
+        ],
+        "function": [
+          24.233,
+          25.321,
+          26.334,
+          27.387,
+          22.652,
+          24.012,
+          24.885
+        ]
+      },
+      "medianMs": {
+        "GNU": 69.097,
+        "CLI": 25.679,
+        "function": 24.885
+      },
+      "exactComparisons": 14,
+      "evidence": {
+        "status": 0,
+        "stdoutSHA256": "25fb0d9f2827b7b60677800634c2e6caddca2d63b8839327247f1b42606d0166",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 101084
+      },
+      "rgNativeInvocations": 14,
+      "routeEvidence": [
+        "rg-native files=2049 bytes=192937990 mode=count"
+      ]
+    },
+    {
+      "id": "recursive-invert-count",
+      "argvSummary": [
+        "-arcvF",
+        "needle",
+        "/tmp/grep2rg-measured-LiUgRy/corpus"
+      ],
+      "operandCount": 3,
+      "samplesMs": {
+        "GNU": [
+          82.363,
+          87.913,
+          87.228,
+          84.434,
+          80.916,
+          92.203,
+          83.312
+        ],
+        "CLI": [
+          26.086,
+          26.117,
+          26.584,
+          27.575,
+          25.975,
+          28.65,
+          27.824
+        ],
+        "function": [
+          26.982,
+          27.205,
+          26.283,
+          25.996,
+          27.595,
+          26.671,
+          25.638
+        ]
+      },
+      "medianMs": {
+        "GNU": 84.434,
+        "CLI": 26.584,
+        "function": 26.671
+      },
+      "exactComparisons": 14,
+      "evidence": {
+        "status": 0,
+        "stdoutSHA256": "247044bf334ba9daac2f5657a2f322306b0096cc16105afdc6d113ad8878c60d",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 107228
+      },
+      "rgNativeInvocations": 14,
+      "routeEvidence": [
+        "rg-native files=2049 bytes=192937990 mode=count"
+      ]
+    },
+    {
+      "id": "recursive-filenames-sparse",
+      "argvSummary": [
+        "-rlF",
+        "needle",
+        "/tmp/grep2rg-measured-LiUgRy/corpus"
+      ],
+      "operandCount": 3,
+      "samplesMs": {
+        "GNU": [
+          65.116,
+          69.373,
+          65.207,
+          63.138,
+          68.026,
+          66.15,
+          73.881
+        ],
+        "CLI": [
+          23.968,
+          24.086,
+          24.292,
+          24.894,
+          25.099,
+          25.866,
+          24.145
+        ],
+        "function": [
+          23.708,
+          24.237,
+          25.909,
+          25.617,
+          24.719,
+          24.683,
+          22.29
+        ]
+      },
+      "medianMs": {
+        "GNU": 66.15,
+        "CLI": 24.292,
+        "function": 24.683
+      },
+      "exactComparisons": 14,
+      "evidence": {
+        "status": 0,
+        "stdoutSHA256": "f9e0240c2aec3dd30af95a40e5cca120878684912ec8a32ab7e8b3ce6912ba91",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 4166
+      },
+      "rgNativeInvocations": 14,
+      "routeEvidence": [
+        "rg-native files=2049 bytes=192937990 mode=filenames"
+      ]
+    },
+    {
+      "id": "recursive-filenames-no-match",
+      "argvSummary": [
+        "-rlF",
+        "absent",
+        "/tmp/grep2rg-measured-LiUgRy/corpus"
+      ],
+      "operandCount": 3,
+      "samplesMs": {
+        "GNU": [
+          68.463,
+          66.091,
+          66.626,
+          74.85,
+          68.908,
+          70.637,
+          69.234
+        ],
+        "CLI": [
+          24.521,
+          23.025,
+          27.226,
+          22.907,
+          26.807,
+          23.618,
+          23.169
+        ],
+        "function": [
+          25.168,
+          24.514,
+          29.051,
+          25.753,
+          24.66,
+          24.284,
+          29.621
+        ]
+      },
+      "medianMs": {
+        "GNU": 68.908,
+        "CLI": 23.618,
+        "function": 25.168
+      },
+      "exactComparisons": 14,
+      "evidence": {
+        "status": 1,
+        "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 0
+      },
+      "rgNativeInvocations": 14,
+      "routeEvidence": [
+        "rg-native files=2049 bytes=192937990 mode=filenames"
+      ]
+    },
+    {
+      "id": "explicit-count",
+      "argvSummary": [
+        "-acF",
+        "needle",
+        "/tmp/grep2rg-measured-LiUgRy/corpus/.f00000.txt",
+        "/tmp/grep2rg-measured-LiUgRy/corpus/f00001.txt",
+        "/tmp/grep2rg-measured-LiUgRy/corpus/f00002.txt"
+      ],
+      "operandCount": 2051,
+      "samplesMs": {
+        "GNU": [
+          70.729,
+          66.589,
+          64.29,
+          65.517,
+          67.694,
+          66.989,
+          66.43
+        ],
+        "CLI": [
+          28.267,
+          26.074,
+          25.372,
+          26.859,
+          27.75,
+          26.973,
+          25.451
+        ],
+        "function": [
+          26.659,
+          29.47,
+          28.254,
+          26.714,
+          27.063,
+          28.754,
+          26.285
+        ]
+      },
+      "medianMs": {
+        "GNU": 66.589,
+        "CLI": 26.859,
+        "function": 27.063
+      },
+      "exactComparisons": 14,
+      "evidence": {
+        "status": 0,
+        "stdoutSHA256": "f51bcbf955376b78a0c8220df1a40a6d04fa4544df789eb9909d33c1db529375",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 101084
+      },
+      "rgNativeInvocations": 14,
+      "routeEvidence": [
+        "rg-native files=2049 bytes=192937990 mode=count"
+      ]
+    },
+    {
+      "id": "explicit-filenames-sparse",
+      "argvSummary": [
+        "-lF",
+        "needle",
+        "/tmp/grep2rg-measured-LiUgRy/corpus/.f00000.txt",
+        "/tmp/grep2rg-measured-LiUgRy/corpus/f00001.txt",
+        "/tmp/grep2rg-measured-LiUgRy/corpus/f00002.txt"
+      ],
+      "operandCount": 2051,
+      "samplesMs": {
+        "GNU": [
+          66.408,
+          68.178,
+          68.785,
+          65.585,
+          69.052,
+          68.436,
+          65.581
+        ],
+        "CLI": [
+          27.814,
+          25.971,
+          25.787,
+          27.633,
+          24.708,
+          28.304,
+          26.644
+        ],
+        "function": [
+          28.734,
+          29.506,
+          28.452,
+          26.658,
+          27.813,
+          26.885,
+          26.752
+        ]
+      },
+      "medianMs": {
+        "GNU": 68.178,
+        "CLI": 26.644,
+        "function": 27.813
+      },
+      "exactComparisons": 14,
+      "evidence": {
+        "status": 0,
+        "stdoutSHA256": "a507b705bf33c9500e2309ea6cef1ea537213f858e4474db88c66847cbc8481a",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 4166
+      },
+      "rgNativeInvocations": 14,
+      "routeEvidence": [
+        "rg-native files=2049 bytes=192937990 mode=filenames"
+      ]
+    },
+    {
+      "id": "explicit-filenames-no-match",
+      "argvSummary": [
+        "-lF",
+        "absent",
+        "/tmp/grep2rg-measured-LiUgRy/corpus/.f00000.txt",
+        "/tmp/grep2rg-measured-LiUgRy/corpus/f00001.txt",
+        "/tmp/grep2rg-measured-LiUgRy/corpus/f00002.txt"
+      ],
+      "operandCount": 2051,
+      "samplesMs": {
+        "GNU": [
+          65.501,
+          72.236,
+          66.837,
+          67.35,
+          66.198,
+          77.56,
+          68.264
+        ],
+        "CLI": [
+          24.34,
+          24.165,
+          26.159,
+          26.479,
+          26.068,
+          28.194,
+          24.934
+        ],
+        "function": [
+          25.704,
+          25.867,
+          27.662,
+          26.61,
+          26.763,
+          28.239,
+          27.174
+        ]
+      },
+      "medianMs": {
+        "GNU": 67.35,
+        "CLI": 26.068,
+        "function": 26.763
+      },
+      "exactComparisons": 14,
+      "evidence": {
+        "status": 1,
+        "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 0
+      },
+      "rgNativeInvocations": 14,
+      "routeEvidence": [
+        "rg-native files=2049 bytes=192937990 mode=filenames"
+      ]
+    },
+    {
+      "id": "single-large-count-native",
+      "argvSummary": [
+        "-acF",
+        "needle",
+        "/tmp/grep2rg-measured-LiUgRy/large.txt"
+      ],
+      "operandCount": 3,
+      "samplesMs": {
+        "GNU": [
+          34.342,
+          34.791,
+          34.174,
+          32.492,
+          30.894,
+          30.711,
+          33.558
+        ],
+        "CLI": [
+          43.275,
+          35.893,
+          33.727,
+          31.887,
+          32.074,
+          34.863,
+          33.77
+        ],
+        "function": [
+          34.961,
+          36.797,
+          37.328,
+          34.213,
+          30.627,
+          32.789,
+          34.678
+        ],
+        "Experimental": [
+          39.878,
+          41.581,
+          44.191,
+          41.216,
+          37.44,
+          40.427,
+          42.417
+        ]
+      },
+      "medianMs": {
+        "GNU": 33.558,
+        "CLI": 33.77,
+        "function": 34.678,
+        "Experimental": 41.216
+      },
+      "exactComparisons": 21,
+      "evidence": {
+        "status": 1,
+        "stdoutSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 2
+      },
+      "rgNativeInvocations": 0,
+      "routeEvidence": []
+    },
+    {
+      "id": "small-file-native",
+      "argvSummary": [
+        "-nF",
+        "needle",
+        "/tmp/grep2rg-measured-LiUgRy/small.txt"
+      ],
+      "operandCount": 3,
+      "samplesMs": {
+        "GNU": [
+          3.417,
+          1.17,
+          1.872,
+          2.25,
+          1.188,
+          2.237,
+          1.914
+        ],
+        "CLI": [
+          3.493,
+          3.351,
+          3.126,
+          2.961,
+          2.11,
+          2.347,
+          3.179
+        ],
+        "function": [
+          3.437,
+          2.03,
+          2.126,
+          1.892,
+          1.873,
+          1.96,
+          3.271
+        ],
+        "Experimental": [
+          43.327,
+          38.05,
+          34.288,
+          36.328,
+          37.906,
+          37.912,
+          36.417
+        ]
+      },
+      "medianMs": {
+        "GNU": 1.914,
+        "CLI": 3.126,
+        "function": 2.03,
+        "Experimental": 37.906
+      },
+      "exactComparisons": 21,
+      "evidence": {
+        "status": 0,
+        "stdoutSHA256": "47e32132f8bb1684df83fef7cac86d51217226a746c74ff521bd81064880d75c",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 9
+      },
+      "rgNativeInvocations": 0,
+      "routeEvidence": []
+    },
+    {
+      "id": "stdin-native",
+      "argvSummary": [
+        "-nF",
+        "needle"
+      ],
+      "operandCount": 2,
+      "samplesMs": {
+        "GNU": [
+          2.476,
+          1.109,
+          1.105,
+          1.127,
+          1.02,
+          1.297,
+          1.091
+        ],
+        "CLI": [
+          4.077,
+          2.356,
+          2.274,
+          2.444,
+          2.885,
+          3.673,
+          3.087
+        ],
+        "function": [
+          2.804,
+          1.856,
+          2.378,
+          1.849,
+          3.581,
+          3.376,
+          2.166
+        ],
+        "Experimental": [
+          30.874,
+          28.662,
+          29.538,
+          32.925,
+          32.303,
+          31.551,
+          32.363
+        ]
+      },
+      "medianMs": {
+        "GNU": 1.109,
+        "CLI": 2.885,
+        "function": 2.378,
+        "Experimental": 31.551
+      },
+      "exactComparisons": 21,
+      "evidence": {
+        "status": 0,
+        "stdoutSHA256": "47e32132f8bb1684df83fef7cac86d51217226a746c74ff521bd81064880d75c",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 9
+      },
+      "rgNativeInvocations": 0,
+      "routeEvidence": []
+    },
+    {
+      "id": "regex-compatible-count",
+      "argvSummary": [
+        "-acE",
+        "(padding|needle).*012",
+        "/tmp/grep2rg-measured-LiUgRy/corpus/.f00000.txt",
+        "/tmp/grep2rg-measured-LiUgRy/corpus/f00001.txt",
+        "/tmp/grep2rg-measured-LiUgRy/corpus/f00002.txt"
+      ],
+      "operandCount": 2051,
+      "samplesMs": {
+        "GNU": [
+          382.52,
+          382.665,
+          387.673,
+          374.156,
+          379.985,
+          370.687,
+          367.144
+        ],
+        "CLI": [
+          78.59,
+          78.959,
+          77.027,
+          83.075,
+          81.1,
+          84.825,
+          76.778
+        ],
+        "function": [
+          79.314,
+          78.577,
+          78.453,
+          80.161,
+          77.831,
+          75.509,
+          78.917
+        ]
+      },
+      "medianMs": {
+        "GNU": 379.985,
+        "CLI": 78.959,
+        "function": 78.577
+      },
+      "exactComparisons": 14,
+      "evidence": {
+        "status": 0,
+        "stdoutSHA256": "02eaf776c09bb939fc251bef85cc29ac45343eff882e39dd6cad9d90e062233c",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 107228
+      },
+      "rgNativeInvocations": 14,
+      "routeEvidence": [
+        "rg-native files=2049 bytes=192937990 mode=count"
+      ]
+    },
+    {
+      "id": "recursive-dense-filenames-native",
+      "argvSummary": [
+        "-rlF",
+        "needle",
+        "/tmp/grep2rg-measured-LiUgRy/dense"
+      ],
+      "operandCount": 3,
+      "samplesMs": {
+        "GNU": [
+          16.772,
+          13.268,
+          13.705,
+          14.363,
+          13.429,
+          13.339,
+          12.81
+        ],
+        "CLI": [
+          16.597,
+          16.93,
+          14.342,
+          15.593,
+          14.915,
+          15.459,
+          14.626
+        ],
+        "function": [
+          13.095,
+          14.964,
+          13.226,
+          14.255,
+          12.762,
+          16.952,
+          12.861
+        ],
+        "Experimental": [
+          170.679,
+          219.945,
+          182.451,
+          187.671,
+          205.292,
+          207.662,
+          170.365
+        ]
+      },
+      "medianMs": {
+        "GNU": 13.429,
+        "CLI": 15.459,
+        "function": 13.226,
+        "Experimental": 187.671
+      },
+      "exactComparisons": 21,
+      "evidence": {
+        "status": 0,
+        "stdoutSHA256": "211bda5d6f786fb75d500694b21879451773b1c7ba18bf20a90d429f1c983b6d",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 91050
+      },
+      "rgNativeInvocations": 0,
+      "routeEvidence": []
+    },
+    {
+      "id": "small-recursive-count-native",
+      "argvSummary": [
+        "-arcF",
+        "needle",
+        "/tmp/grep2rg-measured-LiUgRy/small-tree"
+      ],
+      "operandCount": 3,
+      "samplesMs": {
+        "GNU": [
+          2.172,
+          2.318,
+          2.21,
+          1.279,
+          1.21,
+          2.071,
+          2.464
+        ],
+        "CLI": [
+          3.944,
+          2.695,
+          3.59,
+          3.271,
+          2.339,
+          3.748,
+          3.614
+        ],
+        "function": [
+          3.03,
+          3.12,
+          3.254,
+          2.624,
+          2.808,
+          3.092,
+          3.302
+        ],
+        "Experimental": [
+          37.251,
+          35.935,
+          39.899,
+          36.48,
+          35.156,
+          38.98,
+          38.989
+        ]
+      },
+      "medianMs": {
+        "GNU": 2.172,
+        "CLI": 3.59,
+        "function": 3.092,
+        "Experimental": 37.251
+      },
+      "exactComparisons": 21,
+      "evidence": {
+        "status": 0,
+        "stdoutSHA256": "9e4f213bb1fc145d32d054f080b20759a41d4730061571b957c1b05d9acc6aac",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 1622
+      },
+      "rgNativeInvocations": 0,
+      "routeEvidence": []
+    },
+    {
+      "id": "many-tiny-count-native",
+      "argvSummary": [
+        "-arcF",
+        "needle",
+        "/tmp/grep2rg-measured-LiUgRy/tiny"
+      ],
+      "operandCount": 3,
+      "samplesMs": {
+        "GNU": [
+          6.626,
+          4.824,
+          5.143,
+          5.605,
+          4.139,
+          4.939,
+          4.052
+        ],
+        "CLI": [
+          7.687,
+          6.56,
+          7.112,
+          6.065,
+          5.936,
+          7.329,
+          5.06
+        ],
+        "function": [
+          6.538,
+          6.416,
+          6.612,
+          6.201,
+          5.086,
+          5.146,
+          6.274
+        ],
+        "Experimental": [
+          116.596,
+          121.736,
+          124.527,
+          118.76,
+          126.723,
+          123.395,
+          129.53
+        ]
+      },
+      "medianMs": {
+        "GNU": 4.939,
+        "CLI": 6.56,
+        "function": 6.274,
+        "Experimental": 123.395
+      },
+      "exactComparisons": 21,
+      "evidence": {
+        "status": 0,
+        "stdoutSHA256": "73167a577bfb7defea5e494f175c85ae7df0c8faae3f73e3674eb614920902e4",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 95146
+      },
+      "rgNativeInvocations": 0,
+      "routeEvidence": []
+    },
+    {
+      "id": "below-threshold-count-native",
+      "argvSummary": [
+        "-arcF",
+        "needle",
+        "/tmp/grep2rg-measured-LiUgRy/near-threshold"
+      ],
+      "operandCount": 3,
+      "samplesMs": {
+        "GNU": [
+          10.341,
+          10.35,
+          9.954,
+          9.735,
+          9.464,
+          9.931,
+          9.229
+        ],
+        "CLI": [
+          12.348,
+          11.886,
+          11.233,
+          11.906,
+          12.436,
+          11.354,
+          10.449
+        ],
+        "function": [
+          11.191,
+          11.84,
+          11.065,
+          10.813,
+          11.606,
+          11.009,
+          11.1
+        ],
+        "Experimental": [
+          45.622,
+          44.58,
+          43.869,
+          42.581,
+          47.023,
+          43.767,
+          41.758
+        ]
+      },
+      "medianMs": {
+        "GNU": 9.931,
+        "CLI": 11.886,
+        "function": 11.1,
+        "Experimental": 43.869
+      },
+      "exactComparisons": 21,
+      "evidence": {
+        "status": 1,
+        "stdoutSHA256": "dbb552cc75b3f32d373b449ee4883ac761895931987e51ef0e32f53c9fa4b916",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 13915
+      },
+      "rgNativeInvocations": 0,
+      "routeEvidence": []
+    },
+    {
+      "id": "long-record-count-native",
+      "argvSummary": [
+        "-arcF",
+        "needle",
+        "/tmp/grep2rg-measured-LiUgRy/long-records"
+      ],
+      "operandCount": 3,
+      "samplesMs": {
+        "GNU": [
+          4.93,
+          5.823,
+          5.494,
+          5.454,
+          5.258,
+          4.958,
+          4.649
+        ],
+        "CLI": [
+          6.726,
+          6.456,
+          7.439,
+          6.26,
+          6.898,
+          6.193,
+          6.034
+        ],
+        "function": [
+          6.254,
+          7.009,
+          7.058,
+          6.305,
+          7.036,
+          5.976,
+          5.731
+        ],
+        "Experimental": [
+          46.891,
+          54.025,
+          49.386,
+          47.984,
+          43.912,
+          49.086,
+          46.469
+        ]
+      },
+      "medianMs": {
+        "GNU": 5.258,
+        "CLI": 6.456,
+        "function": 6.305,
+        "Experimental": 47.984
+      },
+      "exactComparisons": 21,
+      "evidence": {
+        "status": 0,
+        "stdoutSHA256": "18bfc97262ab166469ce16b4e1b05b23e151a4d2839c50535f95d05c06f19878",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 13458
+      },
+      "rgNativeInvocations": 0,
+      "routeEvidence": []
+    },
+    {
+      "id": "long-record-content-native",
+      "argvSummary": [
+        "-arnF",
+        "needle",
+        "/tmp/grep2rg-measured-LiUgRy/long-records"
+      ],
+      "operandCount": 3,
+      "samplesMs": {
+        "GNU": [
+          4.462,
+          5.834,
+          6.676,
+          6.58,
+          5.946,
+          6.496,
+          8.045
+        ],
+        "CLI": [
+          7.04,
+          6.906,
+          7.213,
+          7.164,
+          7.947,
+          9.964,
+          8.819
+        ],
+        "function": [
+          6.996,
+          5.831,
+          6.886,
+          7.561,
+          7.942,
+          7.843,
+          7.626
+        ],
+        "Experimental": [
+          47.826,
+          53.19,
+          46.47,
+          47.353,
+          49.655,
+          51.274,
+          55.473
+        ]
+      },
+      "medianMs": {
+        "GNU": 6.496,
+        "CLI": 7.213,
+        "function": 7.561,
+        "Experimental": 49.655
+      },
+      "exactComparisons": 21,
+      "evidence": {
+        "status": 0,
+        "stdoutSHA256": "9660a96509f5e552ebb4e6c0dec7682d03feb84b34c1a10734fce3027349809a",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 15250
+      },
+      "rgNativeInvocations": 0,
+      "routeEvidence": []
+    },
+    {
+      "id": "recursive-content",
+      "argvSummary": [
+        "-arnF",
+        "needle",
+        "/tmp/grep2rg-measured-LiUgRy/corpus"
+      ],
+      "operandCount": 3,
+      "samplesMs": {
+        "GNU": [
+          94.631,
+          85.934,
+          83.221,
+          86.017,
+          85.847,
+          91.055,
+          86.867
+        ],
+        "CLI": [
+          26.135,
+          27.171,
+          23.999,
+          24.98,
+          25.067,
+          24.347,
+          24.36
+        ],
+        "function": [
+          28.761,
+          26.036,
+          23.198,
+          26.08,
+          25.562,
+          22.919,
+          24.555
+        ],
+        "Experimental": [
+          88.613,
+          89.702,
+          84.341,
+          78.807,
+          79.744,
+          78.382,
+          75.85
+        ]
+      },
+      "medianMs": {
+        "GNU": 86.017,
+        "CLI": 24.98,
+        "function": 25.562,
+        "Experimental": 79.744
+      },
+      "exactComparisons": 21,
+      "evidence": {
+        "status": 0,
+        "stdoutSHA256": "25fa0956e7c245f2258d171f6bbc7b4f915825611e461c513583289ec706bcb6",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 8552
+      },
+      "rgNativeInvocations": 14,
+      "routeEvidence": [
+        "rg-native files=2049 bytes=192937990 mode=content"
+      ]
+    },
+    {
+      "id": "recursive-regex-content",
+      "argvSummary": [
+        "-arnE",
+        "needle|absent",
+        "/tmp/grep2rg-measured-LiUgRy/corpus"
+      ],
+      "operandCount": 3,
+      "samplesMs": {
+        "GNU": [
+          136.378,
+          144.011,
+          136.779,
+          136.438,
+          135.441,
+          138.262,
+          135.963
+        ],
+        "CLI": [
+          25.474,
+          25.472,
+          26.951,
+          25.253,
+          25.67,
+          25.404,
+          26.848
+        ],
+        "function": [
+          24.647,
+          23.296,
+          26.982,
+          25.429,
+          27.066,
+          28.898,
+          25.571
+        ],
+        "Experimental": [
+          184.005,
+          187.542,
+          184.102,
+          192.935,
+          189.012,
+          179.481,
+          191.199
+        ]
+      },
+      "medianMs": {
+        "GNU": 136.438,
+        "CLI": 25.474,
+        "function": 25.571,
+        "Experimental": 187.542
+      },
+      "exactComparisons": 21,
+      "evidence": {
+        "status": 0,
+        "stdoutSHA256": "25fa0956e7c245f2258d171f6bbc7b4f915825611e461c513583289ec706bcb6",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 8552
+      },
+      "rgNativeInvocations": 14,
+      "routeEvidence": [
+        "rg-native files=2049 bytes=192937990 mode=content"
+      ]
+    },
+    {
+      "id": "recursive-filter-native",
+      "argvSummary": [
+        "-arlF",
+        "--include=*.txt",
+        "needle",
+        "/tmp/grep2rg-measured-LiUgRy/corpus"
+      ],
+      "operandCount": 4,
+      "samplesMs": {
+        "GNU": [
+          72.045,
+          67.784,
+          64.205,
+          66.554,
+          70.473,
+          66.122,
+          64.732
+        ],
+        "CLI": [
+          65.903,
+          68.562,
+          65.804,
+          66.28,
+          69.902,
+          67.697,
+          66.329
+        ],
+        "function": [
+          67.289,
+          65.591,
+          75.585,
+          68.622,
+          67.113,
+          66.93,
+          70.303
+        ],
+        "Experimental": [
+          82.107,
+          82.258,
+          85.448,
+          80.065,
+          84.385,
+          82.528,
+          82.52
+        ]
+      },
+      "medianMs": {
+        "GNU": 66.554,
+        "CLI": 66.329,
+        "function": 67.289,
+        "Experimental": 82.52
+      },
+      "exactComparisons": 21,
+      "evidence": {
+        "status": 0,
+        "stdoutSHA256": "f9e0240c2aec3dd30af95a40e5cca120878684912ec8a32ab7e8b3ce6912ba91",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 4166
+      },
+      "rgNativeInvocations": 0,
+      "routeEvidence": []
+    },
+    {
+      "id": "recursive-dereference-native",
+      "argvSummary": [
+        "-arlRF",
+        "needle",
+        "/tmp/grep2rg-measured-LiUgRy/corpus"
+      ],
+      "operandCount": 3,
+      "samplesMs": {
+        "GNU": [
+          65.133,
+          63.433,
+          68.237,
+          70.429,
+          66.818,
+          67.581,
+          75.359
+        ],
+        "CLI": [
+          66.824,
+          70.351,
+          67.007,
+          67.516,
+          65.779,
+          68.488,
+          76.069
+        ],
+        "function": [
+          67.073,
+          66.973,
+          66.998,
+          66.248,
+          64.864,
+          73.272,
+          70.067
+        ],
+        "Experimental": [
+          81.221,
+          79.79,
+          80.76,
+          85.937,
+          85.29,
+          78.603,
+          119.579
+        ]
+      },
+      "medianMs": {
+        "GNU": 67.581,
+        "CLI": 67.516,
+        "function": 66.998,
+        "Experimental": 81.221
+      },
+      "exactComparisons": 21,
+      "evidence": {
+        "status": 0,
+        "stdoutSHA256": "f9e0240c2aec3dd30af95a40e5cca120878684912ec8a32ab7e8b3ce6912ba91",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 4166
+      },
+      "rgNativeInvocations": 0,
+      "routeEvidence": []
+    },
+    {
+      "id": "word-extraction-native",
+      "argvSummary": [
+        "-aFwo",
+        "needle",
+        "/tmp/grep2rg-measured-LiUgRy/small.txt"
+      ],
+      "operandCount": 3,
+      "samplesMs": {
+        "GNU": [
+          2.926,
+          1.715,
+          1.379,
+          1.985,
+          2.206,
+          1.978,
+          2.217
+        ],
+        "CLI": [
+          4.231,
+          4.571,
+          2.566,
+          3.314,
+          3.435,
+          3.323,
+          3.314
+        ],
+        "function": [
+          3.812,
+          3.688,
+          3.426,
+          2.629,
+          3.194,
+          2.473,
+          3.294
+        ],
+        "Experimental": [
+          43.604,
+          58.785,
+          44.603,
+          37.149,
+          36.749,
+          38.226,
+          38.691
+        ]
+      },
+      "medianMs": {
+        "GNU": 1.985,
+        "CLI": 3.323,
+        "function": 3.294,
+        "Experimental": 38.691
+      },
+      "exactComparisons": 21,
+      "evidence": {
+        "status": 0,
+        "stdoutSHA256": "d29210777777dac0b3d12f6a656a073c9ba717cf6932dbc01b0cc6dc1e7779b8",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 7
+      },
+      "rgNativeInvocations": 0,
+      "routeEvidence": []
+    },
+    {
+      "id": "null-records-native",
+      "argvSummary": [
+        "-azFc",
+        "needle",
+        "/tmp/grep2rg-measured-LiUgRy/small.txt"
+      ],
+      "operandCount": 3,
+      "samplesMs": {
+        "GNU": [
+          2.225,
+          1.795,
+          1.226,
+          1.81,
+          1.656,
+          1.994,
+          2.32
+        ],
+        "CLI": [
+          3.102,
+          3.174,
+          3.225,
+          3.201,
+          2.819,
+          3.112,
+          3.821
+        ],
+        "function": [
+          2.689,
+          3.269,
+          2.771,
+          2.471,
+          2.93,
+          2.529,
+          2.328
+        ],
+        "Experimental": [
+          34.331,
+          34.728,
+          33.875,
+          34.956,
+          35.742,
+          34.977,
+          36.265
+        ]
+      },
+      "medianMs": {
+        "GNU": 1.81,
+        "CLI": 3.174,
+        "function": 2.689,
+        "Experimental": 34.956
+      },
+      "exactComparisons": 21,
+      "evidence": {
+        "status": 0,
+        "stdoutSHA256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 2
+      },
+      "rgNativeInvocations": 0,
+      "routeEvidence": []
+    },
+    {
+      "id": "pattern-file-native",
+      "argvSummary": [
+        "-acF",
+        "-f",
+        "/tmp/grep2rg-measured-LiUgRy/patterns",
+        "/tmp/grep2rg-measured-LiUgRy/small.txt"
+      ],
+      "operandCount": 4,
+      "samplesMs": {
+        "GNU": [
+          1.246,
+          2.177,
+          1.369,
+          1.382,
+          1.502,
+          1.974,
+          2.395
+        ],
+        "CLI": [
+          2.268,
+          3.138,
+          3.763,
+          3.949,
+          2.422,
+          2.876,
+          4.063
+        ],
+        "function": [
+          2.021,
+          2.663,
+          3.357,
+          3.588,
+          2.016,
+          2.133,
+          3.434
+        ],
+        "Experimental": [
+          38.71,
+          38.266,
+          38.71,
+          38.579,
+          41.997,
+          37.41,
+          37.914
+        ]
+      },
+      "medianMs": {
+        "GNU": 1.502,
+        "CLI": 3.138,
+        "function": 2.663,
+        "Experimental": 38.579
+      },
+      "exactComparisons": 21,
+      "evidence": {
+        "status": 0,
+        "stdoutSHA256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 2
+      },
+      "rgNativeInvocations": 0,
+      "routeEvidence": []
+    },
+    {
+      "id": "quiet-native",
+      "argvSummary": [
+        "-aqF",
+        "needle",
+        "/tmp/grep2rg-measured-LiUgRy/small.txt"
+      ],
+      "operandCount": 3,
+      "samplesMs": {
+        "GNU": [
+          2.457,
+          2.679,
+          1.943,
+          1.163,
+          1.39,
+          1.359,
+          1.791
+        ],
+        "CLI": [
+          3.971,
+          3.662,
+          3.424,
+          2.51,
+          2.554,
+          3.991,
+          2.682
+        ],
+        "function": [
+          3.304,
+          3.524,
+          3.99,
+          1.878,
+          2.05,
+          3.196,
+          2.098
+        ],
+        "Experimental": [
+          41.34,
+          38.774,
+          38.18,
+          40.967,
+          44.344,
+          40.316,
+          36.953
+        ]
+      },
+      "medianMs": {
+        "GNU": 1.791,
+        "CLI": 3.424,
+        "function": 3.196,
+        "Experimental": 40.316
+      },
+      "exactComparisons": 21,
+      "evidence": {
+        "status": 0,
+        "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 0
+      },
+      "rgNativeInvocations": 0,
+      "routeEvidence": []
+    },
+    {
+      "id": "binary-content-native",
+      "argvSummary": [
+        "-nF",
+        "needle",
+        "/tmp/grep2rg-measured-LiUgRy/binary"
+      ],
+      "operandCount": 3,
+      "samplesMs": {
+        "GNU": [
+          1.123,
+          2.308,
+          1.484,
+          1.314,
+          2.145,
+          1.293,
+          2.095
+        ],
+        "CLI": [
+          2.477,
+          2.667,
+          3.598,
+          2.698,
+          4.1,
+          3.139,
+          3.238
+        ],
+        "function": [
+          2.945,
+          2.094,
+          3.362,
+          2.946,
+          2.93,
+          3.898,
+          3.456
+        ],
+        "Experimental": [
+          33.602,
+          34.168,
+          31.332,
+          34.527,
+          33.423,
+          36.4,
+          37.049
+        ]
+      },
+      "medianMs": {
+        "GNU": 1.484,
+        "CLI": 3.139,
+        "function": 2.946,
+        "Experimental": 34.168
+      },
+      "exactComparisons": 21,
+      "evidence": {
+        "status": 0,
+        "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderrSHA256": "6cee22be46014f6fe7bb8f5da3cbb888acc05329c5af18e8e50dc2a8b0cf9ac9",
+        "stdoutBytes": 0
+      },
+      "rgNativeInvocations": 0,
+      "routeEvidence": []
+    },
+    {
+      "id": "unicode-folding-native",
+      "argvSummary": [
+        "-aiF",
+        "K",
+        "/tmp/grep2rg-measured-LiUgRy/small.txt"
+      ],
+      "operandCount": 3,
+      "samplesMs": {
+        "GNU": [
+          2.092,
+          2.467,
+          1.418,
+          1.401,
+          1.261,
+          1.373,
+          2.174
+        ],
+        "CLI": [
+          3.009,
+          2.982,
+          2.484,
+          2.714,
+          2.372,
+          2.506,
+          3.87
+        ],
+        "function": [
+          2.061,
+          2.871,
+          3.287,
+          2.799,
+          2.119,
+          1.974,
+          2.381
+        ],
+        "Experimental": [
+          56.453,
+          60.992,
+          54.7,
+          53.931,
+          54.529,
+          52.041,
+          51.058
+        ]
+      },
+      "medianMs": {
+        "GNU": 1.418,
+        "CLI": 2.714,
+        "function": 2.381,
+        "Experimental": 54.529
+      },
+      "exactComparisons": 21,
+      "evidence": {
+        "status": 1,
+        "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 0
+      },
+      "rgNativeInvocations": 0,
+      "routeEvidence": []
+    },
+    {
+      "id": "context-native",
+      "argvSummary": [
+        "-aF",
+        "-C",
+        "3",
+        "needle",
+        "/tmp/grep2rg-measured-LiUgRy/small.txt"
+      ],
+      "operandCount": 5,
+      "samplesMs": {
+        "GNU": [
+          2.522,
+          1.433,
+          1.225,
+          2.292,
+          1.197,
+          1.137,
+          1.801
+        ],
+        "CLI": [
+          3.992,
+          3.994,
+          2.609,
+          2.975,
+          3.188,
+          3.029,
+          2.331
+        ],
+        "function": [
+          3.4,
+          3.186,
+          2.201,
+          2.648,
+          2.391,
+          2.731,
+          1.921
+        ],
+        "Experimental": [
+          41.736,
+          39.478,
+          41.464,
+          33.265,
+          35.769,
+          36.006,
+          35.247
+        ]
+      },
+      "medianMs": {
+        "GNU": 1.433,
+        "CLI": 3.029,
+        "function": 2.648,
+        "Experimental": 36.006
+      },
+      "exactComparisons": 21,
+      "evidence": {
+        "status": 0,
+        "stdoutSHA256": "dc65619a30b92c6fe55a920a66660c96a3c4214445a1faf965c14c2be5643a52",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 17
+      },
+      "rgNativeInvocations": 0,
+      "routeEvidence": []
+    }
+  ]
+}

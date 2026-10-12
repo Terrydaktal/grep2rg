@@ -207,6 +207,7 @@ export async function resolveGrepPatterns(options, readFile) {
 }
 
 const escapeRegex = (value) => value.replace(/[\\^$.*+?()[\]{}|]/g, "\\$&").replaceAll("\0", "\\x00");
+const GNU_CHARACTER_CLASSES = new Set(["alnum", "alpha", "blank", "cntrl", "digit", "graph", "lower", "print", "punct", "space", "upper", "xdigit"]);
 
 // Bracket expressions are almost shared, but backslashes in GNU bracket
 // expressions are ordinary characters; PCRE2 would interpret them as escapes.
@@ -217,6 +218,8 @@ function bracket(pattern, start) {
   for (; end < pattern.length; end++) {
     if (pattern[end] === "[" && [":", ".", "="].includes(pattern[end + 1])) {
       const tag = pattern[end + 1], close = pattern.indexOf(`${tag}]`, end + 2);
+      if (tag === ":" && close >= 0 && !GNU_CHARACTER_CLASSES.has(pattern.slice(end + 2, close)))
+        throw new Error("Invalid character class name");
       if (close >= 0) { end = close + 1; continue; }
     }
     if (pattern[end] === "]") break;
@@ -233,15 +236,20 @@ function bracket(pattern, start) {
 }
 
 /** Translate GNU basic/extended regex syntax to PCRE2 without shell parsing. */
-export function translateGrepPattern(pattern, matcher = "basic") {
+export function translateGrepPattern(pattern, matcher = "basic", { bracketTransform, caseTransform, wordTransform } = {}) {
   if (matcher === "fixed") return escapeRegex(pattern);
   if (matcher === "perl") return pattern.replaceAll("\0", "\\x00");
   const basic = matcher === "basic";
   let result = "", branchStart = true, anchorAllowed = true;
   for (let index = 0; index < pattern.length; index++) {
-    const char = pattern[index];
+    let char = pattern[index];
+    if (caseTransform && char.codePointAt(0) >= 0xd800 && char.codePointAt(0) <= 0xdbff && index + 1 < pattern.length) {
+      char = String.fromCodePoint(pattern.codePointAt(index));
+      index += char.length - 1;
+    }
     if (char === "[") {
-      const value = bracket(pattern, index); result += value.value; index = value.end; branchStart = anchorAllowed = false; continue;
+      const value = bracket(pattern, index); result += bracketTransform ? bracketTransform(pattern.slice(index, value.end + 1)) : value.value;
+      index = value.end; branchStart = anchorAllowed = false; continue;
     }
     if (char === "\\") {
       const next = pattern[++index];
@@ -250,12 +258,12 @@ export function translateGrepPattern(pattern, matcher = "basic") {
         result += next; branchStart = anchorAllowed = next === "(" || next === "|"; continue;
       }
       if (/[1-9]/.test(next)) result += `\\${next}`;
-      else if (next === "<") result += "(?<!\\w)(?=\\w)";
-      else if (next === ">") result += "(?<=\\w)(?!\\w)";
+      else if (next === "<") result += wordTransform ? wordTransform(next) : "(?<!\\w)(?=\\w)";
+      else if (next === ">") result += wordTransform ? wordTransform(next) : "(?<=\\w)(?!\\w)";
       else if (next === "`") result += "^";
       else if (next === "'") result += "$";
-      else if ("wWsSbB".includes(next)) result += `\\${next}`;
-      else result += escapeRegex(next);
+      else if ("wWsSbB".includes(next)) result += wordTransform ? wordTransform(next) : `\\${next}`;
+      else result += caseTransform && /[a-z]|[^\x00-\x7f]/i.test(next) ? caseTransform(next) : escapeRegex(next);
       branchStart = anchorAllowed = false; continue;
     }
     if (basic && "+?|(){}".includes(char)) result += `\\${char}`;
@@ -263,11 +271,35 @@ export function translateGrepPattern(pattern, matcher = "basic") {
     else if (basic && char === "$" && index !== pattern.length - 1 && !/^\\[)|]/.test(pattern.slice(index + 1))) result += "\\$";
     else if (basic && char === "*" && branchStart) result += "\\*";
     else if (char === "\0") result += "\\x00";
-    else result += char;
+    else result += caseTransform && /[a-z]|[^\x00-\x7f]/i.test(char) ? caseTransform(char) : char;
     if (char === "^" && branchStart && anchorAllowed) { anchorAllowed = false; continue; }
     branchStart = anchorAllowed = !basic && (char === "(" || char === "|");
   }
   return result;
+}
+
+// NUL records can contain LF bytes. rg/PCRE2's usual multiline anchors and dot
+// therefore need an explicit complete-record interpretation for GNU BRE/ERE.
+// Escaped anchors and bracket literals are retained; POSIX class subexpressions
+// do not close their surrounding bracket while scanning.
+export function nulRecordPattern(pattern) {
+  let result = "", inClass = false, classPosition = 0;
+  for (let index = 0; index < pattern.length; index++) {
+    const char = pattern[index];
+    if (char === "\\") { result += char + (pattern[++index] ?? ""); if (inClass) classPosition = 2; continue; }
+    if (!inClass && char === "[") { inClass = true; classPosition = 0; result += char; continue; }
+    if (inClass) {
+      if (char === "[" && pattern[index + 1] === ":") {
+        const end = pattern.indexOf(":]", index + 2);
+        if (end >= 0) { result += pattern.slice(index, end + 2); index = end + 1; classPosition = 2; continue; }
+      }
+      if (char === "]" && classPosition >= 2) inClass = false;
+      classPosition = char === "^" && classPosition === 0 ? 1 : 2;
+      result += char; continue;
+    }
+    result += char === "^" ? "\\A" : char === "$" ? "\\z" : char;
+  }
+  return `(?s-m:${result})`;
 }
 
 /** Arguments controlling matching only; traversal and printing are independent. */
@@ -279,17 +311,28 @@ export function buildGrepMatcherArgs(options, patterns, { env = process.env } = 
   if (options.nullData) args.push("--null-data");
   // GNU -w uses adjacent word-character tests and can match non-word patterns.
   // A pair of \b boundaries would incorrectly reject a pattern such as '@'.
-  const useFixed = patterns.length > 0 && options.matcher === "fixed" && !options.wordRegexp;
+  const useFixed = patterns.length > 0 && options.matcher === "fixed" && !options.wordRegexp && !(options.nullData && options.lineRegexp);
   args.push(useFixed ? "--fixed-strings" : "--pcre2");
-  if (options.lineRegexp) args.push("--line-regexp");
+  if (options.lineRegexp && !options.nullData) args.push("--line-regexp");
   if (options.invertMatch) args.push("--invert-match");
   if (options.matcher === "perl" && patterns.length > 1) throw new Error("the -P option only supports a single pattern");
   if (!patterns.length) args.push("-e", "(?!)");
+  const translatedPatterns = [];
   for (const pattern of patterns) {
     let translated = useFixed ? pattern : translateGrepPattern(pattern, options.matcher);
     if (options.wordRegexp && !options.lineRegexp) translated = `(?<!\\w)(?:${translated})(?!\\w)`;
-    args.push("-e", translated);
+    if (options.nullData && !useFixed) {
+      translated = nulRecordPattern(translated);
+      if (options.lineRegexp) translated = `\\A(?:${translated})\\z`;
+    }
+    translatedPatterns.push(translated);
   }
+  // rg joins separate PCRE patterns into one alternation, which renumbers
+  // captures in later -e operands. GNU backreferences are local to each
+  // pattern; a branch-reset group preserves those indices in the union.
+  if (!useFixed && options.matcher !== "perl" && patterns.length > 1 && patterns.some((pattern) => /\\[1-9]/.test(pattern)))
+    args.push("-e", `(?|${translatedPatterns.map((pattern) => `(?:${pattern})`).join("|")})`);
+  else for (const translated of translatedPatterns) args.push("-e", translated);
   return args;
 }
 
@@ -321,11 +364,10 @@ export function grepMatcherFallbackReasons(options, { env = process.env } = {}) 
   if (options.numericNative) reasons.push("GNU numeric option exceeds exact JavaScript integer range");
   if (options.ignoreCase && !ascii)
     reasons.push("GNU locale case folding differs from ripgrep/PCRE2");
-  // rg/PCRE2 retains newline anchors and dot semantics inside a NUL record;
-  // even rg's fixed --line-regexp can stop at an internal newline. Preserve
-  // GNU's complete-record contract before reading any subject bytes.
-  if (options.nullData && (options.matcher !== "fixed" || options.lineRegexp || options.wordRegexp))
-    reasons.push("GNU NUL-record regex, word and whole-record matching semantics differ from ripgrep");
+  // Perl permits inline modifiers and PCRE2-specific newline conventions;
+  // those cannot use the BRE/ERE complete-NUL-record translation.
+  if (options.nullData && options.matcher === "perl")
+    reasons.push("GNU NUL-record Perl matching semantics differ from ripgrep");
   if (!ascii && options.matcher !== "fixed" && !/[.-]UTF-?8$/i.test(locale))
     reasons.push("GNU non-UTF-8 locale regex encoding differs from PCRE2 UTF-8");
   if (options.matcher === "perl") {
@@ -341,8 +383,6 @@ export function grepMatcherFallbackReasons(options, { env = process.env } = {}) 
     return [...new Set(reasons)];
   }
   if (options.matcher === "fixed") {
-    if (options.wordRegexp && options.lineRegexp && options.onlyMatching)
-      reasons.push("GNU fixed word/whole-line extraction has release-specific record terminators");
     if (options.wordRegexp && !ascii)
       reasons.push("GNU locale word boundaries differ from PCRE2 Unicode classes");
     if (patterns.some((pattern) => pattern.includes("\0"))) reasons.push("NUL pattern argument cannot be passed to ripgrep");

@@ -1,0 +1,882 @@
+{
+  "schemaVersion": 1,
+  "scope": "All 47 inventoried GNU semantic options, their 85 representative spelling/value variants and declared interaction families have routing decisions and default-entry independent GNU oracle checks. This finite inventory does not enumerate infinitely many inputs or guarantee every individual invocation runs faster.",
+  "defaultPolicy": {
+    "normal": "native dispatcher, never Node",
+    "minimumFiles": 256,
+    "minimumBytes": 67108864,
+    "denseFilenameProbe": "At most 8 files \u00d7 4,096 bytes; at least 6 early positive probes selects GNU for eligible filename/content searches. Hints never supply results.",
+    "ordering": "Parallel rg counts, filenames and complete selected lines are buffered and emitted in exact GNU operand/readdir order.",
+    "optOut": "GREP2RG_ACCELERATION=gnu",
+    "optionalSemanticExperiment": "GREP2RG_EXPERIMENTAL_RG=1",
+    "absentCompilerOrHelper": "GNU fallback; no acceleration evidence awarded.",
+    "tinyFileProbe": "After 32 descriptor sizes, total below 128 KiB selects GNU before walking the remaining tree.",
+    "textOutputLimitBytes": 33554432,
+    "textBufferFailure": "Bounded record reads and total unpublished payload limit; any malformed/failed/over-budget rg output falls back to original GNU argv before publication.",
+    "descriptors": "Explicit symlink operands, descriptor aliases, stdin, inaccessible inputs and unusual output descriptors retain GNU; caller descriptors are never closed by the dispatcher.",
+    "longRecordProbe": "At most 8 first pages of 4,096 bytes across all lanes; a full page without LF selects GNU before the remaining traversal. Large long-record count/content fixtures are measured losing rg classes.",
+    "longRecordPerformanceCases": [
+      "long-record-count-native",
+      "long-record-content-native"
+    ]
+  },
+  "benchmark": "docs/automatic-performance.json",
+  "regressions": "tests/test_grep_auto_native.mjs",
+  "options": [
+    {
+      "id": "extended-regexp",
+      "spellings": [
+        "-E",
+        "--extended-regexp"
+      ],
+      "automaticEngine": "rg-native on eligible large aggregate or sparse explicit-text workloads; GNU otherwise",
+      "reason": "Only validated ASCII byte ERE anchors/grouping/alternation/repetition in C/POSIX; brackets, braces and escapes remain GNU.",
+      "performanceCase": "regex-compatible-count",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ]
+    },
+    {
+      "id": "fixed-strings",
+      "spellings": [
+        "-F",
+        "--fixed-strings"
+      ],
+      "automaticEngine": "rg-native on eligible large aggregate or sparse explicit-text workloads; GNU otherwise",
+      "reason": "Requires measured aggregate or sparse explicit-text lane, exact supported options, regular readable files, ordered results and scale gate.",
+      "performanceCase": "recursive-filenames-sparse",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ]
+    },
+    {
+      "id": "basic-regexp",
+      "spellings": [
+        "-G",
+        "--basic-regexp"
+      ],
+      "automaticEngine": "rg-native on eligible large aggregate or sparse explicit-text workloads; GNU otherwise",
+      "reason": "Only operator-free literal BRE is mapped to fixed strings. Operator BRE stays GNU.",
+      "performanceCase": "recursive-filenames-sparse",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ]
+    },
+    {
+      "id": "perl-regexp",
+      "spellings": [
+        "-P",
+        "--perl-regexp"
+      ],
+      "automaticEngine": "GNU",
+      "reason": "No native automatic PCRE2 lane; the broader JavaScript semantic adapter is opt-in and its startup is not qualified as a speed improvement.",
+      "performanceCase": "small-file-native",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ],
+      "benchmarkInterpretation": "Representative family timing where the cited case has this option; otherwise native startup class only, not an option-specific throughput claim."
+    },
+    {
+      "id": "regexp",
+      "spellings": [
+        "-e VALUE",
+        "-eVALUE",
+        "--regexp=VALUE",
+        "--regexp VALUE"
+      ],
+      "automaticEngine": "rg-native on eligible large aggregate or sparse explicit-text workloads; GNU otherwise",
+      "reason": "Requires measured aggregate or sparse explicit-text lane, exact supported options, regular readable files, ordered results and scale gate.",
+      "performanceCase": "recursive-filenames-sparse",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ]
+    },
+    {
+      "id": "file",
+      "spellings": [
+        "-f VALUE",
+        "-fVALUE",
+        "--file=VALUE",
+        "--file VALUE"
+      ],
+      "automaticEngine": "GNU",
+      "reason": "Pattern/exclusion file validation and stream ownership stay GNU in automatic mode.",
+      "performanceCase": "pattern-file-native",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ],
+      "benchmarkInterpretation": "Representative family timing where the cited case has this option; otherwise native startup class only, not an option-specific throughput claim."
+    },
+    {
+      "id": "ignore-case",
+      "spellings": [
+        "-i",
+        "-y",
+        "--ignore-case"
+      ],
+      "automaticEngine": "rg-native on eligible large aggregate or sparse explicit-text workloads; GNU otherwise",
+      "reason": "Byte folding only in C/POSIX; libc Unicode/locale folding stays GNU.",
+      "performanceCase": "recursive-filenames-sparse",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ]
+    },
+    {
+      "id": "no-ignore-case",
+      "spellings": [
+        "--no-ignore-case"
+      ],
+      "automaticEngine": "rg-native on eligible large aggregate or sparse explicit-text workloads; GNU otherwise",
+      "reason": "Retains GNU last-wins folding state.",
+      "performanceCase": "recursive-filenames-sparse",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ]
+    },
+    {
+      "id": "word-regexp",
+      "spellings": [
+        "-w",
+        "--word-regexp"
+      ],
+      "automaticEngine": "rg-native on eligible large aggregate or sparse explicit-text workloads; GNU otherwise",
+      "reason": "ASCII byte word boundaries only in C/POSIX.",
+      "performanceCase": "recursive-filenames-sparse",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ]
+    },
+    {
+      "id": "line-regexp",
+      "spellings": [
+        "-x",
+        "--line-regexp"
+      ],
+      "automaticEngine": "rg-native on eligible large aggregate or sparse explicit-text workloads; GNU otherwise",
+      "reason": "Whole LF record equality/ERE selection; spans are never extracted.",
+      "performanceCase": "recursive-filenames-sparse",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ]
+    },
+    {
+      "id": "null-data",
+      "spellings": [
+        "-z",
+        "--null-data"
+      ],
+      "automaticEngine": "GNU",
+      "reason": "GNU NUL-record termination/rendering remains native.",
+      "performanceCase": "null-records-native",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ],
+      "benchmarkInterpretation": "Representative family timing where the cited case has this option; otherwise native startup class only, not an option-specific throughput claim."
+    },
+    {
+      "id": "no-messages",
+      "spellings": [
+        "-s",
+        "--no-messages"
+      ],
+      "automaticEngine": "rg-native on eligible large aggregate or sparse explicit-text workloads; GNU otherwise",
+      "reason": "Requires measured aggregate or sparse explicit-text lane, exact supported options, regular readable files, ordered results and scale gate.",
+      "performanceCase": "recursive-filenames-sparse",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ]
+    },
+    {
+      "id": "invert-match",
+      "spellings": [
+        "-v",
+        "--invert-match"
+      ],
+      "automaticEngine": "rg-native on eligible large aggregate or sparse explicit-text workloads; GNU otherwise",
+      "reason": "Only explicit-text counts; inverted filenames retain GNU early selection.",
+      "performanceCase": "recursive-count",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ]
+    },
+    {
+      "id": "version",
+      "spellings": [
+        "-V",
+        "--version"
+      ],
+      "automaticEngine": "GNU",
+      "reason": "GNU publishes its own version without Node.",
+      "performanceCase": "small-file-native",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ],
+      "benchmarkInterpretation": "Representative family timing where the cited case has this option; otherwise native startup class only, not an option-specific throughput claim."
+    },
+    {
+      "id": "help",
+      "spellings": [
+        "--help"
+      ],
+      "automaticEngine": "GNU",
+      "reason": "GNU publishes its own complete help without Node.",
+      "performanceCase": "small-file-native",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ],
+      "benchmarkInterpretation": "Representative family timing where the cited case has this option; otherwise native startup class only, not an option-specific throughput claim."
+    },
+    {
+      "id": "max-count",
+      "spellings": [
+        "-m VALUE",
+        "-mVALUE",
+        "--max-count=VALUE",
+        "--max-count VALUE"
+      ],
+      "automaticEngine": "GNU",
+      "reason": "GNU early-exit validation/cursor behavior remains native.",
+      "performanceCase": "small-file-native",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ],
+      "benchmarkInterpretation": "Representative family timing where the cited case has this option; otherwise native startup class only, not an option-specific throughput claim."
+    },
+    {
+      "id": "byte-offset",
+      "spellings": [
+        "-b",
+        "--byte-offset"
+      ],
+      "automaticEngine": "GNU",
+      "reason": "No byte-offset native presentation adapter.",
+      "performanceCase": "small-file-native",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ],
+      "benchmarkInterpretation": "Representative family timing where the cited case has this option; otherwise native startup class only, not an option-specific throughput claim."
+    },
+    {
+      "id": "line-number",
+      "spellings": [
+        "-n",
+        "--line-number"
+      ],
+      "automaticEngine": "rg-native on eligible large aggregate or sparse explicit-text workloads; GNU otherwise",
+      "reason": "GNU aggregate modes ignore line numbers; sparse explicit-text mode preserves exact GNU line-number prefixes.",
+      "performanceCase": "recursive-content",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ]
+    },
+    {
+      "id": "line-buffered",
+      "spellings": [
+        "--line-buffered"
+      ],
+      "automaticEngine": "GNU",
+      "reason": "Preserve GNU immediate aggregate flushing, avoiding reordered buffering.",
+      "performanceCase": "small-file-native",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ],
+      "benchmarkInterpretation": "Representative family timing where the cited case has this option; otherwise native startup class only, not an option-specific throughput claim."
+    },
+    {
+      "id": "with-filename",
+      "spellings": [
+        "-H",
+        "--with-filename"
+      ],
+      "automaticEngine": "rg-native on eligible large aggregate or sparse explicit-text workloads; GNU otherwise",
+      "reason": "Requires measured aggregate or sparse explicit-text lane, exact supported options, regular readable files, ordered results and scale gate.",
+      "performanceCase": "recursive-filenames-sparse",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ]
+    },
+    {
+      "id": "no-filename",
+      "spellings": [
+        "-h",
+        "--no-filename"
+      ],
+      "automaticEngine": "rg-native on eligible large aggregate or sparse explicit-text workloads; GNU otherwise",
+      "reason": "Requires measured aggregate or sparse explicit-text lane, exact supported options, regular readable files, ordered results and scale gate.",
+      "performanceCase": "recursive-filenames-sparse",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ]
+    },
+    {
+      "id": "label",
+      "spellings": [
+        "--label=VALUE",
+        "--label VALUE"
+      ],
+      "automaticEngine": "GNU",
+      "reason": "Custom stdin labels remain native.",
+      "performanceCase": "small-file-native",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ],
+      "benchmarkInterpretation": "Representative family timing where the cited case has this option; otherwise native startup class only, not an option-specific throughput claim."
+    },
+    {
+      "id": "only-matching",
+      "spellings": [
+        "-o",
+        "--only-matching"
+      ],
+      "automaticEngine": "GNU",
+      "reason": "POSIX leftmost-longest spans remain native.",
+      "performanceCase": "word-extraction-native",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ],
+      "benchmarkInterpretation": "Representative family timing where the cited case has this option; otherwise native startup class only, not an option-specific throughput claim."
+    },
+    {
+      "id": "quiet",
+      "spellings": [
+        "-q",
+        "--quiet",
+        "--silent"
+      ],
+      "automaticEngine": "GNU",
+      "reason": "Keep GNU short circuit and error precedence; no parallel overhead.",
+      "performanceCase": "quiet-native",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ],
+      "benchmarkInterpretation": "Representative family timing where the cited case has this option; otherwise native startup class only, not an option-specific throughput claim."
+    },
+    {
+      "id": "binary-files",
+      "spellings": [
+        "--binary-files=VALUE",
+        "--binary-files VALUE"
+      ],
+      "automaticEngine": "rg-native on eligible large aggregate or sparse explicit-text workloads; GNU otherwise",
+      "reason": "Explicit text permits all eligible lanes; default binary permits filename aggregation only; without-match retains GNU.",
+      "performanceCase": "recursive-count",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ]
+    },
+    {
+      "id": "text",
+      "spellings": [
+        "-a",
+        "--text"
+      ],
+      "automaticEngine": "rg-native on eligible large aggregate or sparse explicit-text workloads; GNU otherwise",
+      "reason": "Requires measured aggregate or sparse explicit-text lane, exact supported options, regular readable files, ordered results and scale gate.",
+      "performanceCase": "recursive-count",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ]
+    },
+    {
+      "id": "binary-without-match",
+      "spellings": [
+        "-I"
+      ],
+      "automaticEngine": "GNU",
+      "reason": "GNU binary classification changes which files qualify.",
+      "performanceCase": "binary-content-native",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ],
+      "benchmarkInterpretation": "Representative family timing where the cited case has this option; otherwise native startup class only, not an option-specific throughput claim."
+    },
+    {
+      "id": "directories",
+      "spellings": [
+        "-d VALUE",
+        "-dVALUE",
+        "--directories=VALUE",
+        "--directories VALUE"
+      ],
+      "automaticEngine": "GNU",
+      "reason": "Directory-method option diagnostics/selection remain native.",
+      "performanceCase": "small-file-native",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ],
+      "benchmarkInterpretation": "Representative family timing where the cited case has this option; otherwise native startup class only, not an option-specific throughput claim."
+    },
+    {
+      "id": "devices",
+      "spellings": [
+        "-D VALUE",
+        "-DVALUE",
+        "--devices=VALUE",
+        "--devices VALUE"
+      ],
+      "automaticEngine": "GNU",
+      "reason": "Special-device selection/stream side effects remain native.",
+      "performanceCase": "small-file-native",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ],
+      "benchmarkInterpretation": "Representative family timing where the cited case has this option; otherwise native startup class only, not an option-specific throughput claim."
+    },
+    {
+      "id": "recursive",
+      "spellings": [
+        "-r",
+        "--recursive"
+      ],
+      "automaticEngine": "rg-native on eligible large aggregate or sparse explicit-text workloads; GNU otherwise",
+      "reason": "Requires measured aggregate or sparse explicit-text lane, exact supported options, regular readable files, ordered results and scale gate.",
+      "performanceCase": "recursive-filenames-sparse",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ]
+    },
+    {
+      "id": "dereference-recursive",
+      "spellings": [
+        "-R",
+        "--dereference-recursive"
+      ],
+      "automaticEngine": "GNU",
+      "reason": "Dereferenced traversal loops/link diagnostics remain GNU.",
+      "performanceCase": "recursive-dereference-native",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ],
+      "benchmarkInterpretation": "Representative family timing where the cited case has this option; otherwise native startup class only, not an option-specific throughput claim."
+    },
+    {
+      "id": "include",
+      "spellings": [
+        "--include=VALUE",
+        "--include VALUE"
+      ],
+      "automaticEngine": "GNU",
+      "reason": "GNU ordered fnmatch filters remain native.",
+      "performanceCase": "recursive-filter-native",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ],
+      "benchmarkInterpretation": "Representative family timing where the cited case has this option; otherwise native startup class only, not an option-specific throughput claim."
+    },
+    {
+      "id": "exclude",
+      "spellings": [
+        "--exclude=VALUE",
+        "--exclude VALUE"
+      ],
+      "automaticEngine": "GNU",
+      "reason": "GNU ordered fnmatch filters remain native.",
+      "performanceCase": "recursive-filter-native",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ],
+      "benchmarkInterpretation": "Representative family timing where the cited case has this option; otherwise native startup class only, not an option-specific throughput claim."
+    },
+    {
+      "id": "exclude-dir",
+      "spellings": [
+        "--exclude-dir=VALUE",
+        "--exclude-dir VALUE"
+      ],
+      "automaticEngine": "GNU",
+      "reason": "GNU ancestor pruning remains native.",
+      "performanceCase": "recursive-filter-native",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ],
+      "benchmarkInterpretation": "Representative family timing where the cited case has this option; otherwise native startup class only, not an option-specific throughput claim."
+    },
+    {
+      "id": "exclude-from",
+      "spellings": [
+        "--exclude-from=VALUE",
+        "--exclude-from VALUE"
+      ],
+      "automaticEngine": "GNU",
+      "reason": "GNU exclusion-file validation/ordered filters remain native.",
+      "performanceCase": "recursive-filter-native",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ],
+      "benchmarkInterpretation": "Representative family timing where the cited case has this option; otherwise native startup class only, not an option-specific throughput claim."
+    },
+    {
+      "id": "files-without-match",
+      "spellings": [
+        "-L",
+        "--files-without-match"
+      ],
+      "automaticEngine": "rg-native on eligible large aggregate or sparse explicit-text workloads; GNU otherwise",
+      "reason": "Requires measured aggregate or sparse explicit-text lane, exact supported options, regular readable files, ordered results and scale gate.",
+      "performanceCase": "recursive-filenames-sparse",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ]
+    },
+    {
+      "id": "files-with-matches",
+      "spellings": [
+        "-l",
+        "--files-with-matches"
+      ],
+      "automaticEngine": "rg-native on eligible large aggregate or sparse explicit-text workloads; GNU otherwise",
+      "reason": "Requires measured aggregate or sparse explicit-text lane, exact supported options, regular readable files, ordered results and scale gate.",
+      "performanceCase": "recursive-filenames-sparse",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ]
+    },
+    {
+      "id": "count",
+      "spellings": [
+        "-c",
+        "--count"
+      ],
+      "automaticEngine": "rg-native on eligible large aggregate or sparse explicit-text workloads; GNU otherwise",
+      "reason": "Requires measured aggregate or sparse explicit-text lane, exact supported options, regular readable files, ordered results and scale gate.",
+      "performanceCase": "recursive-count",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ]
+    },
+    {
+      "id": "initial-tab",
+      "spellings": [
+        "-T",
+        "--initial-tab"
+      ],
+      "automaticEngine": "GNU",
+      "reason": "GNU tab-prefix presentation remains native.",
+      "performanceCase": "small-file-native",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ],
+      "benchmarkInterpretation": "Representative family timing where the cited case has this option; otherwise native startup class only, not an option-specific throughput claim."
+    },
+    {
+      "id": "null",
+      "spellings": [
+        "-Z",
+        "--null"
+      ],
+      "automaticEngine": "rg-native on eligible large aggregate or sparse explicit-text workloads; GNU otherwise",
+      "reason": "Requires measured aggregate or sparse explicit-text lane, exact supported options, regular readable files, ordered results and scale gate.",
+      "performanceCase": "recursive-filenames-sparse",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ]
+    },
+    {
+      "id": "before-context",
+      "spellings": [
+        "-B VALUE",
+        "-BVALUE",
+        "--before-context=VALUE",
+        "--before-context VALUE"
+      ],
+      "automaticEngine": "GNU",
+      "reason": "GNU context grouping/presentation remains native.",
+      "performanceCase": "context-native",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ],
+      "benchmarkInterpretation": "Representative family timing where the cited case has this option; otherwise native startup class only, not an option-specific throughput claim."
+    },
+    {
+      "id": "after-context",
+      "spellings": [
+        "-A VALUE",
+        "-AVALUE",
+        "--after-context=VALUE",
+        "--after-context VALUE"
+      ],
+      "automaticEngine": "GNU",
+      "reason": "GNU context grouping/presentation remains native.",
+      "performanceCase": "context-native",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ],
+      "benchmarkInterpretation": "Representative family timing where the cited case has this option; otherwise native startup class only, not an option-specific throughput claim."
+    },
+    {
+      "id": "context",
+      "spellings": [
+        "-C VALUE",
+        "-CVALUE",
+        "--context=VALUE",
+        "--context VALUE"
+      ],
+      "automaticEngine": "GNU",
+      "reason": "GNU context grouping/presentation remains native.",
+      "performanceCase": "context-native",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ],
+      "benchmarkInterpretation": "Representative family timing where the cited case has this option; otherwise native startup class only, not an option-specific throughput claim."
+    },
+    {
+      "id": "group-separator",
+      "spellings": [
+        "--group-separator=VALUE",
+        "--group-separator VALUE"
+      ],
+      "automaticEngine": "GNU",
+      "reason": "GNU context-group separator remains native.",
+      "performanceCase": "context-native",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ],
+      "benchmarkInterpretation": "Representative family timing where the cited case has this option; otherwise native startup class only, not an option-specific throughput claim."
+    },
+    {
+      "id": "no-group-separator",
+      "spellings": [
+        "--no-group-separator"
+      ],
+      "automaticEngine": "GNU",
+      "reason": "GNU context-group separator remains native.",
+      "performanceCase": "context-native",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ],
+      "benchmarkInterpretation": "Representative family timing where the cited case has this option; otherwise native startup class only, not an option-specific throughput claim."
+    },
+    {
+      "id": "color",
+      "spellings": [
+        "--color",
+        "--color=VALUE",
+        "--colour",
+        "--colour=VALUE"
+      ],
+      "automaticEngine": "rg-native on eligible large aggregate or sparse explicit-text workloads; GNU otherwise",
+      "reason": "Only explicit never on eligible lanes; other modes retain GNU presentation.",
+      "performanceCase": "recursive-filenames-sparse",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ]
+    },
+    {
+      "id": "binary",
+      "spellings": [
+        "-U",
+        "--binary"
+      ],
+      "automaticEngine": "rg-native on eligible large aggregate or sparse explicit-text workloads; GNU otherwise",
+      "reason": "Linux accepted no-op.",
+      "performanceCase": "recursive-filenames-sparse",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ]
+    }
+  ],
+  "interactionFamilies": [
+    {
+      "family": "matcher conflicts E/F/G/P, identical repeat, and three-option A/B/A conflict history",
+      "automaticEngine": "GNU unless every participating option and operand satisfies the complete native aggregate or sparse explicit-text lane. Matcher conflicts, prefixes, abbreviations, stdin, unsupported flags and rendering boundaries are handled by GNU.",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_matrix_campaign.mjs"
+      ]
+    },
+    {
+      "family": "ignore-case/no-ignore-case last-wins including obsolete y",
+      "automaticEngine": "GNU unless every participating option and operand satisfies the complete native aggregate or sparse explicit-text lane. Matcher conflicts, prefixes, abbreviations, stdin, unsupported flags and rendering boundaries are handled by GNU.",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_matrix_campaign.mjs"
+      ]
+    },
+    {
+      "family": "H/h last-wins, L/l last-wins, q supersedes normal output and selected-match error precedence",
+      "automaticEngine": "GNU unless every participating option and operand satisfies the complete native aggregate or sparse explicit-text lane. Matcher conflicts, prefixes, abbreviations, stdin, unsupported flags and rendering boundaries are handled by GNU.",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_matrix_campaign.mjs"
+      ]
+    },
+    {
+      "family": "c/l/L/o/m/v/contexts output selection, counts, empty matches and trailing context",
+      "automaticEngine": "GNU unless every participating option and operand satisfies the complete native aggregate or sparse explicit-text lane. Matcher conflicts, prefixes, abbreviations, stdin, unsupported flags and rendering boundaries are handled by GNU.",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_matrix_campaign.mjs"
+      ]
+    },
+    {
+      "family": "A/B/C/numeric context order, explicit C0 grouping, separator/no-separator order",
+      "automaticEngine": "GNU unless every participating option and operand satisfies the complete native aggregate or sparse explicit-text lane. Matcher conflicts, prefixes, abbreviations, stdin, unsupported flags and rendering boundaries are handled by GNU.",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_matrix_campaign.mjs"
+      ]
+    },
+    {
+      "family": "r/R/d/device ordering and command-line versus interior symlink/special-file behavior",
+      "automaticEngine": "GNU unless every participating option and operand satisfies the complete native aggregate or sparse explicit-text lane. Matcher conflicts, prefixes, abbreviations, stdin, unsupported flags and rendering boundaries are handled by GNU.",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_matrix_campaign.mjs"
+      ]
+    },
+    {
+      "family": "include/exclude/exclude-from ordered last-matching filter and first-filter default",
+      "automaticEngine": "GNU unless every participating option and operand satisfies the complete native aggregate or sparse explicit-text lane. Matcher conflicts, prefixes, abbreviations, stdin, unsupported flags and rendering boundaries are handled by GNU.",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_matrix_campaign.mjs"
+      ]
+    },
+    {
+      "family": "a/I/binary-files ordering, NUL/invalid encoding classification, z versus Z",
+      "automaticEngine": "GNU unless every participating option and operand satisfies the complete native aggregate or sparse explicit-text lane. Matcher conflicts, prefixes, abbreviations, stdin, unsupported flags and rendering boundaries are handled by GNU.",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_matrix_campaign.mjs"
+      ]
+    },
+    {
+      "family": "e/f and empty/newline/duplicate patterns, stdin pattern file ownership",
+      "automaticEngine": "GNU unless every participating option and operand satisfies the complete native aggregate or sparse explicit-text lane. Matcher conflicts, prefixes, abbreviations, stdin, unsupported flags and rendering boundaries are handled by GNU.",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_matrix_campaign.mjs"
+      ]
+    },
+    {
+      "family": "help/version/color-invalid plus valid or invalid options and missing operands",
+      "automaticEngine": "GNU unless every participating option and operand satisfies the complete native aggregate or sparse explicit-text lane. Matcher conflicts, prefixes, abbreviations, stdin, unsupported flags and rendering boundaries are handled by GNU.",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_matrix_campaign.mjs"
+      ]
+    },
+    {
+      "family": "TTY and TERM auto/never/always color, GREP_COLORS, no explicit color option",
+      "automaticEngine": "GNU unless every participating option and operand satisfies the complete native aggregate or sparse explicit-text lane. Matcher conflicts, prefixes, abbreviations, stdin, unsupported flags and rendering boundaries are handled by GNU.",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_matrix_campaign.mjs"
+      ]
+    },
+    {
+      "family": "stdin regular-file seek position versus pipe ownership under m/q/l/L",
+      "automaticEngine": "GNU unless every participating option and operand satisfies the complete native aggregate or sparse explicit-text lane. Matcher conflicts, prefixes, abbreviations, stdin, unsupported flags and rendering boundaries are handled by GNU.",
+      "oracleCoverage": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_option_interactions.mjs",
+        "tests/test_grep_matrix_campaign.mjs"
+      ]
+    }
+  ]
+}

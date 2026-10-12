@@ -1,0 +1,1727 @@
+{
+  "schemaVersion": 1,
+  "package": "grep2rg",
+  "scope": "GNU default policy and separately enabled bounded experimental rg compatibility: synthetic GNU differential checks, actual engine witnesses, public/private CLI and installed Pi SDK.",
+  "routingPolicy": {
+    "defaultBackend": "GNU grep",
+    "experimentalFlag": "GREP2RG_EXPERIMENTAL_RG=1",
+    "acceptedExperimentalValue": "1",
+    "universallyFasterClasses": [],
+    "universalSpeedGuarantee": false,
+    "experimentalScope": "Finite semantic routes only; a real rg invocation is not a speed claim."
+  },
+  "qualifiedArchive": {
+    "filename": "grep2rg-0.1.0.tgz",
+    "sha256": "645f18027dbc4b53241fba6e5648b7b1b4531a68c7481ff4d1233e3982f58a3b",
+    "integrity": "sha512-/TQGVX0X6IfL7u/ZCGxFlleT7MCSED1ZKHaSpiYMkjNiPMdsTmSyiuRo96BkuGGLz4ovVvGNfnb+zZ0yEjDDGQ==",
+    "fileCount": 51,
+    "verification": "actual npm pack tarball, extracted tools/verify.mjs"
+  },
+  "sourceHashes": {
+    "bin/grep2rg": "708ea469251c5e7181420328c8c6965a7765e0fdddc8d1fc89ebba4b9c0f76eb",
+    "bin/grep2rg-shell-prefix.mjs": "a7a77f98eb27cf461116553032018175a190c0c108f6624b59c77cf6ced95c23",
+    "bin/grep2rg.mjs": "e9137711934ec93500258f71900df639de5627864ae1efb9313b18c6128f0376",
+    "package.json": "f70f588bee4432fb36227c3c42bb4e2f9cb19c42d3a05580c809e860c2a102fa",
+    "pi/grep2rg.ts": "a4aa16f6cc4bb0e02c65c789206b199b5f9fa94dffb4a6b9f517e883f3954fbe",
+    "src/grep-descriptors.mjs": "ec10e6c7be02fa1dc568690d435d5feefbb1e4a1d483e56770cac90704080d53",
+    "src/grep-files.mjs": "f1fe1c250f31b0714f72d66ca825cb6ebe9ab85840da266b435003f5e500d7e8",
+    "src/grep-options.mjs": "d5dfd85b6a5afb2888d8ff5ede3b57d015a1f023f4b9ef1df12a0ca0b8a3aafd",
+    "src/grep-output.mjs": "b612ce55a24dac95d313cc54422945c1385728ab5b37b5e933c4bc42003e2d75",
+    "src/grep-posix-spans.mjs": "379eae7e002dc51e0ce3d2f806b7a0cef5b9afb31b888873904abf1db7d7db97",
+    "src/grep-runtime.mjs": "0a9cd20f95924b22034f5219818b5fa25884f53c90f8af8800c51301b8675795",
+    "src/grep-stdin.mjs": "9580feef2493a16ffd520a7b62705d893c26f6c4a13124560466a964387e8e56",
+    "src/grep-unicode.mjs": "37f6f0bd08b40d13b837052327a7989930cea9547a98e0d3722bd2cbd4642a30",
+    "src/grep-wrapper.mjs": "dbaca5e54597eff427d85a7cafdeae68b06438df7ec28a5c5f04b1b7923dc519",
+    "tests/grep_extended_helpers.mjs": "974cab0bfd5274f1b6eacfecc327007903475e44d276898d027c45faeca62e1d",
+    "tests/grep_option_inventory.json": "83b7776c7e5417f64eea7379d476b8a6af23284db7b3b831d67ab833f00916a1",
+    "tests/grep_wrapper_requirements.json": "372099658a7b767e6b8f8cdc1008d7bbe23b00a77fbde24fa27f7cf6bf337e85",
+    "tests/port_source_manifest.json": "377ee383d9649735f4c48ecbea6a8daf8add92aabd39bc022fe3584d11419692",
+    "tests/test_grep_descriptors.mjs": "e8833c7a2482e5dd80abf42cfc8eea8de98eb392c8a4860d124d39794b95da08",
+    "tests/test_grep_extended_backpressure.mjs": "e58c5195b1ada77dd717bc715d22b0f4d25386a4468a3fcd7a5ceca901b72588",
+    "tests/test_grep_extended_coverage.mjs": "c8f4624b1aea8aee33092f7970a81da2ee19429465d228ec4f52c380687bffae",
+    "tests/test_grep_files.mjs": "74454755493080714cb5bd3ecdfa3204c72d7fa8d8034e0744beb83466aa3f45",
+    "tests/test_grep_full_cli.mjs": "d06f20bb3159da18afd5faff264510aae499e50ede4d3847ad891034328fd090",
+    "tests/test_grep_matcher_campaign.mjs": "9a6b6a12528e06ee26ad212a35158ef8528c3232f1778ffbd3a0f72775d9e015",
+    "tests/test_grep_matrix_campaign.mjs": "f197f254fa468ddbfa1cb7203c4bea14ada704461d47dc8e51991f22d6d43e05",
+    "tests/test_grep_option_interactions.mjs": "2caa1332724ff14e5b4c260d8f5d485638c0892c6329dbe053d0a969cf20b56b",
+    "tests/test_grep_options.mjs": "ce98a878ccced53cf4f93b1daafe71202807a3f22ac1c3cf5bd8830a1667ecb0",
+    "tests/test_grep_output.mjs": "7a9713a0678f6ac2c5d76b6e6276070f3f5aeee6eda5921f802bb591c1df5623",
+    "tests/test_grep_routing_policy.mjs": "16ca742fcb144aa6d380d39ab184835ae1f13d1d10ace1e3dec6e9fc57100e1c",
+    "tests/test_grep_runtime_faults.mjs": "558c90def07925d27cfb6cb14e3f93e4b44cfd58822e082c5c60060a97ea8d34",
+    "tests/test_grep_scope.mjs": "374a9ac66d92b4c375cb0703879d2c51e24cd898ee17f2facfd15c7c32d73bbb",
+    "tests/test_grep_seekable_stdin.mjs": "890718fb1305e9ca04f6ffcb4e16d630f186b9169e7427b5eca3eab71f2e8f25",
+    "tests/test_grep_text_preflight.mjs": "e70b04b21fc4f8cd82c4a1a689d8bb77a3fd726ced9475d49b30e6aaf27bf405",
+    "tests/test_grep_traversal_campaign.mjs": "39abd048cd89df44344d43f2807ce48f5983dad8f3183355f061572ffe30c482",
+    "tests/test_grep_unicode.mjs": "5557cad35f5e42d711c1910679770573044fd49a2d2a0675a67ce7dd20feb78f",
+    "tests/test_grep_wrapper.mjs": "b8a094d9de4caf85af2095d68006efa3aa297b7afdb3aaa060307936ef393929",
+    "tests/test_package_artifact.mjs": "24b8c1c463cb443ea6909fe7494fcff29a467151891b2f303e05bd531c72ed4e",
+    "tests/test_package_entry.mjs": "92be06312da105a0f876b242181a3dc3c6f169fa62f684b080832a13e90fff2c",
+    "tools/verify-artifact.mjs": "9a11d503d80d1961a38563e43b636546ed4f05f11e11940b38e4ff8146962936",
+    "tools/verify.mjs": "ca19191d3a9da2ba307a39929b9d3647dc62db63cb61b023baf825ed8e960e8a"
+  },
+  "environments": [
+    {
+      "environment": "Linux desktop",
+      "startedAt": "2026-10-11T22:42:18.155Z",
+      "finishedAt": "2026-10-11T22:48:16.086Z",
+      "passed": true,
+      "nodeTests": 226,
+      "sourceChanged": false,
+      "versions": {
+        "node": "v26.4.0",
+        "GNU": "grep (GNU grep) 3.12-modified",
+        "rg": "ripgrep 15.1.0 (rev 6e6b29e490)",
+        "pcre2": "PCRE2 10.45 is available (JIT is available)",
+        "python": "Python 3.14.6",
+        "bash": "GNU bash, version 5.3.15(1)-release (x86_64-pc-linux-gnu)",
+        "readlink": "readlink (GNU coreutils) 9.11",
+        "npm": "12.0.2",
+        "tar": "tar (GNU tar) 1.35"
+      },
+      "stages": [
+        {
+          "name": "core",
+          "status": 0,
+          "durationMs": 140901,
+          "timedOut": false,
+          "interrupted": false,
+          "logTruncated": false,
+          "counts": {
+            "tests": 195,
+            "suites": 0,
+            "pass": 195,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "passed": true
+        },
+        {
+          "name": "campaigns",
+          "status": 0,
+          "durationMs": 215932,
+          "timedOut": false,
+          "interrupted": false,
+          "logTruncated": false,
+          "counts": {
+            "tests": 24,
+            "suites": 0,
+            "pass": 24,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "passed": true
+        },
+        {
+          "name": "installed Pi native Bash scope",
+          "status": 0,
+          "durationMs": 1044,
+          "timedOut": false,
+          "interrupted": false,
+          "logTruncated": false,
+          "counts": {
+            "tests": 7,
+            "suites": 0,
+            "pass": 7,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "passed": true
+        }
+      ],
+      "diagnostics": [
+        {
+          "campaign": "grep-caller-fd3",
+          "actualGNUComparisons": 6,
+          "actualRgSearchInvocations": 6,
+          "actualRgValidationInvocations": 4,
+          "actualGNUSpanBrokerInvocations": 4,
+          "actualGNUValidationInvocations": 4,
+          "actualOriginalGNUInvocations": 0,
+          "callerFD3AndPrivateSpoolIndependent": true
+        },
+        {
+          "campaign": "grep-high-fd-process-substitution",
+          "actualGNUComparisons": 8,
+          "actualRgSearchInvocations": 4,
+          "actualRgValidationInvocations": 2,
+          "actualGNUSpanBrokerInvocations": 2,
+          "actualGNUValidationInvocations": 2,
+          "actualOriginalGNUInvocations": 4,
+          "highDescriptor": 4097,
+          "successfulHighDescriptorOpenWitnesses": 4
+        },
+        {
+          "campaign": "grep-closed-caller-fd",
+          "actualGNUComparisons": 4,
+          "actualRgSearchInvocations": 0,
+          "actualRgValidationInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualOriginalGNUInvocations": 4
+        },
+        {
+          "campaign": "grep-closed-standard-fds",
+          "actualGNUComparisons": 12,
+          "closedDescriptors": [
+            0,
+            1,
+            2
+          ],
+          "directExecutablesWithoutRecorder": true
+        },
+        {
+          "campaign": "extended-POSIX-replay-backpressure",
+          "actualGNUComparisons": 1,
+          "negativeControlGNUComparisons": 1,
+          "actualRgSearchInvocations": 1,
+          "negativeControlRgInvocations": 1,
+          "actualGNUSpanBrokerInvocations": 1,
+          "negativeControlSpanBrokerInvocations": 1,
+          "syntheticOutputBytesPerComparison": 1440000,
+          "maximumAllowedWritableLength": 131072,
+          "normalMaximumWritableLength": 65592,
+          "noDrainMutantMaximumWritableLength": 1361736,
+          "semanticNegativeControlRejected": true
+        },
+        {
+          "campaign": "extended-POSIX-paused-replay-cancellation",
+          "CLIEntryRoutes": 2,
+          "handledSignalInvocations": 6,
+          "unreadStdoutExitStatuses": [
+            130,
+            143,
+            129
+          ],
+          "ownedSpoolsRemoved": 6
+        },
+        {
+          "campaign": "extended-ASCII-locale-proof",
+          "actualGNUComparisons": 28,
+          "actualRgSearchInvocations": 28,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-GNU-invalid-POSIX-class",
+          "actualGNUComparisons": 8,
+          "actualRgSearchInvocations": 0,
+          "actualNativeInvocations": 8,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-literal-leftmost-longest",
+          "actualGNUComparisons": 145,
+          "actualRgSearchInvocations": 136,
+          "actualNativeInvocations": 9,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-fixed-word-whole-line-extraction",
+          "actualGNUComparisons": 48,
+          "actualRgSearchInvocations": 96,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 96,
+          "actualGNUValidationInvocations": 48,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-fixed-word-whole-line-Unicode",
+          "actualGNUComparisons": 16,
+          "actualRgSearchInvocations": 16,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 16,
+          "actualGNUValidationInvocations": 16,
+          "actualGNUScalarProbeInvocations": 4,
+          "actualGNUIdentityInvocations": 16,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-fixed-word-whole-line-pattern-sources",
+          "actualGNUComparisons": 28,
+          "actualRgSearchInvocations": 28,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 28,
+          "actualGNUValidationInvocations": 28,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-Linux-binary-I/O-noop",
+          "actualGNUComparisons": 36,
+          "actualRgSearchInvocations": 36,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-Linux-binary-I/O-native-boundaries",
+          "actualGNUComparisons": 12,
+          "actualRgSearchInvocations": 0,
+          "actualNativeInvocations": 12,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-literal-maxcount-context",
+          "actualGNUComparisons": 4,
+          "actualRgSearchInvocations": 4,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-NUL-record-regex",
+          "actualGNUComparisons": 108,
+          "actualRgSearchInvocations": 108,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-NUL-UTF8-proof",
+          "actualGNUComparisons": 24,
+          "actualRgSearchInvocations": 12,
+          "actualNativeInvocations": 12,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-NUL-inverse-maxcount-context",
+          "actualGNUComparisons": 136,
+          "actualRgSearchInvocations": 136,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-POSIX-candidate-spans",
+          "actualGNUComparisons": 81,
+          "actualRgSearchInvocations": 79,
+          "actualNativeInvocations": 2,
+          "actualGNUSpanBrokerInvocations": 79,
+          "actualGNUValidationInvocations": 79,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-POSIX-selected-records",
+          "actualGNUComparisons": 1,
+          "actualRgSearchInvocations": 1,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 1,
+          "actualGNUValidationInvocations": 1,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true,
+          "candidateBytes": 17
+        },
+        {
+          "campaign": "extended-pattern-local-backreferences",
+          "actualGNUComparisons": 48,
+          "actualRgSearchInvocations": 48,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 24,
+          "actualGNUValidationInvocations": 24,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true,
+          "independentPatternCaptureCounts": [
+            1,
+            2,
+            3
+          ],
+          "privateBashComparisons": 12
+        },
+        {
+          "campaign": "extended-POSIX-broker-cancellation",
+          "ownedSignals": 3,
+          "ignoredSignalHelpersReaped": 3,
+          "partialOutputBytes": 0
+        },
+        {
+          "campaign": "default-GNU-policy-public",
+          "actualGNUComparisons": 48,
+          "actualRgInvocations": 0,
+          "actualNodeInvocations": 0,
+          "GNUPreparatoryProbes": 0,
+          "isolatedBashOnlyEntry": true
+        },
+        {
+          "campaign": "default-GNU-policy-JS",
+          "actualGNUComparisons": 6,
+          "actualRgInvocations": 0
+        },
+        {
+          "campaign": "default-GNU-policy-private",
+          "actualGNUComparisons": 6,
+          "actualRgInvocations": 0
+        },
+        {
+          "campaign": "explicit-rg-experiment",
+          "actualGNUComparisons": 1,
+          "actualRgInvocations": 1,
+          "originalGNUInvocations": 0,
+          "universalSpeedClaim": false
+        },
+        {
+          "campaign": "semantic-source-mutants",
+          "actualGNUComparisons": 5,
+          "negativeControlExecutions": 5,
+          "semanticNegativeControlsRejected": [
+            "count",
+            "byte prefix",
+            "no-match status",
+            "pattern-local backreferences",
+            "selected whole-record span"
+          ]
+        },
+        {
+          "campaign": "seekable-stdin-LF-cursor",
+          "actualGNUComparisons": 48,
+          "actualRgSearchInvocations": 48,
+          "actualOriginalGNUInvocations": 0,
+          "comparedFields": [
+            "status",
+            "stdout",
+            "stderr",
+            "sharedOffset",
+            "remainingBytes",
+            "remainingSHA256"
+          ]
+        },
+        {
+          "campaign": "seekable-stdin-record-and-span-cursor",
+          "actualGNUComparisons": 50,
+          "actualRgSearchInvocations": 48,
+          "actualOriginalGNUInvocations": 2
+        },
+        {
+          "campaign": "seekable-stdin-private-large-record-cursor",
+          "actualGNUComparisons": 8,
+          "actualRgSearchInvocations": 8,
+          "actualOriginalGNUInvocations": 0,
+          "ownedInputBytes": 196649
+        },
+        {
+          "campaign": "seekable-stdin-retained-native-boundaries",
+          "actualGNUComparisons": 7,
+          "actualRgSearchInvocations": 0,
+          "actualOriginalGNUInvocations": 7,
+          "additionalPipeGNUComparisons": 1,
+          "originalPipeInvocations": 1
+        },
+        {
+          "campaign": "seekable-stdin-unreadable-O_PATH",
+          "actualGNUComparisons": 1,
+          "actualRgSearchInvocations": 0,
+          "actualOriginalGNUInvocations": 1
+        },
+        {
+          "campaign": "seekable-stdin-proc-size-boundary",
+          "actualGNUComparisons": 2,
+          "actualRgSearchInvocations": 0,
+          "actualOriginalGNUInvocations": 2
+        },
+        {
+          "campaign": "seekable-stdin-blocked-feed-cancellation",
+          "ownedFaultInvocations": 1,
+          "status": 143,
+          "sharedOffsetUnchanged": true,
+          "ownedChildRemoved": true,
+          "actualRgAccelerationCredit": 0
+        },
+        {
+          "campaign": "default-text",
+          "actualGNUComparisons": 38,
+          "acceleratedCommands": 38
+        },
+        {
+          "campaign": "default-text-structure",
+          "actualGNUComparisons": 9,
+          "acceleratedCommands": 9
+        },
+        {
+          "campaign": "default-text-binary-guard",
+          "actualGNUComparisons": 23
+        },
+        {
+          "campaign": "text-stream-large-payload",
+          "actualGNUComparisons": 3,
+          "actualRgSearchInvocations": 3,
+          "subjectBytes": 17825805
+        },
+        {
+          "campaign": "text-stream-aggregate-payload",
+          "actualGNUComparisons": 1,
+          "actualRgSearchInvocations": 1
+        },
+        {
+          "campaign": "text-stream-many-files",
+          "actualGNUComparisons": 1,
+          "selectedFiles": 4097,
+          "actualRgSearchInvocations": 1
+        },
+        {
+          "campaign": "text-stream-late-binary-guard",
+          "actualGNUComparisons": 6,
+          "actualRgSearchInvocations": 0
+        },
+        {
+          "campaign": "extended-Unicode-regex-locale-proof",
+          "actualGNUComparisons": 7,
+          "actualRgSearchInvocations": 6,
+          "actualNativeInvocations": 1,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 10,
+          "actualGNUIdentityInvocations": 6,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-Unicode-fixed-scalar-proof",
+          "actualGNUComparisons": 36,
+          "actualRgSearchInvocations": 36,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 3,
+          "actualGNUValidationInvocations": 3,
+          "actualGNUScalarProbeInvocations": 9,
+          "actualGNUIdentityInvocations": 33,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-Unicode-cache-warm",
+          "actualGNUComparisons": 2,
+          "actualRgSearchInvocations": 2,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 1,
+          "actualGNUIdentityInvocations": 2,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-Unicode-cache-integrity",
+          "actualGNUComparisons": 3,
+          "actualRgSearchInvocations": 3,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 3,
+          "actualGNUIdentityInvocations": 3,
+          "syntheticFixturesOnly": true,
+          "corruptTableReprobed": true,
+          "executableIdentityChangeReprobed": true
+        },
+        {
+          "campaign": "extended-Unicode-fixed-native-boundaries",
+          "actualGNUComparisons": 4,
+          "actualRgSearchInvocations": 0,
+          "actualNativeInvocations": 4,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-Unicode-scalar-regex",
+          "actualGNUComparisons": 143,
+          "actualRgSearchInvocations": 141,
+          "actualNativeInvocations": 2,
+          "actualGNUSpanBrokerInvocations": 46,
+          "actualGNUValidationInvocations": 46,
+          "actualGNUScalarProbeInvocations": 42,
+          "actualGNUIdentityInvocations": 143,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-Unicode-capture-indices",
+          "actualGNUComparisons": 28,
+          "actualRgSearchInvocations": 26,
+          "actualNativeInvocations": 2,
+          "actualGNUSpanBrokerInvocations": 18,
+          "actualGNUValidationInvocations": 18,
+          "actualGNUScalarProbeInvocations": 8,
+          "actualGNUIdentityInvocations": 26,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-Unicode-NUL-membership",
+          "actualGNUComparisons": 14,
+          "actualRgSearchInvocations": 14,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 6,
+          "actualGNUValidationInvocations": 6,
+          "actualGNUScalarProbeInvocations": 7,
+          "actualGNUIdentityInvocations": 14,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-Czech-multichar-collation",
+          "actualGNUComparisons": 4,
+          "actualRgSearchInvocations": 0,
+          "actualNativeInvocations": 4,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true,
+          "ownedLocaleCompiled": true
+        },
+        {
+          "campaign": "extended-Unicode-custom-locale-swap",
+          "actualGNUComparisons": 2,
+          "actualRgSearchInvocations": 2,
+          "sameProcess": true,
+          "unchangedLOCPATH": true,
+          "ownedLocaleDefinitions": [
+            "en_GB",
+            "tr_TR"
+          ],
+          "observedMatchingSetsDiffer": true
+        },
+        {
+          "campaign": "packed-artifact",
+          "tarballSHA256": "645f18027dbc4b53241fba6e5648b7b1b4531a68c7481ff4d1233e3982f58a3b",
+          "npmIntegrity": "sha512-/TQGVX0X6IfL7u/ZCGxFlleT7MCSED1ZKHaSpiYMkjNiPMdsTmSyiuRo96BkuGGLz4ovVvGNfnb+zZ0yEjDDGQ==",
+          "extractedFilesVerified": 43,
+          "extractedEntryNodeTests": 5,
+          "installedEntryNodeTests": 5,
+          "extractedEvidence": [
+            {
+              "campaign": "packaged-default-GNU-policy",
+              "actualGNUComparisons": 24,
+              "actualRgInvocations": 0
+            },
+            {
+              "campaign": "package-entry",
+              "actualComparisons": 25,
+              "payloadStdinComparisons": 5,
+              "noPayloadComparisons": 20,
+              "executable": "/tmp/grep2rg-artifact-gCi0G7/extracted/package/bin/grep2rg"
+            },
+            {
+              "campaign": "package-prefix",
+              "actualRgInvocations": 3,
+              "nativeScopeComparisons": 1
+            },
+            {
+              "campaign": "package-argv-bytes",
+              "actualComparisons": 4,
+              "argvSource": "Python byte argv to real executable"
+            }
+          ],
+          "installedEvidence": [
+            {
+              "campaign": "packaged-default-GNU-policy",
+              "actualGNUComparisons": 24,
+              "actualRgInvocations": 0
+            },
+            {
+              "campaign": "package-entry",
+              "actualComparisons": 25,
+              "payloadStdinComparisons": 5,
+              "noPayloadComparisons": 20,
+              "executable": "/tmp/grep2rg-artifact-gCi0G7/installed/node_modules/.bin/grep2rg"
+            },
+            {
+              "campaign": "package-prefix",
+              "actualRgInvocations": 3,
+              "nativeScopeComparisons": 1
+            },
+            {
+              "campaign": "package-argv-bytes",
+              "actualComparisons": 4,
+              "argvSource": "Python byte argv to real executable"
+            }
+          ]
+        },
+        {
+          "campaign": "packaged-default-GNU-policy",
+          "actualGNUComparisons": 24,
+          "actualRgInvocations": 0
+        },
+        {
+          "campaign": "package-entry",
+          "actualComparisons": 25,
+          "payloadStdinComparisons": 5,
+          "noPayloadComparisons": 20,
+          "executable": "/tmp/grep2rg-verify-artifact-G4Gp5b/extracted/package/bin/grep2rg"
+        },
+        {
+          "campaign": "package-prefix",
+          "actualRgInvocations": 3,
+          "nativeScopeComparisons": 1
+        },
+        {
+          "campaign": "package-argv-bytes",
+          "actualComparisons": 4,
+          "argvSource": "Python byte argv to real executable"
+        },
+        {
+          "seed": "0x4729ac2e",
+          "deep": true,
+          "distinctCases": 12000,
+          "qualifiedRgComparisons": 5840,
+          "jsonFormatterComparisons": 359,
+          "nativeFallbackOracles": 6160,
+          "preflightConfigurations": 3668,
+          "modes": {
+            "extended": 3115,
+            "basic": 3664,
+            "fixed": 2382,
+            "perl": 2839
+          },
+          "locales": {
+            "C": 6000,
+            "C.UTF-8": 6000
+          },
+          "flagCoverage": {
+            "-o": 1715,
+            "-v": 3433,
+            "-z": 2575,
+            "-i": 4284,
+            "-x": 3428,
+            "-w": 2568
+          },
+          "byteFixtures": 12,
+          "GNU": "grep (GNU grep) 3.12-modified",
+          "rg": "ripgrep 15.1.0 (rev 6e6b29e490)",
+          "optionsSHA256": "d5dfd85b6a5afb2888d8ff5ede3b57d015a1f023f4b9ef1df12a0ca0b8a3aafd"
+        },
+        {
+          "campaign": "matcher-NUL-record-CLI",
+          "actualGNUComparisons": 48,
+          "actualRgSearchInvocations": 36,
+          "actualNativeInvocations": 12,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true,
+          "negativeControlGNUComparisons": 1,
+          "negativeControlRgInvocations": 1,
+          "semanticNegativeControlRejected": true
+        },
+        {
+          "actualComparisons": 1
+        },
+        {
+          "actualComparisons": 2
+        },
+        {
+          "actualComparisons": 3
+        },
+        {
+          "actualComparisons": 5
+        },
+        {
+          "actualComparisons": 24
+        },
+        {
+          "campaign": "matrix-whole-line-word-span-delimiters",
+          "actualGNUComparisons": 26,
+          "actualRgSearchInvocations": 27,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 27,
+          "actualGNUValidationInvocations": 26,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "matrix-repeated-NUL-whole-record-spans",
+          "actualGNUComparisons": 16,
+          "actualRgSearchInvocations": 32,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "seed": "0xc0a7e512",
+          "actualComparisons": 4096,
+          "distinctCases": 4096,
+          "mismatches": 0,
+          "rgRoutingPlans": 2730,
+          "nativeRoutingPlans": 1366,
+          "concurrency": 8
+        },
+        {
+          "actualComparisons": 16,
+          "actualRgInvocations": 16
+        },
+        {
+          "documentedLongOptions": 48,
+          "documentedShortOptions": 35,
+          "declaredSpellingVariants": 85
+        },
+        {
+          "seed": "ordered-gnu-options-v1",
+          "fixtureSHA256": "ba812165b2781aa5238a01f01f607312572d534673036e7a9fa1ea76e2c6db13",
+          "actualComparisons": 7225,
+          "declaredDistinctCases": 7225,
+          "duplicateCasesAlreadyCovered": 0,
+          "mismatches": 0,
+          "rgRoutingPlans": 6648,
+          "nativeRoutingPlans": 577,
+          "parallelism": 8
+        },
+        {
+          "seed": "ordered-gnu-options-v1",
+          "fixtureSHA256": "ba812165b2781aa5238a01f01f607312572d534673036e7a9fa1ea76e2c6db13",
+          "actualComparisons": 512,
+          "declaredDistinctCases": 512,
+          "duplicateCasesAlreadyCovered": 0,
+          "mismatches": 0,
+          "rgRoutingPlans": 512,
+          "nativeRoutingPlans": 0,
+          "parallelism": 8
+        },
+        {
+          "seed": "ordered-gnu-options-v1",
+          "fixtureSHA256": "ba812165b2781aa5238a01f01f607312572d534673036e7a9fa1ea76e2c6db13",
+          "actualComparisons": 51,
+          "declaredDistinctCases": 52,
+          "duplicateCasesAlreadyCovered": 1,
+          "mismatches": 0,
+          "rgRoutingPlans": 31,
+          "nativeRoutingPlans": 20,
+          "parallelism": 8
+        },
+        {
+          "seed": "ordered-gnu-options-v1",
+          "fixtureSHA256": "ba812165b2781aa5238a01f01f607312572d534673036e7a9fa1ea76e2c6db13",
+          "actualComparisons": 5073,
+          "declaredDistinctCases": 5262,
+          "duplicateCasesAlreadyCovered": 189,
+          "mismatches": 0,
+          "rgRoutingPlans": 3052,
+          "nativeRoutingPlans": 2021,
+          "parallelism": 8
+        },
+        {
+          "campaign": "traversal",
+          "seed": "0x6a31c9d2",
+          "deep": true,
+          "comparisons": 1536,
+          "dimensions": "32/96 varied trees;16 traversal families;12 output modes;4 terms;10 filter globs"
+        },
+        {
+          "campaign": "traversal-metamorphic",
+          "seed": "0x4bbe19f7",
+          "deep": true,
+          "comparisons": 240,
+          "invariants": [
+            "filter narrowing",
+            "duplicate operand multiplicity",
+            "r selected names subset of R"
+          ]
+        },
+        {
+          "campaign": "raw-pathnames",
+          "comparisons": 12,
+          "locales": [
+            "C",
+            "C.UTF-8"
+          ]
+        },
+        {
+          "campaign": "pi-default-GNU-policy",
+          "actualGNUComparisons": 6,
+          "actualRgInvocations": 0,
+          "networkRequests": 0,
+          "inferenceRequests": 0
+        },
+        {
+          "campaign": "pi-sdk-scope",
+          "actualRgInvocations": 7,
+          "networkRequests": 0,
+          "inferenceRequests": 0,
+          "extension": "pi/grep2rg.ts",
+          "nativeToolName": "bash"
+        }
+      ]
+    },
+    {
+      "environment": "Debian VM",
+      "startedAt": "2026-10-11T22:42:18.651Z",
+      "finishedAt": "2026-10-11T22:51:24.590Z",
+      "passed": true,
+      "nodeTests": 226,
+      "sourceChanged": false,
+      "versions": {
+        "node": "v24.21.0",
+        "GNU": "grep (GNU grep) 3.11",
+        "rg": "ripgrep 14.1.1",
+        "pcre2": "PCRE2 10.43 is available (JIT is available)",
+        "python": "Python 3.13.5",
+        "bash": "GNU bash, version 5.2.37(1)-release (x86_64-pc-linux-gnu)",
+        "readlink": "readlink (GNU coreutils) 9.7",
+        "npm": "11.19.0",
+        "tar": "tar (GNU tar) 1.35"
+      },
+      "stages": [
+        {
+          "name": "core",
+          "status": 0,
+          "durationMs": 214261,
+          "timedOut": false,
+          "interrupted": false,
+          "logTruncated": false,
+          "counts": {
+            "tests": 195,
+            "suites": 0,
+            "pass": 195,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "passed": true
+        },
+        {
+          "name": "campaigns",
+          "status": 0,
+          "durationMs": 330206,
+          "timedOut": false,
+          "interrupted": false,
+          "logTruncated": false,
+          "counts": {
+            "tests": 24,
+            "suites": 0,
+            "pass": 24,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "passed": true
+        },
+        {
+          "name": "installed Pi native Bash scope",
+          "status": 0,
+          "durationMs": 1369,
+          "timedOut": false,
+          "interrupted": false,
+          "logTruncated": false,
+          "counts": {
+            "tests": 7,
+            "suites": 0,
+            "pass": 7,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "passed": true
+        }
+      ],
+      "diagnostics": [
+        {
+          "campaign": "grep-caller-fd3",
+          "actualGNUComparisons": 6,
+          "actualRgSearchInvocations": 6,
+          "actualRgValidationInvocations": 4,
+          "actualGNUSpanBrokerInvocations": 4,
+          "actualGNUValidationInvocations": 4,
+          "actualOriginalGNUInvocations": 0,
+          "callerFD3AndPrivateSpoolIndependent": true
+        },
+        {
+          "campaign": "grep-high-fd-process-substitution",
+          "actualGNUComparisons": 8,
+          "actualRgSearchInvocations": 4,
+          "actualRgValidationInvocations": 2,
+          "actualGNUSpanBrokerInvocations": 2,
+          "actualGNUValidationInvocations": 2,
+          "actualOriginalGNUInvocations": 4,
+          "highDescriptor": 4097,
+          "successfulHighDescriptorOpenWitnesses": 4
+        },
+        {
+          "campaign": "grep-closed-caller-fd",
+          "actualGNUComparisons": 4,
+          "actualRgSearchInvocations": 0,
+          "actualRgValidationInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualOriginalGNUInvocations": 4
+        },
+        {
+          "campaign": "grep-closed-standard-fds",
+          "actualGNUComparisons": 12,
+          "closedDescriptors": [
+            0,
+            1,
+            2
+          ],
+          "directExecutablesWithoutRecorder": true
+        },
+        {
+          "campaign": "extended-POSIX-replay-backpressure",
+          "actualGNUComparisons": 1,
+          "negativeControlGNUComparisons": 1,
+          "actualRgSearchInvocations": 1,
+          "negativeControlRgInvocations": 1,
+          "actualGNUSpanBrokerInvocations": 1,
+          "negativeControlSpanBrokerInvocations": 1,
+          "syntheticOutputBytesPerComparison": 1440000,
+          "maximumAllowedWritableLength": 131072,
+          "normalMaximumWritableLength": 65592,
+          "noDrainMutantMaximumWritableLength": 1362096,
+          "semanticNegativeControlRejected": true
+        },
+        {
+          "campaign": "extended-POSIX-paused-replay-cancellation",
+          "CLIEntryRoutes": 2,
+          "handledSignalInvocations": 6,
+          "unreadStdoutExitStatuses": [
+            130,
+            143,
+            129
+          ],
+          "ownedSpoolsRemoved": 6
+        },
+        {
+          "campaign": "extended-ASCII-locale-proof",
+          "actualGNUComparisons": 28,
+          "actualRgSearchInvocations": 28,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-GNU-invalid-POSIX-class",
+          "actualGNUComparisons": 8,
+          "actualRgSearchInvocations": 0,
+          "actualNativeInvocations": 8,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-literal-leftmost-longest",
+          "actualGNUComparisons": 145,
+          "actualRgSearchInvocations": 136,
+          "actualNativeInvocations": 9,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-fixed-word-whole-line-extraction",
+          "actualGNUComparisons": 48,
+          "actualRgSearchInvocations": 96,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 96,
+          "actualGNUValidationInvocations": 48,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-fixed-word-whole-line-Unicode",
+          "actualGNUComparisons": 16,
+          "actualRgSearchInvocations": 16,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 16,
+          "actualGNUValidationInvocations": 16,
+          "actualGNUScalarProbeInvocations": 4,
+          "actualGNUIdentityInvocations": 16,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-fixed-word-whole-line-pattern-sources",
+          "actualGNUComparisons": 28,
+          "actualRgSearchInvocations": 28,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 28,
+          "actualGNUValidationInvocations": 28,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-Linux-binary-I/O-noop",
+          "actualGNUComparisons": 36,
+          "actualRgSearchInvocations": 36,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-Linux-binary-I/O-native-boundaries",
+          "actualGNUComparisons": 12,
+          "actualRgSearchInvocations": 0,
+          "actualNativeInvocations": 12,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-literal-maxcount-context",
+          "actualGNUComparisons": 4,
+          "actualRgSearchInvocations": 4,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-NUL-record-regex",
+          "actualGNUComparisons": 108,
+          "actualRgSearchInvocations": 108,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-NUL-UTF8-proof",
+          "actualGNUComparisons": 24,
+          "actualRgSearchInvocations": 12,
+          "actualNativeInvocations": 12,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-NUL-inverse-maxcount-context",
+          "actualGNUComparisons": 136,
+          "actualRgSearchInvocations": 136,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-POSIX-candidate-spans",
+          "actualGNUComparisons": 81,
+          "actualRgSearchInvocations": 79,
+          "actualNativeInvocations": 2,
+          "actualGNUSpanBrokerInvocations": 79,
+          "actualGNUValidationInvocations": 79,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-POSIX-selected-records",
+          "actualGNUComparisons": 1,
+          "actualRgSearchInvocations": 1,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 1,
+          "actualGNUValidationInvocations": 1,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true,
+          "candidateBytes": 17
+        },
+        {
+          "campaign": "extended-pattern-local-backreferences",
+          "actualGNUComparisons": 48,
+          "actualRgSearchInvocations": 48,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 24,
+          "actualGNUValidationInvocations": 24,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true,
+          "independentPatternCaptureCounts": [
+            1,
+            2,
+            3
+          ],
+          "privateBashComparisons": 12
+        },
+        {
+          "campaign": "extended-POSIX-broker-cancellation",
+          "ownedSignals": 3,
+          "ignoredSignalHelpersReaped": 3,
+          "partialOutputBytes": 0
+        },
+        {
+          "campaign": "default-GNU-policy-public",
+          "actualGNUComparisons": 48,
+          "actualRgInvocations": 0,
+          "actualNodeInvocations": 0,
+          "GNUPreparatoryProbes": 0,
+          "isolatedBashOnlyEntry": true
+        },
+        {
+          "campaign": "default-GNU-policy-JS",
+          "actualGNUComparisons": 6,
+          "actualRgInvocations": 0
+        },
+        {
+          "campaign": "default-GNU-policy-private",
+          "actualGNUComparisons": 6,
+          "actualRgInvocations": 0
+        },
+        {
+          "campaign": "explicit-rg-experiment",
+          "actualGNUComparisons": 1,
+          "actualRgInvocations": 1,
+          "originalGNUInvocations": 0,
+          "universalSpeedClaim": false
+        },
+        {
+          "campaign": "semantic-source-mutants",
+          "actualGNUComparisons": 5,
+          "negativeControlExecutions": 5,
+          "semanticNegativeControlsRejected": [
+            "count",
+            "byte prefix",
+            "no-match status",
+            "pattern-local backreferences",
+            "selected whole-record span"
+          ]
+        },
+        {
+          "campaign": "seekable-stdin-LF-cursor",
+          "actualGNUComparisons": 48,
+          "actualRgSearchInvocations": 48,
+          "actualOriginalGNUInvocations": 0,
+          "comparedFields": [
+            "status",
+            "stdout",
+            "stderr",
+            "sharedOffset",
+            "remainingBytes",
+            "remainingSHA256"
+          ]
+        },
+        {
+          "campaign": "seekable-stdin-record-and-span-cursor",
+          "actualGNUComparisons": 50,
+          "actualRgSearchInvocations": 48,
+          "actualOriginalGNUInvocations": 2
+        },
+        {
+          "campaign": "seekable-stdin-private-large-record-cursor",
+          "actualGNUComparisons": 8,
+          "actualRgSearchInvocations": 8,
+          "actualOriginalGNUInvocations": 0,
+          "ownedInputBytes": 196649
+        },
+        {
+          "campaign": "seekable-stdin-retained-native-boundaries",
+          "actualGNUComparisons": 7,
+          "actualRgSearchInvocations": 0,
+          "actualOriginalGNUInvocations": 7,
+          "additionalPipeGNUComparisons": 1,
+          "originalPipeInvocations": 1
+        },
+        {
+          "campaign": "seekable-stdin-unreadable-O_PATH",
+          "actualGNUComparisons": 1,
+          "actualRgSearchInvocations": 0,
+          "actualOriginalGNUInvocations": 1
+        },
+        {
+          "campaign": "seekable-stdin-proc-size-boundary",
+          "actualGNUComparisons": 2,
+          "actualRgSearchInvocations": 0,
+          "actualOriginalGNUInvocations": 2
+        },
+        {
+          "campaign": "seekable-stdin-blocked-feed-cancellation",
+          "ownedFaultInvocations": 1,
+          "status": 143,
+          "sharedOffsetUnchanged": true,
+          "ownedChildRemoved": true,
+          "actualRgAccelerationCredit": 0
+        },
+        {
+          "campaign": "default-text",
+          "actualGNUComparisons": 38,
+          "acceleratedCommands": 38
+        },
+        {
+          "campaign": "default-text-structure",
+          "actualGNUComparisons": 9,
+          "acceleratedCommands": 9
+        },
+        {
+          "campaign": "default-text-binary-guard",
+          "actualGNUComparisons": 23
+        },
+        {
+          "campaign": "text-stream-large-payload",
+          "actualGNUComparisons": 3,
+          "actualRgSearchInvocations": 3,
+          "subjectBytes": 17825805
+        },
+        {
+          "campaign": "text-stream-aggregate-payload",
+          "actualGNUComparisons": 1,
+          "actualRgSearchInvocations": 1
+        },
+        {
+          "campaign": "text-stream-many-files",
+          "actualGNUComparisons": 1,
+          "selectedFiles": 4097,
+          "actualRgSearchInvocations": 1
+        },
+        {
+          "campaign": "text-stream-late-binary-guard",
+          "actualGNUComparisons": 6,
+          "actualRgSearchInvocations": 0
+        },
+        {
+          "campaign": "extended-Unicode-regex-locale-proof",
+          "actualGNUComparisons": 7,
+          "actualRgSearchInvocations": 6,
+          "actualNativeInvocations": 1,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 10,
+          "actualGNUIdentityInvocations": 6,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-Unicode-fixed-scalar-proof",
+          "actualGNUComparisons": 36,
+          "actualRgSearchInvocations": 36,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 3,
+          "actualGNUValidationInvocations": 3,
+          "actualGNUScalarProbeInvocations": 9,
+          "actualGNUIdentityInvocations": 33,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-Unicode-cache-warm",
+          "actualGNUComparisons": 2,
+          "actualRgSearchInvocations": 2,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 1,
+          "actualGNUIdentityInvocations": 2,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-Unicode-cache-integrity",
+          "actualGNUComparisons": 3,
+          "actualRgSearchInvocations": 3,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 3,
+          "actualGNUIdentityInvocations": 3,
+          "syntheticFixturesOnly": true,
+          "corruptTableReprobed": true,
+          "executableIdentityChangeReprobed": true
+        },
+        {
+          "campaign": "extended-Unicode-fixed-native-boundaries",
+          "actualGNUComparisons": 4,
+          "actualRgSearchInvocations": 0,
+          "actualNativeInvocations": 4,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-Unicode-scalar-regex",
+          "actualGNUComparisons": 143,
+          "actualRgSearchInvocations": 141,
+          "actualNativeInvocations": 2,
+          "actualGNUSpanBrokerInvocations": 46,
+          "actualGNUValidationInvocations": 46,
+          "actualGNUScalarProbeInvocations": 42,
+          "actualGNUIdentityInvocations": 143,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-Unicode-capture-indices",
+          "actualGNUComparisons": 28,
+          "actualRgSearchInvocations": 26,
+          "actualNativeInvocations": 2,
+          "actualGNUSpanBrokerInvocations": 18,
+          "actualGNUValidationInvocations": 18,
+          "actualGNUScalarProbeInvocations": 8,
+          "actualGNUIdentityInvocations": 26,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-Unicode-NUL-membership",
+          "actualGNUComparisons": 14,
+          "actualRgSearchInvocations": 14,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 6,
+          "actualGNUValidationInvocations": 6,
+          "actualGNUScalarProbeInvocations": 7,
+          "actualGNUIdentityInvocations": 14,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "extended-Czech-multichar-collation",
+          "actualGNUComparisons": 4,
+          "actualRgSearchInvocations": 0,
+          "actualNativeInvocations": 4,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true,
+          "ownedLocaleCompiled": true
+        },
+        {
+          "campaign": "extended-Unicode-custom-locale-swap",
+          "actualGNUComparisons": 2,
+          "actualRgSearchInvocations": 2,
+          "sameProcess": true,
+          "unchangedLOCPATH": true,
+          "ownedLocaleDefinitions": [
+            "en_GB",
+            "tr_TR"
+          ],
+          "observedMatchingSetsDiffer": true
+        },
+        {
+          "campaign": "packed-artifact",
+          "tarballSHA256": "64d6cf8169ac851fa4e70b8846f635b39d0f7830a63f9079b703eb1902f8d00e",
+          "npmIntegrity": "sha512-TL/m+GfMoevlx+HsraqCfeTBuAA2wZlzJvxCjyGkhF1EXwnSO7BSF7Yg6FFd2XUF9pBvFo2oR4IrdjNfG49Vdg==",
+          "extractedFilesVerified": 43,
+          "extractedEntryNodeTests": 5,
+          "installedEntryNodeTests": 5,
+          "extractedEvidence": [
+            {
+              "campaign": "packaged-default-GNU-policy",
+              "actualGNUComparisons": 24,
+              "actualRgInvocations": 0
+            },
+            {
+              "campaign": "package-entry",
+              "actualComparisons": 25,
+              "payloadStdinComparisons": 5,
+              "noPayloadComparisons": 20,
+              "executable": "/tmp/user/1002/grep2rg-artifact-81Xe3Z/extracted/package/bin/grep2rg"
+            },
+            {
+              "campaign": "package-prefix",
+              "actualRgInvocations": 3,
+              "nativeScopeComparisons": 1
+            },
+            {
+              "campaign": "package-argv-bytes",
+              "actualComparisons": 4,
+              "argvSource": "Python byte argv to real executable"
+            }
+          ],
+          "installedEvidence": [
+            {
+              "campaign": "packaged-default-GNU-policy",
+              "actualGNUComparisons": 24,
+              "actualRgInvocations": 0
+            },
+            {
+              "campaign": "package-entry",
+              "actualComparisons": 25,
+              "payloadStdinComparisons": 5,
+              "noPayloadComparisons": 20,
+              "executable": "/tmp/user/1002/grep2rg-artifact-81Xe3Z/installed/node_modules/.bin/grep2rg"
+            },
+            {
+              "campaign": "package-prefix",
+              "actualRgInvocations": 3,
+              "nativeScopeComparisons": 1
+            },
+            {
+              "campaign": "package-argv-bytes",
+              "actualComparisons": 4,
+              "argvSource": "Python byte argv to real executable"
+            }
+          ]
+        },
+        {
+          "campaign": "packaged-default-GNU-policy",
+          "actualGNUComparisons": 24,
+          "actualRgInvocations": 0
+        },
+        {
+          "campaign": "package-entry",
+          "actualComparisons": 25,
+          "payloadStdinComparisons": 5,
+          "noPayloadComparisons": 20,
+          "executable": "/tmp/grep2rg-policy.4VUICTQB/package/bin/grep2rg"
+        },
+        {
+          "campaign": "package-prefix",
+          "actualRgInvocations": 3,
+          "nativeScopeComparisons": 1
+        },
+        {
+          "campaign": "package-argv-bytes",
+          "actualComparisons": 4,
+          "argvSource": "Python byte argv to real executable"
+        },
+        {
+          "seed": "0x4729ac2e",
+          "deep": true,
+          "distinctCases": 12000,
+          "qualifiedRgComparisons": 5840,
+          "jsonFormatterComparisons": 359,
+          "nativeFallbackOracles": 6160,
+          "preflightConfigurations": 3668,
+          "modes": {
+            "extended": 3115,
+            "basic": 3664,
+            "fixed": 2382,
+            "perl": 2839
+          },
+          "locales": {
+            "C": 6000,
+            "C.UTF-8": 6000
+          },
+          "flagCoverage": {
+            "-o": 1715,
+            "-v": 3433,
+            "-z": 2575,
+            "-i": 4284,
+            "-x": 3428,
+            "-w": 2568
+          },
+          "byteFixtures": 12,
+          "GNU": "grep (GNU grep) 3.11",
+          "rg": "ripgrep 14.1.1",
+          "optionsSHA256": "d5dfd85b6a5afb2888d8ff5ede3b57d015a1f023f4b9ef1df12a0ca0b8a3aafd"
+        },
+        {
+          "campaign": "matcher-NUL-record-CLI",
+          "actualGNUComparisons": 48,
+          "actualRgSearchInvocations": 36,
+          "actualNativeInvocations": 12,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true,
+          "negativeControlGNUComparisons": 1,
+          "negativeControlRgInvocations": 1,
+          "semanticNegativeControlRejected": true
+        },
+        {
+          "actualComparisons": 1
+        },
+        {
+          "actualComparisons": 2
+        },
+        {
+          "actualComparisons": 3
+        },
+        {
+          "actualComparisons": 5
+        },
+        {
+          "actualComparisons": 24
+        },
+        {
+          "campaign": "matrix-whole-line-word-span-delimiters",
+          "actualGNUComparisons": 26,
+          "actualRgSearchInvocations": 27,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 27,
+          "actualGNUValidationInvocations": 26,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "campaign": "matrix-repeated-NUL-whole-record-spans",
+          "actualGNUComparisons": 16,
+          "actualRgSearchInvocations": 32,
+          "actualNativeInvocations": 0,
+          "actualGNUSpanBrokerInvocations": 0,
+          "actualGNUValidationInvocations": 0,
+          "actualGNUScalarProbeInvocations": 0,
+          "actualGNUIdentityInvocations": 0,
+          "syntheticFixturesOnly": true
+        },
+        {
+          "seed": "0xc0a7e512",
+          "actualComparisons": 4096,
+          "distinctCases": 4096,
+          "mismatches": 0,
+          "rgRoutingPlans": 2730,
+          "nativeRoutingPlans": 1366,
+          "concurrency": 8
+        },
+        {
+          "actualComparisons": 16,
+          "actualRgInvocations": 16
+        },
+        {
+          "documentedLongOptions": 48,
+          "documentedShortOptions": 35,
+          "declaredSpellingVariants": 85
+        },
+        {
+          "seed": "ordered-gnu-options-v1",
+          "fixtureSHA256": "ba812165b2781aa5238a01f01f607312572d534673036e7a9fa1ea76e2c6db13",
+          "actualComparisons": 7225,
+          "declaredDistinctCases": 7225,
+          "duplicateCasesAlreadyCovered": 0,
+          "mismatches": 0,
+          "rgRoutingPlans": 6648,
+          "nativeRoutingPlans": 577,
+          "parallelism": 8
+        },
+        {
+          "seed": "ordered-gnu-options-v1",
+          "fixtureSHA256": "ba812165b2781aa5238a01f01f607312572d534673036e7a9fa1ea76e2c6db13",
+          "actualComparisons": 512,
+          "declaredDistinctCases": 512,
+          "duplicateCasesAlreadyCovered": 0,
+          "mismatches": 0,
+          "rgRoutingPlans": 512,
+          "nativeRoutingPlans": 0,
+          "parallelism": 8
+        },
+        {
+          "seed": "ordered-gnu-options-v1",
+          "fixtureSHA256": "ba812165b2781aa5238a01f01f607312572d534673036e7a9fa1ea76e2c6db13",
+          "actualComparisons": 51,
+          "declaredDistinctCases": 52,
+          "duplicateCasesAlreadyCovered": 1,
+          "mismatches": 0,
+          "rgRoutingPlans": 31,
+          "nativeRoutingPlans": 20,
+          "parallelism": 8
+        },
+        {
+          "seed": "ordered-gnu-options-v1",
+          "fixtureSHA256": "ba812165b2781aa5238a01f01f607312572d534673036e7a9fa1ea76e2c6db13",
+          "actualComparisons": 5073,
+          "declaredDistinctCases": 5262,
+          "duplicateCasesAlreadyCovered": 189,
+          "mismatches": 0,
+          "rgRoutingPlans": 3052,
+          "nativeRoutingPlans": 2021,
+          "parallelism": 8
+        },
+        {
+          "campaign": "traversal",
+          "seed": "0x6a31c9d2",
+          "deep": true,
+          "comparisons": 1536,
+          "dimensions": "32/96 varied trees;16 traversal families;12 output modes;4 terms;10 filter globs"
+        },
+        {
+          "campaign": "traversal-metamorphic",
+          "seed": "0x4bbe19f7",
+          "deep": true,
+          "comparisons": 240,
+          "invariants": [
+            "filter narrowing",
+            "duplicate operand multiplicity",
+            "r selected names subset of R"
+          ]
+        },
+        {
+          "campaign": "raw-pathnames",
+          "comparisons": 12,
+          "locales": [
+            "C",
+            "C.UTF-8"
+          ]
+        },
+        {
+          "campaign": "pi-default-GNU-policy",
+          "actualGNUComparisons": 6,
+          "actualRgInvocations": 0,
+          "networkRequests": 0,
+          "inferenceRequests": 0
+        },
+        {
+          "campaign": "pi-sdk-scope",
+          "actualRgInvocations": 7,
+          "networkRequests": 0,
+          "inferenceRequests": 0,
+          "extension": "pi/grep2rg.ts",
+          "nativeToolName": "bash"
+        }
+      ]
+    }
+  ],
+  "interpretation": [
+    "The normal public entry reaches GNU before Node or preflight. Default public, JS, private Bash, offline-package and actual Pi checks use no rg searches; only exact experimental flag1 enables the separately qualified semantic routes.",
+    "No automatically translated command class has a universal wall-time guarantee. Every such class therefore remains GNU by default; compatibility equality and a real engine invocation do not establish a speed win.",
+    "Each environment replays the same generated corpus; repetitions do not increase unique-case coverage.",
+    "Actual contributing rg search is distinct from GNU compile checks, Unicode scalar calibration, candidate-only GNU span evaluation, original-command fallback and zero-search routes.",
+    "The 18,745 generated CLI cases compare complete stdout/stderr/status. The 5,840 qualified matcher cases independently compare rg matching with GNU; 359 additionally check JSON formatting. The 6,160 native-routing cases check the GNU oracle and dispatch boundary rather than another full wrapper CLI subprocess.",
+    "The earlier 30,796-case aggregate included 51 named presentation cases. New minimized regressions are reported separately and do not inflate generated-case counts.",
+    "No failures or skips were accepted. Preserved failed matrix/subset and delimiter-color witnesses were repaired without deleting the original generated cases or mismatch assertions.",
+    "No universal rg acceleration or speedup is claimed. Compatibility still requires genuine native routes, including unqualified stdin early exits, binary policies and nontrivial collation.",
+    "Completed qualified regular-stdin -m searches compare shared descriptor offset and unread-tail bytes as well as output/status. Positional feeding avoids full-suffix spooling; arbitrary concurrent cursor changes and interrupted native read-ahead equivalence are not proved.",
+    "This record was written after capture and identifies the immutable tested archive and current implementation/test hashes, not a self-referential tarball containing its own hash.",
+    "The previously preserved VM oracle EPIPE was a test-harness failure feeding unused stdin to file-only GNU searches. File-only cases now receive no payload, genuine stdin cases still do, and execution errors remain fatal. No comparison cases or mismatch assertions were deleted."
+  ]
+}

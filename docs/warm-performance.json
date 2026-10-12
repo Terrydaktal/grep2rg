@@ -1,0 +1,205 @@
+{
+  "scope": "Five warm-cache public CLI repetitions, synthetic stable files, alternating engine order; startup and JSON/hybrid overhead included; timing excludes post-command shared-tail hashing. Background qualification may contend for CPU. No universal speed claim.",
+  "createdAt": "2026-10-11T22:23:56Z",
+  "fixtureBytes": {
+    "whole.txt": 8400017,
+    "ascii.txt": 33554439
+  },
+  "repetitions": 5,
+  "exactComparisons": 48,
+  "versions": {
+    "GNU": "grep (GNU grep) 3.12-modified",
+    "rg": "ripgrep 15.1.0 (rev 6e6b29e490)",
+    "node": "v26.4.0"
+  },
+  "cases": [
+    {
+      "workload": "ASCII fixed count",
+      "argv": [
+        "-acF",
+        "needle",
+        "ascii.txt"
+      ],
+      "stdin": null,
+      "initialOffset": 0,
+      "samplesMs": {
+        "GNU": [
+          2.949,
+          2.8,
+          2.657,
+          3.05,
+          2.763
+        ],
+        "grep2rg": [
+          38.158,
+          41.085,
+          34.989,
+          35.91,
+          35.621
+        ]
+      },
+      "medianMs": {
+        "GNU": 2.8,
+        "grep2rg": 35.91
+      },
+      "grep2rgOverGNU": 12.825,
+      "equivalence": {
+        "status": 0,
+        "stdoutSHA256": "6407f57599ea19aaefd71b13c2771ad25998686a6a2d1b142cfc3060ef008129",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 5,
+        "stderrBytes": 0,
+        "cursor": null,
+        "tail": null
+      },
+      "routeEvidence": {
+        "realRgSearches": 1,
+        "originalGNU": 0,
+        "GNUSpanBrokers": 0
+      }
+    },
+    {
+      "workload": "ASCII fixed sparse search",
+      "argv": [
+        "-anF",
+        "needle",
+        "ascii.txt"
+      ],
+      "stdin": null,
+      "initialOffset": 0,
+      "samplesMs": {
+        "GNU": [
+          3.94,
+          3.876,
+          3.658,
+          3.859,
+          4.345
+        ],
+        "grep2rg": [
+          37.939,
+          38.356,
+          42.033,
+          40.469,
+          39.46
+        ]
+      },
+      "medianMs": {
+        "GNU": 3.876,
+        "grep2rg": 39.46
+      },
+      "grep2rgOverGNU": 10.181,
+      "equivalence": {
+        "status": 0,
+        "stdoutSHA256": "91186754acfadbdb2467da3890c35da94a514a3759b752cc67e9e596289ae201",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 137822,
+        "stderrBytes": 0,
+        "cursor": null,
+        "tail": null
+      },
+      "routeEvidence": {
+        "realRgSearches": 1,
+        "originalGNU": 0,
+        "GNUSpanBrokers": 0
+      }
+    },
+    {
+      "workload": "Seekable stdin max-count",
+      "argv": [
+        "-aF",
+        "-m1",
+        "needle"
+      ],
+      "stdin": "ascii.txt",
+      "initialOffset": 128,
+      "samplesMs": {
+        "GNU": [
+          0.622,
+          1.619,
+          1.51,
+          1.603,
+          1.566
+        ],
+        "grep2rg": [
+          37.148,
+          35.287,
+          32.877,
+          33.789,
+          33.367
+        ]
+      },
+      "medianMs": {
+        "GNU": 1.566,
+        "grep2rg": 33.789
+      },
+      "grep2rgOverGNU": 21.577,
+      "equivalence": {
+        "status": 0,
+        "stdoutSHA256": "37baf249bd78a1d9bb059a699d13f07b2b8bdf6ae27e6545054faba6f9a4473c",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 128,
+        "stderrBytes": 0,
+        "cursor": 32768,
+        "tail": {
+          "bytes": 33521671,
+          "sha256": "0b7405d9f521557cb70cb5f7e7ab24a3c0607b71a27919de3e8daa0bd98ff7a6"
+        }
+      },
+      "routeEvidence": {
+        "realRgSearches": 1,
+        "originalGNU": 0,
+        "GNUSpanBrokers": 0
+      }
+    },
+    {
+      "workload": "Fixed word whole-line extraction",
+      "argv": [
+        "-aF",
+        "-w",
+        "-x",
+        "-o",
+        "foo",
+        "whole.txt"
+      ],
+      "stdin": null,
+      "initialOffset": 0,
+      "samplesMs": {
+        "GNU": [
+          8.716,
+          8.441,
+          8.35,
+          8.779,
+          8.725
+        ],
+        "grep2rg": [
+          74.233,
+          71.934,
+          77.5,
+          72.759,
+          74.14
+        ]
+      },
+      "medianMs": {
+        "GNU": 8.716,
+        "grep2rg": 74.14
+      },
+      "grep2rgOverGNU": 8.506,
+      "equivalence": {
+        "status": 0,
+        "stdoutSHA256": "8c03ce8212b849dc68b07fc9edb8ee6dca91bca5c3eab835737fdc0fc71abe44",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 1465,
+        "stderrBytes": 0,
+        "cursor": null,
+        "tail": null
+      },
+      "routeEvidence": {
+        "realRgSearches": 1,
+        "originalGNU": 0,
+        "GNUSpanBrokers": 1
+      }
+    }
+  ],
+  "fixturesRemovedOnExit": true,
+  "interpretation": "All four measured routes used rg and matched GNU, but none beat GNU in this warm-cache sample. Engine contribution is not a universal speedup. Public CLI startup, JSON formatting and candidate-span evaluation are included."
+}

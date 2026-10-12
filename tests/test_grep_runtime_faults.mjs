@@ -57,7 +57,7 @@ test("NUL inverse max-count searches preserve GNU's trailing-context boundary", 
   const expected = invoke(cwd, witness, baseEnv, "grep", []);
   assert.equal(expected.stdout.toString("hex"), Buffer.from("x\0needle\0x\0x\0").toString("hex"));
   compare(invoke(cwd, witness), expected);
-  assert.equal(planGrep(witness, { env: baseEnv }).backend, "grep");
+  assert.equal(planGrep(witness, { env: baseEnv }).backend, "rg");
   for (const maximum of [1, 2, 3]) for (const context of ["-C1", "-C3", "-A1", "-A3", "-B1"]) {
     const args = ["-azFv", `-m${maximum}`, context, "needle", "input.txt"];
     compare(invoke(cwd, args), invoke(cwd, args, baseEnv, "grep", []));
@@ -147,7 +147,7 @@ os.close(master);status=child.wait(timeout=1)
 print(json.dumps({"status":status,"stdout":base64.b64encode(data).decode(),"stderr":base64.b64encode(child.stderr.read()).decode()}))`;
   for (const term of ["xterm", "dumb"]) for (const matcher of ["F", "P"])
     for (const color of [[], ["--color=auto"], ["--color=always"], ["--color=never"]])
-      for (const flags of [[], ["-Hnb"], ["-C1"], ["-o"], ["-c"]]) {
+      for (const flags of [[], ["-Hnb"], ["-C1"], ["-o"], ["-c"], ["-l"]]) {
     const args = [`-a${matcher}`, ...color, ...flags, "needle", "input.txt"];
     const env = { ...baseEnv, TERM: term, GREP_COLORS: "ms=1;33:fn=36:ne" };
     const run = (program, entry) => {
@@ -186,9 +186,11 @@ test("slow stdout consumers preserve every byte and produce no listener warnings
   assert.deepEqual(Buffer.concat(stderr), expected.stderr);
 });
 
-test("test-only mutants prove count, byte-prefix and status assertions detect wrong behavior", (t) => {
+test("test-only mutants prove count, byte-prefix, status, pattern-capture and whole-record span assertions detect wrong behavior", (t) => {
   const cwd = fixture(t), source = fileURLToPath(new URL("../src/", import.meta.url));
-  const modules = ["wrapper", "runtime", "options", "files", "output"];
+  writeFileSync(join(cwd, "backrefs.txt"), "aa\nbb\naab\nbaa\n");
+  writeFileSync(join(cwd, "whole-records.nul"), "foo\0xx\0foo\0FOO\0foo\0");
+  const modules = ["wrapper", "runtime", "options", "files", "output", "posix-spans", "unicode", "descriptors", "stdin"];
   const original = Object.fromEntries(modules.map((name) => [name, readFileSync(join(source, `grep-${name}.mjs`), "utf8")]));
   const directory = join(cwd, "mutated package's modules"); mkdirSync(directory);
   const entry = join(directory, "grep-wrapper.mjs");
@@ -196,6 +198,8 @@ test("test-only mutants prove count, byte-prefix and status assertions detect wr
     ["count", "output", "bytes(file.count), LF", "bytes(file.count + 1), LF", ["-acF", "needle", "input.txt"]],
     ["byte prefix", "output", "String(offset ?? 0).padStart(width)", "String((offset ?? 0) + 1).padStart(width)", ["-abF", "needle", "input.txt"]],
     ["no-match status", "runtime", "state.searchError || state.protocolError ? 2 : result.status", "state.searchError || state.protocolError ? 2 : 0", ["-aF", "absent", "input.txt"]],
+    ["pattern-local backreferences", "options", "patterns.length > 1 && patterns.some((pattern) =>", "false && patterns.some((pattern) =>", ["-aE", "-e", "(a)\\1", "-e", "(b)\\1", "backrefs.txt"]],
+    ["selected whole-record span", "output", "wholeRecord ? [{ start: 0, end: record.length }]", "wholeRecord ? [{ start: 0, end: 0 }]", ["-aF", "-z", "-x", "-o", "foo", "whole-records.nul"]],
   ];
   for (const [name, module, before, after, args] of mutants) {
     assert.equal(original[module].split(before).length, 2, `${name}: mutation applies exactly once`);
@@ -208,4 +212,6 @@ test("test-only mutants prove count, byte-prefix and status assertions detect wr
     assert.ok(changed.status === 0 || changed.status === 1);
     assert.ok(changed.status !== oracle.status || !changed.stdout.equals(oracle.stdout), `${name}: the semantic oracle must reject the mutant`);
   }
+  t.diagnostic(JSON.stringify({ campaign: "semantic-source-mutants", actualGNUComparisons: mutants.length,
+    negativeControlExecutions: mutants.length, semanticNegativeControlsRejected: mutants.map(([name]) => name) }));
 });

@@ -10,9 +10,9 @@ import { fileURLToPath } from "node:url";
 const ROOT = fileURLToPath(new URL("../", import.meta.url));
 const MAX_LOG = 4 * 1024 * 1024;
 const MAX_STAGE_TIME = 10 * 60 * 1000;
-const CORE = ["test_grep_options.mjs", "test_grep_files.mjs", "test_grep_output.mjs", "test_grep_full_cli.mjs", "test_grep_wrapper.mjs", "test_grep_runtime_faults.mjs", "test_grep_scope.mjs", "test_package_entry.mjs", "test_package_artifact.mjs"];
+const CORE = ["test_grep_auto_native.mjs", "test_grep_options.mjs", "test_grep_files.mjs", "test_grep_output.mjs", "test_grep_full_cli.mjs", "test_grep_wrapper.mjs", "test_grep_runtime_faults.mjs", "test_grep_text_preflight.mjs", "test_grep_seekable_stdin.mjs", "test_grep_extended_coverage.mjs", "test_grep_extended_backpressure.mjs", "test_grep_unicode.mjs", "test_grep_descriptors.mjs", "test_grep_routing_policy.mjs", "test_grep_scope.mjs", "test_package_entry.mjs", "test_package_artifact.mjs"];
 const CAMPAIGNS = ["test_grep_matcher_campaign.mjs", "test_grep_matrix_campaign.mjs", "test_grep_traversal_campaign.mjs", "test_grep_option_interactions.mjs"];
-const IMPLEMENTATION = ["options", "files", "output", "runtime", "wrapper"].map((file) => `src/grep-${file}.mjs`).concat(["package.json", "bin/grep2rg", "bin/grep2rg.mjs", "bin/grep2rg-shell-prefix.mjs", "pi/grep2rg.ts"]);
+const IMPLEMENTATION = ["options", "files", "output", "posix-spans", "unicode", "descriptors", "stdin", "runtime", "wrapper"].map((file) => `src/grep-${file}.mjs`).concat(["package.json", "bin/grep2rg", "bin/grep2rg.mjs", "bin/grep2rg-shell-prefix.mjs", "pi/grep2rg.ts", "native/grep2rg.c", "tools/build-native.mjs", "docs/automatic-routing-audit.json"]);
 const HELP = `NAME
   verify.mjs — verify the standalone GNU-compatible grep adapter
 
@@ -174,12 +174,14 @@ try {
   const selected = [...CORE, ...(!configuration.core ? CAMPAIGNS : [])];
   report.versions = { node: process.version, GNU: version("/usr/bin/grep", ["--version"]), rg: version("rg", ["--version"]), pcre2: version("rg", ["--pcre2-version"]), python: version("python3", ["--version"]), bash: version("/usr/bin/bash", ["--version"]), readlink: version("readlink", ["--version"]), npm: version("npm", ["--version"]), tar: version("tar", ["--version"]) };
   if (!report.versions.GNU.includes("GNU grep")) throw new Error("This verification suite requires GNU grep as its independent oracle.");
-  report.sourceHashes = sourceHashes([...IMPLEMENTATION, "tools/verify.mjs", "tools/verify-artifact.mjs", "tests/grep_wrapper_requirements.json",
+  report.sourceHashes = sourceHashes([...IMPLEMENTATION, "tools/verify.mjs", "tools/verify-artifact.mjs", "tests/grep_extended_helpers.mjs", "tests/grep_wrapper_requirements.json",
     "tests/grep_option_inventory.json", "tests/port_source_manifest.json", ...selected.map((file) => `tests/${file}`)]);
   process.stdout.write(`Node ${report.versions.node}; ${report.versions.GNU.split("\n")[0]}; ${report.versions.rg.split("\n")[0]}\n`);
   process.stdout.write(`Source identity: ${createHash("sha256").update(JSON.stringify(report.sourceHashes)).digest("hex")}\n`);
   const sdkEnvironment = configuration.sdk ? requiredSdkEnvironment() : {};
-  const environment = { GREP2RG_DEEP: configuration.deep ? "1" : "0", GREP2RG_TEST_PI_SDK: "0", ...sdkEnvironment };
+  // Semantic experiments explicitly opt in. Policy tests remove/override this
+  // flag in isolated calls to verify production Rust/GNU routes independently.
+  const environment = { GREP2RG_EXPERIMENTAL_RG: "1", GREP2RG_DEEP: configuration.deep ? "1" : "0", GREP2RG_TEST_PI_SDK: "0", ...sdkEnvironment };
   report.stages.push(await stage("core", CORE, [], environment));
   if (report.stages.every((run) => run.passed) && !configuration.core) report.stages.push(await stage("campaigns", CAMPAIGNS, [], environment));
   if (report.stages.every((run) => run.passed) && configuration.sdk) {

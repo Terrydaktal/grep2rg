@@ -1,0 +1,213 @@
+#!/usr/bin/env node
+import { readFileSync, writeFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { join, resolve } from 'node:path';
+
+const root = fileURLToPath(new URL('../', import.meta.url));
+const capturePath = resolve(process.argv[2] || join(root, 'docs/rust-engine-performance.json'));
+const output = resolve(process.argv[3] || join(root, 'docs/rust-engine.md'));
+const report = JSON.parse(readFileSync(capturePath, 'utf8'));
+const qualification = JSON.parse(readFileSync(join(root, 'docs/rust-engine-qualification.json'), 'utf8'));
+const prior = JSON.parse(readFileSync(join(root, 'docs/rust-engine-prior-native-performance.json'), 'utf8'));
+if (report.reportKind !== 'performance' || report.historicalClassCount !== 28 ||
+    !report.methodology.sourcesStable || report.methodology.measuredTrials < 7 ||
+    report.cases.some(row => row.comparisons.Rust.category !== 'exact' ||
+      !['rust', 'gnu'].includes(row.routeEvidence.report?.engine))) {
+  throw Error('A complete, stable, GNU-exact 28-class performance capture is required');
+}
+if (qualification.status !== 'passed' || !qualification.sourceAndExecutableHashesStable ||
+    qualification.executable.SHA256 !== report.executables.Rust.SHA256) {
+  throw Error('Packaged qualification must pass for the same executable as the timing capture');
+}
+if (prior.reportKind !== 'performance' || !prior.methodology.sourcesStable ||
+    prior.methodology.timingDriver !== report.methodology.timingDriver ||
+    prior.archivedEngine.SHA256 !== prior.executables.Rust.SHA256 ||
+    prior.cases.some(row => row.comparisons.Rust.category !== 'exact')) {
+  throw Error('A stable GNU-exact archived-engine capture with the same timing driver is required');
+}
+
+const labels = {
+  'recursive-count': 'Recursive literal counts',
+  'recursive-invert-count': 'Recursive inverse counts',
+  'recursive-filenames-sparse': 'Recursive sparse matching filenames',
+  'recursive-filenames-no-match': 'Recursive filenames, no match',
+  'explicit-count': 'Explicit-file literal counts',
+  'explicit-filenames-sparse': 'Explicit-file sparse matching filenames',
+  'explicit-filenames-no-match': 'Explicit-file filenames, no match',
+  'single-large-count-native': 'Single large file, literal count',
+  'small-file-native': 'Small file, matching lines',
+  'stdin-native': 'Piped stdin, matching lines',
+  'regex-compatible-count': 'ERE counts',
+  'recursive-dense-filenames-native': 'Dense early matching filenames',
+  'small-recursive-count-native': 'Small recursive tree, counts',
+  'many-tiny-count-native': 'Many tiny files, counts',
+  'below-threshold-count-native': 'Medium corpus, counts',
+  'long-record-count-native': 'Long lines, counts',
+  'long-record-content-native': 'Long lines, matching lines',
+  'recursive-content': 'Recursive literal matching lines',
+  'recursive-regex-content': 'Recursive ERE matching lines',
+  'recursive-filter-native': 'Include-filtered filename search',
+  'recursive-dereference-native': 'Symlink-following filename search',
+  'word-extraction-native': 'Whole-word match extraction',
+  'null-records-native': 'NUL-delimited records, counts',
+  'pattern-file-native': 'Patterns read from a file',
+  'quiet-native': 'Quiet, early exit',
+  'binary-content-native': 'Default binary-file reporting',
+  'unicode-folding-native': 'Non-ASCII pattern, C-locale case folding',
+  'context-native': 'Matching lines with context',
+};
+const fmt = value => value.toFixed(2);
+const native = report.cases.filter(row => row.routeEvidence.report?.engine === 'rust');
+const both = native.filter(row => row.comparisons.rg.compatibleForSpeedRatio);
+const fasterBoth = both.filter(row => row.medianMs.Rust < Math.min(row.medianMs.GNU, row.medianMs.rg));
+const fasterGNU = native.filter(row => row.medianMs.Rust < row.medianMs.GNU);
+const nativeRatio = fasterGNU.map(row => row.medianMs.GNU / row.medianMs.Rust);
+const rows = report.cases.map(row => {
+  const path = row.routeEvidence.report?.engine === 'rust' ? 'Rust' : 'GNU fallback';
+  const rg = `${fmt(row.medianMs.rg)}${row.comparisons.rg.compatibleForSpeedRatio ? '' : ' †'}`;
+  return `| ${labels[row.id]} | ${fmt(row.medianMs.GNU)} | ${rg} | ${fmt(row.medianMs.Rust)} | ${path} |`;
+});
+const version = label => report.executables[label].versionStdout.split('\n')[0];
+const improvementIds = ['recursive-count', 'recursive-invert-count', 'explicit-count',
+  'recursive-dense-filenames-native', 'recursive-content', 'recursive-regex-content'];
+const improvementRows = improvementIds.map(id => {
+  const before = prior.cases.find(row => row.id === id);
+  const after = report.cases.find(row => row.id === id);
+  return `| ${labels[id]} | ${fmt(before.medianMs.Rust)} | ${fmt(after.medianMs.Rust)} | ${(before.medianMs.Rust / after.medianMs.Rust).toFixed(2)}× |`;
+});
+const text = `# Integrated Rust search engine
+
+The executable at \`rust/target/release/grep2rg-rust\` performs qualified searches
+inside one native process. It uses SIMD-capable byte/literal matching and Rust
+regex libraries, chooses sequential or parallel work, and retains GNU operand
+and recursive traversal ordering. Native searches launch neither Node nor rg.
+GNU grep receives unsupported cases directly before native search output.
+
+## Current measurements
+
+Captured ${report.createdAt} on ${report.machine.cpu}. Baselines are direct
+${version('GNU')} and direct ${version('rg')}. Release executable SHA-256:
+\`${report.executables.Rust.SHA256}\`.
+
+These are warm-cache medians in milliseconds, with ${report.methodology.warmups} warmup(s) and ${report.methodology.measuredTrials} rotated
+trials per class. Timings include process startup, all search work and complete
+stdout/stderr capture. Hashing, comparison, fixture creation, inventory checks
+and route reporting are excluded. Each search executable is launched directly,
+without a search translator.
+${report.methodology.timingBoundary ?? 'The Node process timer includes spawnSync setup and capture work.'}
+
+All 28 Rust-tool classes match GNU stdout, stderr, exit status and ordering
+exactly. ${native.length} classes perform native Rust searches; the others are
+explicit GNU fallbacks. Among native classes, ${fasterGNU.length} have a lower
+median than GNU, and ${fasterBoth.length}/${both.length} classes with comparable
+rg output have a lower median than both baselines. The largest measured native
+gain over GNU is ${Math.max(...nativeRatio).toFixed(2)}×. Sub-millisecond
+differences and small relative margins need more samples before claiming a
+repeatable advantage; these counts describe this capture, not universal wins.
+
+| Workload | Direct GNU ms | Direct rg ms | Rust tool ms | Execution |
+| --- | ---: | ---: | ---: | --- |
+${rows.join('\n')}
+
+† Direct rg uses different GNU binary diagnostic formatting/channel or a NUL
+count terminator where GNU prints LF. Its elapsed time is retained, but that
+row is not a compatible-output speed comparison. On parallel searches rg may
+also emit the same complete result records in a different order; this is
+recorded separately. Rust retains GNU's exact order.
+
+All ${report.cases.filter(row => row.comparisons.rg.compatibleForSpeedRatio).length} classes with comparable rg output have a lower Rust-tool median.
+The two incompatible-output rows also have lower elapsed times, but they do not
+establish equivalent-output speedups. These results apply to the measured warm
+fixtures and C locale, rather than every input, platform or argument combination.
+
+## Further optimization
+
+The engine now discovers regular files without redundant serial metadata calls,
+parallelizes required access/identity checks, reuses bounded worker buffers for
+medium files, and reuses the worker pool with fewer execution barriers. Literal
+work uses up to eight workers; large regex work can use sixteen. A proven match
+in a complete first record can finish a filename search during preparation.
+Incomplete first records never provide that shortcut, and GNU output order is retained.
+
+The previous and current release were both measured with the same process timer,
+${report.methodology.warmups} warmups and ${report.methodology.measuredTrials} trials. This isolates the code change from the timer change:
+
+| Workload | Previous Rust ms | Current Rust ms | Improvement |
+| --- | ---: | ---: | ---: |
+${improvementRows.join('\n')}
+
+The [archived-release capture](rust-engine-prior-native-performance.json) identifies
+the previous qualified executable and its original compiled source hashes.
+The [previous Node-timed capture](rust-engine-previous-performance.json) retains
+the earlier published results. Its parent-side launch/capture cost is included;
+the current timer excludes Node orchestration and interpreter startup and uses
+Linux process-exit notifications without polling sleeps. Values from these two
+timing methods must not be subtracted to claim a code speedup.
+
+The [raw capture](rust-engine-performance.json) contains every sample, original
+arguments, input coverage, output hashes, engine routes and source/executable
+identities. The [initial capture](rust-engine-initial-performance.json) retains
+the slower first regex implementation for comparison; it does not qualify the
+current executable.
+
+## Build, verify and reproduce
+
+Requires Linux, Rust 1.90 or newer and GNU grep for compatibility fallbacks.
+
+\`\`\`bash
+cargo build --release --locked --manifest-path rust/Cargo.toml
+rust/target/release/grep2rg-rust -arnF 'needle' src
+node --test tests/test_rust_engine.mjs
+GREP2RG_BENCH_RG=/usr/bin/rg node tools/benchmark-rust-engine.mjs
+GREP2RG_BENCH_RG=/usr/bin/rg GREP2RG_BENCH_REPETITIONS=21 GREP2RG_BENCH_WARMUPS=3 \\
+  node tools/benchmark-rust-engine.mjs --low-overhead-timing
+node tools/render-rust-results.mjs
+\`\`\`
+
+The GNU-oracle suite checks actual release output and routes, including all
+28 measured classes, seeded byte/regex cases, parallel ordering, raw filename
+bytes, stdin, record boundaries, diagnostics and SIGPIPE. Delegating to GNU
+earns compatibility coverage but never native Rust search coverage.
+
+\`node tools/verify-rust-artifact.mjs\` separately extracts the actual npm source
+archive, checks Rust source identities and build-output exclusion, rebuilds
+that source with locked dependencies, and tests its release CLI from outside
+the checkout. CI runs this packaged-source qualification too.
+
+The [packaged qualification](rust-engine-qualification.json) records ${qualification.fullGNUComparisons.toLocaleString('en-US')} exact
+GNU comparisons: ${qualification.tests.fullGNUComparisons.toLocaleString('en-US')} suite cases, including ${qualification.tests.rustSearches.toLocaleString('en-US')} native Rust searches and ${qualification.tests.gnuFallbacks.toLocaleString('en-US')}
+GNU fallbacks, plus ${qualification.cli.fullGNUComparisons} packaged CLI checks and ${qualification.integrationTests?.fullGNUComparisons ?? 0} default CLI/private-function integration comparisons. The rebuilt package executable has
+the same SHA-256 as the release used for this timing capture.
+The eight packaged process-timer checks also pass, including complete binary
+capture, literal arguments, timeout/descendant cleanup, output limits and exit
+notification without timeout polling. The new Rust checks exercise ordered
+large-output spills, a 64-descriptor limit and complete-record shortcut boundaries.
+
+## Native scope and compatibility boundaries
+
+Native routes include fixed-pattern matching, qualified byte ERE, counts,
+inverse counts, filename listing, line numbering, fixed whole-word/whole-line
+matching and extraction, NUL-delimited records, pattern files, include filters,
+and qualified recursive/symlink-following traversal. Parallel output is bounded
+and emitted in GNU order. Tiny work and early dense filename matches can use
+the sequential path without a worker pool.
+
+Context output, default binary diagnostics, locale-sensitive cases, complex
+BRE/ERE, POSIX longest regex extraction, seekable stdin and unusual descriptors
+retain GNU where matching semantics or observable behavior have not been qualified.
+The full-class timing fixture uses \`LC_ALL=C\`; it does not establish native
+performance in every locale. \`--help\` and \`--version\` retain GNU's responses.
+
+Set \`GREP2RG_ENGINE_REPORT=/absolute/report.json\` for a separate diagnostic
+invocation. It reports the engine, strategy, fallback reason, workers and input
+size. Leave it unset for performance measurements. \`GREP2RG_ACCELERATION=gnu\`
+explicitly chooses GNU.
+
+The CLI and provider-scoped Pi Bash function prefer this host-local Rust build.
+The historical C dispatcher remains a fallback when Rust is unavailable and
+can be selected explicitly with \`GREP2RG_ENGINE=c\`. User shells and child
+scripts retain GNU. A measured loss or GNU fallback remains visible.
+`;
+writeFileSync(output, text);
+console.log(JSON.stringify({ output, capture: capturePath, nativeClasses: native.length,
+  fasterGNU: fasterGNU.length, fasterBoth: fasterBoth.length, comparableNativeClasses: both.length }));

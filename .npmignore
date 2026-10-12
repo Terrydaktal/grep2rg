@@ -1,0 +1,15 @@
+node_modules/
+artifacts/
+captures/
+cache/
+caches/
+.cache/
+.npm/
+.git/
+bin/grep2rg-native
+bin/grep2rg-native.build-*
+rust/target/
+*.log
+*.tsbuildinfo
+__pycache__/
+*.pyc

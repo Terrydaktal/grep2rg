@@ -27,7 +27,7 @@ async function entries(options, cwd) {
   return result;
 }
 
-function oracle(args, cwd, input = "needle\n") {
+function oracle(args, cwd, input) {
   const result = spawnSync("/usr/bin/grep", ["-l", "-F", "-e", "needle", ...args], {
     cwd, env: { ...process.env, LC_ALL: "C" }, encoding: "utf8", input,
   });
@@ -40,7 +40,8 @@ function oracle(args, cwd, input = "needle\n") {
 async function compare(t, options, args) {
   const cwd = await fixture(t);
   const inputs = await entries(options, cwd);
-  const native = oracle([...args, "--", ...(options.paths ?? [])], cwd);
+  const stdin = options.paths?.includes("-") || (!options.paths?.length && !options.recursive);
+  const native = oracle([...args, "--", ...(options.paths ?? [])], cwd, stdin ? "needle\n" : undefined);
   const selected = inputs.filter((input) => input.kind === "file" || input.kind === "stdin");
   // .gitignore is traversed but does not contain the selected term.
   assert.deepEqual(selected.filter((input) => !input.label.endsWith(".gitignore")).map((input) => input.label), native.stdout.split("\n").filter(Boolean));

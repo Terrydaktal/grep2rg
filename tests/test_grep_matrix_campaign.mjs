@@ -10,6 +10,7 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import test from 'node:test';
 import { planGrep } from '../src/grep-wrapper.mjs';
+import { fixture as cliFixture } from './grep_extended_helpers.mjs';
 
 const adapter = fileURLToPath(new URL('../src/grep-wrapper.mjs', import.meta.url));
 const seed = 0xc0a7e512;
@@ -186,6 +187,39 @@ test('regression: inverse regex max-count ends after exactly the trailing contex
     }
   }
   t.diagnostic(JSON.stringify({ actualComparisons: 24 }));
+});
+
+test('regression: whole-line word spans retain GNU empty delimiters and empty match colors', (t) => {
+  const f = cliFixture(t);
+  for (const [nullData, content] of [[false, 'foo\nxx\nfoo\n42\n'], [true, 'foo\0xx\0foo\x0042\0']]) {
+    const operand = nullData ? 'span-records.nul' : 'span-lines.txt'; f.put(operand, content);
+    for (const matcher of ['G', 'E', 'F']) for (const colors of ['', 'ms=:mc=:ne']) {
+      f.env.GREP_COLORS = colors;
+      for (const output of [['-o', '-n', '-b'], ['--color=always', '-n', '-H']])
+        f.compare(['-a', `-${matcher}`, ...(nullData ? ['-z'] : []), '-w', '-x', ...output,
+          '-C0', '--no-group-separator', '-e', 'foo', '--', operand],
+          { spanBroker: true });
+    }
+  }
+  f.env.GREP_COLORS = 'ms=:mc=:ne';
+  f.put('digits.txt', '42\nnone\n42\n');
+  f.compare(['-aE', '-i', '-w', '-x', '-n', '-H', '-C0', '--no-group-separator', '--color=always',
+    '-e', '[[:digit:]]+', '--', 'digits.txt'], { spanBroker: true });
+  f.env.GREP_COLORS = ''; f.put('alternatives.txt', 'alpha\nnone\nfoo\n');
+  f.compare(['-aE', '-o', '-w', '-x', '-C0', '--group-separator=next', '-e', 'foo|alpha',
+    '--', 'alternatives.txt', 'alternatives.txt'], { spanBroker: true });
+  t.diagnostic(JSON.stringify(f.diagnostic('matrix-whole-line-word-span-delimiters')));
+});
+
+test('regression: repeated NUL whole-record selections retain fixed-string extraction spans', (t) => {
+  const f = cliFixture(t);
+  f.put('repeated.nul', 'foo\0xx\0foo\0FOO\0foo\0'); f.put('empty.txt', '');
+  for (const locale of ['C', 'C.UTF-8']) for (const fold of [[], ['-i']]) {
+    for (const output of [[], ['-o'], ['-o', '-n', '-b', '-T', '-Z'], ['--color=always', '-n', '-b']])
+      f.compare(['-aF', '-z', '-x', ...fold, ...output, '-C0', '-e', 'foo', '--',
+        'empty.txt', 'repeated.nul', 'empty.txt'], { locale });
+  }
+  t.diagnostic(JSON.stringify(f.diagnostic('matrix-repeated-NUL-whole-record-spans')));
 });
 
 test(`generated GNU differential matrix (${comparisons} distinct actual CLI comparisons)`, { timeout: comparisons > 1024 ? 600000 : 180000 }, async (t) => {

@@ -1,0 +1,1551 @@
+{
+  "schemaVersion": 1,
+  "product": "grep2rg",
+  "scope": "Bounded manual map of current documented GNU option inventory and implementation routing. Every group has native passthrough when its full command is unqualified; this is not enumeration of the unbounded regex, argv, locale or filesystem universe.",
+  "claims": {
+    "universalAcceleration": false,
+    "universalSpeedup": false,
+    "finiteTestsNotProof": true,
+    "documentedInterfaceHandled": true,
+    "allCommandsUseRg": false,
+    "correctNativeOutputCountsAsAcceleration": false,
+    "scopeOfDocumentedInterface": "47 semantic option groups from the captured GNU help/manual inventory; future/unknown options pass through to installed GNU."
+  },
+  "inventory": {
+    "path": "tests/grep_option_inventory.json",
+    "sha256": "30240274660c5a947296d9873e14f5ad4194063155f68e4a346e1f9308404245",
+    "capturedGNU": "grep (GNU grep) 3.12-modified",
+    "counts": {
+      "documentedLongSpellings": 48,
+      "helpShortSpellings": 35,
+      "manualShortSpellings": 36,
+      "semanticOptions": 47,
+      "representativeVariants": 85,
+      "orderedRepresentativePairs": 7225
+    },
+    "countMeaning": "Spelling/group/case inventory counts, not percentage of GNU semantics or universal correctness."
+  },
+  "routes": [
+    {
+      "id": "qualified_rg",
+      "contract": "Actual rg evaluates original selected file/stream contents and its results determine selected-record status/output. JSON mode applies the GNU formatter; narrow fixed -l direct mode inherits rg streams. Local literal span rendering can supplement rg without a GNU original-input search.",
+      "gnuOriginalOperandsSearched": false,
+      "potentialSpeedup": true
+    },
+    {
+      "id": "hybrid_rg_gnu_candidates",
+      "contract": "Actual rg selects original-input records. Private spools contain rg match/context events and those candidate record bytes; GNU computes only their exact extraction/highlight spans, and the formatter restores original offsets/filenames. GNU never receives original file operands in this broker.",
+      "gnuOriginalOperandsSearched": false,
+      "gnuCandidateWorkRequired": true,
+      "potentialSpeedup": true,
+      "speedCaveat": "Match-heavy inputs, disk spooling and a second candidate pass may be slower than direct GNU."
+    },
+    {
+      "id": "qualified_seekable_stdin_rg",
+      "contract": "Actual rg selects records from bounded positional reads of a single explicit-text regular FD0 under finite positive -m. Original shared cursor advances only to the completed GNU position; -A does not advance it past the final selected record. No whole-suffix spool or disk writes.",
+      "gnuOriginalOperandsSearched": false,
+      "potentialSpeedup": true,
+      "completedStableCursorChecked": true,
+      "speedCaveat": "Streaming and forward cursor advancement add reads; interruption timing and concurrent updates of the same open file description are outside the completed-command oracle."
+    },
+    {
+      "id": "native_gnu",
+      "contract": "Execute installed GNU with original argv and inherited streams; preserve unsupported semantics and diagnostics. Preparation may previously have read metadata/text or run compile/calibration probes, but those do not make final native output rg acceleration.",
+      "accelerationCredit": false,
+      "originalArgvForwarded": true,
+      "originalInputSearch": "command-dependent",
+      "zeroSearchCategory": "native_no_input_search"
+    }
+  ],
+  "contributionAccounting": {
+    "plannedBackendRg": "A proposal from planGrep; preparation or availability checks may still select native. Never sufficient evidence of acceleration.",
+    "actualInputContribution": "Require a real rg invocation over original selected operands/stream that determines selected results/status or candidate records used in final output, with no original-argv GNU search replacing those results. A zero-match completed real search can still contribute status1; report its outcome separately from matching-result contribution.",
+    "compileProbes": "GNU /dev/null compilation and rg empty-input compilation validate semantics/dependencies only. Count separately; no original input contribution.",
+    "unicodeCalibration": "GNU version/identity checks, exhaustive valid-scalar synthetic corpus membership and separate NUL membership calibrate tables only. Count separately; they do not accelerate original operands by themselves.",
+    "hybridBroker": "GNU over candidate-records is semantic span evaluation and must be reported separately from original-argv GNU fallback.",
+    "discardedRg": "Compile-only, aborted/failed, compatibility-rejected or native-replaced rg work receives no successful accelerated-result credit.",
+    "testing": "Independent test recorders distinguish real rg, GNU candidate broker, GNU compile/scalar probes and original GNU searches; fault/mutant executions are verification work, not product acceleration."
+  },
+  "globalQualification": {
+    "appliesTo": "Every conditional option profile together with its full option sequence, operands, input bytes and environment. Individual option support never qualifies every combination.",
+    "ordinaryInputContract": "Output bytes, diagnostics and exit status on qualified stable inputs; no claim of identical syscall/access/atime timing or atomic filesystem snapshots.",
+    "fallbackBeforeOutput": "Parser/preparation qualifications choose original GNU before matching output and before consuming caller stdin. File metadata/text reads and synthetic calibration can occur before native selection.",
+    "postSearch": "Search/broker/protocol failures cannot safely restart original input after output or stdin consumption; controlled error paths and cleanup apply."
+  },
+  "optionProfiles": {
+    "matcher-posix": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Translate qualified BRE/ERE to PCRE2 for record selection; literal expressions may use fixed matching. General extraction/highlighting resolves GNU leftmost-longest spans only on rg-selected/context records.",
+      "nativeBoundaries": [
+        "MATCHER-GRAMMAR",
+        "LOCALE",
+        "SPAN-COMPILATION",
+        "INPUT-PROOF",
+        "BOUNDS"
+      ]
+    },
+    "matcher-fixed": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Select records with fixed matching or GNU-proved scalar closures; literal leftmost-longest rendering is local when qualified, otherwise extraction/highlighting can use candidate-only GNU spans.",
+      "nativeBoundaries": [
+        "LOCALE",
+        "INPUT-PROOF",
+        "BOUNDS"
+      ]
+    },
+    "matcher-perl": {
+      "routeClass": "conditional-rg",
+      "contract": "Use installed rg PCRE2 for qualified C/POSIX Perl expressions after empty-input compilation.",
+      "nativeBoundaries": [
+        "PERL",
+        "INPUT-PROOF",
+        "BOUNDS"
+      ]
+    },
+    "pattern": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Preserve additive newline-separated patterns and pattern-local numbered capture groups; required option values remain patterns.",
+      "nativeBoundaries": [
+        "MATCHER-GRAMMAR",
+        "LOCALE",
+        "PATTERN-FILES",
+        "BOUNDS"
+      ]
+    },
+    "pattern-file": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Resolve qualified ordinary UTF-8 pattern files before searching; preserve empty-file shortcuts and native stream/error ownership.",
+      "nativeBoundaries": [
+        "PATTERN-FILES",
+        "MATCHER-GRAMMAR",
+        "LOCALE",
+        "BOUNDS"
+      ]
+    },
+    "case": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Preserve last-option case policy; C/POSIX byte semantics or proved GNU UTF-8 scalar folding determine actual rg selection.",
+      "nativeBoundaries": [
+        "LOCALE",
+        "INPUT-PROOF",
+        "MATCHER-GRAMMAR"
+      ]
+    },
+    "word": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Implement GNU adjacent word-character tests, including non-word patterns, using byte classes or GNU scalar membership.",
+      "nativeBoundaries": [
+        "LOCALE",
+        "INPUT-PROOF"
+      ]
+    },
+    "line": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Match complete LF/NUL records with record-aware anchors; NUL records may contain embedded LF.",
+      "nativeBoundaries": [
+        "PERL",
+        "INPUT-PROOF"
+      ]
+    },
+    "null-data": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Use NUL record delimiters and preserve embedded LF, record numbers, offsets, extraction and context.",
+      "nativeBoundaries": [
+        "PERL",
+        "INPUT-PROOF",
+        "MATCHER-GRAMMAR"
+      ]
+    },
+    "no-messages": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Suppress search diagnostics as requested; discovery errors still select original GNU before actual matching.",
+      "nativeBoundaries": [
+        "FILESYSTEM",
+        "RUNTIME-FAILURE"
+      ]
+    },
+    "invert": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Preserve selected-record status independently from emitted extraction, counts and filenames.",
+      "nativeBoundaries": [
+        "UNIVERSAL-INVERT",
+        "STDIN",
+        "INPUT-PROOF"
+      ]
+    },
+    "informational": {
+      "routeClass": "native-only",
+      "contract": "Execute original GNU arguments for GNU help/version and option diagnostic precedence.",
+      "nativeBoundaries": [
+        "OPTIONS"
+      ]
+    },
+    "max-count": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Preserve per-file selected-record limits and trailing context using rg selection and formatter state.",
+      "nativeBoundaries": [
+        "NUMERIC",
+        "ZERO-COUNT",
+        "STDIN",
+        "BOUNDS"
+      ]
+    },
+    "prefix": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Format raw byte offsets, line/record numbers, original filename labels and GNU match/context delimiters.",
+      "nativeBoundaries": [
+        "FILESYSTEM",
+        "BOUNDS"
+      ]
+    },
+    "line-buffered": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Write qualified formatter output incrementally with stdout backpressure. Candidate-span rendering starts after its rg batch and GNU span pass.",
+      "nativeBoundaries": [
+        "RUNTIME-FAILURE"
+      ]
+    },
+    "filename": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Preserve last H/h policy, GNU default filename decisions and recursive operand labels.",
+      "nativeBoundaries": [
+        "FILESYSTEM",
+        "BOUNDS"
+      ]
+    },
+    "label": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Preserve the original stdin label and raw UTF-8 display bytes for qualified streams.",
+      "nativeBoundaries": [
+        "STDIN",
+        "RAW-ARGV"
+      ]
+    },
+    "extraction": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Use local literal longest-span rendering when eligible; general POSIX spans come from GNU over rg candidates rather than original operands.",
+      "nativeBoundaries": [
+        "SPAN-COMPILATION",
+        "MATCHER-GRAMMAR",
+        "LOCALE"
+      ]
+    },
+    "quiet": {
+      "routeClass": "conditional-rg",
+      "contract": "Preserve quiet output suppression and selected-match/error precedence; qualified file searches can stop after a selected record.",
+      "nativeBoundaries": [
+        "STDIN",
+        "INPUT-PROOF",
+        "FILESYSTEM"
+      ]
+    },
+    "binary-policy": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Explicit text searches select rg directly where qualified; default binary reporting and without-match require complete selected-file text proof, except the narrow fixed filename direct route.",
+      "nativeBoundaries": [
+        "INPUT-PROOF",
+        "STDIN",
+        "BOUNDS"
+      ]
+    },
+    "directories": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Preserve read/recurse/skip policy and option ordering; selected directory errors use original GNU.",
+      "nativeBoundaries": [
+        "DIRECTORY-VALUES",
+        "FILESYSTEM",
+        "BOUNDS"
+      ]
+    },
+    "devices": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Preserve read/skip choice and command-line versus descended special-file rules; selected readable special files use GNU.",
+      "nativeBoundaries": [
+        "DEVICE-VALUES",
+        "FILESYSTEM"
+      ]
+    },
+    "recursive": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Enumerate GNU-selected regular files in native directory order, including hidden/ignored files; preserve command-line symlink behavior.",
+      "nativeBoundaries": [
+        "FILESYSTEM",
+        "FILTERS",
+        "BOUNDS"
+      ]
+    },
+    "recursive-follow": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Follow interior symlinks while retaining GNU ordering and cycle diagnostics through original GNU fallback.",
+      "nativeBoundaries": [
+        "FILESYSTEM",
+        "FILTERS",
+        "BOUNDS"
+      ]
+    },
+    "filter": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Apply ordered last-matching include/exclude rules with command-line suffix versus descended basename semantics; braces remain literals.",
+      "nativeBoundaries": [
+        "FILTERS",
+        "FILESYSTEM",
+        "BOUNDS"
+      ]
+    },
+    "exclude-file": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Expand qualified exclusion files at their original position among include/exclude rules.",
+      "nativeBoundaries": [
+        "PATTERN-FILES",
+        "FILTERS",
+        "FILESYSTEM",
+        "BOUNDS"
+      ]
+    },
+    "files-mode": {
+      "routeClass": "conditional-rg",
+      "contract": "Preserve last l/L policy, emitted filename decisions, NUL filename delimiters and selected-record status. A narrow fixed -l regular-file route uses inherited rg streams.",
+      "nativeBoundaries": [
+        "STDIN",
+        "INPUT-PROOF",
+        "FILESYSTEM"
+      ]
+    },
+    "count": {
+      "routeClass": "conditional-rg",
+      "contract": "Count selected records per file, including zero counts and max-count/invert interactions.",
+      "nativeBoundaries": [
+        "STDIN",
+        "INPUT-PROOF",
+        "FILESYSTEM"
+      ]
+    },
+    "initial-tab": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Format GNU tab-aligned numeric prefixes using the selected file size and record information.",
+      "nativeBoundaries": [
+        "INPUT-PROOF",
+        "FILESYSTEM"
+      ]
+    },
+    "null-names": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Emit NUL after filename prefixes/listings independently of the LF/NUL record delimiter.",
+      "nativeBoundaries": [
+        "FILESYSTEM",
+        "RAW-ARGV"
+      ]
+    },
+    "context": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Preserve explicit A/B precedence over generic C/numeric defaults, selected/context delimiters, adjacent groups and zero-context group separators.",
+      "nativeBoundaries": [
+        "NUMERIC",
+        "STDIN",
+        "BOUNDS"
+      ]
+    },
+    "separator": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Preserve repeated separator/no-separator ordering and raw separator output.",
+      "nativeBoundaries": [
+        "RAW-ARGV"
+      ]
+    },
+    "color": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Preserve never/auto/always, TERM and GREP_COLORS capabilities; qualified POSIX highlighting uses exact candidate spans.",
+      "nativeBoundaries": [
+        "COLOR",
+        "SPAN-COMPILATION",
+        "LOCALE"
+      ]
+    },
+    "platform-binary": {
+      "routeClass": "conditional-rg-or-hybrid",
+      "contract": "Linux -U/--binary is a GNU no-op and preserves the otherwise qualified rg route; other platforms retain original GNU byte-mode handling.",
+      "nativeBoundaries": [
+        "PLATFORM"
+      ]
+    }
+  },
+  "options": [
+    {
+      "id": "extended-regexp",
+      "short": [
+        "-E"
+      ],
+      "long": [
+        "--extended-regexp"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "-E",
+        "--extended-regexp"
+      ],
+      "profile": "matcher-posix"
+    },
+    {
+      "id": "fixed-strings",
+      "short": [
+        "-F"
+      ],
+      "long": [
+        "--fixed-strings"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "-F",
+        "--fixed-strings"
+      ],
+      "profile": "matcher-fixed"
+    },
+    {
+      "id": "basic-regexp",
+      "short": [
+        "-G"
+      ],
+      "long": [
+        "--basic-regexp"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "-G",
+        "--basic-regexp"
+      ],
+      "profile": "matcher-posix"
+    },
+    {
+      "id": "perl-regexp",
+      "short": [
+        "-P"
+      ],
+      "long": [
+        "--perl-regexp"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "-P",
+        "--perl-regexp"
+      ],
+      "profile": "matcher-perl"
+    },
+    {
+      "id": "regexp",
+      "short": [
+        "-e"
+      ],
+      "long": [
+        "--regexp"
+      ],
+      "argument": "required",
+      "documentedForms": [
+        "-e VALUE",
+        "-eVALUE",
+        "--regexp=VALUE",
+        "--regexp VALUE"
+      ],
+      "profile": "pattern"
+    },
+    {
+      "id": "file",
+      "short": [
+        "-f"
+      ],
+      "long": [
+        "--file"
+      ],
+      "argument": "required",
+      "documentedForms": [
+        "-f VALUE",
+        "-fVALUE",
+        "--file=VALUE",
+        "--file VALUE"
+      ],
+      "profile": "pattern-file"
+    },
+    {
+      "id": "ignore-case",
+      "short": [
+        "-i",
+        "-y"
+      ],
+      "long": [
+        "--ignore-case"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "-i",
+        "-y",
+        "--ignore-case"
+      ],
+      "profile": "case"
+    },
+    {
+      "id": "no-ignore-case",
+      "short": [],
+      "long": [
+        "--no-ignore-case"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "--no-ignore-case"
+      ],
+      "profile": "case"
+    },
+    {
+      "id": "word-regexp",
+      "short": [
+        "-w"
+      ],
+      "long": [
+        "--word-regexp"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "-w",
+        "--word-regexp"
+      ],
+      "profile": "word"
+    },
+    {
+      "id": "line-regexp",
+      "short": [
+        "-x"
+      ],
+      "long": [
+        "--line-regexp"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "-x",
+        "--line-regexp"
+      ],
+      "profile": "line"
+    },
+    {
+      "id": "null-data",
+      "short": [
+        "-z"
+      ],
+      "long": [
+        "--null-data"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "-z",
+        "--null-data"
+      ],
+      "profile": "null-data"
+    },
+    {
+      "id": "no-messages",
+      "short": [
+        "-s"
+      ],
+      "long": [
+        "--no-messages"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "-s",
+        "--no-messages"
+      ],
+      "profile": "no-messages"
+    },
+    {
+      "id": "invert-match",
+      "short": [
+        "-v"
+      ],
+      "long": [
+        "--invert-match"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "-v",
+        "--invert-match"
+      ],
+      "profile": "invert"
+    },
+    {
+      "id": "version",
+      "short": [
+        "-V"
+      ],
+      "long": [
+        "--version"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "-V",
+        "--version"
+      ],
+      "profile": "informational"
+    },
+    {
+      "id": "help",
+      "short": [],
+      "long": [
+        "--help"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "--help"
+      ],
+      "profile": "informational"
+    },
+    {
+      "id": "max-count",
+      "short": [
+        "-m"
+      ],
+      "long": [
+        "--max-count"
+      ],
+      "argument": "required",
+      "documentedForms": [
+        "-m VALUE",
+        "-mVALUE",
+        "--max-count=VALUE",
+        "--max-count VALUE"
+      ],
+      "profile": "max-count"
+    },
+    {
+      "id": "byte-offset",
+      "short": [
+        "-b"
+      ],
+      "long": [
+        "--byte-offset"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "-b",
+        "--byte-offset"
+      ],
+      "profile": "prefix"
+    },
+    {
+      "id": "line-number",
+      "short": [
+        "-n"
+      ],
+      "long": [
+        "--line-number"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "-n",
+        "--line-number"
+      ],
+      "profile": "prefix"
+    },
+    {
+      "id": "line-buffered",
+      "short": [],
+      "long": [
+        "--line-buffered"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "--line-buffered"
+      ],
+      "profile": "line-buffered"
+    },
+    {
+      "id": "with-filename",
+      "short": [
+        "-H"
+      ],
+      "long": [
+        "--with-filename"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "-H",
+        "--with-filename"
+      ],
+      "profile": "filename"
+    },
+    {
+      "id": "no-filename",
+      "short": [
+        "-h"
+      ],
+      "long": [
+        "--no-filename"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "-h",
+        "--no-filename"
+      ],
+      "profile": "filename"
+    },
+    {
+      "id": "label",
+      "short": [],
+      "long": [
+        "--label"
+      ],
+      "argument": "required",
+      "documentedForms": [
+        "--label=VALUE",
+        "--label VALUE"
+      ],
+      "profile": "label"
+    },
+    {
+      "id": "only-matching",
+      "short": [
+        "-o"
+      ],
+      "long": [
+        "--only-matching"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "-o",
+        "--only-matching"
+      ],
+      "profile": "extraction"
+    },
+    {
+      "id": "quiet",
+      "short": [
+        "-q"
+      ],
+      "long": [
+        "--quiet",
+        "--silent"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "-q",
+        "--quiet",
+        "--silent"
+      ],
+      "profile": "quiet"
+    },
+    {
+      "id": "binary-files",
+      "short": [],
+      "long": [
+        "--binary-files"
+      ],
+      "argument": "required",
+      "documentedForms": [
+        "--binary-files=VALUE",
+        "--binary-files VALUE"
+      ],
+      "profile": "binary-policy"
+    },
+    {
+      "id": "text",
+      "short": [
+        "-a"
+      ],
+      "long": [
+        "--text"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "-a",
+        "--text"
+      ],
+      "profile": "binary-policy"
+    },
+    {
+      "id": "binary-without-match",
+      "short": [
+        "-I"
+      ],
+      "long": [],
+      "argument": "none",
+      "documentedForms": [
+        "-I"
+      ],
+      "profile": "binary-policy"
+    },
+    {
+      "id": "directories",
+      "short": [
+        "-d"
+      ],
+      "long": [
+        "--directories"
+      ],
+      "argument": "required",
+      "documentedForms": [
+        "-d VALUE",
+        "-dVALUE",
+        "--directories=VALUE",
+        "--directories VALUE"
+      ],
+      "profile": "directories"
+    },
+    {
+      "id": "devices",
+      "short": [
+        "-D"
+      ],
+      "long": [
+        "--devices"
+      ],
+      "argument": "required",
+      "documentedForms": [
+        "-D VALUE",
+        "-DVALUE",
+        "--devices=VALUE",
+        "--devices VALUE"
+      ],
+      "profile": "devices"
+    },
+    {
+      "id": "recursive",
+      "short": [
+        "-r"
+      ],
+      "long": [
+        "--recursive"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "-r",
+        "--recursive"
+      ],
+      "profile": "recursive"
+    },
+    {
+      "id": "dereference-recursive",
+      "short": [
+        "-R"
+      ],
+      "long": [
+        "--dereference-recursive"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "-R",
+        "--dereference-recursive"
+      ],
+      "profile": "recursive-follow"
+    },
+    {
+      "id": "include",
+      "short": [],
+      "long": [
+        "--include"
+      ],
+      "argument": "required",
+      "documentedForms": [
+        "--include=VALUE",
+        "--include VALUE"
+      ],
+      "profile": "filter"
+    },
+    {
+      "id": "exclude",
+      "short": [],
+      "long": [
+        "--exclude"
+      ],
+      "argument": "required",
+      "documentedForms": [
+        "--exclude=VALUE",
+        "--exclude VALUE"
+      ],
+      "profile": "filter"
+    },
+    {
+      "id": "exclude-dir",
+      "short": [],
+      "long": [
+        "--exclude-dir"
+      ],
+      "argument": "required",
+      "documentedForms": [
+        "--exclude-dir=VALUE",
+        "--exclude-dir VALUE"
+      ],
+      "profile": "filter"
+    },
+    {
+      "id": "exclude-from",
+      "short": [],
+      "long": [
+        "--exclude-from"
+      ],
+      "argument": "required",
+      "documentedForms": [
+        "--exclude-from=VALUE",
+        "--exclude-from VALUE"
+      ],
+      "profile": "exclude-file"
+    },
+    {
+      "id": "files-without-match",
+      "short": [
+        "-L"
+      ],
+      "long": [
+        "--files-without-match"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "-L",
+        "--files-without-match"
+      ],
+      "profile": "files-mode"
+    },
+    {
+      "id": "files-with-matches",
+      "short": [
+        "-l"
+      ],
+      "long": [
+        "--files-with-matches"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "-l",
+        "--files-with-matches"
+      ],
+      "profile": "files-mode"
+    },
+    {
+      "id": "count",
+      "short": [
+        "-c"
+      ],
+      "long": [
+        "--count"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "-c",
+        "--count"
+      ],
+      "profile": "count"
+    },
+    {
+      "id": "initial-tab",
+      "short": [
+        "-T"
+      ],
+      "long": [
+        "--initial-tab"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "-T",
+        "--initial-tab"
+      ],
+      "profile": "initial-tab"
+    },
+    {
+      "id": "null",
+      "short": [
+        "-Z"
+      ],
+      "long": [
+        "--null"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "-Z",
+        "--null"
+      ],
+      "profile": "null-names"
+    },
+    {
+      "id": "before-context",
+      "short": [
+        "-B"
+      ],
+      "long": [
+        "--before-context"
+      ],
+      "argument": "required",
+      "documentedForms": [
+        "-B VALUE",
+        "-BVALUE",
+        "--before-context=VALUE",
+        "--before-context VALUE"
+      ],
+      "profile": "context"
+    },
+    {
+      "id": "after-context",
+      "short": [
+        "-A"
+      ],
+      "long": [
+        "--after-context"
+      ],
+      "argument": "required",
+      "documentedForms": [
+        "-A VALUE",
+        "-AVALUE",
+        "--after-context=VALUE",
+        "--after-context VALUE"
+      ],
+      "profile": "context"
+    },
+    {
+      "id": "context",
+      "short": [
+        "-C"
+      ],
+      "long": [
+        "--context"
+      ],
+      "argument": "required",
+      "documentedForms": [
+        "-C VALUE",
+        "-CVALUE",
+        "--context=VALUE",
+        "--context VALUE"
+      ],
+      "profile": "context"
+    },
+    {
+      "id": "group-separator",
+      "short": [],
+      "long": [
+        "--group-separator"
+      ],
+      "argument": "required",
+      "documentedForms": [
+        "--group-separator=VALUE",
+        "--group-separator VALUE"
+      ],
+      "profile": "separator"
+    },
+    {
+      "id": "no-group-separator",
+      "short": [],
+      "long": [
+        "--no-group-separator"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "--no-group-separator"
+      ],
+      "profile": "separator"
+    },
+    {
+      "id": "color",
+      "short": [],
+      "long": [
+        "--color",
+        "--colour"
+      ],
+      "argument": "optional",
+      "documentedForms": [
+        "--color",
+        "--color=VALUE",
+        "--colour",
+        "--colour=VALUE"
+      ],
+      "profile": "color"
+    },
+    {
+      "id": "binary",
+      "short": [
+        "-U"
+      ],
+      "long": [
+        "--binary"
+      ],
+      "argument": "none",
+      "documentedForms": [
+        "-U",
+        "--binary"
+      ],
+      "profile": "platform-binary"
+    }
+  ],
+  "nativeBoundaries": [
+    {
+      "id": "OPTIONS",
+      "condition": "Unknown/ambiguous options, missing values, conflicting matcher history, invalid required values or GNU help/version behavior use original GNU arguments. Exact long names and unique long abbreviations are parsed; getopt permutation obeys POSIXLY_CORRECT."
+    },
+    {
+      "id": "RAW-ARGV",
+      "condition": "Public Bash and private function preserve original invalid UTF-8 argv bytes by running GNU before Node argument decoding. Valid UTF-8 argv can qualify. Direct Node string APIs cannot recover bytes already replaced by decoding."
+    },
+    {
+      "id": "CWD",
+      "condition": "Unavailable /proc/self/cwd, deleted cwd or invalid UTF-8 raw cwd runs original GNU with the inherited OS cwd before parser/file reads."
+    },
+    {
+      "id": "PLATFORM",
+      "condition": "Linux is the qualified deployment; GNU -U/--binary is a no-op here and retains the otherwise qualified rg route. Windows and non-Linux binary translation use original GNU. Linux /proc, Bash, GNU readlink, Node >=24, GNU grep and usable rg are runtime dependencies; missing rg runs GNU."
+    },
+    {
+      "id": "STDIN",
+      "condition": "Explicit-text, finite positive -m can use rg for one implicit stdin or one single - operand when FD0 is a readable, seekable, stable regular file with honest declared size. 64 KiB positional reads stream to rg without moving the shared cursor; normal completion then consumes the original only up to GNU's selected-record end, or EOF when the limit is not reached. -q/-l/-L, repeated or mixed stdin operands, pipes/FIFOs/sockets, O_PATH/O_DIRECT, dishonest proc/sysfs sizes, default binary handling, Unicode/ASCII proof-dependent streams and -f - retain original GNU."
+    },
+    {
+      "id": "NUMERIC",
+      "condition": "Only optional + followed by decimal digits qualifies; other GNU-version-specific spellings, negative values, whitespace and values above Number.MAX_SAFE_INTEGER remain native. Contiguous numeric short-option runs are generic context defaults; intervening letters end a run."
+    },
+    {
+      "id": "ZERO-COUNT",
+      "condition": "-m 0 performs GNU validation/output directly and receives no rg contribution credit."
+    },
+    {
+      "id": "PATTERN-FILES",
+      "condition": "Pattern/exclusion files must resolve to ordinary regular files or ordinary symlinks to regular files, be <=1 MiB, complete valid UTF-8 and contain no NUL. Stdin pattern files, read failures, special files, oversized/invalid byte contents, empty aggregate pattern sets and expansion bounds use GNU."
+    },
+    {
+      "id": "MATCHER-GRAMMAR",
+      "condition": "Unsupported/invalid BRE/ERE grammar stays GNU: collation/equivalence elements, GNU stray-backslash warnings, invalid POSIX class names/brackets, trailing escapes, unmatched groups, leading/repeated quantifiers, invalid interval syntax/order or repetitions >32767, PCRE-only ERE group extensions and different numbered-backreference parsing. Translation/PCRE2 compilation failure stays GNU before actual subject search."
+    },
+    {
+      "id": "PERL",
+      "condition": "Perl matching qualifies only in C/POSIX and without NUL-data. UTF-8/non-C Perl behavior, Perl -z, more than one distinct pattern, repeated-pattern matcher construction failures and unavailable/incompatible PCRE2 remain native."
+    },
+    {
+      "id": "LOCALE",
+      "condition": "C/POSIX use byte rules. Supported UTF-8 non-Perl searches can require complete valid-UTF-8 file proof and GNU scalar membership tables for folding/words/classes; a proved ASCII C.UTF-8 shortcut avoids corpus calibration. Non-UTF-8 regex encodings, insensitive backreferences, unsupported membership probes and multi-character locale collation remain native. Unicode bracket matching requires C/POSIX/C.UTF-8 collation. Effective LC_ALL/LC_CTYPE/LC_COLLATE/LANG precedence is retained."
+    },
+    {
+      "id": "UNIVERSAL-INVERT",
+      "condition": "Inverted empty-pattern universal shortcuts without word/line restriction retain native GNU behavior."
+    },
+    {
+      "id": "SPAN-COMPILATION",
+      "condition": "GNU /dev/null span compilation must complete with status0/1, no signal/error and empty stderr before rg search. Any diagnostic, warning, timeout or failed compilation triggers original GNU. GNU candidate span execution after search is hybrid semantic work, not a second original-input search."
+    },
+    {
+      "id": "INPUT-PROOF",
+      "condition": "Default binary/without-match JSON routes require complete ordinary-file text classification. C/POSIX rejects NUL unless -z makes it the delimiter; UTF-8 also rejects malformed sequences. Unicode scalar selection always requires complete valid-UTF-8 proof, even with -a. The narrow fixed filename direct route retains rg binary mode instead of this classification. Replacement/FIFO/mutation observed during proof selects GNU."
+    },
+    {
+      "id": "FILESYSTEM",
+      "condition": "A selected special input, stat/open/traversal error, recursive cycle or discovered invalid-UTF-8 filename selects original GNU before output. Device skip and directory skip may exclude those inputs according to GNU rules. No atomic snapshot exists between discovery/text proof and rg reopening operands."
+    },
+    {
+      "id": "DIRECTORY-VALUES",
+      "condition": "Exact read/recurse/skip values can qualify. GNU accepted ACTION abbreviations are preserved through original GNU, because this parser accepts only exact values."
+    },
+    {
+      "id": "DEVICE-VALUES",
+      "condition": "Exact read/skip values can qualify; invalid or release-specific values use GNU."
+    },
+    {
+      "id": "FILTERS",
+      "condition": "Unicode filename-glob arguments and collating/equivalence glob elements remain native. POSIX filename classes and ranges require both effective CTYPE and COLLATE to be C/POSIX. Ordinary ASCII literal/star/question/bracket globs otherwise use qualified adapter file selection; full root/suffix/basename semantics are independent of rg ignore rules."
+    },
+    {
+      "id": "COLOR",
+      "condition": "Invalid WHEN runs GNU help behavior. Auto color depends on actual stdout TTY and TERM. GNU capabilities come from GREP_COLORS; highlight spans require qualified local literal or candidate-only GNU selection."
+    },
+    {
+      "id": "DESCRIPTORS",
+      "condition": "Public/private Bash snapshots caller auxiliary descriptors before Node/libuv changes CLOEXEC flags; GNU/rg children inherit still-open listed and observable non-CLOEXEC descriptors. Closed standard0/1/2 run GNU before Node opens /dev/null replacements. Direct Node APIs lack the pre-Node Bash snapshot and cannot reconstruct inherited low descriptors already marked CLOEXEC."
+    },
+    {
+      "id": "BOUNDS",
+      "condition": "Exact numeric resource limits are recorded below. Crossing preparation bounds retains original GNU before output; there is no obsolete16MiB payload/4096-file text-proof cutoff."
+    },
+    {
+      "id": "RUNTIME-FAILURE",
+      "condition": "After actual rg search starts, errors/protocol faults/candidate-broker failure use controlled error status and cleanup; there is no unsafe original-input restart after output or stream consumption. Underlying rg runtime diagnostics can surface. Stable-input oracle comparisons do not prove race/error/interleaving equivalence."
+    }
+  ],
+  "resourceLimits": [
+    {
+      "id": "pattern-file-bytes",
+      "value": 1048576,
+      "unit": "bytes per pattern/exclusion file",
+      "comparison": "native if size > value",
+      "source": "src/grep-runtime.mjs:PATTERN_LIMIT"
+    },
+    {
+      "id": "selected-input-occurrences",
+      "value": 100000,
+      "unit": "descriptors including repeated operands/stdin",
+      "comparison": "native before adding occurrence100001",
+      "source": "src/grep-runtime.mjs:INPUT_LIMIT"
+    },
+    {
+      "id": "selected-label-bytes",
+      "value": 16777216,
+      "unit": "sum of UTF-8 displayed labels",
+      "comparison": "native if sum > value; payload bytes are not included",
+      "source": "src/grep-runtime.mjs:INPUT_BYTE_LIMIT"
+    },
+    {
+      "id": "translated-arguments",
+      "value": 49152,
+      "unit": "UTF-8 bytes plus one terminator per argument",
+      "comparison": "full direct-route argv and matching-argument arrays checked separately; JSON operand batches have an independent label-byte budget, not a combined49152-byte full argv guarantee",
+      "source": "src/grep-runtime.mjs:ARG_LIMIT/chunks"
+    },
+    {
+      "id": "text-proof-chunk",
+      "value": 65536,
+      "unit": "bytes",
+      "comparison": "working read chunk; complete files read to EOF with no aggregate payload cutoff",
+      "source": "src/grep-runtime.mjs:TEXT_PREFLIGHT_CHUNK"
+    },
+    {
+      "id": "exact-numeric-option",
+      "value": 9007199254740991,
+      "unit": "integer",
+      "comparison": "larger accepted decimal values use native original values rather than saturated JS counters",
+      "source": "src/grep-options.mjs:Number.MAX_SAFE_INTEGER"
+    },
+    {
+      "id": "gnu-interval-repetition",
+      "value": 32767,
+      "unit": "repetitions",
+      "comparison": "larger BRE/ERE interval endpoints use native",
+      "source": "src/grep-options.mjs:grepMatcherFallbackReasons"
+    },
+    {
+      "id": "matcher-compile",
+      "timeoutMilliseconds": 5000,
+      "maxBufferBytes": 1048576,
+      "comparison": "failed GNU span or rg PCRE/Unicode compile uses native",
+      "source": "src/grep-runtime.mjs:prepare"
+    },
+    {
+      "id": "unicode-version-probe",
+      "timeoutMilliseconds": 5000,
+      "maxBufferBytes": 65536,
+      "source": "src/grep-unicode.mjs:gnuIdentity"
+    },
+    {
+      "id": "unicode-scalar-probe",
+      "timeoutMilliseconds": 10000,
+      "maxBufferBytes": 16777216,
+      "source": "src/grep-unicode.mjs:scalarTable"
+    },
+    {
+      "id": "unicode-nul-probe",
+      "timeoutMilliseconds": 5000,
+      "maxBufferBytes": 65536,
+      "source": "src/grep-unicode.mjs:scalarTable"
+    },
+    {
+      "id": "unicode-corpus",
+      "value": 5494654,
+      "unit": "bytes",
+      "contains": "Every valid nonzero Unicode scalar once, separated by NUL; excludes surrogates; NUL itself gets a separate probe.",
+      "sha256": "975786db53b020f0eb218668c84ba316c35bda92421027175bc503a2e1c2db0d",
+      "source": "src/grep-unicode.mjs:CORPUS_SIZE/CORPUS_HASH"
+    },
+    {
+      "id": "unicode-corpus-build-chunk",
+      "value": 65536,
+      "unit": "bytes",
+      "source": "src/grep-unicode.mjs:corpus"
+    },
+    {
+      "id": "unicode-cache-table",
+      "value": 4194304,
+      "unit": "bytes per cached table read",
+      "comparison": "larger table ignored and recalibrated; no global table-count/cache-size bound",
+      "source": "src/grep-unicode.mjs:scalarTable"
+    },
+    {
+      "id": "search-threads",
+      "value": 1,
+      "unit": "rg thread per direct/JSON search",
+      "source": "src/grep-runtime.mjs:planGrep/runGrep"
+    },
+    {
+      "id": "captured-diagnostic",
+      "value": 65536,
+      "unit": "JS string code units per search/broker stderr capture",
+      "comparison": "tail beyond cap discarded; not a byte count or GNU diagnostic equivalence claim under fault injection",
+      "source": "src/grep-runtime.mjs:searchBatch; src/grep-posix-spans.mjs:replay"
+    },
+    {
+      "id": "json-route-signal-escalation",
+      "value": 250,
+      "unit": "milliseconds",
+      "comparison": "SIGKILL timer for still-running owned active child after HUP/INT/TERM; not a general daemon containment guarantee",
+      "source": "src/grep-runtime.mjs:runGrep"
+    },
+    {
+      "id": "search-duration",
+      "value": null,
+      "comparison": "No automatic duration limit for actual rg searches or GNU candidate span evaluation; cancellation applies."
+    },
+    {
+      "id": "record-memory",
+      "value": null,
+      "comparison": "No fixed input-record/JSON-event size cap; current-record buffers/pending JSON can grow with one large record. Backpressure limits queued output, not arbitrary record size."
+    },
+    {
+      "id": "candidate-spool-disk",
+      "value": null,
+      "comparison": "No fixed aggregate candidate/event/span spool byte cap; private disk usage grows with selected/context records and spans, and owned spools are removed after replay/cancellation."
+    }
+  ],
+  "genuineNativeExamples": [
+    {
+      "id": "help",
+      "argv": [
+        "--help"
+      ],
+      "reason": "GNU informational output"
+    },
+    {
+      "id": "version",
+      "argv": [
+        "-V"
+      ],
+      "reason": "GNU version output"
+    },
+    {
+      "id": "zero-count",
+      "argv": [
+        "-m",
+        "0",
+        "needle",
+        "ordinary.txt"
+      ],
+      "reason": "GNU zero-search validation"
+    },
+    {
+      "id": "stdin-max-count",
+      "argv": [
+        "-a",
+        "-m",
+        "1",
+        "needle",
+        "-"
+      ],
+      "reason": "Shared stream cannot be positionally read and restored; ordinary qualified regular stdin can instead use rg.",
+      "inputKind": "pipe, FIFO or another unqualified stdin descriptor"
+    },
+    {
+      "id": "stdin-pattern-file",
+      "argv": [
+        "-a",
+        "-f",
+        "-",
+        "ordinary.txt"
+      ],
+      "reason": "Pattern stdin ownership"
+    },
+    {
+      "id": "default-binary-stdin",
+      "argv": [
+        "needle",
+        "-"
+      ],
+      "reason": "Cannot pre-read caller stdin to prove binary classification"
+    },
+    {
+      "id": "perl-nul",
+      "argv": [
+        "-a",
+        "-Pz",
+        "needle",
+        "ordinary.txt"
+      ],
+      "reason": "GNU Perl NUL record semantics"
+    },
+    {
+      "id": "utf8-perl",
+      "argv": [
+        "-a",
+        "-P",
+        "needle",
+        "ordinary.txt"
+      ],
+      "environment": {
+        "LC_ALL": "C.UTF-8"
+      },
+      "reason": "Release-specific malformed UTF-8 Perl behavior"
+    },
+    {
+      "id": "fixed-word-line-extraction",
+      "argv": [
+        "-a",
+        "-F",
+        "-w",
+        "-x",
+        "-o",
+        "needle",
+        "ordinary.txt"
+      ],
+      "reason": "GNU release-specific fixed extraction terminators"
+    },
+    {
+      "id": "stray-backslash",
+      "argv": [
+        "-a",
+        "-E",
+        "\\q",
+        "ordinary.txt"
+      ],
+      "reason": "GNU regex warning semantics"
+    },
+    {
+      "id": "numeric-native-spelling",
+      "argv": [
+        "-m",
+        "-1",
+        "needle",
+        "ordinary.txt"
+      ],
+      "reason": "Installed GNU handles version-specific numeric spelling"
+    },
+    {
+      "id": "binary-ordinary-file",
+      "argv": [
+        "needle",
+        "contains-nul.bin"
+      ],
+      "fixtureCondition": "NUL payload and no -a/-z",
+      "reason": "Complete text proof fails"
+    },
+    {
+      "id": "raw-byte-argument",
+      "argvDisplay": [
+        "needle",
+        "<filename with invalid UTF-8 bytes>"
+      ],
+      "reason": "Bash preserves raw bytes and runs GNU"
+    },
+    {
+      "id": "raw-byte-descendant",
+      "argv": [
+        "-ar",
+        "needle",
+        "tree"
+      ],
+      "fixtureCondition": "Descended pathname contains invalid UTF-8",
+      "reason": "Adapter cannot reconstruct decoded original label"
+    },
+    {
+      "id": "unqualified-collation",
+      "argv": [
+        "-a",
+        "-E",
+        "[^a]",
+        "ordinary.txt"
+      ],
+      "environment": {
+        "LC_ALL": "cs_CZ.UTF-8"
+      },
+      "reason": "GNU multi-character bracket collation, when that locale is installed"
+    }
+  ],
+  "configurationAndScope": {
+    "publicCli": "bin/grep2rg accepts original GNU argv. Default executes GNU immediately; explicit experimental routes use Bash/readlink byte, symlink and descriptor guards.",
+    "shellPrefix": "bin/grep2rg-shell-prefix.mjs prints an absolute-path Bash definition for the caller; withGrepWrapper prepends it only for eligible Bash contexts. Function grep is explicitly not exported; command grep, absolute paths and child shells use ordinary lookup.",
+    "pi": "Normal native Bash has no hook. Exact experimental opt-in plus allowed provider enables the model-only wrapper; user shell execution remains native.",
+    "unicodeCache": "GREP2RG_UNICODE_CACHE overrides private cache directory; otherwise OS temp/grep2rg-unicode-UID. Require user-owned real directory with no group/other permissions. Corpus/tables use0600 files, identity/checksum validation and atomic replacement. Custom LD_PRELOAD/LD_LIBRARY_PATH/LOCPATH disable persistent and cross-request memory reuse.",
+    "callerDescriptors": "_GREP2RG_CALLER_FDS is private one-shot Bash snapshot metadata, consumed/deleted before child execution; no arbitrary4096 descriptor-number cap. Node-only APIs cannot retroactively preserve already-decoded argv, already-reopened standard descriptors or low descriptors without the launcher snapshot.",
+    "signals": "JSON execution handles SIGHUP/SIGINT/SIGTERM with cancellation status129/130/143, active-child cleanup and broker spool cleanup. Public/private CLI exits after cancellation cleanup; runGrep API returns status without terminating its caller. Inherited direct/native routes preserve their own ordinary process behavior."
+  },
+  "limitations": [
+    "Potential rg route is not universal acceleration or measured speedup. Startup, discovery, complete text reads, Unicode calibration, disk spools and candidate GNU work can dominate runtime.",
+    "Stable ordinary-input tests establish finite stdout/stderr/status comparisons for captured binaries/platforms. They do not prove all GNU regex, option sequences, encodings, filesystems, concurrent mutations, syscall timing or arbitrary signals.",
+    "Text preparation performs additional complete reads and metadata traversal; it can change atime/access events and early-exit I/O relative to GNU. Version checks detect observed changes, not changes occurring after proof and before rg reads.",
+    "Native execution is honest interface compatibility for unqualified commands; discarded rg or synthetic calibration is not evidence that native commands were accelerated.",
+    "Documentation points at implementation and test inventory rather than embedding a release pass claim; actual packed artifact qualification must reference matching source/artifact identities separately."
+  ],
+  "evidence": {
+    "productionSources": [
+      "src/grep-options.mjs",
+      "src/grep-files.mjs",
+      "src/grep-output.mjs",
+      "src/grep-runtime.mjs",
+      "src/grep-posix-spans.mjs",
+      "src/grep-unicode.mjs",
+      "src/grep-descriptors.mjs",
+      "src/grep-wrapper.mjs",
+      "bin/grep2rg",
+      "bin/grep2rg.mjs",
+      "bin/grep2rg-shell-prefix.mjs",
+      "pi/grep2rg.ts"
+    ],
+    "requirementInventory": "tests/grep_wrapper_requirements.json",
+    "testsByConcern": {
+      "options": [
+        "tests/test_grep_options.mjs",
+        "tests/test_grep_option_interactions.mjs"
+      ],
+      "routingAndPresentation": [
+        "tests/test_grep_wrapper.mjs",
+        "tests/test_grep_output.mjs",
+        "tests/test_grep_full_cli.mjs"
+      ],
+      "selectionAndTraversal": [
+        "tests/test_grep_files.mjs",
+        "tests/test_grep_traversal_campaign.mjs"
+      ],
+      "completeTextProof": [
+        "tests/test_grep_text_preflight.mjs"
+      ],
+      "spansAndScalarSelection": [
+        "tests/test_grep_extended_coverage.mjs",
+        "tests/test_grep_unicode.mjs"
+      ],
+      "descriptorsAndScope": [
+        "tests/test_grep_descriptors.mjs",
+        "tests/test_grep_scope.mjs"
+      ],
+      "faultsBackpressureAndMutation": [
+        "tests/test_grep_runtime_faults.mjs",
+        "tests/test_grep_extended_backpressure.mjs"
+      ],
+      "seededCampaigns": [
+        "tests/test_grep_matcher_campaign.mjs",
+        "tests/test_grep_matrix_campaign.mjs",
+        "tests/test_grep_traversal_campaign.mjs"
+      ],
+      "realArtifact": [
+        "tests/test_package_entry.mjs",
+        "tests/test_package_artifact.mjs",
+        "tools/verify.mjs",
+        "tools/verify-artifact.mjs"
+      ]
+    },
+    "existingQualificationDocuments": [
+      "docs/qualification.json",
+      "docs/expanded-qualification.json",
+      "docs/extraction-provenance.json"
+    ],
+    "evidenceInterpretation": "References identify tests and provenance. This coverage file does not assert that every referenced check passed against a newly packed release."
+  },
+  "zeroSearchCategories": [
+    {
+      "id": "native_no_input_search",
+      "route": "native_gnu",
+      "contract": "Original GNU arguments are forwarded, but no original subject search occurs when GNU performs informational output, zero-count validation or an error before reading subjects. Forwarding does not imply an input search or rg acceleration.",
+      "examples": [
+        "--help",
+        "-V/--version",
+        "-m 0",
+        "GNU option/pattern failure before subject access"
+      ],
+      "accelerationCredit": false
+    },
+    {
+      "id": "adapter_no_selected_inputs",
+      "contract": "Preparation can select zero input descriptors; the formatter completes without starting an actual rg search. A proposed rg backend alone earns no actual-input contribution credit.",
+      "accelerationCredit": false,
+      "plannedRoute": "qualified_rg"
+    }
+  ],
+  "routingPolicy": {
+    "default": "Direct original GNU before Node/preflight; normal Pi Bash remains unchanged.",
+    "experimentalOptIn": "GREP2RG_EXPERIMENTAL_RG=1 (exact value)",
+    "universallyFasterClasses": [],
+    "reason": "No existing class has a universal wall-time guarantee; explicit experiments preserve semantically qualified rg routes without automatic forcing.",
+    "verification": "Verification explicitly enables experimental routes and separately removes/overrides the flag for independent native-default tests."
+  }
+}

@@ -57,7 +57,7 @@ test("common files-only grep calls route to rg and preserve GNU ordered output",
     ["-Fl", "a+b", "a.txt"], ["-l", "a+b", "a.txt"],
     ["-l", "-e", "emma", "-e", "alpha", "b.txt", "a.txt"],
     ["-l", "-Z", "emma", "b.txt", "a.txt"]]) {
-    assert.equal(planGrep(argv, { env: { LC_ALL: "C.UTF-8" }, stat: () => ({ isDirectory: () => false, isFile: () => true }) }).backend, "rg");
+    assert.equal(planGrep(argv, { env: { GREP2RG_EXPERIMENTAL_RG: "1", LC_ALL: "C.UTF-8" }, stat: () => ({ isDirectory: () => false, isFile: () => true }) }).backend, "rg");
     parity(argv, cwd);
   }
 });
@@ -94,19 +94,24 @@ test("explicit text output preserves line numbers, filename selection and litera
     ["-Fa", "emma", "early-nul.bin"]]) parity(argv, cwd);
 });
 
-test("locale-sensitive case folding falls back instead of changing match sets", (t) => {
+test("locale-sensitive case folding requires complete UTF-8 proof and retains GNU match sets", (t) => {
   const { cwd } = fixture(t);
   const file = { isDirectory: () => false, isFile: () => true };
   for (const [pattern, path] of [["i", "dotless.txt"], ["k", "kelvin.txt"]]) {
-    assert.equal(planGrep(["-il", pattern, path], { env: { LC_ALL: "C.UTF-8" }, stat: () => file }).backend, "grep");
+    const planned = planGrep(["-il", pattern, path], { env: { GREP2RG_EXPERIMENTAL_RG: "1", LC_ALL: "C.UTF-8" }, stat: () => file });
+    assert.equal(planned.backend, "rg");
+    assert.equal(planned.requiresUnicodeSubject, true);
+    assert.equal(planned.mode, "json", "proof must run before any direct inherited rg search");
     parity(["-il", pattern, path], cwd);
   }
-  const cPlan = planGrep(["-il", "s", "long-s.txt"], { env: { LC_ALL: "C" }, stat: () => file });
+  const cPlan = planGrep(["-il", "s", "long-s.txt"], { env: { GREP2RG_EXPERIMENTAL_RG: "1", LC_ALL: "C" }, stat: () => file });
   assert.equal(cPlan.backend, "rg");
   assert.ok(cPlan.args.includes("--no-unicode"));
-  parity(["-il", "s", "long-s.txt"], cwd, { env: { LC_ALL: "C" } });
+  parity(["-il", "s", "long-s.txt"], cwd, { env: { GREP2RG_EXPERIMENTAL_RG: "1", LC_ALL: "C" } });
   parity(["-il", "s", "long-s.txt"], cwd);
-  assert.equal(planGrep(["-il", "emma", "a.txt"], { env: { LC_ALL: "tr_TR.UTF-8" }, stat: () => file }).backend, "grep");
+  const turkish = planGrep(["-il", "emma", "a.txt"], { env: { GREP2RG_EXPERIMENTAL_RG: "1", LC_ALL: "tr_TR.UTF-8" }, stat: () => file });
+  assert.equal(turkish.backend, "rg");
+  assert.equal(turkish.requiresUnicodeSubject, true, "available locale tables must be proven by GNU before searching");
 });
 
 test("binary, matcher and traversal compatibility retains GNU behavior without rejecting valid searches", (t) => {

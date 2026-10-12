@@ -24,7 +24,7 @@ jobs:
       - name: Install GNU test engines
         run: |
           sudo apt-get update
-          sudo apt-get install --yes grep ripgrep bash coreutils python3
+          sudo apt-get install --yes grep ripgrep bash coreutils python3 locales
       - name: Verify extracted npm artifact
         env:
           REQUESTED_TIER: ${{ inputs.tier || 'default' }}
@@ -42,4 +42,29 @@ jobs:
           name: grep2rg-verification
           path: artifacts/verification.json
           if-no-files-found: warn
+          retention-days: 14
+  verify-rust:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: dtolnay/rust-toolchain@1.90.0
+      - name: Install independent GNU oracle
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes grep bash coreutils
+      - name: Resolve locked Rust dependencies
+        run: cargo fetch --locked --manifest-path rust/Cargo.toml
+      - name: Verify Rust engine from the extracted source archive
+        run: node tools/verify-rust-artifact.mjs --output artifacts/rust-artifact.json
+      - name: Retain Rust qualification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: grep2rg-rust-verification
+          path: artifacts/rust-artifact.json
+          if-no-files-found: error
           retention-days: 14

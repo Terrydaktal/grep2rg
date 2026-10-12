@@ -1,3 +1,7 @@
+The default Rust route is qualified separately with `node tools/verify-rust-artifact.mjs`. It packs the real npm source, rebuilds locked Rust dependencies offline outside the checkout through `tools/build-rust.mjs`, and compares every stdout byte, stderr byte and status against GNU. It also executes the packaged CLI and private Bash function using the built Rust target, checks receipts from the actual engine, tests unavailable toolchain/build fallback, and verifies that user shells, bypasses and descendants remain GNU. Host-specific targets and Python bytecode are excluded from the package.
+
+The broader semantic verifier explicitly enables `GREP2RG_EXPERIMENTAL_RG=1`. The historical C suite explicitly selects `GREP2RG_ENGINE=c`; its counts are C compatibility evidence, not Rust route coverage. None of these finite checks proves a universal speedup.
+
 # Verification
 
 The test oracle is GNU grep. Tests execute the public CLI and compare byte
@@ -6,9 +10,11 @@ private transcripts or require model requests.
 
 ## Run order
 
-1. Install Node 24+, GNU grep, PCRE2-enabled ripgrep, Bash, GNU coreutils
-   `readlink`, Python 3, npm and tar.
-2. Run `node tools/verify.mjs --core` for focused CPU, launcher and package checks.
+1. Install Rust 1.90+, Cargo, a C compiler, Node 24+, GNU grep, PCRE2-enabled ripgrep, Bash, GNU coreutils
+   `readlink`, Python 3, npm and tar. Locale regressions also require glibc
+   `localedef`, UTF-8 charmaps and `en_GB`, `tr_TR` and `cs_CZ` definitions;
+   Debian/Ubuntu provides these in `locales`.
+2. Build `node tools/build-rust.mjs` and run `node tools/verify-rust-artifact.mjs`, then `node tools/verify.mjs --core` for focused CPU, launcher and package checks.
 3. Run `node tools/verify.mjs` for the bounded default campaigns.
 4. Run `node tools/verify.mjs --deep` for the larger campaigns before a release.
 5. Add `--sdk` when qualifying an installed Pi integration. Set
@@ -26,10 +32,12 @@ evidence. The runner's `--help` lists the complete command contract.
 
 | Campaign | Scope |
 | --- | --- |
+| Automatic native routing | Large counts/filenames/text, every inventoried option, traversal ordering, descriptor aliases, malformed rg output, buffer-limit fallback and actual packaged helper builds |
 | Matcher | Independently generated GNU regex cases and supported matcher routes |
 | Output matrix | Varied LF/NUL records, prefixes, counts, contexts, colors, inversion and early exits |
 | Traversal | Synthetic directory layouts, filters, links, operand order and input boundaries |
 | Option interactions | Every ordered pair of declared spelling representatives, finite boolean subsets, lexical cases and valued boundaries |
+| Ordinary text preflight | Actual rg execution without `-a`; complete-file NUL/encoding checks, streaming reads, descriptor cleanup and raw working directories |
 
 The option inventory is checked against the installed GNU help text. The
 interaction campaign includes both orders and repeated options within its
@@ -59,7 +67,74 @@ A qualifying run must pass without unexpected skips, truncated evidence,
 timeouts or source changes during capture. Keep failed-run evidence and
 minimized regressions when repairing a defect.
 
-## Standalone qualification
+## Earlier expanded acceleration qualification
+
+The complete-text preflight is qualified through the actual extracted npm
+archive, including its public launcher, offline installed executable and Pi
+SDK scope. Its focused executable-recorder checks include **38 ordinary text
+commands and 9 pattern/traversal cases** that must execute rg without `-a`.
+Separate GNU comparisons cover binary input, invalid UTF-8, BOM/chunk boundaries,
+stdin ownership and the aggregate byte/file bounds.
+
+The raw working-directory regression reproduces an invalid-byte directory
+beside a replacement-character sibling. Classification must not inspect the
+sibling and then let rg read a different original directory. The public CLI,
+internal dispatcher and private Bash function must all preserve native output.
+A deliberately disabled guard fails that regression; the clean guard passes.
+
+The [expanded qualification record](expanded-qualification.json) identifies
+the exact tested archive, engine versions and unchanged source/test hashes.
+The existing 30,796-case deep campaign retains the verification distinctions
+below; new focused checks do not inflate that generated-case count. Replaying
+a corpus in another environment provides compatibility evidence, not additional
+unique cases. This earlier capture predates the removal of the payload/file
+classification caps, Unicode calibration, POSIX span resolution and caller-FD
+repair. It does not qualify those later changes. Text preflight deliberately
+reads complete files;
+this qualification establishes compatibility and actual engine use, not a
+universal speedup.
+
+## Broader execution coverage
+
+The [current packaged qualification](broader-qualification.json) passed on
+11 October 2026 with **226 Node test groups per environment**: 195 core,
+24 campaign and 7 installed-Pi scope groups. The desktop and Debian VM tested
+the same immutable archive; all current implementation and test hashes match
+that capture. Neither run accepted failures, skips or changed sources.
+
+The generated corpus has **30,745 cases**: 18,745 full wrapper CLI comparisons,
+5,840 independently qualified matcher comparisons and 6,160 native-routing/GNU
+oracle cases. Of the qualified matcher cases, 359 additionally exercise JSON
+formatting. The older 30,796 aggregate included 51 named presentation checks;
+new minimized regressions are recorded separately and do not increase the
+generated-case count. Counts from plans, actual searches, GNU helpers and
+native passthrough remain separate in the capture.
+
+The newer checks separately cover streaming classification beyond the earlier
+payload/file limits, fixed-string leftmost-longest spans, candidate-only GNU
+POSIX span extraction, NUL-record anchors and context limits, GNU-derived
+Unicode case/class matching, and inherited auxiliary descriptors.
+Terminal auto-color, custom-locale replacement in a long-lived API caller,
+paused-output backpressure and cancellation have dedicated reproductions.
+The latest additions cover fixed `-F -w -x -o`, Linux `-U`/`--binary`, and
+117 completed seekable-stdin comparisons (104 actual rg searches, 13 native
+controls), plus one blocked-feed cancellation fault. The stdin comparisons
+check the shared cursor and unread tail, including trailing context, NUL records
+and the real private Bash entry point. These named checks do not increase the
+30,745 unique generated-case count.
+
+GNU comparisons require byte-identical stdout, stderr and status. Engine
+recorders distinguish actual rg searches, GNU compile/calibration probes,
+candidate-only span evaluation and original-argv GNU fallback. A proposed rg
+plan or a discarded rg call is not credited as accelerated execution. Cache
+tests use private disposable directories; descriptor tests exercise both public
+executables and the private Bash function against independent GNU commands.
+
+Option inventories cover representative spellings and interactions rather than
+claiming an exhaustive proof over every regex, locale, byte stream or filesystem
+race. GNU-only routes remain explicit and are not counted as rg acceleration.
+
+## Original standalone qualification
 
 The standalone deep suite passed from an extracted npm package on
 **11 October 2026**. Its [qualification record](qualification.json) contains

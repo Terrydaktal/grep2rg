@@ -1,7 +1,7 @@
 {
   "name": "grep2rg",
   "version": "0.1.0",
-  "description": "Run qualified GNU grep commands through ripgrep while retaining GNU grep compatibility and fallback.",
+  "description": "GNU grep-compatible searches with an integrated Rust engine and guarded GNU fallback.",
   "type": "module",
   "license": "Apache-2.0",
   "author": {
@@ -29,19 +29,29 @@
   },
   "files": [
     "src/",
-    "bin/",
+    "bin/grep2rg",
+    "bin/grep2rg.mjs",
+    "bin/grep2rg-shell-prefix.mjs",
     "pi/",
     "docs/",
     "tests/",
     "tools/",
     "README.md",
     "LICENSE",
-    "NOTICE"
+    "NOTICE",
+    "native/",
+    "rust/"
   ],
   "scripts": {
     "test": "node tools/verify.mjs",
     "test:core": "node tools/verify.mjs --core",
-    "test:deep": "node tools/verify.mjs --deep"
+    "test:deep": "node tools/verify.mjs --deep",
+    "prepare": "node tools/build-rust.mjs --optional && node tools/build-native.mjs --optional",
+    "postinstall": "node tools/build-rust.mjs --optional && node tools/build-native.mjs --optional",
+    "build:native": "node tools/build-native.mjs",
+    "build:rust": "node tools/build-rust.mjs",
+    "test:rust": "npm run build:rust && node --test tests/test_rust_engine.mjs",
+    "benchmark:rust": "node tools/benchmark-rust-engine.mjs"
   },
   "keywords": [
     "grep",

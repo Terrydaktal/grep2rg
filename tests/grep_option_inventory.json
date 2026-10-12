@@ -409,7 +409,7 @@
         "-n",
         "a:b",
         "x\ny",
-        "α"
+        "\u03b1"
       ],
       "forms": [
         "--label=VALUE",
@@ -937,7 +937,7 @@
         "GROUP",
         "\t",
         "x\ny",
-        "α"
+        "\u03b1"
       ],
       "forms": [
         "--group-separator=VALUE",
@@ -994,7 +994,7 @@
       ],
       "argument": "none",
       "helpDocumented": true,
-      "notes": "On POSIX this is an accepted no-op, not --binary-files=text; it affects text I/O on Windows.",
+      "notes": "On Linux this accepted no-op can use qualified rg paths; it does not mean --binary-files=text. Other platforms retain native GNU byte handling.",
       "forms": [
         "-U",
         "--binary"
@@ -1860,7 +1860,7 @@
     },
     {
       "id": "fixed-word-whole-line-extraction",
-      "status": "preserved with native fallback and named GNU-oracle regression",
+      "status": "qualified through actual rg selection and observed GNU candidate spans",
       "argv": [
         "-a",
         "-F",
@@ -1870,13 +1870,25 @@
         "-e",
         "foo"
       ],
-      "GNU": "Desktop GNU 3.12 emits extra record terminators for this combination; GNU release behavior is preserved independently.",
-      "adapter": "Only this fixed-string extraction combination selects native; pairwise neighbors and C-locale Perl remain qualified.",
+      "GNU": "Installed GNU releases may add record terminators for this combination; tests use actual GNU output instead of assuming a release-specific rule.",
+      "adapter": "Qualified fixed word/whole-line extraction uses actual rg selection followed by candidate-only GNU spans that preserve observed terminators and color boundaries.",
       "beforeAdapter": "Qualified fixed extraction emitted one terminator while desktop GNU emitted two for w+x+o.",
       "tests": [
         {
           "path": "tests/test_grep_options.mjs",
           "name": "regression: fixed -w -x -o preserves installed GNU extraction behavior"
+        },
+        {
+          "path": "tests/test_grep_extended_coverage.mjs",
+          "name": "fixed word and whole-line extraction uses real rg plus observed GNU candidate spans"
+        },
+        {
+          "path": "tests/test_grep_extended_coverage.mjs",
+          "name": "fixed word whole-line extraction preserves Unicode folding and scoped calls"
+        },
+        {
+          "path": "tests/test_grep_extended_coverage.mjs",
+          "name": "fixed word whole-line extraction preserves empty, punctuation and multiple pattern sources"
         },
         {
           "path": "tests/test_grep_option_interactions.mjs",
@@ -1911,6 +1923,115 @@
           "path": "tests/test_grep_option_interactions.mjs",
           "name": "GNU lexical option forms and boundary comparisons"
         }
+      ]
+    },
+    {
+      "id": "GNU-POSIX-class-validation",
+      "status": "repaired with exact GNU diagnostics regression",
+      "GNU": "Only GNU-supported POSIX classes may reach the translated BRE/ERE matcher; PCRE-only word/ascii classes are invalid GNU syntax.",
+      "tests": [
+        {
+          "path": "tests/test_grep_extended_coverage.mjs",
+          "name": "PCRE-only POSIX class names retain exact GNU BRE and ERE diagnostics"
+        }
+      ]
+    }
+  ],
+  "backendCoverage": [
+    {
+      "feature": "streaming regular-file text classification",
+      "backend": "rg after complete classification",
+      "contract": "Fixed 64 KiB working chunks; tested beyond 17 MiB and 4096 selected files. Binary/encoding/stream ownership boundaries remain explicit.",
+      "tests": [
+        "tests/test_grep_text_preflight.mjs"
+      ]
+    },
+    {
+      "feature": "UTF-8 locale folding, words and valid classes on proven ASCII subjects",
+      "backend": "rg with ASCII compatibility proof",
+      "contract": "Complete C.UTF-8 ASCII subjects avoid scalar scans; valid UTF-8 subjects use independently proved GNU scalar membership tables before actual rg. Stdin and malformed subject proof boundaries preserve original GNU.",
+      "tests": [
+        "tests/test_grep_extended_coverage.mjs"
+      ]
+    },
+    {
+      "feature": "multiple case-sensitive literal patterns with extraction or color",
+      "backend": "rg selection plus GNU literal span renderer",
+      "contract": "Leftmost-longest byte selection; literal BRE/ERE and fixed patterns; no ignore-case/word/whole-line translation claim.",
+      "tests": [
+        "tests/test_grep_extended_coverage.mjs"
+      ]
+    },
+    {
+      "feature": "NUL-record BRE/ERE selection, words and whole-record modes",
+      "backend": "rg with record-aware translation",
+      "contract": "Regular-file NUL records may contain LF; anchors and dot operate on the whole record. POSIX extraction/color uses candidate-only spans, inverse max-count context uses formatter cutoffs, malformed UTF-8 default subjects retain GNU.",
+      "tests": [
+        "tests/test_grep_extended_coverage.mjs"
+      ]
+    },
+    {
+      "feature": "Remaining collation, case-insensitive backreference, Perl NUL and special stream combinations",
+      "backend": "GNU for remaining unqualified combinations",
+      "contract": "Correct native output is not accelerated coverage. Multi-character collation/unsupported grammar, insensitive backreferences, proof-required streams and bounds remain combination-specific native boundaries."
+    },
+    {
+      "feature": "General POSIX extraction/highlighting",
+      "backend": "Actual rg record selection plus candidate-only GNU span evaluation",
+      "contract": "Only selected/context candidate records are sent to GNU span extraction after syntax validation; independent tests count actual rg, private broker, validation and original fallback separately.",
+      "tests": [
+        "tests/test_grep_extended_coverage.mjs"
+      ]
+    },
+    {
+      "feature": "Unicode fixed and ordinary BRE/ERE scalar semantics",
+      "backend": "Actual rg after GNU scalar membership proof",
+      "contract": "Native GNU supplies locale membership on an owned synthetic scalar corpus, not original subjects. Real rg searches validated operands; caches are private and identity checked. Insensitive backreferences retain original GNU.",
+      "tests": [
+        "tests/test_grep_unicode.mjs"
+      ]
+    },
+    {
+      "feature": "Auxiliary and closed standard descriptors",
+      "backend": "Descriptor-preserving rg/brokers or original GNU according to invocation",
+      "contract": "Public/private FD3,FD63,FD4097 and process substitution operands preserve exact results; closed0/1/2 retain GNU errors/status without Node replacing them.",
+      "tests": [
+        "tests/test_grep_descriptors.mjs"
+      ]
+    },
+    {
+      "feature": "Multiple BRE/ERE pattern-local numbered captures",
+      "backend": "Actual rg with branch-reset alternative grouping plus candidate spans when needed",
+      "contract": "Different capture counts in separate -e patterns preserve GNU local numbering; full CLI/scoped oracles and a semantic negative-control mutant verify record selection rather than only presentation.",
+      "tests": [
+        "tests/test_grep_extended_coverage.mjs",
+        "tests/test_grep_runtime_faults.mjs"
+      ]
+    },
+    {
+      "feature": "Fixed word and whole-line extraction across GNU release output rules",
+      "backend": "Actual rg record selection and candidate-only GNU spans",
+      "contract": "LF/NUL, ASCII/Unicode folding, empty/punctuation/repeated/newline/file pattern sources, color/empty colors, context/max-count/inverse and repeated operands preserve the independently observed GNU bytes. Private Bash cases require actual rg and candidate-only span evaluation; original GNU routing is not credited.",
+      "tests": [
+        "tests/test_grep_extended_coverage.mjs",
+        "tests/test_grep_matrix_campaign.mjs",
+        "tests/test_grep_options.mjs"
+      ]
+    },
+    {
+      "feature": "Linux -U and --binary accepted no-op",
+      "backend": "Qualified actual rg paths on Linux",
+      "contract": "Output/selection remains identical to independent GNU, including LF/NUL, byte subjects, prefixes, extraction/color, counts, names and quiet. Default binary, malformed default UTF-8, invalid syntax and early-exit stdin continue to use original GNU and receive zero rg credit. Other platforms preserve native handling.",
+      "tests": [
+        "tests/test_grep_extended_coverage.mjs"
+      ]
+    },
+    {
+      "feature": "POSIX replay backpressure and paused-consumer cancellation",
+      "backend": "Actual rg and candidate-only GNU spans with bounded output replay",
+      "contract": "Paused stdout preserves every output byte and bounded queue; public/private CLI signal exits remain bounded with spool cleanup. A no-drain copied-source mutant reproduces excess queue growth; negative-control work is not counted as product acceleration.",
+      "tests": [
+        "tests/test_grep_extended_backpressure.mjs"
       ]
     }
   ]

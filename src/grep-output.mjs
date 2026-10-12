@@ -6,6 +6,28 @@ const bytes = (value) => Buffer.isBuffer(value) ? value : Buffer.from(String(val
 const fieldBytes = (value) => value?.bytes !== undefined ? Buffer.from(value.bytes, "base64") : bytes(value?.text ?? "");
 const key = (value) => bytes(value).toString("hex");
 
+// rg selects matching records. GNU's literal extraction/highlighting additionally
+// chooses the longest needle at the earliest byte position, independently of
+// pattern ordering. Search only those selected/context records, preserving raw
+// offsets; absent needles are not rescanned for every emitted fragment.
+function literalLongestMatches(record, needles) {
+  const searches = needles.map((needle) => ({ needle, position: record.indexOf(needle) }));
+  const matches = [];
+  for (;;) {
+    let best;
+    for (const search of searches) {
+      if (search.position < 0) continue;
+      if (!best || search.position < best.position ||
+          (search.position === best.position && search.needle.length > best.needle.length)) best = search;
+    }
+    if (!best) return matches;
+    const start = best.position, end = start + best.needle.length;
+    matches.push({ start, end });
+    for (const search of searches) if (search.position >= 0 && search.position < end)
+      search.position = record.indexOf(search.needle, end);
+  }
+}
+
 function colorConfiguration(env, enabled) {
   const legacy = /^[0-9;]+$/.test(env.GREP_COLOR || "") ? env.GREP_COLOR : "";
   const caps = { ms: legacy || "01;31", mc: legacy || "01;31", sl: "", cx: "", fn: "35", ln: "32", bn: "32", se: "36", ne: false, rv: false };
@@ -42,6 +64,7 @@ export function createGrepFormatter(options, { stdout = (data) => process.stdout
   const colors = colorConfiguration(env, enabled);
   if (colors.legacyWarning) stderr(Buffer.from(colors.legacyWarning));
   const terminator = p.nullData ? NUL : LF;
+  const longestNeedles = p.fixedLongestPatterns?.map(bytes).filter((needle) => needle.length > 0);
   const contextEnabled = Boolean(p.contextRequested || p.beforeContext || p.afterContext);
   let selected = false, totalCount = 0, errors = 0, outputGroup = false;
 
@@ -169,22 +192,40 @@ export function createGrepFormatter(options, { stdout = (data) => process.stdout
       if (!context && !file.binaryNotice) { stderr(Buffer.concat([Buffer.from("grep: "), displayPath(file), Buffer.from(": binary file matches\n")])); file.binaryNotice = true; }
       return;
     }
-    const matches = message.data.submatches || [];
+    const record = raw.length && raw[raw.length - 1] === terminator[0] ? raw.subarray(0, raw.length - 1) : raw;
+    // GNU stops ordinary matching after -m and prints its remaining -A records
+    // as unsearched context. Inverse matching still identifies context spans.
+    const unsearchedTail = !p.invertMatch && file.finalContextLine !== null && Number.isFinite(line) &&
+      line > file.finalContextLine - p.afterContext;
+    // rg selects NUL records correctly with absolute whole-record anchors, but
+    // some releases omit their spans after the first selected record. A positive
+    // -x selection already proves that its complete body is the matched span.
+    const wholeRecord = p.nullData && p.lineRegexp && !p.posixSpanArgs && !p.invertMatch && !context;
+    const matches = unsearchedTail ? [] : wholeRecord ? [{ start: 0, end: record.length }] :
+      longestNeedles ? literalLongestMatches(record, longestNeedles) : message.data.submatches || [];
     const absoluteOffset = message.data.absolute_offset ?? 0;
     if (p.onlyMatching) {
       // Selected empty/negative lines still establish context groups. Inverse
       // -o has no selected fragments but can print matches in context records.
       group(file, line);
       if (context && !p.invertMatch) return;
-      const fragments = matches.filter((match) => match.end > match.start);
-      for (const match of fragments) stdout(Buffer.concat([...prefix(file, line, absoluteOffset + match.start, context), colors.paint(raw.subarray(match.start, match.end), context ? colors.caps.mc : colors.caps.ms), terminator]));
+      const fragments = matches.filter((match) => match.end > match.start || match.extraTerminators);
+      for (const match of fragments) stdout(Buffer.concat([...prefix(file, line, absoluteOffset + match.start, context),
+        colors.paint(Buffer.concat([raw.subarray(match.start, match.end),
+          ...(match.extraTerminators ? [Buffer.alloc(match.extraTerminators, terminator[0])] : [])]),
+        context ? colors.caps.mc : colors.caps.ms), terminator]));
       return;
     }
     group(file, line);
     // GNU always supplies the record terminator, including an unterminated
     // final input record. Keep CR bytes; grep does not apply rg's CRLF policy.
-    const body = raw.length && raw[raw.length - 1] === terminator[0] ? raw.subarray(0, raw.length - 1) : raw;
-    stdout(Buffer.concat([...prefix(file, line, absoluteOffset, context, body.length > 0), content(body, matches, context), terminator]));
+    const body = record;
+    const matchedTerminator = matches.some((match) => match.extraTerminators && match.end === body.length);
+    const coloredBody = matchedTerminator ? Buffer.concat([body, terminator]) : body;
+    const coloredMatches = matchedTerminator ? matches.map((match) => ({ ...match,
+      end: match.end + (match.extraTerminators && match.end === body.length ? 1 : 0) })) : matches;
+    stdout(Buffer.concat([...prefix(file, line, absoluteOffset, context, body.length > 0),
+      content(coloredBody, coloredMatches, context), ...(matchedTerminator ? [] : [terminator])]));
   }
   function finish() {
     for (const file of ordered) complete(file);

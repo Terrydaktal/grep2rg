@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "recordedAt": "2026-10-12T23:13:10.442Z",
+  "sdkRoot": "/home/lewis/.local/share/qwen-r9700/pi/0.84.2/node_modules/@earendil-works",
+  "counts": {
+    "tests": 11,
+    "pass": 11,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "sourceHashes": {
+    "src/grep-wrapper.mjs": "68e39fcd2c1c2dcb7b0833177c9ab7f8d3e1c0cec21b900871a2e7a36f2e51a3",
+    "pi/grep2rg.ts": "668577b8d530de43a2477647b99e905cf799bea3a5782479fd8c47c6212c6fb9",
+    "tests/test_grep_scope.mjs": "47466332b24f03bd70ede53fd95edb144ae18b368ada35bdac45e3aaf16eb964",
+    "tools/build-rust.mjs": "b26b57e6db626ec35d5d9de9d4a8e022a102f02fc5235a3029e8f73b3ad6add1"
+  },
+  "releaseSHA256": "73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed",
+  "checks": [
+    "default Qwen small and large model commands execute Rust",
+    "explicit experimental adapter retains rg",
+    "other providers and user ! commands use GNU",
+    "private function is not exported; child scripts and explicit bypasses use GNU"
+  ],
+  "networkRequests": 0,
+  "inferenceRequests": 0,
+  "tapSHA256": "79f59cd1aa6f4ebadad90e3934c5b23000c14eccf3b14972f70b837d39a01539"
+}

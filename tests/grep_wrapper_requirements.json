@@ -74,7 +74,7 @@
     {
       "id": "GREP-SCOPE",
       "owner": "Pi Bash tool integration",
-      "contract": "The shell-prefix helper installs a private non-exported grep function in the chosen Bash command. The optional Pi extension gates its native bash tool by exact provider name (default qwen-r9700). Other providers, Pi user ! commands, ordinary shells, explicit command/absolute-path bypasses and child scripts remain native. Quoting, globs and pipelines retain their usual semantics; non-ASCII argv retain native raw bytes.",
+      "contract": "The shell-prefix helper installs a private non-exported grep function in the chosen Bash command. The optional Pi extension gates its native bash tool by exact provider name (default qwen-r9700). Other providers, Pi user ! commands, ordinary shells, explicit command/absolute-path bypasses and child scripts remain native. Quoting, globs and pipelines retain their usual semantics; valid Unicode argv may qualify after raw UTF-8 validation, while invalid byte argv remain original GNU without JavaScript decoding.",
       "tests": [
         "tests/test_grep_wrapper.mjs",
         "tests/test_grep_scope.mjs"
@@ -161,6 +161,125 @@
       "tests": [
         "tests/test_package_artifact.mjs",
         "tests/test_package_entry.mjs"
+      ]
+    },
+    {
+      "id": "GREP-DEFAULT-TEXT",
+      "owner": "grep2rg streaming subject classification",
+      "contract": "Ordinary regular-file searches without -a and without-match binary mode may use rg only after every selected file passes complete text classification through fixed 64 KiB chunks. Payload size and selected occurrences have no former 16 MiB/4096 cutoff. NUL, malformed UTF-8 in UTF-8 locales and proof-required stdin preserve original GNU invocation before search output. Late bytes after 17 MiB and actual rg invocations are independently verified; classification still reads each selected file completely.",
+      "tests": [
+        "tests/test_grep_text_preflight.mjs"
+      ]
+    },
+    {
+      "id": "GREP-ASCII-LOCALE-PROOF",
+      "owner": "GNU locale compatibility boundary",
+      "contract": "C.UTF-8 ASCII patterns and complete ASCII subjects avoid scalar scans and use compatible C matching through actual rg. Valid Unicode subjects use separately verified GNU scalar tables; proof-required stdin stays original GNU. PCRE-only POSIX class names preserve GNU invalid-class diagnostics.",
+      "tests": [
+        "tests/test_grep_extended_coverage.mjs"
+      ]
+    },
+    {
+      "id": "GREP-LITERAL-LONGEST",
+      "owner": "GNU literal extraction and color formatter",
+      "contract": "Case-sensitive fixed or wholly literal BRE/ERE patterns without word or whole-line restrictions use real rg for selected records and reproduce GNU leftmost-longest literal byte spans for extraction/highlighting, including repeated/newline/empty needles, raw subject bytes, NUL records, and max-count trailing context. Inverted universal patterns remain an explicitly tested native boundary.",
+      "tests": [
+        "tests/test_grep_extended_coverage.mjs"
+      ]
+    },
+    {
+      "id": "GREP-NUL-RECORD-REGEX",
+      "owner": "GNU NUL-record matcher translation",
+      "contract": "BRE/ERE selection over regular NUL-separated files preserves GNU record anchors, newline-inclusive dot, whole-record and word matching through actual rg. POSIX extraction uses candidate-only spans when needed. Inverse max-count trailing context is independently compared through actual rg. Complete UTF-8 proof permits NUL delimiters and rejects malformed bytes; Perl NUL matching remains separately gated.",
+      "tests": [
+        "tests/test_grep_extended_coverage.mjs"
+      ]
+    },
+    {
+      "id": "GREP-POSIX-CANDIDATE-SPANS",
+      "owner": "GNU span broker after rg record selection",
+      "contract": "General BRE/ERE extraction and coloring obtain leftmost-longest spans only from private records actually selected by rg, preserving prefixes, NUL records, context and max-count boundaries. GNU syntax validation precedes rg and invalid syntax retains original diagnostics. Candidate-content assertions reject passing original unselected records to the span helper.",
+      "tests": [
+        "tests/test_grep_extended_coverage.mjs"
+      ]
+    },
+    {
+      "id": "GREP-SPAN-BROKER-CANCELLATION",
+      "owner": "Owned subprocess and spool cleanup",
+      "contract": "SIGINT/SIGTERM/SIGHUP cancel the owned candidate span child, reap ignored-signal helpers, remove private spools and return conventional status. Cancellation during collection publishes no partial records. Cancellation after replay begins exits public/private CLI entries even with unread stdout, without bogus truncated-JSON diagnostics.",
+      "tests": [
+        "tests/test_grep_extended_coverage.mjs",
+        "tests/test_grep_extended_backpressure.mjs"
+      ]
+    },
+    {
+      "id": "GREP-UNICODE-SCALAR-PROOF",
+      "owner": "GNU locale tables with actual rg searches",
+      "contract": "Fully validated UTF-8 regular subjects use native GNU scalar membership and case closure to translate fixed matching and ordinary BRE/ERE brackets, classes, ranges and word escapes. Tests compare Latin/Greek/Turkish/Kelvin/sigma/sharp-S cases, numbered captures and multiple patterns, NUL membership and outputs against full independent GNU invocations and require real rg searches. Invalid GNU ranges, insensitive backreferences, malformed UTF-8 and proof-required stdin remain explicit native controls. Ordinary Unicode brackets under nontrivial collation remain original GNU; an owned Czech locale independently proves multichar ch behavior.",
+      "tests": [
+        "tests/test_grep_unicode.mjs"
+      ]
+    },
+    {
+      "id": "GREP-UNICODE-CACHE-INTEGRITY",
+      "owner": "Private scalar table cache",
+      "contract": "An owned private cache avoids repeated scalar scans; corrupted tables and changed GNU executable identity force fresh proof. In one process, replacing an owned LOCPATH English locale with Turkish under the same name/path changes real rg matching according to the new GNU oracle. Custom locale tables cannot reuse stale global memory. Tests never mutate system locales, the default cache or installed programs.",
+      "tests": [
+        "tests/test_grep_unicode.mjs"
+      ]
+    },
+    {
+      "id": "GREP-CALLER-DESCRIPTORS",
+      "owner": "Bash and child descriptor inheritance",
+      "contract": "Public and private calls preserve auxiliary FD3, FD63 and FD4097 for operands/patterns/process substitutions without exposing closed descriptors. Span-helper files coexist with caller descriptors. Closed standard input/output/error retain exact GNU output, errors and status through direct executables without recording wrappers.",
+      "tests": [
+        "tests/test_grep_descriptors.mjs"
+      ]
+    },
+    {
+      "id": "GREP-PATTERN-LOCAL-CAPTURES",
+      "owner": "GNU multi-pattern BRE/ERE translation",
+      "contract": "Each GNU -e pattern retains its own numbered backreferences when rg combines alternatives, including different one/two/three capture counts, extraction, color/context, C and C.UTF-8, and the private Bash route. A disposable source mutant disabling branch-reset grouping is rejected by a full GNU output oracle without syntax failures.",
+      "tests": [
+        "tests/test_grep_extended_coverage.mjs",
+        "tests/test_grep_runtime_faults.mjs"
+      ]
+    },
+    {
+      "id": "GREP-FIXED-WORD-WHOLE-LINE-EXTRACTION",
+      "owner": "rg record selection and GNU candidate span adapter",
+      "contract": "Qualified -F -w -x -o uses actual rg selection and candidate-only GNU spans, preserving release-specific record terminators and color boundaries. Independent full GNU comparisons cover LF/NUL, empty/punctuation/repeated/newline/file pattern sources, prefixes, empty colors, C/C.UTF-8 folding, Unicode private Bash calls, inverse/max-count/context and repeated operands. Existing full finite option subsets retain exact GNU mismatch assertions.",
+      "tests": [
+        "tests/test_grep_extended_coverage.mjs",
+        "tests/test_grep_matrix_campaign.mjs",
+        "tests/test_grep_options.mjs",
+        "tests/test_grep_option_interactions.mjs"
+      ]
+    },
+    {
+      "id": "GREP-LINUX-BINARY-I-O-FLAG",
+      "owner": "Linux GNU accepted option semantics",
+      "contract": "Linux -U/--binary is an accepted no-op and qualified cases execute real rg. Exact GNU oracles cover selection, prefixes, extraction/color, context, counts, names, quiet, NUL and raw subject bytes. Binary detection, malformed default UTF-8, invalid syntax and early-exit stdin retain original GNU with no engine credit; non-Linux platforms remain native.",
+      "tests": [
+        "tests/test_grep_extended_coverage.mjs"
+      ]
+    },
+    {
+      "id": "GREP-POSIX-REPLAY-BACKPRESSURE",
+      "owner": "GNU span replay output flow",
+      "contract": "After real rg selection and private GNU spans, replay honors stdout drain between formatter records. A paused owned sink keeps the normal writable queue within128KiB while output remains byte-exact to GNU; a disposable no-drain source mutant exceeds the bound. Product and negative-control comparisons/invocations are counted separately.",
+      "tests": [
+        "tests/test_grep_extended_backpressure.mjs"
+      ]
+    },
+    {
+      "id": "GREP-MEASURED-AUTOMATIC-NATIVE",
+      "owner": "native aggregate/text dispatcher and shared Bash/CLI lane",
+      "contract": "Automatic routes use native parse/metadata and parallel rg without Node; compatible large aggregate and sparse explicit-text workloads retain exact GNU output bytes, order, diagnostics and status. Bounded record reads/output publication, scale/dense short-circuit/unsafe syntax/stream/locale/error boundaries select original GNU. Finite option audit and real CLI/function timings include startup, metadata and output ordering. Optional experimental adapter remains independently verified.",
+      "tests": [
+        "tests/test_grep_auto_native.mjs",
+        "tests/test_grep_routing_policy.mjs",
+        "tests/test_package_artifact.mjs"
       ]
     }
   ]

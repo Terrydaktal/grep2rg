@@ -157,8 +157,12 @@ test("invalid GNU options and untranslatable semantics go unchanged to GNU", (t)
     ['-av', 'foo', 'binary'], ['-P', '-efoo', '-ebar', 'a.txt'],
   ]) parity(argv, cwd);
   for (const argv of [['--help'], ['--version']]) parity(argv, cwd);
-  assert.equal(plan(['foo', 'binary'], cwd).backend, 'grep');
-  assert.equal(plan(['-I', 'foo', 'binary'], cwd).backend, 'grep');
+  // Pure routing now proposes a bounded complete-text preflight; runGrep still
+  // delegates these actual NUL-containing subjects to GNU before matching.
+  for (const argv of [['foo', 'binary'], ['-I', 'foo', 'binary']]) {
+    assert.equal(plan(argv, cwd).backend, 'rg');
+    assert.equal(plan(argv, cwd).requiresTextPreflight, true);
+  }
 });
 
 test("long forms, abbreviations, numeric contexts and POSIX argument ordering match GNU", (t) => {
@@ -224,9 +228,9 @@ test("Bash byte guard preserves invalid filename bytes and Unicode arguments wit
   writeFileSync(Buffer.concat([Buffer.from(cwd + '/'), Buffer.from([0xff]), Buffer.from('.txt')]), 'foo\n');
   put('π.txt', 'café\nfoo\n');
   const env = { PATH: bin, LC_ALL: 'C.UTF-8', GREP2RG_TEST_RECORD: record };
-  for (const command of [
-    String.raw`grep -aH foo $'\xff.txt'; printf '\nLC_ALL=%s\n' "$LC_ALL"`,
-    String.raw`grep -aH café π.txt; printf '\nLC_ALL=%s\n' "$LC_ALL"`,
+  for (const [command, shouldAccelerate] of [
+    [String.raw`grep -aH foo $'\xff.txt'; printf '\nLC_ALL=%s\n' "$LC_ALL"`, false],
+    [String.raw`grep -aH café π.txt; printf '\nLC_ALL=%s\n' "$LC_ALL"`, true],
   ]) {
     const expected = invoke('/usr/bin/bash', ['-c', command], cwd, { env });
     const wrapped = withGrepWrapper({ command, cwd }, '/usr/bin/bash');
@@ -235,7 +239,8 @@ test("Bash byte guard preserves invalid filename bytes and Unicode arguments wit
     assert.deepEqual(actual.stdout, expected.stdout);
     assert.deepEqual(actual.stderr, expected.stderr);
     assert.match(actual.stdout.toString(), /LC_ALL=C\.UTF-8\n$/);
-    assert.equal(existsSync(record), false, 'non-ASCII argv must reach GNU before Node decodes it');
+    assert.equal(existsSync(record), shouldAccelerate, 'invalid argv bytes stay GNU; valid Unicode reaches actual rg after raw UTF-8 validation');
+    if (shouldAccelerate) assert.match(readFileSync(record, 'utf8'), /^rg\n/);
   }
   const command = String.raw`grep -an foo a.txt; printf '\nLC_ALL=%s\n' "$LC_ALL"`;
   const expected = invoke('/usr/bin/bash', ['-c', command], cwd, { env });

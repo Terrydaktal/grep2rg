@@ -7,4 +7,10 @@ node_modules/
 /.npm/
 *.log
 *.tsbuildinfo
+__pycache__/
+*.pyc
 .DS_Store
+
+/bin/grep2rg-native
+/bin/grep2rg-native.build-*
+/rust/target/

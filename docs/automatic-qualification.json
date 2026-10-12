@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 1,
+  "scope": "Final native automatic routing qualification on owned synthetic inputs; existing semantic adapter regressions included. No private transcripts, Google queries, model inference or GPU work. Bounded testing does not establish every possible input combination or a universal performance win.",
+  "startedAt": "2026-10-12T00:29:32.516Z",
+  "finishedAt": "2026-10-12T00:33:29.650Z",
+  "passed": true,
+  "sourceChanged": false,
+  "command": "GREP2RG_TEST_PI_ROOT=<installed node_modules/@earendil-works> node tools/verify.mjs --core --sdk --output artifacts/automatic-core-sdk.json",
+  "nodeTests": 218,
+  "stages": [
+    {
+      "name": "core",
+      "files": [
+        "test_grep_auto_native.mjs",
+        "test_grep_options.mjs",
+        "test_grep_files.mjs",
+        "test_grep_output.mjs",
+        "test_grep_full_cli.mjs",
+        "test_grep_wrapper.mjs",
+        "test_grep_runtime_faults.mjs",
+        "test_grep_text_preflight.mjs",
+        "test_grep_seekable_stdin.mjs",
+        "test_grep_extended_coverage.mjs",
+        "test_grep_extended_backpressure.mjs",
+        "test_grep_unicode.mjs",
+        "test_grep_descriptors.mjs",
+        "test_grep_routing_policy.mjs",
+        "test_grep_scope.mjs",
+        "test_package_entry.mjs",
+        "test_package_artifact.mjs"
+      ],
+      "counts": {
+        "tests": 210,
+        "suites": 0,
+        "pass": 210,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "durationMs": 235886,
+      "passed": true,
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "interrupted": false,
+      "logTruncated": false
+    },
+    {
+      "name": "installed Pi native Bash scope",
+      "files": [
+        "test_grep_scope.mjs"
+      ],
+      "counts": {
+        "tests": 8,
+        "suites": 0,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "durationMs": 1190,
+      "passed": true,
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "interrupted": false,
+      "logTruncated": false
+    }
+  ],
+  "nativeAutomaticOracle": {
+    "campaign": "native-auto-lane",
+    "actualGNUComparisons": 528,
+    "acceleratedNativeInvocations": 288,
+    "allStdoutStderrStatusExact": true
+  },
+  "package": {
+    "tarballSHA256": "6e5cc717a5bdfd3ea466c9aacd09e47fcc163c2ba2cdb1ff5fbbe8f2b18f3efa",
+    "npmIntegrity": "sha512-+UsJ5LPaqNDUfPJZ8h+dRp36HMA12DxIJ4YTvKgD7InEFEPGzqMDPc9RbU9ZrPqIBFc1YBoNnT5cp97akCQakA==",
+    "sourceFilesMatched": 47,
+    "hostBinaryShipped": false,
+    "targetBuilds": [
+      "extracted shipped C with build-native.mjs",
+      "offline npm postinstall of the same hash-checked source archive"
+    ],
+    "entryNodeTestsPerTarget": 5,
+    "nativeAutomaticSuitePerTarget": "tests/test_grep_auto_native.mjs, 15 groups, recompiled on each target",
+    "scope": "Archive captured during the successful gate. Later qualification-record and README evidence-link edits are documentation only; implementation identities below remain unchanged."
+  },
+  "actualPiSdk": {
+    "campaign": "pi-sdk-scope",
+    "actualRgInvocations": 8,
+    "networkRequests": 0,
+    "inferenceRequests": 0,
+    "extension": "pi/grep2rg.ts",
+    "nativeToolName": "bash"
+  },
+  "routingInventory": {
+    "semanticOptions": 47,
+    "representativeVariants": 85,
+    "interactionFamilies": 12
+  },
+  "performance": {
+    "file": "docs/automatic-performance.json",
+    "SHA256": "a108cb04cb94dff42be5c6ee8ccaf3208f194b3fd703c322f83dc96ca0cc0aa6",
+    "classes": 28,
+    "repetitionsPerEngine": 7,
+    "exactOutputStatusStderrComparisons": 532,
+    "scope": "Rotated seven-run warm-cache synthetic public CLI and private Bash function timing. All wrapper and child process startup, metadata, parallel search and ordered aggregate/full-line rendering included. GNU output/status/stderr checked independently on every sample. No universal hardware/input speed claim.",
+    "sourceHashes": {
+      "native/grep2rg.c": "150e0526453a508974bfbefcd9c93f96832de18392643c9dfb02328d325ea31e",
+      "bin/grep2rg": "cc1f793796fe59d835523c64c28fc841e0db4d4b631a8256bca0b8f7a90bb737",
+      "src/grep-wrapper.mjs": "59d38422a4ce8e0efb2b0aff2ac2ce3a1d8fff474bff63ea90d689b84b5c21bd",
+      "tools/build-native.mjs": "859c38df2499a6d3e408e0dbb223daf174c800f7299547e3a0f56116935cb754",
+      "tools/benchmark-routing.mjs": "212a93366924776651d5ace77ee813924a8d3337b1eb49f6d447f70078c89aa5",
+      "bin/grep2rg-native": "85bd4d7d075e10a4aad14d3caa08b424282562da9de8e175af2bc072c073933d"
+    }
+  },
+  "versions": {
+    "node": "v26.4.0",
+    "GNU": "grep (GNU grep) 3.12-modified\nCopyright (C) 2025 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n\nWritten by Mike Haertel and others; see\n<https://git.savannah.gnu.org/cgit/grep.git/tree/AUTHORS>.\n\ngrep -P uses PCRE2 10.47 2025-10-21",
+    "rg": "ripgrep 15.1.0 (rev 6e6b29e490)\n\nfeatures:+pcre2\nsimd(compile):+SSE2,+SSSE3,+AVX2\nsimd(runtime):+SSE2,+SSSE3,+AVX2\n\nPCRE2 10.45 is available (JIT is available)",
+    "pcre2": "PCRE2 10.45 is available (JIT is available)",
+    "python": "Python 3.14.6",
+    "bash": "GNU bash, version 5.3.15(1)-release (x86_64-pc-linux-gnu)\nCopyright (C) 2025 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\n\nThis is free software; you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.",
+    "readlink": "readlink (GNU coreutils) 9.11\nCopyright (C) 2026 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n\nWritten by Dmitry V. Levin.",
+    "npm": "12.0.2",
+    "tar": "tar (GNU tar) 1.35\nCopyright (C) 2023 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n\nWritten by John Gilmore and Jay Fenlason."
+  },
+  "sourceHashes": {
+    "bin/grep2rg": "cc1f793796fe59d835523c64c28fc841e0db4d4b631a8256bca0b8f7a90bb737",
+    "bin/grep2rg-shell-prefix.mjs": "a7a77f98eb27cf461116553032018175a190c0c108f6624b59c77cf6ced95c23",
+    "bin/grep2rg.mjs": "e9137711934ec93500258f71900df639de5627864ae1efb9313b18c6128f0376",
+    "docs/automatic-routing-audit.json": "fb9909d67b15758c658ce8361a2bb7da74ea2881956c37716bd15b72893f7564",
+    "native/grep2rg.c": "150e0526453a508974bfbefcd9c93f96832de18392643c9dfb02328d325ea31e",
+    "package.json": "585b0a84ca255edd68e0397b2aa303e3c7e2f822089aec3d5820b6dac0495334",
+    "pi/grep2rg.ts": "668577b8d530de43a2477647b99e905cf799bea3a5782479fd8c47c6212c6fb9",
+    "src/grep-descriptors.mjs": "ec10e6c7be02fa1dc568690d435d5feefbb1e4a1d483e56770cac90704080d53",
+    "src/grep-files.mjs": "f1fe1c250f31b0714f72d66ca825cb6ebe9ab85840da266b435003f5e500d7e8",
+    "src/grep-options.mjs": "d5dfd85b6a5afb2888d8ff5ede3b57d015a1f023f4b9ef1df12a0ca0b8a3aafd",
+    "src/grep-output.mjs": "b612ce55a24dac95d313cc54422945c1385728ab5b37b5e933c4bc42003e2d75",
+    "src/grep-posix-spans.mjs": "379eae7e002dc51e0ce3d2f806b7a0cef5b9afb31b888873904abf1db7d7db97",
+    "src/grep-runtime.mjs": "0a9cd20f95924b22034f5219818b5fa25884f53c90f8af8800c51301b8675795",
+    "src/grep-stdin.mjs": "9580feef2493a16ffd520a7b62705d893c26f6c4a13124560466a964387e8e56",
+    "src/grep-unicode.mjs": "37f6f0bd08b40d13b837052327a7989930cea9547a98e0d3722bd2cbd4642a30",
+    "src/grep-wrapper.mjs": "59d38422a4ce8e0efb2b0aff2ac2ce3a1d8fff474bff63ea90d689b84b5c21bd",
+    "tests/grep_extended_helpers.mjs": "974cab0bfd5274f1b6eacfecc327007903475e44d276898d027c45faeca62e1d",
+    "tests/grep_option_inventory.json": "83b7776c7e5417f64eea7379d476b8a6af23284db7b3b831d67ab833f00916a1",
+    "tests/grep_wrapper_requirements.json": "28fe282ead773dc90b5eaf52eacac2b668999c24d173ded96b53c635a18df8d6",
+    "tests/port_source_manifest.json": "377ee383d9649735f4c48ecbea6a8daf8add92aabd39bc022fe3584d11419692",
+    "tests/test_grep_auto_native.mjs": "9c8a8a6d32bcd2220f4aa05baf16e40d8b6b71d70b793310449f440d0c350076",
+    "tests/test_grep_descriptors.mjs": "e8833c7a2482e5dd80abf42cfc8eea8de98eb392c8a4860d124d39794b95da08",
+    "tests/test_grep_extended_backpressure.mjs": "e58c5195b1ada77dd717bc715d22b0f4d25386a4468a3fcd7a5ceca901b72588",
+    "tests/test_grep_extended_coverage.mjs": "c8f4624b1aea8aee33092f7970a81da2ee19429465d228ec4f52c380687bffae",
+    "tests/test_grep_files.mjs": "74454755493080714cb5bd3ecdfa3204c72d7fa8d8034e0744beb83466aa3f45",
+    "tests/test_grep_full_cli.mjs": "d06f20bb3159da18afd5faff264510aae499e50ede4d3847ad891034328fd090",
+    "tests/test_grep_options.mjs": "ce98a878ccced53cf4f93b1daafe71202807a3f22ac1c3cf5bd8830a1667ecb0",
+    "tests/test_grep_output.mjs": "7a9713a0678f6ac2c5d76b6e6276070f3f5aeee6eda5921f802bb591c1df5623",
+    "tests/test_grep_routing_policy.mjs": "834a43ca239c24c87d95cb74838e45ca583892bab60fabe4e5f5da63fca7dd64",
+    "tests/test_grep_runtime_faults.mjs": "558c90def07925d27cfb6cb14e3f93e4b44cfd58822e082c5c60060a97ea8d34",
+    "tests/test_grep_scope.mjs": "d09d8861f0ad9703ed7aa9471082d31d8fa166def2e6479472684e21f8c45275",
+    "tests/test_grep_seekable_stdin.mjs": "890718fb1305e9ca04f6ffcb4e16d630f186b9169e7427b5eca3eab71f2e8f25",
+    "tests/test_grep_text_preflight.mjs": "e70b04b21fc4f8cd82c4a1a689d8bb77a3fd726ced9475d49b30e6aaf27bf405",
+    "tests/test_grep_unicode.mjs": "5557cad35f5e42d711c1910679770573044fd49a2d2a0675a67ce7dd20feb78f",
+    "tests/test_grep_wrapper.mjs": "b8a094d9de4caf85af2095d68006efa3aa297b7afdb3aaa060307936ef393929",
+    "tests/test_package_artifact.mjs": "6b247bda6817fc12dd79aec6835327fef8b6d17b09b947d029785651ad5b6dca",
+    "tests/test_package_entry.mjs": "eb34c6a3f9e5e3eeb36ed6fd190376310c8f3787a49ad66625dd81c975b489f5",
+    "tools/build-native.mjs": "859c38df2499a6d3e408e0dbb223daf174c800f7299547e3a0f56116935cb754",
+    "tools/verify-artifact.mjs": "9a11d503d80d1961a38563e43b636546ed4f05f11e11940b38e4ff8146962936",
+    "tools/verify.mjs": "a36c057f26ba34e57a72d6c847f2eb19f0b6a238390dc9bdc3714980ac89e4f7"
+  },
+  "rawReport": {
+    "path": "artifacts/automatic-core-sdk.json",
+    "SHA256": "f13a2260db14cd5456e86e967af11b2d5f05a8bdd238e3105f428b32c132007f",
+    "publication": "ignored local report; all retained diagnostics concern synthetic fixtures"
+  },
+  "counting": "218 top-level Node groups = 210 core + 8 SDK. Each packed target repeats the same native and entry cases; repeated package executions are not added as unique coverage. Native oracle observations and timing observations are reported separately."
+}

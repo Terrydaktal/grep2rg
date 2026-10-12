@@ -8,11 +8,13 @@ import { closeSync, mkdtempSync, openSync, readFileSync, rmSync, writeFileSync }
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { after, test } from "node:test";
+import { pathToFileURL } from "node:url";
 import {
   buildGrepMatcherArgs, grepMatcherFallbackReasons, parseGrepOptions,
   resolveGrepPatterns,
 } from "../src/grep-options.mjs";
 import { createGrepFormatter } from "../src/grep-output.mjs";
+import { fixture as cliFixture } from "./grep_extended_helpers.mjs";
 
 const SEED = 0x4729ac2e;
 const DEEP = process.env.GREP2RG_DEEP === "1";
@@ -207,23 +209,39 @@ test("regression: empty -o fragments select records but emit no GNU output", asy
   }
 });
 
-test("regression: NUL-record regex anchors and dot route before internal newlines are read", async () => {
-  const env = ENVIRONMENTS[0];
-  for (const mode of ["G", "E", "P"]) for (const pattern of ["^a$", ".", String.raw`a\b`]) {
-    const selected = await route({ mode, patterns: [pattern] }, ["-z"], env, new Map());
-    assert.match(selected.reasons.join(" "), /NUL-record/);
+test("regression: NUL-record regex anchors and dot preserve complete records through real rg", async (t) => {
+  const f = cliFixture(t), env = ENVIRONMENTS[0];
+  const subjects = [Buffer.from("\na\n\0a\0\0"), Buffer.from("a\nb\0a\n\0b\0"),
+    Buffer.from("a\0bar a!\0a_b\0"), Buffer.from([0xff, 10, 97, 0, 97, 10, 0xfe, 0])];
+  for (const [index, subject] of subjects.entries()) {
+    const operand = `nul-${index}`; f.put(operand, subject);
+    for (const mode of ["G", "E"]) for (const pattern of ["^a$", ".", String.raw`a\b`]) {
+      f.compare(["-a", `-${mode}`, "-z", "-e", pattern, "--", operand]);
+    }
+    for (const flags of [["-z"], ["-z", "-x"], ["-z", "-w"]])
+      f.compare(["-aF", ...flags, "-e", "a", "--", operand]);
+    // Perl has separate newline conventions and remains an explicit native
+    // control; every comparison still checks complete GNU bytes and status.
+    for (const pattern of ["^a$", ".", String.raw`a\b`])
+      f.compare(["-aP", "-z", "-e", pattern, "--", operand], { accelerated: false });
   }
-  for (const flags of [["-z", "-x"], ["-z", "-w"]]) {
-    const selected = await route({ mode: "F", patterns: ["a"] }, flags, env, new Map());
-    assert.match(selected.reasons.join(" "), /NUL-record/);
-  }
-  const selected = await route({ mode: "F", patterns: ["a"] }, ["-z"], env, new Map());
-  assert.deepEqual(selected.reasons, []);
-  for (const subject of [Buffer.from("\na\n"), Buffer.from("a\0b\0"), Buffer.from("a\nb\0")]) {
-    const expected = run("/usr/bin/grep", selected.argv, subject, env);
-    const actual = run("rg", selected.args, subject, env);
-    assert.equal(actual.status, expected.status); assert.deepEqual(actual.stdout, expected.stdout);
-  }
+
+  const original = readFileSync(new URL("../src/grep-options.mjs", import.meta.url), "utf8");
+  const marker = 'return `(?s-m:${result})`;';
+  assert.ok(original.includes(marker), "negative control must change the actual NUL dot translation");
+  const mutantPath = join(f.cwd, "no-nul-dotall.mjs");
+  writeFileSync(mutantPath, original.replace(marker, 'return `(?-s:${result})`;'));
+  const mutant = await import(pathToFileURL(mutantPath).href);
+  const argv = ["-aE", "-z", "-e", "^a.b$"], subject = Buffer.from("a\nb\0");
+  const options = mutant.parseGrepOptions(argv, { env });
+  const patterns = await mutant.resolveGrepPatterns(options);
+  const expected = run("/usr/bin/grep", argv, subject, env);
+  const actual = run("rg", [...BASE_RG, ...mutant.buildGrepMatcherArgs(options, patterns, { env })], subject, env);
+  assert.equal(expected.status, 0); assert.deepEqual(expected.stdout, subject);
+  assert.deepEqual(actual.stderr, Buffer.alloc(0), "negative control must fail semantically, not compilation");
+  assert.notDeepEqual(summary(actual), summary(expected), "GNU comparison must reject a missing dot-all translation");
+  t.diagnostic(JSON.stringify({ ...f.diagnostic("matcher-NUL-record-CLI"),
+    negativeControlGNUComparisons: 1, negativeControlRgInvocations: 1, semanticNegativeControlRejected: true }));
 });
 
 test("duplicate pattern metamorphism preserves selected output across all matcher modes", async (t) => {

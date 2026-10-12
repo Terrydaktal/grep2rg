@@ -10,7 +10,7 @@ import test from 'node:test';
 const root = resolve(process.env.GREP2RG_TEST_PACKAGE_ROOT ?? fileURLToPath(new URL('../', import.meta.url)));
 const cli = process.env.GREP2RG_TEST_ENTRY_BIN ?? join(root, 'bin/grep2rg');
 const prefixCli = process.env.GREP2RG_TEST_PREFIX_BIN ?? join(root, 'bin/grep2rg-shell-prefix.mjs');
-const baseEnv = { ...process.env, LC_ALL: 'C', LANG: 'C', TERM: 'xterm', GREP_COLORS: '', GREP_COLOR: '' };
+const baseEnv = { ...process.env, GREP2RG_EXPERIMENTAL_RG: '1', LC_ALL: 'C', LANG: 'C', TERM: 'xterm', GREP_COLORS: '', GREP_COLOR: '' };
 delete baseEnv.POSIXLY_CORRECT;
 
 function invoke(program, args, cwd, { input, env = baseEnv } = {}) {
@@ -48,26 +48,50 @@ function prefix(program, cwd, env) {
 }
 const bash = (command, current) => invoke('/usr/bin/bash', ['--noprofile', '--norc', '-c', command], current.cwd, { env: current.env });
 
+test('installed public executable keeps small and invalid calls native without an experiment', (t) => {
+  const current = fixture(t), { cwd } = current;
+  const cases = [['-aFn', 'needle', 'first.txt'], ['-aF', 'absent', 'first.txt'],
+    ['-aF', 'needle', 'missing'], ['--invalid-owned-policy-flag']];
+  for (const value of [undefined, '', '0', 'true', 'yes', '2']) {
+    const env = { ...current.env }; delete env.GREP2RG_EXPERIMENTAL_RG;
+    if (value !== undefined) env.GREP2RG_EXPERIMENTAL_RG = value;
+    for (const argv of cases)
+      exact(invoke(cli, argv, cwd, { env }), invoke('/usr/bin/grep', argv, cwd, { env }), JSON.stringify(argv));
+  }
+  assert.equal(current.calls(), 0, 'packaged small/invalid cases never launch rg');
+  t.diagnostic(JSON.stringify({ campaign: 'packaged-default-GNU-policy', actualGNUComparisons: 24, actualRgInvocations: 0 }));
+});
+
 test('installed grep2rg preserves GNU arguments, binary stdout, diagnostics, status and stdin', (t) => {
   const current = fixture(t), { cwd } = current;
   const stdin = Buffer.from('head\nneedle needle\nother\nneedle\ntail');
+  // Only genuine stdin consumers receive a payload. Informational, invalid and
+  // file-only commands may close their input immediately; writing to those
+  // unrelated pipes introduces an EPIPE race in the oracle harness itself.
   const cases = [
-    ['--help'], ['--version'], ['--definitely-invalid'], ['-m'], [],
-    ['-aF', 'needle', 'first.txt'], ['-aFnbo', 'needle', 'first.txt'],
-    ['-aFHnC1', 'needle', 'first.txt', 'second.txt'], ['-aFc', 'needle', 'first.txt', 'first.txt'],
-    ['-aFlZ', 'needle', 'first.txt', 'second.txt'], ['-aFL', 'needle', 'first.txt'],
-    ['-aFq', 'needle', 'missing', 'first.txt'], ['-aFq', 'absent', 'missing', 'first.txt'],
-    ['-aF', 'absent', 'first.txt'], ['-aF', 'needle', 'missing'],
-    ['-F', 'needle', 'binary'], ['-aF', 'needle', 'binary'], ['-zFno', 'needle', 'nul'],
-    ['-aF', '-f', 'patterns', 'first.txt'], ['-aF', '--label=stream', '-Hn', 'needle', '-'],
-    ['-aF', 'needle'], ['-aF', '-m1', 'needle'], ['-aFl', 'needle'],
-    ['-aF', '-f', '-', 'first.txt'], ['-aF', '-e', '', 'first.txt'],
+    { argv: ['--help'] }, { argv: ['--version'] }, { argv: ['--definitely-invalid'] },
+    { argv: ['-m'] }, { argv: [] },
+    { argv: ['-aF', 'needle', 'first.txt'] }, { argv: ['-aFnbo', 'needle', 'first.txt'] },
+    { argv: ['-aFHnC1', 'needle', 'first.txt', 'second.txt'] },
+    { argv: ['-aFc', 'needle', 'first.txt', 'first.txt'] },
+    { argv: ['-aFlZ', 'needle', 'first.txt', 'second.txt'] }, { argv: ['-aFL', 'needle', 'first.txt'] },
+    { argv: ['-aFq', 'needle', 'missing', 'first.txt'] }, { argv: ['-aFq', 'absent', 'missing', 'first.txt'] },
+    { argv: ['-aF', 'absent', 'first.txt'] }, { argv: ['-aF', 'needle', 'missing'] },
+    { argv: ['-F', 'needle', 'binary'] }, { argv: ['-aF', 'needle', 'binary'] },
+    { argv: ['-zFno', 'needle', 'nul'] }, { argv: ['-aF', '-f', 'patterns', 'first.txt'] },
+    { argv: ['-aF', '--label=stream', '-Hn', 'needle', '-'], input: stdin },
+    { argv: ['-aF', 'needle'], input: stdin }, { argv: ['-aF', '-m1', 'needle'], input: stdin },
+    { argv: ['-aFl', 'needle'], input: stdin },
+    { argv: ['-aF', '-f', '-', 'first.txt'], input: Buffer.from('needle\n') },
+    { argv: ['-aF', '-e', '', 'first.txt'] },
   ];
-  for (const argv of cases) {
-    const input = argv.includes('-f') && argv.includes('-') ? Buffer.from('needle\n') : stdin;
+  assert.equal(cases.length, 25, 'retain every original public argument comparison');
+  assert.equal(cases.filter(({ input }) => input !== undefined).length, 5, 'feed only intended stdin consumers');
+  for (const { argv, input } of cases) {
     exact(invoke(cli, argv, cwd, { input }), invoke('/usr/bin/grep', argv, cwd, { input }), JSON.stringify(argv));
   }
-  t.diagnostic(JSON.stringify({ campaign: 'package-entry', actualComparisons: cases.length, executable: cli }));
+  t.diagnostic(JSON.stringify({ campaign: 'package-entry', actualComparisons: cases.length,
+    payloadStdinComparisons: 5, noPayloadComparisons: 20, executable: cli }));
 });
 
 test('shell-prefix executable adapts private Bash calls and preserves native bypasses and child shells', (t) => {
@@ -133,6 +157,6 @@ print(json.dumps(output))
   const comparisons = JSON.parse(result.stdout);
   assert.equal(comparisons.length, cases.length);
   for (const [index, comparison] of comparisons.entries()) assert.deepEqual(comparison.actual, comparison.expected, `raw argv case ${index}: ${JSON.stringify(cases[index])}`);
-  assert.equal(current.calls(), 0, 'non-ASCII argv remain native before Node can decode them');
+  assert.equal(current.calls(), 2, 'valid Unicode argv perform real rg searches; invalid UTF-8 stays native before decoding');
   t.diagnostic(JSON.stringify({ campaign: 'package-argv-bytes', actualComparisons: comparisons.length, argvSource: 'Python byte argv to real executable' }));
 });

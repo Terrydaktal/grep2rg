@@ -21,7 +21,7 @@ function fixture(t) {
   writeFileSync(join(cwd, "file.txt"), "needle\nother\n");
   writeFileSync(join(cwd, "child.sh"), "#!/usr/bin/env bash\ntype -t grep\ngrep -aFl needle file.txt\n", { mode: 0o700 });
   writeFileSync(join(bin, "rg"), "#!/usr/bin/env bash\nprintf 'rg\\n' >> \"$GREP_SCOPE_TRACE\"\nexec /usr/bin/rg \"$@\"\n", { mode: 0o700 });
-  const env = { ...process.env, PATH: `${bin}:${process.env.PATH ?? ""}`, GREP_SCOPE_TRACE: trace, LC_ALL: "C" };
+  const env = { ...process.env, PATH: `${bin}:${process.env.PATH ?? ""}`, GREP_SCOPE_TRACE: trace, LC_ALL: "C", GREP2RG_EXPERIMENTAL_RG: "1" };
   t.after(() => rmSync(cwd, { recursive: true, force: true }));
   return { cwd, env, bin, trace, calls: () => existsSync(trace) ? readFileSync(trace, "utf8").split("\n").filter(Boolean).length : 0 };
 }
@@ -65,7 +65,9 @@ test("non-Bash shell settings retain the original command and environment", () =
 // The verifier registers this group only in its explicit SDK stage; the CPU run
 // has no misleading skipped integration check when dependencies are unavailable.
 if (process.env.GREP2RG_TEST_PI_SDK === "1") {
-  test("installed Pi applies the wrapper only to qwen-r9700 model tools, never user ! commands", { timeout: 20000 }, async (t) => {
+  test("installed Pi applies the wrapper only to qwen-r9700 model tools, never user ! commands", { timeout: 180000 }, async (t) => {
+    const built = spawnSync(process.execPath, [join(root, "tools/build-rust.mjs"), "--offline"], { encoding: "utf8", timeout: 120000 });
+    assert.equal(built.status, 0, `SDK qualification requires the host-local Rust engine: ${built.stderr}`);
     const sdkRoot = process.env.GREP2RG_TEST_PI_ROOT ?? process.env.QWEN_TEST_PI_ROOT;
     assert.ok(sdkRoot, "explicit SDK checks require GREP2RG_TEST_PI_ROOT");
     const mod = (path) => import(pathToFileURL(join(sdkRoot, path)));
@@ -75,6 +77,10 @@ if (process.env.GREP2RG_TEST_PI_SDK === "1") {
     const { DefaultResourceLoader } = await mod("pi-coding-agent/dist/core/resource-loader.js");
     const { validateToolArguments } = await mod("pi-ai/dist/utils/validation.js");
     const current = fixture(t), agentDir = join(current.cwd, "agent");
+    const rustReport = join(current.cwd, "rust-route.json");
+    const previousExperiment = process.env.GREP2RG_EXPERIMENTAL_RG;
+    process.env.GREP2RG_EXPERIMENTAL_RG = "1";
+    t.after(() => { if (previousExperiment === undefined) delete process.env.GREP2RG_EXPERIMENTAL_RG; else process.env.GREP2RG_EXPERIMENTAL_RG = previousExperiment; });
     mkdirSync(agentDir);
     const previous = process.env.PI_CODING_AGENT_DIR;
     const previousProviders = process.env.GREP2RG_PI_PROVIDERS;
@@ -83,7 +89,7 @@ if (process.env.GREP2RG_TEST_PI_SDK === "1") {
     delete process.env.GREP2RG_PI_PROVIDERS;
     t.after(() => { if (previousProviders === undefined) delete process.env.GREP2RG_PI_PROVIDERS; else process.env.GREP2RG_PI_PROVIDERS = previousProviders; });
     writeFileSync(join(agentDir, "settings.json"), JSON.stringify({ defaultTools: ["bash"], shellPath: "/usr/bin/bash",
-      shellCommandPrefix: `export PATH=${quote(current.bin)}:"$PATH"\nexport GREP_SCOPE_TRACE=${quote(current.trace)}\nexport LC_ALL=C`,
+      shellCommandPrefix: `export PATH=${quote(current.bin)}:"$PATH"\nexport GREP_SCOPE_TRACE=${quote(current.trace)}\nexport GREP2RG_ENGINE_REPORT=${quote(rustReport)}\nexport LC_ALL=C`,
       compaction: { enabled: false }, retry: { enabled: false } }));
     let networkRequests = 0, inferenceRequests = 0;
     t.mock.method(globalThis, "fetch", () => { networkRequests++; throw new Error("Network forbidden in grep scope fixture"); });
@@ -165,6 +171,39 @@ if (process.env.GREP2RG_TEST_PI_SDK === "1") {
       delete process.env.GREP2RG_PI_PROVIDERS;
       assert.equal(await invoke("type -t grep; grep -aFl needle file.txt"), "function\nfile.txt\n");
       assert.equal(current.calls(), count + 3, "removing the setting immediately restores the default");
+    });
+    await t.test("normal Pi small calls reach integrated Rust through the installed hook", async () => {
+      const count = current.calls(), previousExperiment = process.env.GREP2RG_EXPERIMENTAL_RG;
+      try {
+        for (const value of [undefined, "", "0", "true", "yes", "2"]) {
+          delete process.env.GREP2RG_EXPERIMENTAL_RG;
+          if (value !== undefined) process.env.GREP2RG_EXPERIMENTAL_RG = value;
+          rmSync(rustReport, { force: true });
+          assert.equal(await invoke("type -t grep; grep -aFl needle file.txt"), "function\nfile.txt\n");
+          assert.equal(current.calls(), count, "native Rust must not launch rg");
+          assert.equal(JSON.parse(readFileSync(rustReport, "utf8")).engine, "rust", "the installed SDK must execute the built Rust engine");
+        }
+      } finally {
+        if (previousExperiment === undefined) delete process.env.GREP2RG_EXPERIMENTAL_RG;
+        else process.env.GREP2RG_EXPERIMENTAL_RG = previousExperiment;
+      }
+      t.diagnostic(JSON.stringify({ campaign: "pi-default-small-Rust-policy", actualGNUComparisons: 6,
+        actualRgInvocations: 0, networkRequests, inferenceRequests }));
+    });
+    await t.test("normal Pi large searches automatically accelerate without experimental opt-in", async () => {
+      const count=current.calls(), previousExperiment=process.env.GREP2RG_EXPERIMENTAL_RG;
+      const large=join(current.cwd,"large");mkdirSync(large);
+      for(let i=0;i<256;i++){const bytes=Buffer.from("padding abcdefghijklmnopqrstuvwxyz 0123456789\n".repeat(6000)).subarray(0,262144);bytes.write(i%7===0?"needle\n":"otherx\n",bytes.length-7);writeFileSync(join(large,`file${i}`),bytes);}
+      try {
+        delete process.env.GREP2RG_EXPERIMENTAL_RG;
+        rmSync(rustReport, { force: true });
+        assert.equal(await invoke("grep -racF needle large"),shell("grep -racF needle large",current));
+        assert.equal(current.calls(), count,"the actual Pi hook must perform native Rust search without rg");
+        assert.equal(JSON.parse(readFileSync(rustReport, "utf8")).engine, "rust");
+      } finally {
+        if(previousExperiment===undefined)delete process.env.GREP2RG_EXPERIMENTAL_RG;
+        else process.env.GREP2RG_EXPERIMENTAL_RG=previousExperiment;
+      }
     });
     assert.deepEqual(errors, []);
     assert.equal(networkRequests, 0);

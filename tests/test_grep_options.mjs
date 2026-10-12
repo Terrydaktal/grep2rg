@@ -137,7 +137,7 @@ test("regression: numeric short clusters keep only the last contiguous digit run
 test("regression: fixed -w -x -o preserves installed GNU extraction behavior", () => {
   const fixture = Buffer.from("bar\nfoo\nbaz\nfoo bar\nfoo\nend\n");
   const argv = ["-a", "-F", "-w", "-x", "-o", "-e", "foo"];
-  assert.match(grepMatcherFallbackReasons(parse(argv), { env }).join(" "), /fixed.*word.*whole.*extraction/i);
+  assert.deepEqual(grepMatcherFallbackReasons(parse(argv), { env }), []);
   const expected = run("/usr/bin/grep", argv, fixture);
   const wrapper = new URL("../src/grep-wrapper.mjs", import.meta.url);
   const actual = run(process.execPath, [wrapper.pathname, ...argv], fixture);

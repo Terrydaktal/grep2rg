@@ -1,0 +1,647 @@
+{
+  "schemaVersion": 1,
+  "package": "grep2rg",
+  "scope": "Expanded ordinary-file rg acceleration; bounded synthetic GNU differential qualification, no private transcripts or model requests.",
+  "qualifiedArchive": {
+    "filename": "grep2rg-0.1.0.tgz",
+    "sha256": "c95fa97a1cefac58037481a2ca044cc10d5e6bd89ab8fa70bc3e2fd38e1daeed",
+    "integrity": "sha512-2JGQCP8SOKInAphl50oUi/f/sx5AUcBfMJlgaGQW65uc5Km9kjaj7Q9wZeeU/cIttUzeYNBT79okYMvghy0kSg==",
+    "fileCount": 36,
+    "verification": "actual npm pack tarball, extracted tools/verify.mjs"
+  },
+  "sourceHashes": {
+    "bin/grep2rg": "c52e68d18b371317c6c6f5e0d8627aa682882a118bdab267f5b78394d14fe415",
+    "bin/grep2rg-shell-prefix.mjs": "a7a77f98eb27cf461116553032018175a190c0c108f6624b59c77cf6ced95c23",
+    "bin/grep2rg.mjs": "7c5162b5635acafc1bdf6d5f0bb51e111d3a248778d29a7e03fcdbd058c26797",
+    "package.json": "f70f588bee4432fb36227c3c42bb4e2f9cb19c42d3a05580c809e860c2a102fa",
+    "pi/grep2rg.ts": "668577b8d530de43a2477647b99e905cf799bea3a5782479fd8c47c6212c6fb9",
+    "src/grep-files.mjs": "f1fe1c250f31b0714f72d66ca825cb6ebe9ab85840da266b435003f5e500d7e8",
+    "src/grep-options.mjs": "7beb8a4937f53bc41a0e5bad5dfad09f2ac4d6a9e716f8ed83dc22f41ec9c35b",
+    "src/grep-output.mjs": "f393641a7cfd051eade2d21273bf10743660a047ba6065195b41dc8341468392",
+    "src/grep-runtime.mjs": "3dfa60f21ed3f07cabbd73dc2e2248a6d393963acef8afbeb6118f7e67f12f13",
+    "src/grep-wrapper.mjs": "7674468174c712ebfe8e952cfc8ee5847af5e0ddc9c0ab746e184a049337d88f",
+    "tests/grep_option_inventory.json": "d1b96f3b2a349638ebc706b5e9ed2c0514c5d7f319772622504bcc61077d8085",
+    "tests/grep_wrapper_requirements.json": "4c1d3d70bd4ca77d91f90ade083feda9ec21bece59c0daa3afc96917ec06347f",
+    "tests/port_source_manifest.json": "377ee383d9649735f4c48ecbea6a8daf8add92aabd39bc022fe3584d11419692",
+    "tests/test_grep_files.mjs": "7500c0496bbfe275cd3dca78d96c78d07bd1690961293fd6d4d857a73970bcd7",
+    "tests/test_grep_full_cli.mjs": "ea30e5ae4f9443e549b2c7ada16f35b107c5c05c41be8c80709a3277470f81a8",
+    "tests/test_grep_matcher_campaign.mjs": "4010143f0a1ba5fa8065944fafee647248af91f538a6b4f8a790d92144085149",
+    "tests/test_grep_matrix_campaign.mjs": "1cb898408d30b3e9c0d403809a70f0e8232dbd22036fff2937cab62d28785232",
+    "tests/test_grep_option_interactions.mjs": "2caa1332724ff14e5b4c260d8f5d485638c0892c6329dbe053d0a969cf20b56b",
+    "tests/test_grep_options.mjs": "0c8ffeeba76a4c55d158527876358a1cf66992ae683b8e32939fe845731de494",
+    "tests/test_grep_output.mjs": "7a9713a0678f6ac2c5d76b6e6276070f3f5aeee6eda5921f802bb591c1df5623",
+    "tests/test_grep_runtime_faults.mjs": "1aa1c968506b8e6eb851d1b00652a7d04a3420278361335c2923c3e14fab46c9",
+    "tests/test_grep_scope.mjs": "2b9c8520cddac0ac233b6e320dbfa7abc6ce1856444939034e363ff838ed5681",
+    "tests/test_grep_text_preflight.mjs": "b9f1f689737da2c184f7d9d8afe282743f77c776559f095bd315059918e219b9",
+    "tests/test_grep_traversal_campaign.mjs": "39abd048cd89df44344d43f2807ce48f5983dad8f3183355f061572ffe30c482",
+    "tests/test_grep_wrapper.mjs": "ba6ddbfd0b6c48b1df9743715d1124bb7e10c7f476979f17860eaf0b9d533505",
+    "tests/test_package_artifact.mjs": "f5438c1f1261a8cbc6527aa96ef43439303a8e9143d6955b31b2cc93529bd3e8",
+    "tests/test_package_entry.mjs": "d135f176b40ffcd520964aa2786ffb1ca16d76ac8d99338eed16b373b02cf895",
+    "tools/verify-artifact.mjs": "9a11d503d80d1961a38563e43b636546ed4f05f11e11940b38e4ff8146962936",
+    "tools/verify.mjs": "28aa5c1895f249cc25164fa135ed3c581d1ee6612c350cb48a4e7c59a65309c7"
+  },
+  "environments": [
+    {
+      "environment": "Linux desktop",
+      "startedAt": "2026-10-11T19:47:30.382Z",
+      "finishedAt": "2026-10-11T19:50:21.886Z",
+      "passed": true,
+      "nodeTests": 178,
+      "sourceChanged": false,
+      "versions": {
+        "node": "v26.4.0",
+        "GNU": "grep (GNU grep) 3.12-modified",
+        "rg": "ripgrep 15.1.0 (rev 6e6b29e490)",
+        "pcre2": "PCRE2 10.45 is available (JIT is available)",
+        "python": "Python 3.14.6",
+        "bash": "GNU bash, version 5.3.15(1)-release (x86_64-pc-linux-gnu)",
+        "readlink": "readlink (GNU coreutils) 9.11",
+        "npm": "12.0.2",
+        "tar": "tar (GNU tar) 1.35"
+      },
+      "piSdk": "0.84.2",
+      "stages": [
+        {
+          "name": "core",
+          "status": 0,
+          "durationMs": 22157,
+          "timedOut": false,
+          "interrupted": false,
+          "logTruncated": false,
+          "counts": {
+            "tests": 150,
+            "suites": 0,
+            "pass": 150,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "passed": true
+        },
+        {
+          "name": "campaigns",
+          "status": 0,
+          "durationMs": 148679,
+          "timedOut": false,
+          "interrupted": false,
+          "logTruncated": false,
+          "counts": {
+            "tests": 22,
+            "suites": 0,
+            "pass": 22,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "passed": true
+        },
+        {
+          "name": "installed Pi native Bash scope",
+          "status": 0,
+          "durationMs": 617,
+          "timedOut": false,
+          "interrupted": false,
+          "logTruncated": false,
+          "counts": {
+            "tests": 6,
+            "suites": 0,
+            "pass": 6,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "passed": true
+        }
+      ],
+      "campaignDiagnostics": [
+        {
+          "campaign": "default-text",
+          "actualGNUComparisons": 38,
+          "acceleratedCommands": 38
+        },
+        {
+          "campaign": "default-text-structure",
+          "actualGNUComparisons": 9,
+          "acceleratedCommands": 9
+        },
+        {
+          "campaign": "default-text-binary-guard",
+          "actualGNUComparisons": 23
+        },
+        {
+          "campaign": "packed-artifact",
+          "tarballSHA256": "c95fa97a1cefac58037481a2ca044cc10d5e6bd89ab8fa70bc3e2fd38e1daeed",
+          "npmIntegrity": "sha512-2JGQCP8SOKInAphl50oUi/f/sx5AUcBfMJlgaGQW65uc5Km9kjaj7Q9wZeeU/cIttUzeYNBT79okYMvghy0kSg==",
+          "extractedFilesVerified": 31,
+          "extractedEntryNodeTests": 4,
+          "installedEntryNodeTests": 4,
+          "extractedEvidence": [
+            {
+              "campaign": "package-entry",
+              "actualComparisons": 25,
+              "executable": "grep2rg"
+            },
+            {
+              "campaign": "package-prefix",
+              "actualRgInvocations": 3,
+              "nativeScopeComparisons": 1
+            },
+            {
+              "campaign": "package-argv-bytes",
+              "actualComparisons": 4,
+              "argvSource": "Python byte argv to real executable"
+            }
+          ],
+          "installedEvidence": [
+            {
+              "campaign": "package-entry",
+              "actualComparisons": 25,
+              "executable": "grep2rg"
+            },
+            {
+              "campaign": "package-prefix",
+              "actualRgInvocations": 3,
+              "nativeScopeComparisons": 1
+            },
+            {
+              "campaign": "package-argv-bytes",
+              "actualComparisons": 4,
+              "argvSource": "Python byte argv to real executable"
+            }
+          ]
+        },
+        {
+          "campaign": "package-entry",
+          "actualComparisons": 25,
+          "executable": "grep2rg"
+        },
+        {
+          "campaign": "package-prefix",
+          "actualRgInvocations": 3,
+          "nativeScopeComparisons": 1
+        },
+        {
+          "campaign": "package-argv-bytes",
+          "actualComparisons": 4,
+          "argvSource": "Python byte argv to real executable"
+        },
+        {
+          "seed": "0x4729ac2e",
+          "deep": true,
+          "distinctCases": 12000,
+          "qualifiedRgComparisons": 4782,
+          "jsonFormatterComparisons": 359,
+          "nativeFallbackOracles": 7218,
+          "preflightConfigurations": 3668,
+          "modes": {
+            "extended": 3115,
+            "basic": 3664,
+            "fixed": 2382,
+            "perl": 2839
+          },
+          "locales": {
+            "C": 6000,
+            "C.UTF-8": 6000
+          },
+          "flagCoverage": {
+            "-o": 1715,
+            "-v": 3433,
+            "-z": 2575,
+            "-i": 4284,
+            "-x": 3428,
+            "-w": 2568
+          },
+          "byteFixtures": 12,
+          "GNU": "grep (GNU grep) 3.12-modified",
+          "rg": "ripgrep 15.1.0 (rev 6e6b29e490)",
+          "optionsSHA256": "7beb8a4937f53bc41a0e5bad5dfad09f2ac4d6a9e716f8ed83dc22f41ec9c35b"
+        },
+        {
+          "actualComparisons": 1
+        },
+        {
+          "actualComparisons": 2
+        },
+        {
+          "actualComparisons": 3
+        },
+        {
+          "actualComparisons": 5
+        },
+        {
+          "actualComparisons": 24
+        },
+        {
+          "seed": "0xc0a7e512",
+          "actualComparisons": 4096,
+          "distinctCases": 4096,
+          "mismatches": 0,
+          "rgRoutingPlans": 1888,
+          "nativeRoutingPlans": 2208,
+          "concurrency": 8
+        },
+        {
+          "actualComparisons": 16,
+          "actualRgInvocations": 16
+        },
+        {
+          "documentedLongOptions": 48,
+          "documentedShortOptions": 35,
+          "declaredSpellingVariants": 85
+        },
+        {
+          "seed": "ordered-gnu-options-v1",
+          "fixtureSHA256": "ba812165b2781aa5238a01f01f607312572d534673036e7a9fa1ea76e2c6db13",
+          "actualComparisons": 7225,
+          "declaredDistinctCases": 7225,
+          "duplicateCasesAlreadyCovered": 0,
+          "mismatches": 0,
+          "rgRoutingPlans": 5732,
+          "nativeRoutingPlans": 1493,
+          "parallelism": 8
+        },
+        {
+          "seed": "ordered-gnu-options-v1",
+          "fixtureSHA256": "ba812165b2781aa5238a01f01f607312572d534673036e7a9fa1ea76e2c6db13",
+          "actualComparisons": 512,
+          "declaredDistinctCases": 512,
+          "duplicateCasesAlreadyCovered": 0,
+          "mismatches": 0,
+          "rgRoutingPlans": 288,
+          "nativeRoutingPlans": 224,
+          "parallelism": 8
+        },
+        {
+          "seed": "ordered-gnu-options-v1",
+          "fixtureSHA256": "ba812165b2781aa5238a01f01f607312572d534673036e7a9fa1ea76e2c6db13",
+          "actualComparisons": 51,
+          "declaredDistinctCases": 52,
+          "duplicateCasesAlreadyCovered": 1,
+          "mismatches": 0,
+          "rgRoutingPlans": 31,
+          "nativeRoutingPlans": 20,
+          "parallelism": 8
+        },
+        {
+          "seed": "ordered-gnu-options-v1",
+          "fixtureSHA256": "ba812165b2781aa5238a01f01f607312572d534673036e7a9fa1ea76e2c6db13",
+          "actualComparisons": 5073,
+          "declaredDistinctCases": 5262,
+          "duplicateCasesAlreadyCovered": 189,
+          "mismatches": 0,
+          "rgRoutingPlans": 2365,
+          "nativeRoutingPlans": 2708,
+          "parallelism": 8
+        },
+        {
+          "campaign": "traversal",
+          "seed": "0x6a31c9d2",
+          "deep": true,
+          "comparisons": 1536,
+          "dimensions": "32/96 varied trees;16 traversal families;12 output modes;4 terms;10 filter globs"
+        },
+        {
+          "campaign": "traversal-metamorphic",
+          "seed": "0x4bbe19f7",
+          "deep": true,
+          "comparisons": 240,
+          "invariants": [
+            "filter narrowing",
+            "duplicate operand multiplicity",
+            "r selected names subset of R"
+          ]
+        },
+        {
+          "campaign": "raw-pathnames",
+          "comparisons": 12,
+          "locales": [
+            "C",
+            "C.UTF-8"
+          ]
+        },
+        {
+          "campaign": "pi-sdk-scope",
+          "actualRgInvocations": 7,
+          "networkRequests": 0,
+          "inferenceRequests": 0,
+          "extension": "pi/grep2rg.ts",
+          "nativeToolName": "bash"
+        }
+      ]
+    },
+    {
+      "environment": "Linux Pi-opsec VM",
+      "startedAt": "2026-10-11T19:53:59.279Z",
+      "finishedAt": "2026-10-11T19:58:57.959Z",
+      "passed": true,
+      "nodeTests": 178,
+      "sourceChanged": false,
+      "versions": {
+        "node": "v24.21.0",
+        "GNU": "grep (GNU grep) 3.11",
+        "rg": "ripgrep 14.1.1",
+        "pcre2": "PCRE2 10.43 is available (JIT is available)",
+        "python": "Python 3.13.5",
+        "bash": "GNU bash, version 5.2.37(1)-release (x86_64-pc-linux-gnu)",
+        "readlink": "readlink (GNU coreutils) 9.7",
+        "npm": "11.19.0",
+        "tar": "tar (GNU tar) 1.35"
+      },
+      "piSdk": "0.84.2",
+      "stages": [
+        {
+          "name": "core",
+          "status": 0,
+          "durationMs": 34075,
+          "timedOut": false,
+          "interrupted": false,
+          "logTruncated": false,
+          "counts": {
+            "tests": 150,
+            "suites": 0,
+            "pass": 150,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "passed": true
+        },
+        {
+          "name": "campaigns",
+          "status": 0,
+          "durationMs": 263262,
+          "timedOut": false,
+          "interrupted": false,
+          "logTruncated": false,
+          "counts": {
+            "tests": 22,
+            "suites": 0,
+            "pass": 22,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "passed": true
+        },
+        {
+          "name": "installed Pi native Bash scope",
+          "status": 0,
+          "durationMs": 1237,
+          "timedOut": false,
+          "interrupted": false,
+          "logTruncated": false,
+          "counts": {
+            "tests": 6,
+            "suites": 0,
+            "pass": 6,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "passed": true
+        }
+      ],
+      "campaignDiagnostics": [
+        {
+          "campaign": "default-text",
+          "actualGNUComparisons": 38,
+          "acceleratedCommands": 38
+        },
+        {
+          "campaign": "default-text-structure",
+          "actualGNUComparisons": 9,
+          "acceleratedCommands": 9
+        },
+        {
+          "campaign": "default-text-binary-guard",
+          "actualGNUComparisons": 23
+        },
+        {
+          "campaign": "packed-artifact",
+          "tarballSHA256": "3b866706c6f9eedae66ec249cff2dc867a578ba52d8dd565f216850af9cb9236",
+          "npmIntegrity": "sha512-04MceFHgzA3QpAPSWzf9ZKjnc++f/Ag6jjpBRBbLZGSynr+mVNILBiSSQp/FWGqMMtSWFYoo3yA98nXITRWxog==",
+          "extractedFilesVerified": 31,
+          "extractedEntryNodeTests": 4,
+          "installedEntryNodeTests": 4,
+          "extractedEvidence": [
+            {
+              "campaign": "package-entry",
+              "actualComparisons": 25,
+              "executable": "grep2rg"
+            },
+            {
+              "campaign": "package-prefix",
+              "actualRgInvocations": 3,
+              "nativeScopeComparisons": 1
+            },
+            {
+              "campaign": "package-argv-bytes",
+              "actualComparisons": 4,
+              "argvSource": "Python byte argv to real executable"
+            }
+          ],
+          "installedEvidence": [
+            {
+              "campaign": "package-entry",
+              "actualComparisons": 25,
+              "executable": "grep2rg"
+            },
+            {
+              "campaign": "package-prefix",
+              "actualRgInvocations": 3,
+              "nativeScopeComparisons": 1
+            },
+            {
+              "campaign": "package-argv-bytes",
+              "actualComparisons": 4,
+              "argvSource": "Python byte argv to real executable"
+            }
+          ]
+        },
+        {
+          "campaign": "package-entry",
+          "actualComparisons": 25,
+          "executable": "grep2rg"
+        },
+        {
+          "campaign": "package-prefix",
+          "actualRgInvocations": 3,
+          "nativeScopeComparisons": 1
+        },
+        {
+          "campaign": "package-argv-bytes",
+          "actualComparisons": 4,
+          "argvSource": "Python byte argv to real executable"
+        },
+        {
+          "seed": "0x4729ac2e",
+          "deep": true,
+          "distinctCases": 12000,
+          "qualifiedRgComparisons": 4782,
+          "jsonFormatterComparisons": 359,
+          "nativeFallbackOracles": 7218,
+          "preflightConfigurations": 3668,
+          "modes": {
+            "extended": 3115,
+            "basic": 3664,
+            "fixed": 2382,
+            "perl": 2839
+          },
+          "locales": {
+            "C": 6000,
+            "C.UTF-8": 6000
+          },
+          "flagCoverage": {
+            "-o": 1715,
+            "-v": 3433,
+            "-z": 2575,
+            "-i": 4284,
+            "-x": 3428,
+            "-w": 2568
+          },
+          "byteFixtures": 12,
+          "GNU": "grep (GNU grep) 3.11",
+          "rg": "ripgrep 14.1.1",
+          "optionsSHA256": "7beb8a4937f53bc41a0e5bad5dfad09f2ac4d6a9e716f8ed83dc22f41ec9c35b"
+        },
+        {
+          "actualComparisons": 1
+        },
+        {
+          "actualComparisons": 2
+        },
+        {
+          "actualComparisons": 3
+        },
+        {
+          "actualComparisons": 5
+        },
+        {
+          "actualComparisons": 24
+        },
+        {
+          "seed": "0xc0a7e512",
+          "actualComparisons": 4096,
+          "distinctCases": 4096,
+          "mismatches": 0,
+          "rgRoutingPlans": 1888,
+          "nativeRoutingPlans": 2208,
+          "concurrency": 8
+        },
+        {
+          "actualComparisons": 16,
+          "actualRgInvocations": 16
+        },
+        {
+          "documentedLongOptions": 48,
+          "documentedShortOptions": 35,
+          "declaredSpellingVariants": 85
+        },
+        {
+          "seed": "ordered-gnu-options-v1",
+          "fixtureSHA256": "ba812165b2781aa5238a01f01f607312572d534673036e7a9fa1ea76e2c6db13",
+          "actualComparisons": 7225,
+          "declaredDistinctCases": 7225,
+          "duplicateCasesAlreadyCovered": 0,
+          "mismatches": 0,
+          "rgRoutingPlans": 5732,
+          "nativeRoutingPlans": 1493,
+          "parallelism": 8
+        },
+        {
+          "seed": "ordered-gnu-options-v1",
+          "fixtureSHA256": "ba812165b2781aa5238a01f01f607312572d534673036e7a9fa1ea76e2c6db13",
+          "actualComparisons": 512,
+          "declaredDistinctCases": 512,
+          "duplicateCasesAlreadyCovered": 0,
+          "mismatches": 0,
+          "rgRoutingPlans": 288,
+          "nativeRoutingPlans": 224,
+          "parallelism": 8
+        },
+        {
+          "seed": "ordered-gnu-options-v1",
+          "fixtureSHA256": "ba812165b2781aa5238a01f01f607312572d534673036e7a9fa1ea76e2c6db13",
+          "actualComparisons": 51,
+          "declaredDistinctCases": 52,
+          "duplicateCasesAlreadyCovered": 1,
+          "mismatches": 0,
+          "rgRoutingPlans": 31,
+          "nativeRoutingPlans": 20,
+          "parallelism": 8
+        },
+        {
+          "seed": "ordered-gnu-options-v1",
+          "fixtureSHA256": "ba812165b2781aa5238a01f01f607312572d534673036e7a9fa1ea76e2c6db13",
+          "actualComparisons": 5073,
+          "declaredDistinctCases": 5262,
+          "duplicateCasesAlreadyCovered": 189,
+          "mismatches": 0,
+          "rgRoutingPlans": 2365,
+          "nativeRoutingPlans": 2708,
+          "parallelism": 8
+        },
+        {
+          "campaign": "traversal",
+          "seed": "0x6a31c9d2",
+          "deep": true,
+          "comparisons": 1536,
+          "dimensions": "32/96 varied trees;16 traversal families;12 output modes;4 terms;10 filter globs"
+        },
+        {
+          "campaign": "traversal-metamorphic",
+          "seed": "0x4bbe19f7",
+          "deep": true,
+          "comparisons": 240,
+          "invariants": [
+            "filter narrowing",
+            "duplicate operand multiplicity",
+            "r selected names subset of R"
+          ]
+        },
+        {
+          "campaign": "raw-pathnames",
+          "comparisons": 12,
+          "locales": [
+            "C",
+            "C.UTF-8"
+          ]
+        },
+        {
+          "campaign": "pi-sdk-scope",
+          "actualRgInvocations": 7,
+          "networkRequests": 0,
+          "inferenceRequests": 0,
+          "extension": "pi/grep2rg.ts",
+          "nativeToolName": "bash"
+        }
+      ]
+    }
+  ],
+  "countNotes": [
+    "178 Node tests per environment: 150 core, 22 campaign and 6 SDK checks. Nested extracted/offline package child checks are separate.",
+    "30,796 generated campaign cases: 18,796 full wrapper CLI comparisons, 4,782 independently qualified matcher comparisons, and 7,218 native-routing/GNU-oracle cases. The 359 formatter checks are a subset of matcher cases.",
+    "The 38 ordinary-text and 9 pattern/traversal accelerated commands are additional focused checks, not added to the generated campaign total.",
+    "Both environments replay the same bounded corpus; replay counts do not represent additional unique-case coverage.",
+    "Routing plans are distinct from recorded real engine invocations. Native GNU cases confirm compatibility, not acceleration.",
+    "Documentation added after these captures changes the npm archive identity; implementation and selected test hashes remain exactly those recorded here."
+  ],
+  "semanticMutation": {
+    "target": "invalid-byte working-directory guard",
+    "faultyVariant": "Guard disabled in an owned copy; rg incorrectly emits raw NUL-bearing data from the original directory after classification read a replacement-character sibling.",
+    "regression": "tests/test_grep_text_preflight.mjs",
+    "faultyVariantRejected": true,
+    "cleanControlPassed": true
+  },
+  "limitations": [
+    "Finite GNU compatibility evidence, not exhaustive coverage or a universal speed benchmark.",
+    "Unsupported GNU semantics, binary/encoding inputs and bounds violations retain native GNU execution.",
+    "Complete-file preflight introduces extra reads and cannot provide an atomic snapshot across concurrent mutation."
+  ]
+}

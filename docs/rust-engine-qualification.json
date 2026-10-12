@@ -1,0 +1,1836 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-12T23:12:38.966Z",
+  "status": "passed",
+  "scope": "Actual npm source archive, independently rebuilt Rust release, packaged full-byte GNU-oracle tests and CLI comparisons from outside the source checkout.",
+  "source": "/home/lewis/Dev/grep2rg",
+  "output": "/home/lewis/Dev/grep2rg/artifacts/rust-installed-routing.json",
+  "archiveDirectory": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX",
+  "workingDirectory": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+  "isolation": {
+    "extractedSource": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted",
+    "cargoTarget": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/rust/target",
+    "npmCache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache",
+    "lifecycleScripts": "disabled during npm pack",
+    "cargoBuild": "release, locked, offline",
+    "testsWorkingDirectoryOutsideSource": true,
+    "originalRustTargetUsedForBuild": false
+  },
+  "stages": [
+    {
+      "name": "Pack the real npm distribution without lifecycle scripts",
+      "program": "npm",
+      "argv": [
+        "pack",
+        "--json",
+        "--ignore-scripts",
+        "--offline",
+        "--pack-destination",
+        "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX"
+      ],
+      "cwd": "/home/lewis/Dev/grep2rg",
+      "timeoutMs": 60000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache"
+      },
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 236.07047300000002,
+      "error": null,
+      "stdoutBytes": 8595,
+      "stderrBytes": 0,
+      "stdoutSHA256": "18139d0d0e6df81ac698a204fe9032c80d7379471ab0fff4cb3ca8b826c27150",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "{\n  \"grep2rg\": {\n    \"id\": \"grep2rg@0.1.0\",\n    \"name\": \"grep2rg\",\n    \"version\": \"0.1.0\",\n    \"size\": 694378,\n    \"unpackedSize\": 11855857,\n    \"shasum\": \"14b1836d0022baee4e8e4d02255011fe38ab88cd\",\n    \"integrity\": \"sha512-8HPBcmVp2lktj9sYMgXMf0y3oavFxn33Y0zUFajacDha30rVetAW09pdt+SWqngXBNa7eL1XKHCiQ5QzdWvg9A==\",\n    \"filename\": \"grep2rg-0.1.0.tgz\",\n    \"files\": [\n      {\n        \"path\": \"LICENSE\",\n        \"size\": 11358,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"NOTICE\",\n        \"size\": 785,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"README.md\",\n        \"size\": 25310,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"bin/grep2rg\",\n        \"size\": 2563,\n        \"mode\": 493\n      },\n      {\n        \"path\": \"bin/grep2rg-shell-prefix.mjs\",\n        \"size\": 356,\n        \"mode\": 493\n      },\n      {\n        \"path\": \"bin/grep2rg.mjs\",\n        \"size\": 468,\n        \"mode\": 493\n      },\n      {\n        \"path\": \"docs/automatic-performance.json\",\n        \"size\": 37750,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"docs/automatic-qualification.json\",\n        \"size\": 10971,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"docs/automatic-routing-audit.json\",\n        \"size\": 36889,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"docs/broader-qualification.json\",\n        \"size\": 63807,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"docs/compatibility.md\",\n        \"size\": 10589,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"docs/coverage.json\",\n        \"size\": 50505,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"docs/expanded-qualification.json\",\n        \"size\": 22388,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"docs/extraction-provenance.json\",\n        \"size\": 2425,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"docs/qualification.json\",\n        \"size\": 11507,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"docs/rust-engine-initial-performance.json\",\n        \"size\": 1905109,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"docs/rust-engine-performance.json\",\n        \"size\": 3479820,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"docs/rust-engine-previous-performance.json\",\n        \"size\": 1905085,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"docs/rust-engine-prior-native-performance.json\",\n        \"size\": 3481091,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"docs/rust-engine-qualification.json\",\n        \"size\": 89408,\n        \"mode\": 384\n      },\n      {\n        \"path\": \"docs/rust-engine.md\",\n        \"size\": 9439,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"docs/verification.md\",\n        \"size\": 11751,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"docs/warm-performance.json\",\n        \"size\": 5045,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"native/grep2rg.c\",\n        \"size\": 17452,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"package.json\",\n        \"size\": 1924,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"pi/grep2rg.ts\",\n        \"size\": 1562,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"rust/Cargo.lock\",\n        \"size\": 7821,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"rust/Cargo.toml\",\n        \"size\": 437,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"rust/src/main.rs\",\n        \"size\": 49405,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"src/grep-descriptors.mjs\",\n        \"size\": 1339,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"src/grep-files.mjs\",\n        \"size\": 10566,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"src/grep-options.mjs\",\n        \"size\": 25359,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"src/grep-output.mjs\",\n        \"size\": 13977,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"src/grep-posix-spans.mjs\",\n        \"size\": 7052,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"src/grep-runtime.mjs\",\n        \"size\": 28893,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"src/grep-stdin.mjs\",\n        \"size\": 5368,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"src/grep-unicode.mjs\",\n        \"size\": 12399,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"src/grep-wrapper.mjs\",\n        \"size\": 3623,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/grep_extended_helpers.mjs\",\n        \"size\": 5700,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/grep_option_inventory.json\",\n        \"size\": 44261,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/grep_wrapper_requirements.json\",\n        \"size\": 17143,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/port_source_manifest.json\",\n        \"size\": 1701,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/rust-engine-contract.json\",\n        \"size\": 3068,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/test_benchmark_processes.mjs\",\n        \"size\": 8815,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/test_grep_auto_native.mjs\",\n        \"size\": 12405,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/test_grep_descriptors.mjs\",\n        \"size\": 7068,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/test_grep_extended_backpressure.mjs\",\n        \"size\": 8207,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/test_grep_extended_coverage.mjs\",\n        \"size\": 15979,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/test_grep_files.mjs\",\n        \"size\": 14116,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/test_grep_full_cli.mjs\",\n        \"size\": 15577,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/test_grep_matcher_campaign.mjs\",\n        \"size\": 17213,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/test_grep_matrix_campaign.mjs\",\n        \"size\": 16702,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/test_grep_option_interactions.mjs\",\n        \"size\": 16621,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/test_grep_options.mjs\",\n        \"size\": 21652,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/test_grep_output.mjs\",\n        \"size\": 14817,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/test_grep_routing_policy.mjs\",\n        \"size\": 5554,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/test_grep_runtime_faults.mjs\",\n        \"size\": 12848,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/test_grep_scope.mjs\",\n        \"size\": 15622,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/test_grep_seekable_stdin.mjs\",\n        \"size\": 10628,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/test_grep_text_preflight.mjs\",\n        \"size\": 12068,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/test_grep_traversal_campaign.mjs\",\n        \"size\": 10928,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/test_grep_unicode.mjs\",\n        \"size\": 12316,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/test_grep_wrapper.mjs\",\n        \"size\": 9574,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/test_package_artifact.mjs\",\n        \"size\": 6207,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/test_package_entry.mjs\",\n        \"size\": 11439,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/test_rust_engine.mjs\",\n        \"size\": 28016,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tests/test_rust_integration.mjs\",\n        \"size\": 8486,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tools/benchmark-processes.py\",\n        \"size\": 11323,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tools/benchmark-routing.mjs\",\n        \"size\": 8784,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tools/benchmark-rust-engine.mjs\",\n        \"size\": 22064,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tools/build-native.mjs\",\n        \"size\": 1069,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tools/build-rust.mjs\",\n        \"size\": 1196,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tools/render-rust-results.mjs\",\n        \"size\": 13004,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tools/rust-benchmark-fixture.mjs\",\n        \"size\": 11226,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tools/verify-artifact.mjs\",\n        \"size\": 5236,\n        \"mode\": 493\n      },\n      {\n        \"path\": \"tools/verify-rust-artifact.mjs\",\n        \"size\": 22009,\n        \"mode\": 420\n      },\n      {\n        \"path\": \"tools/verify.mjs\",\n        \"size\": 13619,\n        \"mode\": 420\n      }\n    ],\n    \"entryCount\": 77,\n    \"bundled\": []\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "Inspect the actual archive entries",
+      "program": "tar",
+      "argv": [
+        "-tzf",
+        "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/grep2rg-0.1.0.tgz"
+      ],
+      "cwd": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+      "timeoutMs": 60000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache"
+      },
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 8.065842000000032,
+      "error": null,
+      "stdoutBytes": 2734,
+      "stderrBytes": 0,
+      "stdoutSHA256": "ef08c6f63a0c4c794709fc926ce8f575f26bc6dc9ca0b16d2e1f0be4d4cd760d",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "package/bin/grep2rg\npackage/LICENSE\npackage/NOTICE\npackage/native/grep2rg.c\npackage/docs/automatic-performance.json\npackage/docs/automatic-qualification.json\npackage/docs/automatic-routing-audit.json\npackage/docs/broader-qualification.json\npackage/docs/coverage.json\npackage/docs/expanded-qualification.json\npackage/docs/extraction-provenance.json\npackage/tests/grep_option_inventory.json\npackage/tests/grep_wrapper_requirements.json\npackage/package.json\npackage/tests/port_source_manifest.json\npackage/docs/qualification.json\npackage/tests/rust-engine-contract.json\npackage/docs/rust-engine-initial-performance.json\npackage/docs/rust-engine-performance.json\npackage/docs/rust-engine-previous-performance.json\npackage/docs/rust-engine-prior-native-performance.json\npackage/docs/rust-engine-qualification.json\npackage/docs/warm-performance.json\npackage/rust/Cargo.lock\npackage/docs/compatibility.md\npackage/README.md\npackage/docs/rust-engine.md\npackage/docs/verification.md\npackage/tools/benchmark-routing.mjs\npackage/tools/benchmark-rust-engine.mjs\npackage/tools/build-native.mjs\npackage/tools/build-rust.mjs\npackage/tests/grep_extended_helpers.mjs\npackage/src/grep-descriptors.mjs\npackage/src/grep-files.mjs\npackage/src/grep-options.mjs\npackage/src/grep-output.mjs\npackage/src/grep-posix-spans.mjs\npackage/src/grep-runtime.mjs\npackage/src/grep-stdin.mjs\npackage/src/grep-unicode.mjs\npackage/src/grep-wrapper.mjs\npackage/bin/grep2rg-shell-prefix.mjs\npackage/bin/grep2rg.mjs\npackage/tools/render-rust-results.mjs\npackage/tools/rust-benchmark-fixture.mjs\npackage/tests/test_benchmark_processes.mjs\npackage/tests/test_grep_auto_native.mjs\npackage/tests/test_grep_descriptors.mjs\npackage/tests/test_grep_extended_backpressure.mjs\npackage/tests/test_grep_extended_coverage.mjs\npackage/tests/test_grep_files.mjs\npackage/tests/test_grep_full_cli.mjs\npackage/tests/test_grep_matcher_campaign.mjs\npackage/tests/test_grep_matrix_campaign.mjs\npackage/tests/test_grep_option_interactions.mjs\npackage/tests/test_grep_options.mjs\npackage/tests/test_grep_output.mjs\npackage/tests/test_grep_routing_policy.mjs\npackage/tests/test_grep_runtime_faults.mjs\npackage/tests/test_grep_scope.mjs\npackage/tests/test_grep_seekable_stdin.mjs\npackage/tests/test_grep_text_preflight.mjs\npackage/tests/test_grep_traversal_campaign.mjs\npackage/tests/test_grep_unicode.mjs\npackage/tests/test_grep_wrapper.mjs\npackage/tests/test_package_artifact.mjs\npackage/tests/test_package_entry.mjs\npackage/tests/test_rust_engine.mjs\npackage/tests/test_rust_integration.mjs\npackage/tools/verify-artifact.mjs\npackage/tools/verify-rust-artifact.mjs\npackage/tools/verify.mjs\npackage/tools/benchmark-processes.py\npackage/rust/src/main.rs\npackage/rust/Cargo.toml\npackage/pi/grep2rg.ts\n",
+      "stderr": ""
+    },
+    {
+      "name": "Extract the source package outside the repository",
+      "program": "tar",
+      "argv": [
+        "-xzf",
+        "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/grep2rg-0.1.0.tgz",
+        "-C",
+        "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted"
+      ],
+      "cwd": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+      "timeoutMs": 60000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache"
+      },
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 7.9954290000000015,
+      "error": null,
+      "stdoutBytes": 0,
+      "stderrBytes": 0,
+      "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "Record cargo version",
+      "program": "cargo",
+      "argv": [
+        "--version",
+        "--verbose"
+      ],
+      "cwd": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+      "timeoutMs": 60000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache"
+      },
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 7.818164000000024,
+      "error": null,
+      "stdoutBytes": 327,
+      "stderrBytes": 0,
+      "stdoutSHA256": "62a51fe726df9b1369e819435ba8b0615eef2cd90c18029052c5446edb5bc029",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "cargo 1.90.0 (840b83a10 2025-07-30)\nrelease: 1.90.0\ncommit-hash: 840b83a10fb0e039a83f4d70ad032892c287570a\ncommit-date: 2025-07-30\nhost: x86_64-unknown-linux-gnu\nlibgit2: 1.9.1 (sys:0.20.2 vendored)\nlibcurl: 8.14.1-DEV (sys:0.4.82+curl-8.14.1 vendored ssl:OpenSSL/3.5.0)\nssl: OpenSSL 3.5.0 8 Apr 2025\nos: CachyOS Linux [64-bit]\n",
+      "stderr": ""
+    },
+    {
+      "name": "Record rustc version",
+      "program": "rustc",
+      "argv": [
+        "--version",
+        "--verbose"
+      ],
+      "cwd": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+      "timeoutMs": 60000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache"
+      },
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 9.153418999999985,
+      "error": null,
+      "stdoutBytes": 196,
+      "stderrBytes": 0,
+      "stdoutSHA256": "938db28b83089ab88301ca425f99fa1d8b61ee66e0371babe1db6373ae9810a3",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "rustc 1.90.0 (1159e78c4 2025-09-14)\nbinary: rustc\ncommit-hash: 1159e78c4747b02ef996e55082b704c09b970588\ncommit-date: 2025-09-14\nhost: x86_64-unknown-linux-gnu\nrelease: 1.90.0\nLLVM version: 20.1.8\n",
+      "stderr": ""
+    },
+    {
+      "name": "Record npm version",
+      "program": "npm",
+      "argv": [
+        "--version"
+      ],
+      "cwd": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+      "timeoutMs": 60000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache"
+      },
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 42.649028999999985,
+      "error": null,
+      "stdoutBytes": 7,
+      "stderrBytes": 0,
+      "stdoutSHA256": "2013b258fd4defb17ad242f1c447dd734dd9e1be76761494b4a9a3b6f2797241",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "12.0.2\n",
+      "stderr": ""
+    },
+    {
+      "name": "Record GNU version",
+      "program": "/usr/bin/grep",
+      "argv": [
+        "--version"
+      ],
+      "cwd": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+      "timeoutMs": 60000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache"
+      },
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 1.1543629999999894,
+      "error": null,
+      "stdoutBytes": 418,
+      "stderrBytes": 0,
+      "stdoutSHA256": "4b688ecea5753fb7821f5fc8557af0ff801a170a9fed4cbaa67921c9544d2b6f",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "grep (GNU grep) 3.12-modified\nCopyright (C) 2025 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n\nWritten by Mike Haertel and others; see\n<https://git.savannah.gnu.org/cgit/grep.git/tree/AUTHORS>.\n\ngrep -P uses PCRE2 10.47 2025-10-21\n",
+      "stderr": ""
+    },
+    {
+      "name": "Build extracted Rust source through the installed build helper with locked offline dependencies",
+      "program": "/usr/bin/node",
+      "argv": [
+        "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/tools/build-rust.mjs",
+        "--offline"
+      ],
+      "cwd": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+      "timeoutMs": 600000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache",
+        "CARGO_TARGET_DIR": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/rust/target",
+        "CARGO_NET_OFFLINE": "true"
+      },
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 6811.3645719999995,
+      "error": null,
+      "stdoutBytes": 38,
+      "stderrBytes": 0,
+      "stdoutSHA256": "5908f449f0b7ab25658d45eb135afb543becfa6750e7902c4826b981c80458a7",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "Built integrated Rust grep2rg engine.\n",
+      "stderr": ""
+    },
+    {
+      "name": "Run the packaged Rust GNU-oracle suite from an outside cwd",
+      "program": "/usr/bin/node",
+      "argv": [
+        "--test",
+        "--test-reporter=tap",
+        "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/tests/test_rust_engine.mjs"
+      ],
+      "cwd": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+      "timeoutMs": 300000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache",
+        "GREP2RG_RUST_BINARY": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/rust/target/release/grep2rg-rust",
+        "TMPDIR": "/tmp/grep2rg-rust-package-cwd-NEdPh9/test-temporary"
+      },
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 3869.4922749999996,
+      "error": null,
+      "stdoutBytes": 7764,
+      "stderrBytes": 0,
+      "stdoutSHA256": "f1595c7c7f48d1ecc2106b5121f77d501a4eec4cbd1420fe2e6f264c5df581f0",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "TAP version 13\n# Subtest: Rust release engine covers the 28 measured search classes against GNU\nok 1 - Rust release engine covers the 28 measured search classes against GNU\n  ---\n  duration_ms: 64.752706\n  type: 'test'\n  ...\n# {\"seed\":\"0x728ca451\",\"comparisons\":28,\"rustSearches\":26,\"gnuFallbacks\":2,\"classes\":{\"recursive-count\":1,\"recursive-invert-count\":1,\"recursive-filenames-sparse\":1,\"recursive-filenames-no-match\":1,\"explicit-count\":1,\"explicit-filenames-sparse\":1,\"explicit-filenames-no-match\":1,\"single-large-count-native\":1,\"small-file-native\":1,\"stdin-native\":1,\"regex-compatible-count\":1,\"recursive-dense-filenames-native\":1,\"small-recursive-count-native\":1,\"many-tiny-count-native\":1,\"below-threshold-count-native\":1,\"long-record-count-native\":1,\"long-record-content-native\":1,\"recursive-content\":1,\"recursive-regex-content\":1,\"recursive-filter-native\":1,\"recursive-dereference-native\":1,\"word-extraction-native\":1,\"null-records-native\":1,\"pattern-file-native\":1,\"quiet-native\":1,\"binary-content-native\":1,\"unicode-folding-native\":1,\"context-native\":1},\"failures\":0,\"artifactSHA256\":\"73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed\"}\n# Subtest: Rust release engine preserves grep option interactions and input boundaries\nok 2 - Rust release engine preserves grep option interactions and input boundaries\n  ---\n  duration_ms: 95.530726\n  type: 'test'\n  ...\n# {\"seed\":\"0x728ca451\",\"comparisons\":48,\"rustSearches\":30,\"gnuFallbacks\":18,\"classes\":{\"empty-record\":1,\"empty-only-matching\":1,\"empty-invert\":1,\"empty-pattern-file\":1,\"blank-pattern-file\":1,\"mixed-empty-pattern\":1,\"regression-empty-and-nonempty-extraction\":1,\"multi-pattern-overlap\":1,\"ERE-longest\":1,\"ERE-longest-reverse\":1,\"newline-pattern\":1,\"whole-line\":1,\"word-boundary\":1,\"invert-word\":1,\"invert-only-matching\":1,\"count-invert\":1,\"count-empty\":1,\"files-without-match-status-hit\":1,\"files-without-match-status-miss\":1,\"files-without-match-both\":1,\"filename-nul\":1,\"filename-header-nul\":1,\"filename-suppression\":1,\"forced-filename\":1,\"duplicate-operands\":1,\"missing-final-newline\":1,\"empty-input\":1,\"CRLF-records\":1,\"invalid-UTF8-records\":1,\"nul-final-record\":1,\"nul-only-matching\":1,\"nul-invert-count\":1,\"text-binary-bytes\":1,\"missing-first\":1,\"missing-last\":1,\"quiet-missing-first\":1,\"quiet-missing-last\":1,\"quiet-miss-error\":1,\"directory-error\":1,\"stdin-explicit\":1,\"stdin-and-file\":1,\"repeated-stdin\":1,\"pattern-file-stdin\":1,\"invalid-ERE\":1,\"unsupported-BRE-backref\":1,\"unsupported-context\":1,\"unicode-case-folding\":1,\"unicode-word-boundary\":1},\"failures\":0,\"artifactSHA256\":\"73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed\"}\n# Subtest: seeded byte-record literal and safe-ERE campaign matches GNU\nok 3 - seeded byte-record literal and safe-ERE campaign matches GNU\n  ---\n  duration_ms: 659.0314\n  type: 'test'\n  ...\n# {\"seed\":\"0x728ca451\",\"comparisons\":384,\"rustSearches\":250,\"gnuFallbacks\":134,\"classes\":{\"seeded-campaign\":384},\"failures\":0,\"artifactSHA256\":\"73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed\"}\n# Subtest: recursive order preserves hidden, ignored, symlink, and raw filename bytes\nok 4 - recursive order preserves hidden, ignored, symlink, and raw filename bytes\n  ---\n  duration_ms: 15.834172\n  type: 'test'\n  ...\n# {\"seed\":\"0x728ca451\",\"comparisons\":7,\"rustSearches\":7,\"gnuFallbacks\":0,\"classes\":{\"raw-traversal\":7},\"failures\":0,\"artifactSHA256\":\"73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed\"}\n# Subtest: pipe input, quiet errors, and original GNU diagnostics remain intact\nok 5 - pipe input, quiet errors, and original GNU diagnostics remain intact\n  ---\n  duration_ms: 30.908076\n  type: 'test'\n  ...\n# {\"seed\":\"0x728ca451\",\"comparisons\":12,\"rustSearches\":5,\"gnuFallbacks\":7,\"classes\":{\"pipe-input\":6,\"GNU-diagnostic-fallback\":4,\"seekable-stdin-cursor\":1,\"closed-stdout\":1},\"failures\":0,\"artifactSHA256\":\"73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed\"}\n# Subtest: parallel Rust searches preserve GNU operand order and aggregate statuses\nok 6 - parallel Rust searches preserve GNU operand order and aggregate statuses\n  ---\n  duration_ms: 59.45075\n  type: 'test'\n  ...\n# {\"seed\":\"0x728ca451\",\"comparisons\":7,\"rustSearches\":7,\"gnuFallbacks\":0,\"classes\":{\"parallel-release-search\":7},\"failures\":0,\"artifactSHA256\":\"73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed\"}\n# Subtest: uneven parallel file outputs preserve every GNU byte across discovery and output-spill boundaries\nok 7 - uneven parallel file outputs preserve every GNU byte across discovery and output-spill boundaries\n  ---\n  duration_ms: 145.641354\n  type: 'test'\n  ...\n# {\"seed\":\"0x728ca451\",\"comparisons\":8,\"rustSearches\":8,\"gnuFallbacks\":0,\"classes\":{\"parallel-variable-output-spill\":8},\"failures\":0,\"artifactSHA256\":\"73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed\"}\n# Subtest: late discovery or read failure never duplicates native output or changes GNU quiet error ordering\nok 8 - late discovery or read failure never duplicates native output or changes GNU quiet error ordering\n  ---\n  duration_ms: 180.011236\n  type: 'test'\n  ...\n# {\"seed\":\"0x728ca451\",\"comparisons\":9,\"rustSearches\":0,\"gnuFallbacks\":9,\"classes\":{\"late-input-failure-and-quiet-order\":9},\"failures\":0,\"artifactSHA256\":\"73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed\"}\n# Subtest: native parallel loading stays correct with more input files than available descriptors\nok 9 - native parallel loading stays correct with more input files than available descriptors\n  ---\n  duration_ms: 56.286627\n  type: 'test'\n  ...\n# {\"seed\":\"0x728ca451\",\"comparisons\":3,\"rustSearches\":3,\"gnuFallbacks\":0,\"classes\":{\"bounded-input-descriptors\":3},\"failures\":0,\"artifactSHA256\":\"73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed\"}\n# Subtest: dense first-record filename shortcuts preserve complete-record word and anchor semantics\nok 10 - dense first-record filename shortcuts preserve complete-record word and anchor semantics\n  ---\n  duration_ms: 49.226717\n  type: 'test'\n  ...\n# {\"seed\":\"0x728ca451\",\"comparisons\":9,\"rustSearches\":9,\"gnuFallbacks\":0,\"classes\":{\"parallel-dense-first-record-boundaries\":9},\"failures\":0,\"artifactSHA256\":\"73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed\"}\n# Subtest: whole-buffer ERE optimization preserves GNU record boundaries\nok 11 - whole-buffer ERE optimization preserves GNU record boundaries\n  ---\n  duration_ms: 330.702518\n  type: 'test'\n  ...\n# {\"seed\":\"0x728ca451\",\"comparisons\":128,\"rustSearches\":112,\"gnuFallbacks\":16,\"classes\":{\"dot-does-not-cross-LF\":8,\"negated-class-does-not-cross-LF\":8,\"CRLF-start-end-anchors\":8,\"CRLF-empty-line-anchor\":8,\"unterminated-final-anchor\":8,\"empty-alternative-selects-existing-records\":8,\"multiple-matches-count-one-record\":8,\"terminal-LF-has-no-phantom-record\":8,\"empty-file-has-no-records\":8,\"NUL-record-dot-may-cross-LF\":8,\"negated-class-does-not-cross-NUL\":8,\"NUL-record-anchors-ignore-payload-LF\":8,\"unterminated-NUL-record-anchor\":8,\"terminal-NUL-has-no-phantom-record\":8,\"native-alternation-counts-selected-records\":8,\"native-pattern-must-not-bridge-LF\":8},\"failures\":0,\"artifactSHA256\":\"73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed\"}\n# Subtest: seeded ERE record-boundary campaign matches GNU byte output and counts\nok 12 - seeded ERE record-boundary campaign matches GNU byte output and counts\n  ---\n  duration_ms: 2114.812947\n  type: 'test'\n  ...\n# {\"seed\":\"0x45524531\",\"comparisons\":768,\"rustSearches\":447,\"gnuFallbacks\":321,\"classes\":{\"seeded-ERE-boundaries\":768},\"failures\":0,\"artifactSHA256\":\"73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed\"}\n1..12\n# tests 12\n# suites 0\n# pass 12\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 3846.188267\n",
+      "stderr": ""
+    },
+    {
+      "name": "Run the packaged process-timer contract tests from an outside cwd",
+      "program": "/usr/bin/node",
+      "argv": [
+        "--test",
+        "--test-reporter=tap",
+        "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/tests/test_benchmark_processes.mjs"
+      ],
+      "cwd": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+      "timeoutMs": 30000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache",
+        "TMPDIR": "/tmp/grep2rg-rust-package-cwd-NEdPh9/test-temporary"
+      },
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 790.3713370000005,
+      "error": null,
+      "stdoutBytes": 1836,
+      "stderrBytes": 0,
+      "stdoutSHA256": "9b26459366e26c6655344731ed0fbdee3b049a6f4efff0a0b65099dea4d316b2",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "TAP version 13\n# Subtest: batch timer retains complete binary stdin, stdout, stderr and exit status\nok 1 - batch timer retains complete binary stdin, stdout, stderr and exit status\n  ---\n  duration_ms: 43.254403\n  type: 'test'\n  ...\n# Subtest: GNU argv0 and status one/two match independent direct GNU commands\nok 2 - GNU argv0 and status one/two match independent direct GNU commands\n  ---\n  duration_ms: 22.257899\n  type: 'test'\n  ...\n# Subtest: argv metacharacters remain literal and child environment is exact\nok 3 - argv metacharacters remain literal and child environment is exact\n  ---\n  duration_ms: 30.747412\n  type: 'test'\n  ...\n# Subtest: timeout kills the owned descendant group even when the direct child already exited\nok 4 - timeout kills the owned descendant group even when the direct child already exited\n  ---\n  duration_ms: 432.139292\n  type: 'test'\n  ...\n# Subtest: early output EOF still waits for process exit without timeout polling sleeps\nok 5 - early output EOF still waits for process exit without timeout polling sleeps\n  ---\n  duration_ms: 54.642608\n  type: 'test'\n  ...\n# Subtest: output limits kill producers and retain bounded channel buffers\nok 6 - output limits kill producers and retain bounded channel buffers\n  ---\n  duration_ms: 28.057817\n  type: 'test'\n  ...\n# Subtest: spawn failures and natural signals do not lose following batch observations\nok 7 - spawn failures and natural signals do not lose following batch observations\n  ---\n  duration_ms: 29.899319\n  type: 'test'\n  ...\n# Subtest: malformed manifests and invalid bounded jobs receive structured errors\nok 8 - malformed manifests and invalid bounded jobs receive structured errors\n  ---\n  duration_ms: 88.792123\n  type: 'test'\n  ...\n1..8\n# tests 8\n# suites 0\n# pass 8\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 766.798222\n",
+      "stderr": ""
+    },
+    {
+      "name": "Run packaged default CLI and model Bash Rust integration checks",
+      "program": "/usr/bin/node",
+      "argv": [
+        "--test",
+        "--test-reporter=tap",
+        "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/tests/test_rust_integration.mjs"
+      ],
+      "cwd": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+      "timeoutMs": 30000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache",
+        "TMPDIR": "/tmp/grep2rg-rust-package-cwd-NEdPh9/test-temporary"
+      },
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 181.7172219999993,
+      "error": null,
+      "stdoutBytes": 1482,
+      "stderrBytes": 0,
+      "stdoutSHA256": "b4e7d57b7bebe176de6a0e9d9b1645eaadd8ea0e8b08e44ca82bf9f556a769b0",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "TAP version 13\n# Subtest: ordinary CLI and private Bash function execute native Rust with exact GNU output\nok 1 - ordinary CLI and private Bash function execute native Rust with exact GNU output\n  ---\n  duration_ms: 26.880881\n  type: 'test'\n  ...\n# {\"campaign\":\"Rust default integration\",\"artifactSHA256\":\"73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed\",\"comparisons\":12,\"native\":8,\"fallback\":4}\n# Subtest: bare compound grep uses Rust while user shells, bypasses and child shells remain GNU\nok 2 - bare compound grep uses Rust while user shells, bypasses and child shells remain GNU\n  ---\n  duration_ms: 7.941297\n  type: 'test'\n  ...\n# Subtest: GNU optout avoids Rust and preserves all output; missing builds retain GNU\nok 3 - GNU optout avoids Rust and preserves all output; missing builds retain GNU\n  ---\n  duration_ms: 7.003994\n  type: 'test'\n  ...\n# Subtest: optional install without Cargo disables stale Rust; required builds report failure\nok 4 - optional install without Cargo disables stale Rust; required builds report failure\n  ---\n  duration_ms: 37.408377\n  type: 'test'\n  ...\n# Subtest: closed standard descriptors retain GNU before Rust can reopen them\nok 5 - closed standard descriptors retain GNU before Rust can reopen them\n  ---\n  duration_ms: 45.969867\n  type: 'test'\n  ...\n# {\"campaign\":\"closed stdio Rust startup guard\",\"comparisons\":20}\n1..5\n# tests 5\n# suites 0\n# pass 5\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 162.340461\n",
+      "stderr": ""
+    },
+    {
+      "name": "GNU CLI oracle: content",
+      "program": "/usr/bin/grep",
+      "argv": [
+        "-anF",
+        "needle",
+        "hit.txt"
+      ],
+      "cwd": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+      "timeoutMs": 60000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache"
+      },
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 1.1387030000005325,
+      "error": null,
+      "stdoutBytes": 16,
+      "stderrBytes": 0,
+      "stdoutSHA256": "e3aea0853418420def1bf603589d086ea1065d57306b5ea65ca45dd1a7313739",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "2:needle needle\n",
+      "stderr": ""
+    },
+    {
+      "name": "Rust CLI: content",
+      "program": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/rust/target/release/grep2rg-rust",
+      "argv": [
+        "-anF",
+        "needle",
+        "hit.txt"
+      ],
+      "cwd": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+      "timeoutMs": 60000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache",
+        "GREP2RG_ENGINE_REPORT": "/tmp/grep2rg-rust-package-cwd-NEdPh9/route-Rust-content.json",
+        "GREP2RG_RUST_BINARY": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/rust/target/release/grep2rg-rust"
+      },
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 1.1480410000003758,
+      "error": null,
+      "stdoutBytes": 16,
+      "stderrBytes": 0,
+      "stdoutSHA256": "e3aea0853418420def1bf603589d086ea1065d57306b5ea65ca45dd1a7313739",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "2:needle needle\n",
+      "stderr": ""
+    },
+    {
+      "name": "packaged-launcher CLI: content",
+      "program": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/bin/grep2rg",
+      "argv": [
+        "-anF",
+        "needle",
+        "hit.txt"
+      ],
+      "cwd": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+      "timeoutMs": 60000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache",
+        "GREP2RG_ENGINE_REPORT": "/tmp/grep2rg-rust-package-cwd-NEdPh9/route-packaged-launcher-content.json",
+        "GREP2RG_RUST_BINARY": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/rust/target/release/grep2rg-rust"
+      },
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 2.255003999998735,
+      "error": null,
+      "stdoutBytes": 16,
+      "stderrBytes": 0,
+      "stdoutSHA256": "e3aea0853418420def1bf603589d086ea1065d57306b5ea65ca45dd1a7313739",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "2:needle needle\n",
+      "stderr": ""
+    },
+    {
+      "name": "GNU CLI oracle: count-zero",
+      "program": "/usr/bin/grep",
+      "argv": [
+        "-acF",
+        "needle",
+        "miss.txt"
+      ],
+      "cwd": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+      "timeoutMs": 60000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache"
+      },
+      "status": 1,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 0.9675900000002002,
+      "error": null,
+      "stdoutBytes": 2,
+      "stderrBytes": 0,
+      "stdoutSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "name": "Rust CLI: count-zero",
+      "program": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/rust/target/release/grep2rg-rust",
+      "argv": [
+        "-acF",
+        "needle",
+        "miss.txt"
+      ],
+      "cwd": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+      "timeoutMs": 60000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache",
+        "GREP2RG_ENGINE_REPORT": "/tmp/grep2rg-rust-package-cwd-NEdPh9/route-Rust-count-zero.json",
+        "GREP2RG_RUST_BINARY": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/rust/target/release/grep2rg-rust"
+      },
+      "status": 1,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 0.9766170000002603,
+      "error": null,
+      "stdoutBytes": 2,
+      "stderrBytes": 0,
+      "stdoutSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "name": "packaged-launcher CLI: count-zero",
+      "program": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/bin/grep2rg",
+      "argv": [
+        "-acF",
+        "needle",
+        "miss.txt"
+      ],
+      "cwd": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+      "timeoutMs": 60000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache",
+        "GREP2RG_ENGINE_REPORT": "/tmp/grep2rg-rust-package-cwd-NEdPh9/route-packaged-launcher-count-zero.json",
+        "GREP2RG_RUST_BINARY": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/rust/target/release/grep2rg-rust"
+      },
+      "status": 1,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 1.9042009999993752,
+      "error": null,
+      "stdoutBytes": 2,
+      "stderrBytes": 0,
+      "stdoutSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "name": "GNU CLI oracle: stdin",
+      "program": "/usr/bin/grep",
+      "argv": [
+        "-anF",
+        "needle"
+      ],
+      "cwd": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+      "timeoutMs": 60000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache"
+      },
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 1.2220710000001418,
+      "error": null,
+      "stdoutBytes": 9,
+      "stderrBytes": 0,
+      "stdoutSHA256": "47e32132f8bb1684df83fef7cac86d51217226a746c74ff521bd81064880d75c",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "2:needle\n",
+      "stderr": ""
+    },
+    {
+      "name": "Rust CLI: stdin",
+      "program": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/rust/target/release/grep2rg-rust",
+      "argv": [
+        "-anF",
+        "needle"
+      ],
+      "cwd": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+      "timeoutMs": 60000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache",
+        "GREP2RG_ENGINE_REPORT": "/tmp/grep2rg-rust-package-cwd-NEdPh9/route-Rust-stdin.json",
+        "GREP2RG_RUST_BINARY": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/rust/target/release/grep2rg-rust"
+      },
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 1.1115710000012768,
+      "error": null,
+      "stdoutBytes": 9,
+      "stderrBytes": 0,
+      "stdoutSHA256": "47e32132f8bb1684df83fef7cac86d51217226a746c74ff521bd81064880d75c",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "2:needle\n",
+      "stderr": ""
+    },
+    {
+      "name": "packaged-launcher CLI: stdin",
+      "program": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/bin/grep2rg",
+      "argv": [
+        "-anF",
+        "needle"
+      ],
+      "cwd": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+      "timeoutMs": 60000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache",
+        "GREP2RG_ENGINE_REPORT": "/tmp/grep2rg-rust-package-cwd-NEdPh9/route-packaged-launcher-stdin.json",
+        "GREP2RG_RUST_BINARY": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/rust/target/release/grep2rg-rust"
+      },
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 2.49807299999884,
+      "error": null,
+      "stdoutBytes": 9,
+      "stderrBytes": 0,
+      "stdoutSHA256": "47e32132f8bb1684df83fef7cac86d51217226a746c74ff521bd81064880d75c",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "2:needle\n",
+      "stderr": ""
+    },
+    {
+      "name": "GNU CLI oracle: ordered-operands",
+      "program": "/usr/bin/grep",
+      "argv": [
+        "-anF",
+        "needle",
+        "miss.txt",
+        "hit.txt",
+        "hit.txt"
+      ],
+      "cwd": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+      "timeoutMs": 60000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache"
+      },
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 0.8443159999987984,
+      "error": null,
+      "stdoutBytes": 48,
+      "stderrBytes": 0,
+      "stdoutSHA256": "11519087ea074664de70f8a7d243ac77e835e9d8754925ce473d61ed78d0d56c",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "hit.txt:2:needle needle\nhit.txt:2:needle needle\n",
+      "stderr": ""
+    },
+    {
+      "name": "Rust CLI: ordered-operands",
+      "program": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/rust/target/release/grep2rg-rust",
+      "argv": [
+        "-anF",
+        "needle",
+        "miss.txt",
+        "hit.txt",
+        "hit.txt"
+      ],
+      "cwd": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+      "timeoutMs": 60000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache",
+        "GREP2RG_ENGINE_REPORT": "/tmp/grep2rg-rust-package-cwd-NEdPh9/route-Rust-ordered-operands.json",
+        "GREP2RG_RUST_BINARY": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/rust/target/release/grep2rg-rust"
+      },
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 1.0525699999998324,
+      "error": null,
+      "stdoutBytes": 48,
+      "stderrBytes": 0,
+      "stdoutSHA256": "11519087ea074664de70f8a7d243ac77e835e9d8754925ce473d61ed78d0d56c",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "hit.txt:2:needle needle\nhit.txt:2:needle needle\n",
+      "stderr": ""
+    },
+    {
+      "name": "packaged-launcher CLI: ordered-operands",
+      "program": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/bin/grep2rg",
+      "argv": [
+        "-anF",
+        "needle",
+        "miss.txt",
+        "hit.txt",
+        "hit.txt"
+      ],
+      "cwd": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+      "timeoutMs": 60000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache",
+        "GREP2RG_ENGINE_REPORT": "/tmp/grep2rg-rust-package-cwd-NEdPh9/route-packaged-launcher-ordered-operands.json",
+        "GREP2RG_RUST_BINARY": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/rust/target/release/grep2rg-rust"
+      },
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 1.911884999999529,
+      "error": null,
+      "stdoutBytes": 48,
+      "stderrBytes": 0,
+      "stdoutSHA256": "11519087ea074664de70f8a7d243ac77e835e9d8754925ce473d61ed78d0d56c",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "hit.txt:2:needle needle\nhit.txt:2:needle needle\n",
+      "stderr": ""
+    },
+    {
+      "name": "GNU CLI oracle: binary-diagnostic",
+      "program": "/usr/bin/grep",
+      "argv": [
+        "-nF",
+        "needle",
+        "binary"
+      ],
+      "cwd": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+      "timeoutMs": 60000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache"
+      },
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 0.7755760000000009,
+      "error": null,
+      "stdoutBytes": 0,
+      "stderrBytes": 34,
+      "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSHA256": "47e53a79903316932265d18bd00119182749e0fffe0d215cd2d4e469c0b4f2f5",
+      "stdout": "",
+      "stderr": "grep: binary: binary file matches\n"
+    },
+    {
+      "name": "Rust CLI: binary-diagnostic",
+      "program": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/rust/target/release/grep2rg-rust",
+      "argv": [
+        "-nF",
+        "needle",
+        "binary"
+      ],
+      "cwd": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+      "timeoutMs": 60000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache",
+        "GREP2RG_ENGINE_REPORT": "/tmp/grep2rg-rust-package-cwd-NEdPh9/route-Rust-binary-diagnostic.json",
+        "GREP2RG_RUST_BINARY": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/rust/target/release/grep2rg-rust"
+      },
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 0.9995299999991403,
+      "error": null,
+      "stdoutBytes": 0,
+      "stderrBytes": 34,
+      "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSHA256": "47e53a79903316932265d18bd00119182749e0fffe0d215cd2d4e469c0b4f2f5",
+      "stdout": "",
+      "stderr": "grep: binary: binary file matches\n"
+    },
+    {
+      "name": "packaged-launcher CLI: binary-diagnostic",
+      "program": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/bin/grep2rg",
+      "argv": [
+        "-nF",
+        "needle",
+        "binary"
+      ],
+      "cwd": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+      "timeoutMs": 60000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache",
+        "GREP2RG_ENGINE_REPORT": "/tmp/grep2rg-rust-package-cwd-NEdPh9/route-packaged-launcher-binary-diagnostic.json",
+        "GREP2RG_RUST_BINARY": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/rust/target/release/grep2rg-rust"
+      },
+      "status": 0,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 2.1554460000006657,
+      "error": null,
+      "stdoutBytes": 0,
+      "stderrBytes": 34,
+      "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderrSHA256": "47e53a79903316932265d18bd00119182749e0fffe0d215cd2d4e469c0b4f2f5",
+      "stdout": "",
+      "stderr": "grep: binary: binary file matches\n"
+    },
+    {
+      "name": "GNU CLI oracle: missing-file-diagnostic",
+      "program": "/usr/bin/grep",
+      "argv": [
+        "-nF",
+        "needle",
+        "missing-file",
+        "hit.txt"
+      ],
+      "cwd": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+      "timeoutMs": 60000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache"
+      },
+      "status": 2,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 0.7947629999998753,
+      "error": null,
+      "stdoutBytes": 24,
+      "stderrBytes": 46,
+      "stdoutSHA256": "1d5e4b3f488360de11cb088a32ca6b4b88a51728170e747496989684e90ae1b7",
+      "stderrSHA256": "3eac00757f52853934b51bd7c4df96a711aeb1a5e5188a854f20a2f068fabbc8",
+      "stdout": "hit.txt:2:needle needle\n",
+      "stderr": "grep: missing-file: No such file or directory\n"
+    },
+    {
+      "name": "Rust CLI: missing-file-diagnostic",
+      "program": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/rust/target/release/grep2rg-rust",
+      "argv": [
+        "-nF",
+        "needle",
+        "missing-file",
+        "hit.txt"
+      ],
+      "cwd": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+      "timeoutMs": 60000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache",
+        "GREP2RG_ENGINE_REPORT": "/tmp/grep2rg-rust-package-cwd-NEdPh9/route-Rust-missing-file-diagnostic.json",
+        "GREP2RG_RUST_BINARY": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/rust/target/release/grep2rg-rust"
+      },
+      "status": 2,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 0.926712000000407,
+      "error": null,
+      "stdoutBytes": 24,
+      "stderrBytes": 46,
+      "stdoutSHA256": "1d5e4b3f488360de11cb088a32ca6b4b88a51728170e747496989684e90ae1b7",
+      "stderrSHA256": "3eac00757f52853934b51bd7c4df96a711aeb1a5e5188a854f20a2f068fabbc8",
+      "stdout": "hit.txt:2:needle needle\n",
+      "stderr": "grep: missing-file: No such file or directory\n"
+    },
+    {
+      "name": "packaged-launcher CLI: missing-file-diagnostic",
+      "program": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/bin/grep2rg",
+      "argv": [
+        "-nF",
+        "needle",
+        "missing-file",
+        "hit.txt"
+      ],
+      "cwd": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+      "timeoutMs": 60000,
+      "environment": {
+        "LC_ALL": "C",
+        "LANG": "C",
+        "npm_config_cache": "/home/lewis/Dev/grep2rg/artifacts/rust-package-bIjcYX/npm-cache",
+        "GREP2RG_ENGINE_REPORT": "/tmp/grep2rg-rust-package-cwd-NEdPh9/route-packaged-launcher-missing-file-diagnostic.json",
+        "GREP2RG_RUST_BINARY": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/rust/target/release/grep2rg-rust"
+      },
+      "status": 2,
+      "signal": null,
+      "timedOut": false,
+      "durationMs": 2.0772280000001047,
+      "error": null,
+      "stdoutBytes": 24,
+      "stderrBytes": 46,
+      "stdoutSHA256": "1d5e4b3f488360de11cb088a32ca6b4b88a51728170e747496989684e90ae1b7",
+      "stderrSHA256": "3eac00757f52853934b51bd7c4df96a711aeb1a5e5188a854f20a2f068fabbc8",
+      "stdout": "hit.txt:2:needle needle\n",
+      "stderr": "grep: missing-file: No such file or directory\n"
+    }
+  ],
+  "failures": [],
+  "sourceHashes": {
+    "rust/Cargo.lock": "7d9c110224107e4a3361e04fed206aedce96056da7b4ceab274bae111ef0edf2",
+    "rust/Cargo.toml": "267f8b69f64b134ab455cadda7894eb9faa1f57dd88caa3466cb5be20aeb97c8",
+    "rust/src/main.rs": "cbeeb3ed147cdc4ac9a0710ebec7cb22a5faf891bebb3ae817aa36b33a882e2c",
+    "rust/.npmignore": "b53ee26e6ff1da219b0563333a76d2c9ec19eec713d6ee54e11a1edacb0e9f3d",
+    "rust/.gitignore": "306fd52e74fca6746e12acc750f232de15e71da917756a1270d74c91f5eb7368",
+    "package.json": "2bba71ae942b4623edc6c003464dd6a9fd0c2fb29b14695b051df5a7238603ab",
+    ".npmignore": "c516c16258bcc6854270c37a9614ad1c32a04b19cbd9a71f237d0def847510ed",
+    "tests/test_rust_engine.mjs": "a7dd9d074cea214c7ae89aeb2844d9d552624d279e49f50ac68a0f07cb433a8b",
+    "tests/rust-engine-contract.json": "c777a1741b183c007543b7ba27e29625ff9ae29945f67d5c89d576929a3c37cb",
+    "tests/test_benchmark_processes.mjs": "d73ad30b99355ce1f8ee6c3b275c38d0345b9489d9dd9062a75cd921fc5f04f8",
+    "tools/benchmark-processes.py": "fdb213c63cd66dd1e85726b432942133b32d67de109d27982f9e23d863c00131",
+    "tools/benchmark-rust-engine.mjs": "d14b6035f10ad7366960a28cd272b6e4401e1cb3f872817898d22fea142022d3",
+    "tools/rust-benchmark-fixture.mjs": "b2e6307c3e6f5663d027b563c229968c4e08d607a70e8edf94cdf6abbcd84b2e",
+    "tools/verify-rust-artifact.mjs": "8c18bde6ed27ebb8febb03e6b712838a307901f041d967b82943b1a80709d5d7",
+    "tools/build-rust.mjs": "b26b57e6db626ec35d5d9de9d4a8e022a102f02fc5235a3029e8f73b3ad6add1",
+    "tests/test_rust_integration.mjs": "572892cd1c76d7d5cf9296e6cfcbdf397104dd6f0f9a0699e83094a7655a3975",
+    "src/grep-wrapper.mjs": "68e39fcd2c1c2dcb7b0833177c9ab7f8d3e1c0cec21b900871a2e7a36f2e51a3",
+    "bin/grep2rg": "f0ea7ad7438d7fd4a06cd4a968c275c83bf935ed0b88f00cfee535297481d3d7"
+  },
+  "originalRelease": {
+    "path": "/home/lewis/Dev/grep2rg/rust/target/release/grep2rg-rust",
+    "SHA256": "73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed"
+  },
+  "packageArtifact": {
+    "filename": "grep2rg-0.1.0.tgz",
+    "SHA256": "9f9151131d04762ead0cb7aebf043ecbcc39c94d2bac207b19db666b6f712841",
+    "integrity": "sha512-8HPBcmVp2lktj9sYMgXMf0y3oavFxn33Y0zUFajacDha30rVetAW09pdt+SWqngXBNa7eL1XKHCiQ5QzdWvg9A==",
+    "npmSHA1": "14b1836d0022baee4e8e4d02255011fe38ab88cd",
+    "fileCount": 77,
+    "sizeBytes": 694378,
+    "unpackedSizeBytes": 11855857,
+    "files": [
+      "LICENSE",
+      "NOTICE",
+      "README.md",
+      "bin/grep2rg",
+      "bin/grep2rg-shell-prefix.mjs",
+      "bin/grep2rg.mjs",
+      "docs/automatic-performance.json",
+      "docs/automatic-qualification.json",
+      "docs/automatic-routing-audit.json",
+      "docs/broader-qualification.json",
+      "docs/compatibility.md",
+      "docs/coverage.json",
+      "docs/expanded-qualification.json",
+      "docs/extraction-provenance.json",
+      "docs/qualification.json",
+      "docs/rust-engine-initial-performance.json",
+      "docs/rust-engine-performance.json",
+      "docs/rust-engine-previous-performance.json",
+      "docs/rust-engine-prior-native-performance.json",
+      "docs/rust-engine-qualification.json",
+      "docs/rust-engine.md",
+      "docs/verification.md",
+      "docs/warm-performance.json",
+      "native/grep2rg.c",
+      "package.json",
+      "pi/grep2rg.ts",
+      "rust/Cargo.lock",
+      "rust/Cargo.toml",
+      "rust/src/main.rs",
+      "src/grep-descriptors.mjs",
+      "src/grep-files.mjs",
+      "src/grep-options.mjs",
+      "src/grep-output.mjs",
+      "src/grep-posix-spans.mjs",
+      "src/grep-runtime.mjs",
+      "src/grep-stdin.mjs",
+      "src/grep-unicode.mjs",
+      "src/grep-wrapper.mjs",
+      "tests/grep_extended_helpers.mjs",
+      "tests/grep_option_inventory.json",
+      "tests/grep_wrapper_requirements.json",
+      "tests/port_source_manifest.json",
+      "tests/rust-engine-contract.json",
+      "tests/test_benchmark_processes.mjs",
+      "tests/test_grep_auto_native.mjs",
+      "tests/test_grep_descriptors.mjs",
+      "tests/test_grep_extended_backpressure.mjs",
+      "tests/test_grep_extended_coverage.mjs",
+      "tests/test_grep_files.mjs",
+      "tests/test_grep_full_cli.mjs",
+      "tests/test_grep_matcher_campaign.mjs",
+      "tests/test_grep_matrix_campaign.mjs",
+      "tests/test_grep_option_interactions.mjs",
+      "tests/test_grep_options.mjs",
+      "tests/test_grep_output.mjs",
+      "tests/test_grep_routing_policy.mjs",
+      "tests/test_grep_runtime_faults.mjs",
+      "tests/test_grep_scope.mjs",
+      "tests/test_grep_seekable_stdin.mjs",
+      "tests/test_grep_text_preflight.mjs",
+      "tests/test_grep_traversal_campaign.mjs",
+      "tests/test_grep_unicode.mjs",
+      "tests/test_grep_wrapper.mjs",
+      "tests/test_package_artifact.mjs",
+      "tests/test_package_entry.mjs",
+      "tests/test_rust_engine.mjs",
+      "tests/test_rust_integration.mjs",
+      "tools/benchmark-processes.py",
+      "tools/benchmark-routing.mjs",
+      "tools/benchmark-rust-engine.mjs",
+      "tools/build-native.mjs",
+      "tools/build-rust.mjs",
+      "tools/render-rust-results.mjs",
+      "tools/rust-benchmark-fixture.mjs",
+      "tools/verify-artifact.mjs",
+      "tools/verify-rust-artifact.mjs",
+      "tools/verify.mjs"
+    ],
+    "rustFiles": [
+      "rust/Cargo.lock",
+      "rust/Cargo.toml",
+      "rust/src/main.rs"
+    ],
+    "compiledTargetAbsent": true,
+    "pythonCacheAbsent": true
+  },
+  "extractedRustSourceHashes": {
+    "rust/Cargo.lock": "7d9c110224107e4a3361e04fed206aedce96056da7b4ceab274bae111ef0edf2",
+    "rust/Cargo.toml": "267f8b69f64b134ab455cadda7894eb9faa1f57dd88caa3466cb5be20aeb97c8",
+    "rust/src/main.rs": "cbeeb3ed147cdc4ac9a0710ebec7cb22a5faf891bebb3ae817aa36b33a882e2c"
+  },
+  "versions": {
+    "cargo": "cargo 1.90.0 (840b83a10 2025-07-30)\nrelease: 1.90.0\ncommit-hash: 840b83a10fb0e039a83f4d70ad032892c287570a\ncommit-date: 2025-07-30\nhost: x86_64-unknown-linux-gnu\nlibgit2: 1.9.1 (sys:0.20.2 vendored)\nlibcurl: 8.14.1-DEV (sys:0.4.82+curl-8.14.1 vendored ssl:OpenSSL/3.5.0)\nssl: OpenSSL 3.5.0 8 Apr 2025\nos: CachyOS Linux [64-bit]\n",
+    "rustc": "rustc 1.90.0 (1159e78c4 2025-09-14)\nbinary: rustc\ncommit-hash: 1159e78c4747b02ef996e55082b704c09b970588\ncommit-date: 2025-09-14\nhost: x86_64-unknown-linux-gnu\nrelease: 1.90.0\nLLVM version: 20.1.8\n",
+    "npm": "12.0.2\n",
+    "GNU": "grep (GNU grep) 3.12-modified\nCopyright (C) 2025 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n\nWritten by Mike Haertel and others; see\n<https://git.savannah.gnu.org/cgit/grep.git/tree/AUTHORS>.\n\ngrep -P uses PCRE2 10.47 2025-10-21\n",
+    "node": "v26.4.0"
+  },
+  "executable": {
+    "path": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/rust/target/release/grep2rg-rust",
+    "SHA256": "73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed",
+    "rebuiltFromExtractedSource": true,
+    "packagedPrebuiltBinaryUsed": false,
+    "GNUOraclePath": "/usr/bin/grep",
+    "GNUOracleSHA256": "1f000906a29a17f35c3e3563f742533c7e917292c963ccd139d11a82b543c4ea"
+  },
+  "tests": {
+    "reporter": "TAP",
+    "counts": {
+      "tests": 12,
+      "suites": 0,
+      "pass": 12,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "diagnostics": [
+      {
+        "seed": "0x728ca451",
+        "comparisons": 28,
+        "rustSearches": 26,
+        "gnuFallbacks": 2,
+        "classes": {
+          "recursive-count": 1,
+          "recursive-invert-count": 1,
+          "recursive-filenames-sparse": 1,
+          "recursive-filenames-no-match": 1,
+          "explicit-count": 1,
+          "explicit-filenames-sparse": 1,
+          "explicit-filenames-no-match": 1,
+          "single-large-count-native": 1,
+          "small-file-native": 1,
+          "stdin-native": 1,
+          "regex-compatible-count": 1,
+          "recursive-dense-filenames-native": 1,
+          "small-recursive-count-native": 1,
+          "many-tiny-count-native": 1,
+          "below-threshold-count-native": 1,
+          "long-record-count-native": 1,
+          "long-record-content-native": 1,
+          "recursive-content": 1,
+          "recursive-regex-content": 1,
+          "recursive-filter-native": 1,
+          "recursive-dereference-native": 1,
+          "word-extraction-native": 1,
+          "null-records-native": 1,
+          "pattern-file-native": 1,
+          "quiet-native": 1,
+          "binary-content-native": 1,
+          "unicode-folding-native": 1,
+          "context-native": 1
+        },
+        "failures": 0,
+        "artifactSHA256": "73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed"
+      },
+      {
+        "seed": "0x728ca451",
+        "comparisons": 48,
+        "rustSearches": 30,
+        "gnuFallbacks": 18,
+        "classes": {
+          "empty-record": 1,
+          "empty-only-matching": 1,
+          "empty-invert": 1,
+          "empty-pattern-file": 1,
+          "blank-pattern-file": 1,
+          "mixed-empty-pattern": 1,
+          "regression-empty-and-nonempty-extraction": 1,
+          "multi-pattern-overlap": 1,
+          "ERE-longest": 1,
+          "ERE-longest-reverse": 1,
+          "newline-pattern": 1,
+          "whole-line": 1,
+          "word-boundary": 1,
+          "invert-word": 1,
+          "invert-only-matching": 1,
+          "count-invert": 1,
+          "count-empty": 1,
+          "files-without-match-status-hit": 1,
+          "files-without-match-status-miss": 1,
+          "files-without-match-both": 1,
+          "filename-nul": 1,
+          "filename-header-nul": 1,
+          "filename-suppression": 1,
+          "forced-filename": 1,
+          "duplicate-operands": 1,
+          "missing-final-newline": 1,
+          "empty-input": 1,
+          "CRLF-records": 1,
+          "invalid-UTF8-records": 1,
+          "nul-final-record": 1,
+          "nul-only-matching": 1,
+          "nul-invert-count": 1,
+          "text-binary-bytes": 1,
+          "missing-first": 1,
+          "missing-last": 1,
+          "quiet-missing-first": 1,
+          "quiet-missing-last": 1,
+          "quiet-miss-error": 1,
+          "directory-error": 1,
+          "stdin-explicit": 1,
+          "stdin-and-file": 1,
+          "repeated-stdin": 1,
+          "pattern-file-stdin": 1,
+          "invalid-ERE": 1,
+          "unsupported-BRE-backref": 1,
+          "unsupported-context": 1,
+          "unicode-case-folding": 1,
+          "unicode-word-boundary": 1
+        },
+        "failures": 0,
+        "artifactSHA256": "73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed"
+      },
+      {
+        "seed": "0x728ca451",
+        "comparisons": 384,
+        "rustSearches": 250,
+        "gnuFallbacks": 134,
+        "classes": {
+          "seeded-campaign": 384
+        },
+        "failures": 0,
+        "artifactSHA256": "73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed"
+      },
+      {
+        "seed": "0x728ca451",
+        "comparisons": 7,
+        "rustSearches": 7,
+        "gnuFallbacks": 0,
+        "classes": {
+          "raw-traversal": 7
+        },
+        "failures": 0,
+        "artifactSHA256": "73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed"
+      },
+      {
+        "seed": "0x728ca451",
+        "comparisons": 12,
+        "rustSearches": 5,
+        "gnuFallbacks": 7,
+        "classes": {
+          "pipe-input": 6,
+          "GNU-diagnostic-fallback": 4,
+          "seekable-stdin-cursor": 1,
+          "closed-stdout": 1
+        },
+        "failures": 0,
+        "artifactSHA256": "73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed"
+      },
+      {
+        "seed": "0x728ca451",
+        "comparisons": 7,
+        "rustSearches": 7,
+        "gnuFallbacks": 0,
+        "classes": {
+          "parallel-release-search": 7
+        },
+        "failures": 0,
+        "artifactSHA256": "73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed"
+      },
+      {
+        "seed": "0x728ca451",
+        "comparisons": 8,
+        "rustSearches": 8,
+        "gnuFallbacks": 0,
+        "classes": {
+          "parallel-variable-output-spill": 8
+        },
+        "failures": 0,
+        "artifactSHA256": "73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed"
+      },
+      {
+        "seed": "0x728ca451",
+        "comparisons": 9,
+        "rustSearches": 0,
+        "gnuFallbacks": 9,
+        "classes": {
+          "late-input-failure-and-quiet-order": 9
+        },
+        "failures": 0,
+        "artifactSHA256": "73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed"
+      },
+      {
+        "seed": "0x728ca451",
+        "comparisons": 3,
+        "rustSearches": 3,
+        "gnuFallbacks": 0,
+        "classes": {
+          "bounded-input-descriptors": 3
+        },
+        "failures": 0,
+        "artifactSHA256": "73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed"
+      },
+      {
+        "seed": "0x728ca451",
+        "comparisons": 9,
+        "rustSearches": 9,
+        "gnuFallbacks": 0,
+        "classes": {
+          "parallel-dense-first-record-boundaries": 9
+        },
+        "failures": 0,
+        "artifactSHA256": "73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed"
+      },
+      {
+        "seed": "0x728ca451",
+        "comparisons": 128,
+        "rustSearches": 112,
+        "gnuFallbacks": 16,
+        "classes": {
+          "dot-does-not-cross-LF": 8,
+          "negated-class-does-not-cross-LF": 8,
+          "CRLF-start-end-anchors": 8,
+          "CRLF-empty-line-anchor": 8,
+          "unterminated-final-anchor": 8,
+          "empty-alternative-selects-existing-records": 8,
+          "multiple-matches-count-one-record": 8,
+          "terminal-LF-has-no-phantom-record": 8,
+          "empty-file-has-no-records": 8,
+          "NUL-record-dot-may-cross-LF": 8,
+          "negated-class-does-not-cross-NUL": 8,
+          "NUL-record-anchors-ignore-payload-LF": 8,
+          "unterminated-NUL-record-anchor": 8,
+          "terminal-NUL-has-no-phantom-record": 8,
+          "native-alternation-counts-selected-records": 8,
+          "native-pattern-must-not-bridge-LF": 8
+        },
+        "failures": 0,
+        "artifactSHA256": "73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed"
+      },
+      {
+        "seed": "0x45524531",
+        "comparisons": 768,
+        "rustSearches": 447,
+        "gnuFallbacks": 321,
+        "classes": {
+          "seeded-ERE-boundaries": 768
+        },
+        "failures": 0,
+        "artifactSHA256": "73b7b41b4fd299e9e605161a234f80dc71cab71588fbd6776e3ad0b78d8a64ed"
+      }
+    ],
+    "fullGNUComparisons": 1411,
+    "rustSearches": 904,
+    "gnuFallbacks": 507,
+    "classes": {
+      "recursive-count": 1,
+      "recursive-invert-count": 1,
+      "recursive-filenames-sparse": 1,
+      "recursive-filenames-no-match": 1,
+      "explicit-count": 1,
+      "explicit-filenames-sparse": 1,
+      "explicit-filenames-no-match": 1,
+      "single-large-count-native": 1,
+      "small-file-native": 1,
+      "stdin-native": 1,
+      "regex-compatible-count": 1,
+      "recursive-dense-filenames-native": 1,
+      "small-recursive-count-native": 1,
+      "many-tiny-count-native": 1,
+      "below-threshold-count-native": 1,
+      "long-record-count-native": 1,
+      "long-record-content-native": 1,
+      "recursive-content": 1,
+      "recursive-regex-content": 1,
+      "recursive-filter-native": 1,
+      "recursive-dereference-native": 1,
+      "word-extraction-native": 1,
+      "null-records-native": 1,
+      "pattern-file-native": 1,
+      "quiet-native": 1,
+      "binary-content-native": 1,
+      "unicode-folding-native": 1,
+      "context-native": 1,
+      "empty-record": 1,
+      "empty-only-matching": 1,
+      "empty-invert": 1,
+      "empty-pattern-file": 1,
+      "blank-pattern-file": 1,
+      "mixed-empty-pattern": 1,
+      "regression-empty-and-nonempty-extraction": 1,
+      "multi-pattern-overlap": 1,
+      "ERE-longest": 1,
+      "ERE-longest-reverse": 1,
+      "newline-pattern": 1,
+      "whole-line": 1,
+      "word-boundary": 1,
+      "invert-word": 1,
+      "invert-only-matching": 1,
+      "count-invert": 1,
+      "count-empty": 1,
+      "files-without-match-status-hit": 1,
+      "files-without-match-status-miss": 1,
+      "files-without-match-both": 1,
+      "filename-nul": 1,
+      "filename-header-nul": 1,
+      "filename-suppression": 1,
+      "forced-filename": 1,
+      "duplicate-operands": 1,
+      "missing-final-newline": 1,
+      "empty-input": 1,
+      "CRLF-records": 1,
+      "invalid-UTF8-records": 1,
+      "nul-final-record": 1,
+      "nul-only-matching": 1,
+      "nul-invert-count": 1,
+      "text-binary-bytes": 1,
+      "missing-first": 1,
+      "missing-last": 1,
+      "quiet-missing-first": 1,
+      "quiet-missing-last": 1,
+      "quiet-miss-error": 1,
+      "directory-error": 1,
+      "stdin-explicit": 1,
+      "stdin-and-file": 1,
+      "repeated-stdin": 1,
+      "pattern-file-stdin": 1,
+      "invalid-ERE": 1,
+      "unsupported-BRE-backref": 1,
+      "unsupported-context": 1,
+      "unicode-case-folding": 1,
+      "unicode-word-boundary": 1,
+      "seeded-campaign": 384,
+      "raw-traversal": 7,
+      "pipe-input": 6,
+      "GNU-diagnostic-fallback": 4,
+      "seekable-stdin-cursor": 1,
+      "closed-stdout": 1,
+      "parallel-release-search": 7,
+      "parallel-variable-output-spill": 8,
+      "late-input-failure-and-quiet-order": 9,
+      "bounded-input-descriptors": 3,
+      "parallel-dense-first-record-boundaries": 9,
+      "dot-does-not-cross-LF": 8,
+      "negated-class-does-not-cross-LF": 8,
+      "CRLF-start-end-anchors": 8,
+      "CRLF-empty-line-anchor": 8,
+      "unterminated-final-anchor": 8,
+      "empty-alternative-selects-existing-records": 8,
+      "multiple-matches-count-one-record": 8,
+      "terminal-LF-has-no-phantom-record": 8,
+      "empty-file-has-no-records": 8,
+      "NUL-record-dot-may-cross-LF": 8,
+      "negated-class-does-not-cross-NUL": 8,
+      "NUL-record-anchors-ignore-payload-LF": 8,
+      "unterminated-NUL-record-anchor": 8,
+      "terminal-NUL-has-no-phantom-record": 8,
+      "native-alternation-counts-selected-records": 8,
+      "native-pattern-must-not-bridge-LF": 8,
+      "seeded-ERE-boundaries": 768
+    },
+    "requiredClasses": [
+      "recursive-count",
+      "recursive-invert-count",
+      "recursive-filenames-sparse",
+      "recursive-filenames-no-match",
+      "explicit-count",
+      "explicit-filenames-sparse",
+      "explicit-filenames-no-match",
+      "single-large-count-native",
+      "small-file-native",
+      "stdin-native",
+      "regex-compatible-count",
+      "recursive-dense-filenames-native",
+      "small-recursive-count-native",
+      "many-tiny-count-native",
+      "below-threshold-count-native",
+      "long-record-count-native",
+      "long-record-content-native",
+      "recursive-content",
+      "recursive-regex-content",
+      "recursive-dereference-native",
+      "word-extraction-native",
+      "null-records-native",
+      "pattern-file-native",
+      "quiet-native",
+      "recursive-filter-native",
+      "binary-content-native",
+      "unicode-folding-native",
+      "context-native"
+    ],
+    "fullComparisonContract": [
+      "all stdout bytes",
+      "all stderr bytes",
+      "exit status"
+    ],
+    "nativeRouteAssertionsSeparateFromFallback": true
+  },
+  "benchmarkDriverTests": {
+    "counts": {
+      "tests": 8,
+      "pass": 8,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "executedFromExtractedSource": true
+  },
+  "integrationTests": {
+    "counts": {
+      "tests": 5,
+      "pass": 5,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "executedFromExtractedSource": true,
+    "fullGNUComparisons": 32,
+    "defaultCLIRustReceiptVerified": true,
+    "privateBashRustReceiptVerified": true,
+    "userBashAndChildShellsUnchanged": true,
+    "optionalMissingToolchainFallbackVerified": true
+  },
+  "cli": {
+    "workingDirectory": "/tmp/grep2rg-rust-package-cwd-NEdPh9",
+    "fullGNUComparisons": 12,
+    "packagedLauncher": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/bin/grep2rg",
+    "rebuiltRustCLI": "/tmp/grep2rg-rust-package-cwd-NEdPh9/extracted/package/rust/target/release/grep2rg-rust",
+    "launcherRustCoverageClaimed": true,
+    "observations": [
+      {
+        "id": "content",
+        "label": "Rust",
+        "argv": [
+          "-anF",
+          "needle",
+          "hit.txt"
+        ],
+        "GNU": {
+          "status": 0,
+          "signal": null,
+          "stdoutBytes": 16,
+          "stderrBytes": 0,
+          "stdoutSHA256": "e3aea0853418420def1bf603589d086ea1065d57306b5ea65ca45dd1a7313739",
+          "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "actual": {
+          "status": 0,
+          "signal": null,
+          "stdoutBytes": 16,
+          "stderrBytes": 0,
+          "stdoutSHA256": "e3aea0853418420def1bf603589d086ea1065d57306b5ea65ca45dd1a7313739",
+          "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "route": {
+          "bytes": 24,
+          "engine": "rust",
+          "files": 1,
+          "reason": "supported GNU byte semantics",
+          "strategy": "sequential-mmap",
+          "workers": 1
+        },
+        "statusMatches": true,
+        "fullStdoutMatches": true,
+        "fullStderrMatches": true
+      },
+      {
+        "id": "content",
+        "label": "packaged-launcher",
+        "argv": [
+          "-anF",
+          "needle",
+          "hit.txt"
+        ],
+        "GNU": {
+          "status": 0,
+          "signal": null,
+          "stdoutBytes": 16,
+          "stderrBytes": 0,
+          "stdoutSHA256": "e3aea0853418420def1bf603589d086ea1065d57306b5ea65ca45dd1a7313739",
+          "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "actual": {
+          "status": 0,
+          "signal": null,
+          "stdoutBytes": 16,
+          "stderrBytes": 0,
+          "stdoutSHA256": "e3aea0853418420def1bf603589d086ea1065d57306b5ea65ca45dd1a7313739",
+          "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "route": {
+          "bytes": 24,
+          "engine": "rust",
+          "files": 1,
+          "reason": "supported GNU byte semantics",
+          "strategy": "sequential-mmap",
+          "workers": 1
+        },
+        "statusMatches": true,
+        "fullStdoutMatches": true,
+        "fullStderrMatches": true
+      },
+      {
+        "id": "count-zero",
+        "label": "Rust",
+        "argv": [
+          "-acF",
+          "needle",
+          "miss.txt"
+        ],
+        "GNU": {
+          "status": 1,
+          "signal": null,
+          "stdoutBytes": 2,
+          "stderrBytes": 0,
+          "stdoutSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+          "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "actual": {
+          "status": 1,
+          "signal": null,
+          "stdoutBytes": 2,
+          "stderrBytes": 0,
+          "stdoutSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+          "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "route": {
+          "bytes": 16,
+          "engine": "rust",
+          "files": 1,
+          "reason": "supported GNU byte semantics",
+          "strategy": "sequential-mmap",
+          "workers": 1
+        },
+        "statusMatches": true,
+        "fullStdoutMatches": true,
+        "fullStderrMatches": true
+      },
+      {
+        "id": "count-zero",
+        "label": "packaged-launcher",
+        "argv": [
+          "-acF",
+          "needle",
+          "miss.txt"
+        ],
+        "GNU": {
+          "status": 1,
+          "signal": null,
+          "stdoutBytes": 2,
+          "stderrBytes": 0,
+          "stdoutSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+          "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "actual": {
+          "status": 1,
+          "signal": null,
+          "stdoutBytes": 2,
+          "stderrBytes": 0,
+          "stdoutSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+          "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "route": {
+          "bytes": 16,
+          "engine": "rust",
+          "files": 1,
+          "reason": "supported GNU byte semantics",
+          "strategy": "sequential-mmap",
+          "workers": 1
+        },
+        "statusMatches": true,
+        "fullStdoutMatches": true,
+        "fullStderrMatches": true
+      },
+      {
+        "id": "stdin",
+        "label": "Rust",
+        "argv": [
+          "-anF",
+          "needle"
+        ],
+        "GNU": {
+          "status": 0,
+          "signal": null,
+          "stdoutBytes": 9,
+          "stderrBytes": 0,
+          "stdoutSHA256": "47e32132f8bb1684df83fef7cac86d51217226a746c74ff521bd81064880d75c",
+          "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "actual": {
+          "status": 0,
+          "signal": null,
+          "stdoutBytes": 9,
+          "stderrBytes": 0,
+          "stdoutSHA256": "47e32132f8bb1684df83fef7cac86d51217226a746c74ff521bd81064880d75c",
+          "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "route": {
+          "bytes": 0,
+          "engine": "rust",
+          "files": 0,
+          "reason": "supported GNU byte semantics",
+          "strategy": "spooled-stdin",
+          "workers": 1
+        },
+        "statusMatches": true,
+        "fullStdoutMatches": true,
+        "fullStderrMatches": true
+      },
+      {
+        "id": "stdin",
+        "label": "packaged-launcher",
+        "argv": [
+          "-anF",
+          "needle"
+        ],
+        "GNU": {
+          "status": 0,
+          "signal": null,
+          "stdoutBytes": 9,
+          "stderrBytes": 0,
+          "stdoutSHA256": "47e32132f8bb1684df83fef7cac86d51217226a746c74ff521bd81064880d75c",
+          "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "actual": {
+          "status": 0,
+          "signal": null,
+          "stdoutBytes": 9,
+          "stderrBytes": 0,
+          "stdoutSHA256": "47e32132f8bb1684df83fef7cac86d51217226a746c74ff521bd81064880d75c",
+          "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "route": {
+          "bytes": 0,
+          "engine": "rust",
+          "files": 0,
+          "reason": "supported GNU byte semantics",
+          "strategy": "spooled-stdin",
+          "workers": 1
+        },
+        "statusMatches": true,
+        "fullStdoutMatches": true,
+        "fullStderrMatches": true
+      },
+      {
+        "id": "ordered-operands",
+        "label": "Rust",
+        "argv": [
+          "-anF",
+          "needle",
+          "miss.txt",
+          "hit.txt",
+          "hit.txt"
+        ],
+        "GNU": {
+          "status": 0,
+          "signal": null,
+          "stdoutBytes": 48,
+          "stderrBytes": 0,
+          "stdoutSHA256": "11519087ea074664de70f8a7d243ac77e835e9d8754925ce473d61ed78d0d56c",
+          "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "actual": {
+          "status": 0,
+          "signal": null,
+          "stdoutBytes": 48,
+          "stderrBytes": 0,
+          "stdoutSHA256": "11519087ea074664de70f8a7d243ac77e835e9d8754925ce473d61ed78d0d56c",
+          "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "route": {
+          "bytes": 64,
+          "engine": "rust",
+          "files": 3,
+          "reason": "supported GNU byte semantics",
+          "strategy": "sequential-mmap",
+          "workers": 1
+        },
+        "statusMatches": true,
+        "fullStdoutMatches": true,
+        "fullStderrMatches": true
+      },
+      {
+        "id": "ordered-operands",
+        "label": "packaged-launcher",
+        "argv": [
+          "-anF",
+          "needle",
+          "miss.txt",
+          "hit.txt",
+          "hit.txt"
+        ],
+        "GNU": {
+          "status": 0,
+          "signal": null,
+          "stdoutBytes": 48,
+          "stderrBytes": 0,
+          "stdoutSHA256": "11519087ea074664de70f8a7d243ac77e835e9d8754925ce473d61ed78d0d56c",
+          "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "actual": {
+          "status": 0,
+          "signal": null,
+          "stdoutBytes": 48,
+          "stderrBytes": 0,
+          "stdoutSHA256": "11519087ea074664de70f8a7d243ac77e835e9d8754925ce473d61ed78d0d56c",
+          "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "route": {
+          "bytes": 64,
+          "engine": "rust",
+          "files": 3,
+          "reason": "supported GNU byte semantics",
+          "strategy": "sequential-mmap",
+          "workers": 1
+        },
+        "statusMatches": true,
+        "fullStdoutMatches": true,
+        "fullStderrMatches": true
+      },
+      {
+        "id": "binary-diagnostic",
+        "label": "Rust",
+        "argv": [
+          "-nF",
+          "needle",
+          "binary"
+        ],
+        "GNU": {
+          "status": 0,
+          "signal": null,
+          "stdoutBytes": 0,
+          "stderrBytes": 34,
+          "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderrSHA256": "47e53a79903316932265d18bd00119182749e0fffe0d215cd2d4e469c0b4f2f5"
+        },
+        "actual": {
+          "status": 0,
+          "signal": null,
+          "stdoutBytes": 0,
+          "stderrBytes": 34,
+          "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderrSHA256": "47e53a79903316932265d18bd00119182749e0fffe0d215cd2d4e469c0b4f2f5"
+        },
+        "route": {
+          "bytes": 0,
+          "engine": "gnu",
+          "files": 0,
+          "reason": "GNU binary output semantics",
+          "strategy": "exec",
+          "workers": 1
+        },
+        "statusMatches": true,
+        "fullStdoutMatches": true,
+        "fullStderrMatches": true
+      },
+      {
+        "id": "binary-diagnostic",
+        "label": "packaged-launcher",
+        "argv": [
+          "-nF",
+          "needle",
+          "binary"
+        ],
+        "GNU": {
+          "status": 0,
+          "signal": null,
+          "stdoutBytes": 0,
+          "stderrBytes": 34,
+          "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderrSHA256": "47e53a79903316932265d18bd00119182749e0fffe0d215cd2d4e469c0b4f2f5"
+        },
+        "actual": {
+          "status": 0,
+          "signal": null,
+          "stdoutBytes": 0,
+          "stderrBytes": 34,
+          "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderrSHA256": "47e53a79903316932265d18bd00119182749e0fffe0d215cd2d4e469c0b4f2f5"
+        },
+        "route": {
+          "bytes": 0,
+          "engine": "gnu",
+          "files": 0,
+          "reason": "GNU binary output semantics",
+          "strategy": "exec",
+          "workers": 1
+        },
+        "statusMatches": true,
+        "fullStdoutMatches": true,
+        "fullStderrMatches": true
+      },
+      {
+        "id": "missing-file-diagnostic",
+        "label": "Rust",
+        "argv": [
+          "-nF",
+          "needle",
+          "missing-file",
+          "hit.txt"
+        ],
+        "GNU": {
+          "status": 2,
+          "signal": null,
+          "stdoutBytes": 24,
+          "stderrBytes": 46,
+          "stdoutSHA256": "1d5e4b3f488360de11cb088a32ca6b4b88a51728170e747496989684e90ae1b7",
+          "stderrSHA256": "3eac00757f52853934b51bd7c4df96a711aeb1a5e5188a854f20a2f068fabbc8"
+        },
+        "actual": {
+          "status": 2,
+          "signal": null,
+          "stdoutBytes": 24,
+          "stderrBytes": 46,
+          "stdoutSHA256": "1d5e4b3f488360de11cb088a32ca6b4b88a51728170e747496989684e90ae1b7",
+          "stderrSHA256": "3eac00757f52853934b51bd7c4df96a711aeb1a5e5188a854f20a2f068fabbc8"
+        },
+        "route": {
+          "bytes": 0,
+          "engine": "gnu",
+          "files": 0,
+          "reason": "input metadata",
+          "strategy": "exec",
+          "workers": 1
+        },
+        "statusMatches": true,
+        "fullStdoutMatches": true,
+        "fullStderrMatches": true
+      },
+      {
+        "id": "missing-file-diagnostic",
+        "label": "packaged-launcher",
+        "argv": [
+          "-nF",
+          "needle",
+          "missing-file",
+          "hit.txt"
+        ],
+        "GNU": {
+          "status": 2,
+          "signal": null,
+          "stdoutBytes": 24,
+          "stderrBytes": 46,
+          "stdoutSHA256": "1d5e4b3f488360de11cb088a32ca6b4b88a51728170e747496989684e90ae1b7",
+          "stderrSHA256": "3eac00757f52853934b51bd7c4df96a711aeb1a5e5188a854f20a2f068fabbc8"
+        },
+        "actual": {
+          "status": 2,
+          "signal": null,
+          "stdoutBytes": 24,
+          "stderrBytes": 46,
+          "stdoutSHA256": "1d5e4b3f488360de11cb088a32ca6b4b88a51728170e747496989684e90ae1b7",
+          "stderrSHA256": "3eac00757f52853934b51bd7c4df96a711aeb1a5e5188a854f20a2f068fabbc8"
+        },
+        "route": {
+          "bytes": 0,
+          "engine": "gnu",
+          "files": 0,
+          "reason": "input metadata",
+          "strategy": "exec",
+          "workers": 1
+        },
+        "statusMatches": true,
+        "fullStdoutMatches": true,
+        "fullStderrMatches": true
+      }
+    ]
+  },
+  "sourceAndExecutableHashesStable": true,
+  "fullGNUComparisons": 1455,
+  "stageCount": 29,
+  "completedAt": "2026-10-12T23:12:50.971Z",
+  "cleanup": "Owned archive/cache/build/extraction/outside-cwd directories removed after verification."
+}
